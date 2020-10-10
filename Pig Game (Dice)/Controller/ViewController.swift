@@ -15,33 +15,35 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    var game = Game(player1: Player(name: "Player1"), player2: Player(name: "Player2"))
+    
     override func viewDidAppear(_ animated: Bool) {
-        newGame()
-        showNameInputDialog(players: players)
+        game.newGame()
+        showNameInputDialog(player1: game.player1, player2: game.player2)
     }
 
     @IBAction func RollButtonPressed(_ sender: UIButton) {
         
-        if activePlayer.totalScore >= K.scoreLimit {
-            print("Player: \(activePlayer.name) wins!")
+        if game.activePlayer.totalScore >= game.scoreLimit {
+            print("Player: \(game.activePlayer.name) wins!")
             
-            showAlert(title: "You have won!", message: "\(activePlayer.name) had won the game with total score \(activePlayer.totalScore)!")
-            newGame()
+            showAlert(title: "You have won!", message: "\(game.activePlayer.name) had won the game with total score \(game.activePlayer.totalScore)!")
+            game.newGame()
         }
         
-        activePlayer.rollTheDice()
-        activePlayer.calculateScores()
+        game.activePlayer.rollTheDice()
+        game.activePlayer.calculateScores()
  
         updateUI()
         
-        if activePlayer.score == 0 {
-            if activePlayer.previousDice == 6 && activePlayer.currentDice == 6 {
-                showAlert(title: "Busted!", message: "\(activePlayer.name) thrown 6 two times in a row, the total score is now zero.")
-            } else if activePlayer.currentDice == 1 {
-                showAlert(title: "You hove lost this round!", message: "\(activePlayer.name) has thrown 1.")
+        if game.activePlayer.score == 0 {
+            if game.activePlayer.previousDice == 6 && game.activePlayer.currentDice == 6 {
+                showAlert(title: "Busted!", message: "\(game.activePlayer.name) had 6 thrown two times in a row, the total score is now zero")
+            } else if game.activePlayer.currentDice == 1 {
+                showAlert(title: "You have lost this round!", message: "\(game.activePlayer.name) had thrown 1")
             }
-            activePlayer = nextPlayer(players: players)
-            activePlayer.newRound()
+            game.nextPlayer()
+            game.activePlayer.newRound()
             
             updateUI()
         }
@@ -49,9 +51,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func HoldButtonPressed(_ sender: UIButton) {
-        activePlayer.hold()
-        activePlayer = nextPlayer(players: players)
-        activePlayer.newRound()
+        game.activePlayer.hold()
+        game.nextPlayer()
+        game.activePlayer.newRound()
         
         updateUI()
     }
@@ -68,18 +70,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var CurrentPlayerLabel: UILabel!
     
-    func showNameInputDialog(players: [Player]) {
+    func showNameInputDialog(player1: Player, player2: Player) {
         let alertController = UIAlertController(title: "Players' Names?", message: "Enter your names:", preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
             
-            players[0].name = alertController.textFields?[0].text ?? "Player 1"
-            players[1].name = alertController.textFields?[1].text ?? "Player 2"
+            player1.name = alertController.textFields?[0].text ?? "Player 1"
+            player2.name = alertController.textFields?[1].text ?? "Player 2"
             
             self.updateUI()
         }
-        
-        //let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
         
         alertController.addTextField { (textField) in
             textField.placeholder = "Player One Name"
@@ -89,8 +89,6 @@ class ViewController: UIViewController {
         }
         
         alertController.addAction(confirmAction)
-        
-        //alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
     }
@@ -104,14 +102,14 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
-        self.CurrentPlayerLabel.text = activePlayer.name
-        self.PlayerOneScoreLabel.text = "\(players[0].name): \(players[0].totalScore)"
-        self.PlayerTwoScoreLabel.text = "\(players[1].name): \(players[1].totalScore)"
+        self.CurrentPlayerLabel.text = game.activePlayer.name
+        self.PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
+        self.PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
         
-        self.CurrentScoreLabel.text = "Current Score: \(activePlayer.score)"
+        self.CurrentScoreLabel.text = "Current Score: \(game.activePlayer.score)"
         
-        if activePlayer.currentDice != nil {
-            self.DiceImage.image = diceArray[activePlayer.currentDice! - 1]
+        if game.activePlayer.currentDice != nil {
+            self.DiceImage.image = diceArray[game.activePlayer.currentDice! - 1]
         } else {
             self.DiceImage.image = nil
         }

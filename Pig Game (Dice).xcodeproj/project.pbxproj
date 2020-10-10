@@ -14,7 +14,7 @@
 		CFE937E0252E7D3D009F7CB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE937DE252E7D3D009F7CB2 /* Main.storyboard */; };
 		CFE937E2252E7D40009F7CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE937E1252E7D40009F7CB2 /* Assets.xcassets */; };
 		CFE937E5252E7D40009F7CB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE937E3252E7D40009F7CB2 /* LaunchScreen.storyboard */; };
-		CFE937F1252E8634009F7CB2 /* DiceGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE937F0252E8634009F7CB2 /* DiceGameModel.swift */; };
+		CFE937F1252E8634009F7CB2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE937F0252E8634009F7CB2 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		CFE937E1252E7D40009F7CB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE937E4252E7D40009F7CB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFE937E6252E7D40009F7CB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CFE937F0252E8634009F7CB2 /* DiceGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceGameModel.swift; sourceTree = "<group>"; };
+		CFE937F0252E8634009F7CB2 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 		CFE937ED252E85B4009F7CB2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CFE937F0252E8634009F7CB2 /* DiceGameModel.swift */,
+				CFE937F0252E8634009F7CB2 /* Game.swift */,
 				CFD6115B2530F806008CF24A /* Player.swift */,
 			);
 			path = Model;
@@ -169,7 +169,7 @@
 			files = (
 				CFE937DD252E7D3D009F7CB2 /* ViewController.swift in Sources */,
 				CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */,
-				CFE937F1252E8634009F7CB2 /* DiceGameModel.swift in Sources */,
+				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
 				CFD6115C2530F807008CF24A /* Player.swift in Sources */,
 				CFE937DB252E7D3D009F7CB2 /* SceneDelegate.swift in Sources */,
 			);
