@@ -8,51 +8,44 @@
 import Foundation
 
 struct K {
-    let scoreLimit = 100
+    static let scoreLimit = 100
+    static let numberOfPlayers = 2
 }
 
-class Player {
-    var name: String
-    
-    var currentScore = 0
-    var totalScore = 0
-    var previousDice: Int? = nil
-    
-    func rollTheDice() -> Int {
-        return Int.random(in: 1...6)
-    }
+var players = [Player(name: "Player1"), Player(name: "Player2")]
+var activePlayer = chooseRandomPlayer(players: players)
 
-    func calculateScores(_ currentDice: Int) {
-        if previousDice != nil {
-            if previousDice == 6 && currentDice == 6 {
-                totalScore = 0
-                currentScore = 0
-                return
-            }
-        }
-        
-        if currentDice == 1 {
-            totalScore += currentScore
-            currentScore = 0
-            return
-        }
-        
-        currentScore += currentDice
-    }
+func newGame() {
+    players = [Player(name: "Player1"), Player(name: "Player2")]    
+    activePlayer = chooseRandomPlayer(players: players)
+}
+
+func endGame() {
     
-    func hold() {
-        totalScore += currentScore
-        currentScore = 0
-    }
-    
-    init(name: String) {
-        self.name = name
-    }
 }
 
 func chooseRandomPlayer(players: [Player]) -> Player {
     let randomIndex = Int.random(in: 0...players.count - 1)
+    players[randomIndex].isActive = true
     return players[randomIndex]
+}
+
+func nextPlayer(players: [Player]) -> Player {
+    var i = 0
+    
+    while players[i].isActive != true {
+        i += 1
+    }
+
+    players[i].isActive = false
+
+    if i == players.count - 1 {
+        players[0].isActive = true
+        return players[0]
+    } else {
+        players[i + 1].isActive = true
+        return players[i + 1]
+    }
 }
 
     
