@@ -8,32 +8,29 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     let diceArray = [#imageLiteral(resourceName: "dice1.png"), #imageLiteral(resourceName: "dice2"), #imageLiteral(resourceName: "dice3"), #imageLiteral(resourceName: "dice4"), #imageLiteral(resourceName: "dice5"), #imageLiteral(resourceName: "dice6")]
+    
+    var game = Game()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    var game = Game(player1: Player(name: "Player1"), player2: Player(name: "Player2"))
-    
     override func viewDidAppear(_ animated: Bool) {
-        game.newGame()
         showNameInputDialog(player1: game.player1, player2: game.player2)
     }
-
+    
     @IBAction func RollButtonPressed(_ sender: UIButton) {
         
+        game.activePlayer.rollTheDice()
+        game.activePlayer.calculateScores()
+        
         if game.activePlayer.totalScore >= game.scoreLimit {
-            print("Player: \(game.activePlayer.name) wins!")
-            
             showAlert(title: "You have won!", message: "\(game.activePlayer.name) had won the game with total score \(game.activePlayer.totalScore)!")
             game.newGame()
         }
         
-        game.activePlayer.rollTheDice()
-        game.activePlayer.calculateScores()
- 
         updateUI()
         
         if game.activePlayer.score == 0 {
@@ -47,11 +44,16 @@ class ViewController: UIViewController {
             
             updateUI()
         }
-        
     }
     
     @IBAction func HoldButtonPressed(_ sender: UIButton) {
         game.activePlayer.hold()
+        
+        if game.activePlayer.totalScore >= game.scoreLimit {
+            showAlert(title: "You have won!", message: "\(game.activePlayer.name) had won the game with total score \(game.activePlayer.totalScore)!")
+            game.newGame()
+        }
+        
         game.nextPlayer()
         game.activePlayer.newRound()
         

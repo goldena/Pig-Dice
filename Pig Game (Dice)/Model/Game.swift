@@ -8,20 +8,17 @@
 import Foundation
 
 struct Game {
-//    var player1 = Player(name: "Player1")
-//    var player2 = Player(name: "Player2")
-//    lazy var activePlayer = player1
-    var player1: Player
-    var player2: Player
-    lazy var activePlayer = player1
+    var player1 = Player(name: "Player1")
+    var player2 = Player(name: "Player2")
+    lazy var activePlayer = chooseRandomPlayer()
 
-    var scoreLimit = 100
+    var scoreLimit = 10
     
-    mutating func chooseRandomPlayer() {
+    mutating func chooseRandomPlayer() -> Player {
         if Int.random(in: 1...2) == 1  {
-            activePlayer = player1
+            return player1
         } else {
-            activePlayer = player2
+            return player2
         }
     }
     
@@ -36,7 +33,6 @@ struct Game {
     mutating func newGame() {
         player1 = Player(name: "Player1")
         player2 = Player(name: "Player2")
-        
-        chooseRandomPlayer()
+        activePlayer = chooseRandomPlayer()
     }
 }
