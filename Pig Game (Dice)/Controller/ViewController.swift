@@ -26,13 +26,14 @@ class ViewController: UIViewController {
         game.activePlayer.rollTheDice()
         game.activePlayer.calculateScores()
         
-        if game.activePlayer.totalScore >= game.scoreLimit {
-            showAlert(title: "You have won!", message: "\(game.activePlayer.name) had won the game with total score \(game.activePlayer.totalScore)!")
-            game.newGame()
-        }
-        
         updateUI()
         
+        if game.activePlayer.totalScore + game.activePlayer.score >= game.scoreLimit {
+            showAlert(title: "You have won!", message: "\(game.activePlayer.name) had won the game with total score \(game.activePlayer.totalScore + game.activePlayer.score)!")
+            
+            game.newGame()
+        }
+                
         if game.activePlayer.score == 0 {
             if game.activePlayer.previousDice == 6 && game.activePlayer.currentDice == 6 {
                 showAlert(title: "Busted!", message: "\(game.activePlayer.name) had 6 thrown two times in a row, the total score is now zero")
