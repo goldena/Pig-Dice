@@ -7,14 +7,24 @@
 
 import Foundation
 
+enum PlayerState {
+    case playing
+    case threw1
+    case threw6
+    case threw6Twice
+    case winner
+}
+
 struct Game {
     var player1 = Player(name: "Player1")
     var player2 = Player(name: "Player2")
     lazy var activePlayer = chooseRandomPlayer()
 
-    var scoreLimit = 10
+    // Defaut score limit of the game
+    var scoreLimit = 100
     
-    mutating func chooseRandomPlayer() -> Player {
+    // Returns a random player
+    func chooseRandomPlayer() -> Player {
         if Int.random(in: 1...2) == 1  {
             return player1
         } else {
@@ -22,6 +32,38 @@ struct Game {
         }
     }
     
+    // Calculate scores ans set corresponding states
+    func calculateScores(_ player: Player) {
+        // Zero player's current round score if 1 is thrown
+        if player.dice == 1 {
+            player.state = .threw1
+            player.roundScore = 0
+            return
+        }
+
+        // Zero player's total score if 6 was thrown twice
+        if player.state == .threw6 && player.dice == 6 {
+                player.state = .threw6Twice
+                player.totalScore = 0
+                player.roundScore = 0
+                return
+        }
+        
+        // Set the status if 6 was thrown first time
+        if player.state == .playing && player.dice == 6 {
+            player.state = .threw6
+        }
+                
+        // Add the thrown dice to current score if neither of above
+        player.roundScore += player.dice!
+        
+        // Check winning condition
+        if player.roundScore + player.totalScore >= scoreLimit {
+            player.state = .winner
+        }
+    }
+
+    // Sets the next player
     mutating func nextPlayer() {
         if activePlayer === player1 {
             activePlayer = player2
@@ -30,9 +72,10 @@ struct Game {
         }
     }
     
+    // Reinitiates the game with the previous player's names
     mutating func newGame() {
-        player1 = Player(name: "Player1")
-        player2 = Player(name: "Player2")
+        player1 = Player(name: player1.name)
+        player2 = Player(name: player2.name)
         activePlayer = chooseRandomPlayer()
     }
 }

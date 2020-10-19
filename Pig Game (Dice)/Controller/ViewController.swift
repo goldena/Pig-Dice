@@ -18,43 +18,43 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        // Call the func displaying a window where players can input their names
         showNameInputDialog(player1: game.player1, player2: game.player2)
     }
     
     @IBAction func RollButtonPressed(_ sender: UIButton) {
-        
+        // Game mechanics: roll, calculate scores, check conditions, display alerts
         game.activePlayer.rollTheDice()
-        game.activePlayer.calculateScores()
+        game.calculateScores(game.activePlayer)
         
         updateUI()
         
-        if game.activePlayer.totalScore + game.activePlayer.score >= game.scoreLimit {
-            showAlert(title: "You have won!", message: "\(game.activePlayer.name) had won the game with total score \(game.activePlayer.totalScore + game.activePlayer.score)!")
+        switch game.activePlayer.state {
+        case .winner:
+            showAlert(title: "You have won!", message: "\(game.activePlayer.name) had won the game with total score \(game.activePlayer.totalScore + game.activePlayer.roundScore)!")
+                game.newGame()
             
-            game.newGame()
-        }
-                
-        if game.activePlayer.score == 0 {
-            if game.activePlayer.previousDice == 6 && game.activePlayer.currentDice == 6 {
-                showAlert(title: "Busted!", message: "\(game.activePlayer.name) had 6 thrown two times in a row, the total score is now zero")
-            } else if game.activePlayer.currentDice == 1 {
-                showAlert(title: "You have lost this round!", message: "\(game.activePlayer.name) had thrown 1")
-            }
+        case .threw1:
+            showAlert(title: "You have lost this round!", message: "\(game.activePlayer.name) had thrown 1")
             game.nextPlayer()
             game.activePlayer.newRound()
-            
-            updateUI()
+        
+        case .threw6Twice:
+            showAlert(title: "Busted!", message: "\(game.activePlayer.name) had 6 thrown two times in a row, the total score is now zero")
+            game.nextPlayer()
+            game.activePlayer.newRound()
+        
+        default:
+            break
         }
+        
+        // NB: Should be moved to alert closures
+        updateUI()
     }
     
     @IBAction func HoldButtonPressed(_ sender: UIButton) {
         game.activePlayer.hold()
-        
-        if game.activePlayer.totalScore >= game.scoreLimit {
-            showAlert(title: "You have won!", message: "\(game.activePlayer.name) had won the game with total score \(game.activePlayer.totalScore)!")
-            game.newGame()
-        }
-        
+                
         game.nextPlayer()
         game.activePlayer.newRound()
         
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     func showNameInputDialog(player1: Player, player2: Player) {
         let alertController = UIAlertController(title: "Players' Names?", message: "Enter your names:", preferredStyle: .alert)
         
-        let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+        let confirmAction = UIAlertAction(title: "Enter", style: .default) {_ in 
             
             player1.name = alertController.textFields?[0].text ?? "Player 1"
             player2.name = alertController.textFields?[1].text ?? "Player 2"
@@ -109,13 +109,12 @@ class ViewController: UIViewController {
         self.PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
         self.PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
         
-        self.CurrentScoreLabel.text = "Current Score: \(game.activePlayer.score)"
+        self.CurrentScoreLabel.text = "Current Score: \(game.activePlayer.roundScore)"
         
-        if game.activePlayer.currentDice != nil {
-            self.DiceImage.image = diceArray[game.activePlayer.currentDice! - 1]
+        if game.activePlayer.dice != nil {
+            self.DiceImage.image = diceArray[game.activePlayer.dice! - 1]
         } else {
             self.DiceImage.image = nil
         }
     }
 }
-

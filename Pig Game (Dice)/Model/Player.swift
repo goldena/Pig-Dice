@@ -9,44 +9,24 @@ import Foundation
 
 class Player {
     var name: String
-    
-    var score = 0
+
     var totalScore = 0
-    var previousDice: Int? = nil
-    var currentDice: Int? = nil
+    var roundScore = 0
+    var dice: Int? = nil
+    var state = PlayerState.playing
     
     func rollTheDice() {
-        if currentDice != nil {
-            previousDice = currentDice
-        }
-        currentDice = Int.random(in: 1...6)
-    }
-
-    func calculateScores() {
-        if previousDice != nil {
-            if previousDice == 6 && currentDice == 6 {
-                totalScore = 0
-                score = 0
-                return
-            }
-        }
-        
-        if currentDice == 1 {
-            score = 0
-            return
-        }
-        
-        score += currentDice!
+        dice = Int.random(in: 1...6)
     }
     
     func hold() {
-        totalScore += score
+        totalScore += roundScore
     }
     
     func newRound() {
-        score = 0
-        previousDice = nil
-        currentDice = nil
+        roundScore = 0
+        dice = nil
+        state = .playing
     }
     
     init(name: String) {
