@@ -7,14 +7,6 @@
 
 import Foundation
 
-enum PlayerState {
-    case playing
-    case threw1
-    case threw6
-    case threw6Twice
-    case winner
-}
-
 struct Game {
     var player1 = Player(name: "Player1")
     var player2 = Player(name: "Player2")

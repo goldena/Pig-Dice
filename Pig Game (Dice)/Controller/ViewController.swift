@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let diceArray = [#imageLiteral(resourceName: "dice1.png"), #imageLiteral(resourceName: "dice2"), #imageLiteral(resourceName: "dice3"), #imageLiteral(resourceName: "dice4"), #imageLiteral(resourceName: "dice5"), #imageLiteral(resourceName: "dice6")]
+    let diceArray = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
     
     var game = Game()
     
@@ -47,9 +47,6 @@ class ViewController: UIViewController {
         default:
             break
         }
-        
-        // NB: Should be moved to alert closures
-        updateUI()
     }
     
     @IBAction func HoldButtonPressed(_ sender: UIButton) {
@@ -101,7 +98,7 @@ class ViewController: UIViewController {
         
         alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: updateUI)
     }
     
     func updateUI() {

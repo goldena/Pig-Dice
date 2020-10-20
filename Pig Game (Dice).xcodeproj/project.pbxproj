@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF9F1B4A253F719D00C1979F /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9F1B49253F719D00C1979F /* PlayerState.swift */; };
 		CFD6115C2530F807008CF24A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6115B2530F806008CF24A /* Player.swift */; };
 		CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */; };
 		CFE937DB252E7D3D009F7CB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE937DA252E7D3D009F7CB2 /* SceneDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF9F1B49253F719D00C1979F /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		CFD6115B2530F806008CF24A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CFE937D5252E7D3D009F7CB2 /* Pig Game (Dice).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pig Game (Dice).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				CFE937F0252E8634009F7CB2 /* Game.swift */,
 				CFD6115B2530F806008CF24A /* Player.swift */,
+				CF9F1B49253F719D00C1979F /* PlayerState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */,
 				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
 				CFD6115C2530F807008CF24A /* Player.swift in Sources */,
+				CF9F1B4A253F719D00C1979F /* PlayerState.swift in Sources */,
 				CFE937DB252E7D3D009F7CB2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
