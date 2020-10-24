@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         self.PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
         self.PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
         
-        self.CurrentScoreLabel.text = "Current Score: \(game.activePlayer.roundScore)"
+        self.CurrentScoreLabel.text = "\(game.activePlayer.roundScore)"
         
         if game.activePlayer.dice != nil {
             self.DiceImage.image = diceArray[game.activePlayer.dice! - 1]
