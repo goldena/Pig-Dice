@@ -62,8 +62,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var CurrentScoreLabel: UILabel!
     
-    @IBOutlet weak var TotalScoreLabel: UILabel!
-    
     @IBOutlet weak var PlayerOneScoreLabel: UILabel!
     
     @IBOutlet weak var PlayerTwoScoreLabel: UILabel!
