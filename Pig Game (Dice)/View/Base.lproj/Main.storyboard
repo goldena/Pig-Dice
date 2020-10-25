@@ -18,10 +18,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pig_Game__Dice_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameViewController" customModule="Pig_Game__Dice_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="Main View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,7 +81,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KAE-lT-Qro" userLabel="Total Scores Stack View">
-                                                        <rect key="frame" x="80" y="79" width="182" height="78"/>
+                                                        <rect key="frame" x="41" y="79" width="93" height="79"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQe-mb-J6Q" userLabel="Player1 Total Score Output">
                                                                 <rect key="frame" x="0.0" y="0.0" width="85.666666666666671" height="78.333333333333329"/>
@@ -100,7 +100,7 @@
                                                 </subviews>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yId-h9-dxi">
-                                                <rect key="frame" x="96" y="227" width="150" height="150"/>
+                                                <rect key="frame" x="36" y="35" width="150" height="151"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="V69-sW-NKw"/>
                                                     <constraint firstAttribute="height" constant="150" id="dkn-Vq-9T6"/>
@@ -113,7 +113,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="342" height="43.666666666666664"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQm-rB-I26" userLabel="Current Player Label">
-                                                                <rect key="frame" x="0.0" y="7.3333333333333144" width="166" height="29"/>
+                                                                <rect key="frame" x="0.0" y="7.3333333333332575" width="166" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -127,7 +127,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zWC-LX-wgS" userLabel="Current Score Stack View">
-                                                        <rect key="frame" x="109" y="43.666666666666686" width="124" height="43.333333333333343"/>
+                                                        <rect key="frame" x="109" y="43.666666666666742" width="124" height="43.333333333333343"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztO-Hj-kKC" userLabel="Current Score Label">
                                                                 <rect key="frame" x="0.0" y="7" width="64" height="29"/>
@@ -163,7 +163,7 @@
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="Roll" image="arrow.triangle.2.circlepath" catalog="system">
+                                                        <state key="normal" title="ROLL" image="arrow.triangle.2.circlepath" catalog="system">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -181,7 +181,7 @@
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="Hold" image="square.and.arrow.down" catalog="system">
+                                                        <state key="normal" title="HOLD" image="square.and.arrow.down" catalog="system">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -239,10 +239,10 @@
             </objects>
             <point key="canvasLocation" x="135.19999999999999" y="85.907046476761622"/>
         </scene>
-        <!--View Controller-->
+        <!--Help View Controller-->
         <scene sceneID="6Wj-JZ-KIo">
             <objects>
-                <viewController id="Ke0-8v-hNx" sceneMemberID="viewController">
+                <viewController id="Ke0-8v-hNx" customClass="HelpViewController" customModule="Pig_Game__Dice_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1EO-q7-dL5" userLabel="Help View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,12 +259,18 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Tlm-L5-ThG">
                                                 <rect key="frame" x="10" y="0.0" width="338" height="580"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <mutableString key="text">GAME RULES: 
+- The game has 2 players, playing in rounds. The first player to play the first round is determined randomly
+- In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
+- BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
+- A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn.
+- The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
+- The first player to reach 100 (the number can be changed in the options) points in total - wins the game</mutableString>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92j-bO-tvX" userLabel="Hold Button">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92j-bO-tvX" userLabel="Back Button">
                                                 <rect key="frame" x="129" y="590" width="100" height="50"/>
                                                 <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -275,11 +281,11 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Back" image="chevron.backward" catalog="system">
+                                                <state key="normal" title="BACK" image="chevron.backward" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="HoldButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Zp-to-EL8"/>
+                                                    <action selector="BackButtonPressed:" destination="Ke0-8v-hNx" eventType="touchUpInside" id="6az-Zm-x9i"/>
                                                 </connections>
                                             </button>
                                         </subviews>
