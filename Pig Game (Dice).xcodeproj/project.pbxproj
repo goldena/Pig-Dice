@@ -12,6 +12,7 @@
 		CFE2D96E2545B6FD00565EB8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */; };
 		CFE2D9712545B75300565EB8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE2D9702545B75300565EB8 /* Lato-Regular.ttf */; };
 		CFE2D9742546231F00565EB8 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2D9732546231F00565EB8 /* HelpViewController.swift */; };
+		CFE2D978254E093F00565EB8 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2D977254E093F00565EB8 /* OptionsViewController.swift */; };
 		CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */; };
 		CFE937DB252E7D3D009F7CB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE937DA252E7D3D009F7CB2 /* SceneDelegate.swift */; };
 		CFE937DD252E7D3D009F7CB2 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE937DC252E7D3D009F7CB2 /* GameViewController.swift */; };
@@ -27,6 +28,7 @@
 		CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		CFE2D9702545B75300565EB8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		CFE2D9732546231F00565EB8 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		CFE2D977254E093F00565EB8 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		CFE937D5252E7D3D009F7CB2 /* Pig Game (Dice).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pig Game (Dice).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFE937DA252E7D3D009F7CB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				CFE937DC252E7D3D009F7CB2 /* GameViewController.swift */,
+				CFE2D977254E093F00565EB8 /* OptionsViewController.swift */,
 				CFE2D9732546231F00565EB8 /* HelpViewController.swift */,
 			);
 			path = Controller;
@@ -190,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFE2D9742546231F00565EB8 /* HelpViewController.swift in Sources */,
+				CFE2D978254E093F00565EB8 /* OptionsViewController.swift in Sources */,
 				CFE937DD252E7D3D009F7CB2 /* GameViewController.swift in Sources */,
 				CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */,
 				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
