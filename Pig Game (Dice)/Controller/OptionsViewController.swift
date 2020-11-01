@@ -20,7 +20,6 @@ class OptionsViewController: UIViewController {
         Player2NameTextField.text = options.player2Name
         ScoreLimitTextField.text = String(options.scoreLimit)
     }
-
     
     @IBOutlet weak var LanguageSelectionSegmentedControl: UISegmentedControl!
     
@@ -30,7 +29,7 @@ class OptionsViewController: UIViewController {
     
     @IBOutlet weak var ScoreLimitTextField: UITextField!
     
-    @IBAction func BackButtonPressed(_ sender: UIButton) {
+    @IBAction func CancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     

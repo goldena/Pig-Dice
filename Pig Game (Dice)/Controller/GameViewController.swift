@@ -16,19 +16,21 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // Call the func displaying a window where players can input their names
-        // showNameInputDialog(player1: game.player1, player2: game.player2)
 
         options.load()
         
         game.player1.name = options.player1Name
         game.player2.name = options.player2Name
         game.scoreLimit = options.scoreLimit
+
+        updateUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // Call the func displaying a window where players can input their names
+        // showNameInputDialog(player1: game.player1, player2: game.player2)
+    }
+        
     @IBAction func NewGameButtonPressed(_ sender: UIButton) {
         showAlert(title: "New Game", message: "You have started a new game!")
         game.newGame()
@@ -79,30 +81,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var PlayerTwoScoreLabel: UILabel!
     
     @IBOutlet weak var CurrentPlayerLabel: UILabel!
-    
-    func showNameInputDialog(player1: Player, player2: Player) {
-        let alertController = UIAlertController(title: "Players' Names?", message: "Enter your names:", preferredStyle: .alert)
         
-        let confirmAction = UIAlertAction(title: "Enter", style: .default) {_ in 
-            
-            player1.name = alertController.textFields?[0].text ?? "Player 1"
-            player2.name = alertController.textFields?[1].text ?? "Player 2"
-            
-            self.updateUI()
-        }
-        
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Player One Name"
-        }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Player Two Name"
-        }
-        
-        alertController.addAction(confirmAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
