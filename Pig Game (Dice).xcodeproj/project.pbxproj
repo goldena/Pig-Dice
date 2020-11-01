@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF52AFBC254ED91D0077F737 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52AFBB254ED91D0077F737 /* Options.swift */; };
 		CF9F1B4A253F719D00C1979F /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9F1B49253F719D00C1979F /* PlayerState.swift */; };
 		CFD6115C2530F807008CF24A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6115B2530F806008CF24A /* Player.swift */; };
 		CFE2D96E2545B6FD00565EB8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF52AFBB254ED91D0077F737 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		CF9F1B49253F719D00C1979F /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		CFD6115B2530F806008CF24A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				CFE937F0252E8634009F7CB2 /* Game.swift */,
 				CFD6115B2530F806008CF24A /* Player.swift */,
 				CF9F1B49253F719D00C1979F /* PlayerState.swift */,
+				CF52AFBB254ED91D0077F737 /* Options.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
 				CFD6115C2530F807008CF24A /* Player.swift in Sources */,
 				CF9F1B4A253F719D00C1979F /* PlayerState.swift in Sources */,
+				CF52AFBC254ED91D0077F737 /* Options.swift in Sources */,
 				CFE937DB252E7D3D009F7CB2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,7 @@ class GameViewController: UIViewController {
     let diceArray = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
     
     var game = Game()
+    var options = Options()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,18 @@ class GameViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         // Call the func displaying a window where players can input their names
-        showNameInputDialog(player1: game.player1, player2: game.player2)
+        // showNameInputDialog(player1: game.player1, player2: game.player2)
+
+        options.load()
+        
+        game.player1.name = options.player1Name
+        game.player2.name = options.player2Name
+        game.scoreLimit = options.scoreLimit
+    }
+    
+    @IBAction func NewGameButtonPressed(_ sender: UIButton) {
+        showAlert(title: "New Game", message: "You have started a new game!")
+        game.newGame()
     }
     
     @IBAction func RollButtonPressed(_ sender: UIButton) {
