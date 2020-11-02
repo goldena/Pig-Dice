@@ -12,25 +12,11 @@ class GameViewController: UIViewController {
     let diceArray = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
     
     var game = Game()
-    var options = Options()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        options.load()
-        
-        game.player1.name = options.player1Name
-        game.player2.name = options.player2Name
-        game.scoreLimit = options.scoreLimit
-
-        updateUI()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // Call the func displaying a window where players can input their names
-        // showNameInputDialog(player1: game.player1, player2: game.player2)
-    }
-        
+            
     @IBAction func NewGameButtonPressed(_ sender: UIButton) {
         showAlert(title: "New Game", message: "You have started a new game!")
         game.newGame()
@@ -76,6 +62,8 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var CurrentScoreLabel: UILabel!
     
+    @IBOutlet weak var ScoreLimitLabel: UILabel!
+    
     @IBOutlet weak var PlayerOneScoreLabel: UILabel!
     
     @IBOutlet weak var PlayerTwoScoreLabel: UILabel!
@@ -91,6 +79,8 @@ class GameViewController: UIViewController {
     }
     
     func updateUI() {
+        self.ScoreLimitLabel.text = String(game.scoreLimit)
+        
         self.CurrentPlayerLabel.text = game.activePlayer.name
         self.PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
         self.PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"

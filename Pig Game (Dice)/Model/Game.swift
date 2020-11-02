@@ -8,6 +8,9 @@
 import Foundation
 
 struct Game {
+    
+    var options = Options()
+    
     var player1 = Player(name: "Player1")
     var player2 = Player(name: "Player2")
     lazy var activePlayer = chooseRandomPlayer()
@@ -23,7 +26,15 @@ struct Game {
             return player2
         }
     }
-    
+  
+    mutating func loadOptions() {
+        options.load()
+        
+        player1.name = options.player1Name
+        player2.name = options.player2Name
+        scoreLimit = options.scoreLimit
+    }
+
     // Calculate scores ans set corresponding states
     func calculateScores(_ player: Player) {
         // Zero player's current round score if 1 is thrown
@@ -68,6 +79,7 @@ struct Game {
     mutating func newGame() {
         player1 = Player(name: player1.name)
         player2 = Player(name: player2.name)
+        loadOptions()
         activePlayer = chooseRandomPlayer()
     }
 }
