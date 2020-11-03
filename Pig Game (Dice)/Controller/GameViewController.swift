@@ -15,6 +15,9 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        game.newGame()
+        updateUI()
     }
             
     @IBAction func NewGameButtonPressed(_ sender: UIButton) {
