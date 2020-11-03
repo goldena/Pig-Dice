@@ -14,7 +14,7 @@ struct Game {
     var player1 = Player(name: "Player1")
     var player2 = Player(name: "Player2")
     lazy var activePlayer = chooseRandomPlayer()
-
+    
     // Defaut score limit of the game
     var scoreLimit = 100
     
@@ -77,9 +77,11 @@ struct Game {
     
     // Reinitiates the game with the previous player's names
     mutating func newGame() {
-        player1 = Player(name: player1.name)
-        player2 = Player(name: player2.name)
         loadOptions()
+        
+        player1 = Player(name: options.player1Name)
+        player2 = Player(name: options.player2Name)
+        
         activePlayer = chooseRandomPlayer()
     }
 }

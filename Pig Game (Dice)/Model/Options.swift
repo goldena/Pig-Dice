@@ -14,7 +14,13 @@ class Options {
     var player2Name: String = "Player2"
     var scoreLimit: Int = 100
     
+    var localization: String = "En"
+    
     func load() {
+        if let localization = options.string(forKey: "Localization") {
+            self.localization = localization
+        }
+        
         if let player1Name = options.string(forKey: "Player1Name") {
             self.player1Name = player1Name
         }
@@ -27,6 +33,7 @@ class Options {
     }
     
     func save() {
+        self.options.set(self.localization, forKey: "Localization")
         self.options.set(self.player1Name, forKey: "Player1Name")
         self.options.set(self.player2Name, forKey: "Player2Name")
         self.options.set(self.scoreLimit, forKey: "ScoreLimit")
