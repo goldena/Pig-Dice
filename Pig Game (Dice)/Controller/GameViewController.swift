@@ -12,24 +12,32 @@ class GameViewController: UIViewController {
     let diceArray = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
     
     var game = Game()
-    var options = Options()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                    
+                  
+        Options.load()
+        
+        if Options.localization == "En" {
+            Localization.setLanguage(to: .En)
+        } else if Options.localization == "Ru" {
+            Localization.setLanguage(to: .Ru)
+        }
+        
         game.newGame()
         updateUI()
     }
             
     @IBAction func NewGameButtonPressed(_ sender: UIButton) {
-        showAlert(title: localization.newGameTitle, message: localization.newGameMessage)
-
-        options.load()
-        if options.localization == "En" {
-            localization = Localization(locale: .En)
-        } else if options.localization == "Ru" {
-            localization = Localization(locale: .Ru)
+        Options.load()
+        
+        if Options.localization == "En" {
+            Localization.setLanguage(to: .En)
+        } else if Options.localization == "Ru" {
+            Localization.setLanguage(to: .Ru)
         }
+
+        showAlert(title: Localization.newGameTitle, message: Localization.newGameMessage)
 
         game.newGame()
     }
@@ -43,16 +51,16 @@ class GameViewController: UIViewController {
         
         switch game.activePlayer.state {
         case .winner:
-            showAlert(title: localization.winnerTitle, message: "\(game.activePlayer.name) \(localization.winnerMessage) \(game.activePlayer.totalScore + game.activePlayer.roundScore)!")
+            showAlert(title: Localization.winnerTitle, message: "\(game.activePlayer.name) \(Localization.winnerMessage) \(game.activePlayer.totalScore + game.activePlayer.roundScore)!")
                 game.newGame()
             
         case .threw1:
-            showAlert(title: localization.threw1Title, message: "\(game.activePlayer.name) \(localization.threw1Message)")
+            showAlert(title: Localization.threw1Title, message: "\(game.activePlayer.name) \(Localization.threw1Message)")
             game.nextPlayer()
             game.activePlayer.newRound()
         
         case .threw6Twice:
-            showAlert(title: localization.threw6TwiceTitle, message: "\(game.activePlayer.name) \(localization.threw6TwiceMessage)")
+            showAlert(title: Localization.threw6TwiceTitle, message: "\(game.activePlayer.name) \(Localization.threw6TwiceMessage)")
             game.nextPlayer()
             game.activePlayer.newRound()
         
@@ -85,7 +93,7 @@ class GameViewController: UIViewController {
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(title: localization.alertActionTitle, style: .default, handler: nil))
+        alertController.addAction(UIAlertAction(title: Localization.alertActionTitle, style: .default, handler: nil))
         
         self.present(alertController, animated: true, completion: updateUI)
     }

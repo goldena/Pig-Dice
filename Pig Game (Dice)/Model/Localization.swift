@@ -7,60 +7,61 @@
 
 import Foundation
 
-enum locale {
+enum Language {
     case En
     case Ru
 }
 
 class Localization {
-    var newGameTitle = ""
-    var newGameMessage = ""
+    static var newGameTitle = ""
+    static var newGameMessage = ""
     
-    var winnerTitle = ""
-    var winnerMessage = ""
+    static var winnerTitle = ""
+    static var winnerMessage = ""
     
-    var threw1Title = ""
-    var threw1Message = ""
+    static var threw1Title = ""
+    static var threw1Message = ""
     
-    var threw6TwiceTitle = ""
-    var threw6TwiceMessage = ""
-
-    var alertActionTitle = ""
+    static var threw6TwiceTitle = ""
+    static var threw6TwiceMessage = ""
     
-    init(locale: locale) {
-        switch locale {
-
+    static var alertActionTitle = ""
+    
+    static func setLanguage(to language: Language) {
+        switch language {
         case .En:
-            self.newGameTitle = "New Game"
-            self.newGameMessage = "You have started a new game!"
+            Localization.newGameTitle = "New Game"
+            Localization.newGameMessage = "You have started a new game!"
             
-            self.winnerTitle = "You have won!"
-            self.winnerMessage = "had won the game with total score"
+            Localization.winnerTitle = "You have won!"
+            Localization.winnerMessage = "had won the game with total score"
             
-            self.threw1Title = "You have lost this round!"
-            self.threw1Message = "had thrown 1"
+            Localization.threw1Title = "You have lost this round!"
+            Localization.threw1Message = "had thrown 1"
             
-            self.threw6TwiceTitle = "Busted!"
-            self.threw6TwiceMessage = "had 6 thrown two times in a row, the total score is now zero"
-
-            self.alertActionTitle = "Okay"
+            Localization.threw6TwiceTitle = "Busted!"
+            Localization.threw6TwiceMessage = "had 6 thrown two times in a row, the total score is now zero"
+            
+            Localization.alertActionTitle = "Okay"
             
         case .Ru:
-            self.newGameTitle = "Новая игра"
-            self.newGameMessage = "Вы начали новую игру!"
+            Localization.newGameTitle = "Новая игра"
+            Localization.newGameMessage = "Вы начали новую игру!"
             
-            self.winnerTitle = "Вы выиграли!"
-            self.winnerMessage = "выиграл игру, набрав"
+            Localization.winnerTitle = "Вы выиграли!"
+            Localization.winnerMessage = "выиграл игру, набрав"
             
-            self.threw1Title = "Вы проиграли этот раунд!"
-            self.threw1Message = "выбросил 1"
+            Localization.threw1Title = "Вы проиграли этот раунд!"
+            Localization.threw1Message = "выбросил 1"
             
-            self.threw6TwiceTitle = "Сгорел!"
-            self.threw6TwiceMessage = "выбросил 6 два раза подряд, общие очки теперь ноль"
-
-            self.alertActionTitle = "Ок"
+            Localization.threw6TwiceTitle = "Сгорел!"
+            Localization.threw6TwiceMessage = "выбросил 6 два раза подряд, общие очки теперь ноль"
+            
+            Localization.alertActionTitle = "Ок"
         }
     }
+    
+    init(to language: Language) {
+        Localization.setLanguage(to: language)
+    }
 }
-
-var localization = Localization(locale: .Ru)
