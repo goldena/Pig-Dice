@@ -94,6 +94,7 @@ class GameViewController: UIViewController {
         self.present(alertController, animated: true, completion: updateUI)
     }
     
+    // Note - Localizae UI
     func updateUI() {
         self.ScoreLimitLabel.text = String(game.scoreLimit)
         
