@@ -14,9 +14,9 @@ class OptionsViewController: UIViewController {
         
         Options.load()
         
-        if Options.localization == "En" {
+        if Options.localization == Language.En.rawValue {
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 0
-        } else if Options.localization == "Ru" {
+        } else if Options.localization == Language.Ru.rawValue {
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 1
         }
             
@@ -40,9 +40,9 @@ class OptionsViewController: UIViewController {
     @IBAction func SaveButtonPressed(_ sender: UIButton) {
         
         if LanguageSelectionSegmentedControl.selectedSegmentIndex == 0 {
-            Options.localization = "En"
+            Options.localization = Language.En.rawValue
         } else {
-            Options.localization = "Ru"
+            Options.localization = Language.Ru.rawValue
         }
         
         Options.player1Name = Player1NameTextField.text ?? "Player1"

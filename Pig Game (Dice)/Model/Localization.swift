@@ -7,61 +7,58 @@
 
 import Foundation
 
-enum Language {
-    case En
-    case Ru
+enum Language: String {
+    case En = "En"
+    case Ru = "Ru"
 }
 
-class Localization {
-    static var newGameTitle = ""
-    static var newGameMessage = ""
+var currentLanguage: Language = .En
+
+let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
+    .newGameTitle: [.En: "New Game",
+                    .Ru: "Новая игра"],
+    .newGameMessage: [.En: "You have started a new game!",
+                      .Ru: "Вы начали новую игру!"],
     
-    static var winnerTitle = ""
-    static var winnerMessage = ""
+    .winnerTitle: [.En: "You have won!",
+                   .Ru: "Вы выиграли!"],
+    .winnerMessage: [.En: "had won the game with total score",
+                     .Ru: "- вы выиграли игру, набрав"],
     
-    static var threw1Title = ""
-    static var threw1Message = ""
+    .threw1Title: [.En: "You have lost this round",
+                   .Ru: "Вы проиграли этот раунд"],
+    .threw1Message: [.En: "You threw one, your current score goes to zero",
+                     .Ru: "- вы выбросили единицу, очки сгорают"],
+   
+    .threw6TwiceTitle: [.En: "Busted!", .Ru: "Сгорел!"],
+    .threw6TwiceMessage: [.En: "had 6 thrown two times in a row, the total score goes to zero",
+                          .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
     
-    static var threw6TwiceTitle = ""
-    static var threw6TwiceMessage = ""
+    .alertActionTitle: [.En: "Okay", .Ru: "Ок"]
+]
+
+enum LocalizedUI {
+    case newGameMessage
+    case newGameTitle
+
+    case winnerTitle
+    case winnerMessage
     
-    static var alertActionTitle = ""
+    case threw1Title
+    case threw1Message
     
-    static func setLanguage(to language: Language) {
-        switch language {
-        case .En:
-            Localization.newGameTitle = "New Game"
-            Localization.newGameMessage = "You have started a new game!"
-            
-            Localization.winnerTitle = "You have won!"
-            Localization.winnerMessage = "had won the game with total score"
-            
-            Localization.threw1Title = "You have lost this round!"
-            Localization.threw1Message = "had thrown 1"
-            
-            Localization.threw6TwiceTitle = "Busted!"
-            Localization.threw6TwiceMessage = "had 6 thrown two times in a row, the total score is now zero"
-            
-            Localization.alertActionTitle = "Okay"
-            
-        case .Ru:
-            Localization.newGameTitle = "Новая игра"
-            Localization.newGameMessage = "Вы начали новую игру!"
-            
-            Localization.winnerTitle = "Вы выиграли!"
-            Localization.winnerMessage = "выиграл игру, набрав"
-            
-            Localization.threw1Title = "Вы проиграли этот раунд!"
-            Localization.threw1Message = "выбросил 1"
-            
-            Localization.threw6TwiceTitle = "Сгорел!"
-            Localization.threw6TwiceMessage = "выбросил 6 два раза подряд, общие очки теперь ноль"
-            
-            Localization.alertActionTitle = "Ок"
-        }
-    }
+    case threw6TwiceTitle
+    case threw6TwiceMessage
     
-    init(to language: Language) {
-        Localization.setLanguage(to: language)
+    case alertActionTitle
+    
+    func translate(to language: Language) -> String {
+        return LocalizationDictionary[self]?[language] ?? "Localization error"
     }
 }
+    
+    
+    
+    
+
+

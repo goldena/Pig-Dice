@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum PlayerState {
+    case playing
+    case threw1
+    case threw6
+    case threw6Twice
+    case winner
+}
+
 class Player {
     var name: String
 
