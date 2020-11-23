@@ -8,20 +8,26 @@
 import Foundation
 
 class Options {
-    
-    // Add first app launch check
     static let userDefaults = UserDefaults.standard
         
+    static var firstLaunch: Bool = false
+    
     static var player1Name: String = "Player1"
     static var player2Name: String = "Player2"
     static var scoreLimit: Int = 100
     
-    static var localization: String = "En"
+    static var language: String = "En"
+    
+    static func onFirstLaunch() {
+        if userDefaults.bool(forKey: "FirstLaunch") == false {
+            Options.save()
+        }
+    }
     
     static func load() {
-        if let language = userDefaults.string(forKey: "Localization") {
-            Options.localization = language
-            
+        
+        if let language = userDefaults.string(forKey: "Language") {
+            Options.language = language
             currentLanguage = Language.init(rawValue: language) ?? .En
         }
         
@@ -36,9 +42,9 @@ class Options {
         Options.scoreLimit = userDefaults.integer(forKey: "ScoreLimit")
     }
     
-    // Add first app launch variable
     static func save() {
-        Options.userDefaults.set(Options.localization, forKey: "Localization")
+        Options.userDefaults.set(true, forKey: "FirstLaunch")
+        Options.userDefaults.set(Options.language, forKey: "Language")
         Options.userDefaults.set(Options.player1Name, forKey: "Player1Name")
         Options.userDefaults.set(Options.player2Name, forKey: "Player2Name")
         Options.userDefaults.set(Options.scoreLimit, forKey: "ScoreLimit")

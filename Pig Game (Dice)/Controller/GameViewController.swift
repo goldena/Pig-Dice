@@ -16,7 +16,8 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                  
+        
+        Options.onFirstLaunch()
         Options.load()
                 
         game.newGame()

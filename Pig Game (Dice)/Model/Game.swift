@@ -77,7 +77,8 @@ struct Game {
     mutating func newGame() {
         player1 = Player(name: Options.player1Name)
         player2 = Player(name: Options.player2Name)
-        
+        scoreLimit = Options.scoreLimit
+
         activePlayer = chooseRandomPlayer()
     }
 }
