@@ -14,7 +14,7 @@ enum Language: String {
 }
 
 // Enum of all the app's UI text elements and alerts
-enum LocalizedUI {
+enum LocalisedUI {
     case newGameMessage
     case newGameTitle
 
@@ -33,12 +33,12 @@ enum LocalizedUI {
     case rollButton
     
     func translate(to language: Language) -> String {
-        return LocalizationDictionary[self]?[language] ?? "Localization error"
+        return LocalisationDictionary[self]?[language] ?? "Localization error"
     }
 }
 
 // Dictionary used for storing localizations
-let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
+let LocalisationDictionary: [LocalisedUI: [Language: String]] = [
     .newGameTitle: [.En: "New Game",
                     .Ru: "Новая игра"],
     .newGameMessage: [.En: "You have started a new game!",

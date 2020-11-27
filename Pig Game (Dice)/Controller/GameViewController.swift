@@ -21,7 +21,8 @@ class GameViewController: UIViewController {
         // Saves initial defaults if the game is launched for the first time
         Options.onFirstLaunch()
         Options.load()
-                
+        
+        localiseUI()
         game.newGame()
         updateUI()
     }
@@ -30,8 +31,9 @@ class GameViewController: UIViewController {
         // Reloads defaults in case there were changes
         Options.load()
         
-        showAlert(title: LocalizedUI.newGameTitle.translate(to: Options.language),
-                  message: LocalizedUI.newGameMessage.translate(to: Options.language))
+        localiseUI()
+        showAlert(title: LocalisedUI.newGameTitle.translate(to: Options.language),
+                  message: LocalisedUI.newGameMessage.translate(to: Options.language))
 
         game.newGame()
     }
@@ -45,21 +47,21 @@ class GameViewController: UIViewController {
         
         switch game.activePlayer.state {
         case .winner:
-            showAlert(title: LocalizedUI.winnerTitle.translate(to: Options.language),
-                      message: "\(game.activePlayer.name) \(LocalizedUI.winnerTitle.translate(to: Options.language)) \(game.activePlayer.totalScore + game.activePlayer.roundScore)!")
+            showAlert(title: LocalisedUI.winnerTitle.translate(to: Options.language),
+                      message: "\(game.activePlayer.name) \(LocalisedUI.winnerTitle.translate(to: Options.language)) \(game.activePlayer.totalScore + game.activePlayer.roundScore)!")
             
             game.newGame()
             
         case .threw1:
-            showAlert(title: LocalizedUI.threw1Title.translate(to: Options.language),
-                      message: "\(game.activePlayer.name) \(LocalizedUI.threw1Message.translate(to: Options.language))")
+            showAlert(title: LocalisedUI.threw1Title.translate(to: Options.language),
+                      message: "\(game.activePlayer.name) \(LocalisedUI.threw1Message.translate(to: Options.language))")
             
             game.nextPlayer()
             game.activePlayer.newRound()
         
         case .threw6Twice:
-            showAlert(title: LocalizedUI.threw6TwiceTitle.translate(to: Options.language),
-                      message: "\(game.activePlayer.name) \(LocalizedUI.threw6TwiceMessage.translate(to: Options.language))")
+            showAlert(title: LocalisedUI.threw6TwiceTitle.translate(to: Options.language),
+                      message: "\(game.activePlayer.name) \(LocalisedUI.threw6TwiceMessage.translate(to: Options.language))")
             
             game.nextPlayer()
             game.activePlayer.newRound()
@@ -101,16 +103,18 @@ class GameViewController: UIViewController {
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(title: LocalizedUI.alertActionTitle.translate(to: Options.language), style: .default, handler: nil))
+        alertController.addAction(UIAlertAction(title: LocalisedUI.alertActionTitle.translate(to: Options.language), style: .default, handler: nil))
         
         self.present(alertController, animated: true, completion: updateUI)
     }
     
+    func localiseUI() {
+        self.NewGameButton.setTitle(LocalisedUI.newGameButton.translate(to: Options.language), for: .normal)
+        self.RollButton.setTitle(LocalisedUI.rollButton.translate(to: Options.language), for: .normal)
+        self.HoldButton.setTitle(LocalisedUI.holdButton.translate(to: Options.language), for: .normal)
+    }
+    
     func updateUI() {
-        self.NewGameButton.setTitle(LocalizedUI.newGameButton.translate(to: Options.language), for: .normal)
-        self.RollButton.setTitle(LocalizedUI.rollButton.translate(to: Options.language), for: .normal)
-        self.HoldButton.setTitle(LocalizedUI.holdButton.translate(to: Options.language), for: .normal)
-
         self.ScoreLimitLabel.text = String(game.scoreLimit)
         
         self.CurrentPlayerLabel.text = game.activePlayer.name
