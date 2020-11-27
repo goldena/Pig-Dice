@@ -28,6 +28,9 @@ enum LocalizedUI {
     case threw6TwiceMessage
     
     case alertActionTitle
+    case newGameButton
+    case holdButton
+    case rollButton
     
     func translate(to language: Language) -> String {
         return LocalizationDictionary[self]?[language] ?? "Localization error"
@@ -51,9 +54,20 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .threw1Message: [.En: "You threw one, your current score goes to zero",
                      .Ru: "- вы выбросили единицу, очки сгорают"],
    
-    .threw6TwiceTitle: [.En: "Busted!", .Ru: "Сгорел!"],
+    .threw6TwiceTitle: [.En: "Busted!",
+                        .Ru: "Сгорел!"],
     .threw6TwiceMessage: [.En: "had 6 thrown two times in a row, the total score goes to zero",
                           .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
     
-    .alertActionTitle: [.En: "Okay", .Ru: "Ок"]
+    .alertActionTitle: [.En: "Okay",
+                        .Ru: "Ок"],
+    
+    .newGameButton: [.En: "NEW GAME",
+                     .Ru: "НОВАЯ ИГРА"],
+    
+    .holdButton: [.En: "HOLD",
+                  .Ru: "ПАС"],
+    
+    .rollButton: [.En: "ROLL",
+                  .Ru: "БРОСОК"]
 ]

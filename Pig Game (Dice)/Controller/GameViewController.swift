@@ -79,6 +79,12 @@ class GameViewController: UIViewController {
         updateUI()
     }
     
+    @IBOutlet weak var NewGameButton: UIButton!
+    
+    @IBOutlet weak var RollButton: UIButton!
+    
+    @IBOutlet weak var HoldButton: UIButton!
+    
     @IBOutlet weak var DiceImage: UIImageView!
     
     @IBOutlet weak var CurrentScoreLabel: UILabel!
@@ -101,6 +107,10 @@ class GameViewController: UIViewController {
     }
     
     func updateUI() {
+        self.NewGameButton.setTitle(LocalizedUI.newGameButton.translate(to: Options.language), for: .normal)
+        self.RollButton.setTitle(LocalizedUI.rollButton.translate(to: Options.language), for: .normal)
+        self.HoldButton.setTitle(LocalizedUI.holdButton.translate(to: Options.language), for: .normal)
+
         self.ScoreLimitLabel.text = String(game.scoreLimit)
         
         self.CurrentPlayerLabel.text = game.activePlayer.name
