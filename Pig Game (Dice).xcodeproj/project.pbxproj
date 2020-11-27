@@ -88,7 +88,6 @@
 				CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */,
 				CFE937DA252E7D3D009F7CB2 /* SceneDelegate.swift */,
 				CFE937E1252E7D40009F7CB2 /* Assets.xcassets */,
-				CFE937E3252E7D40009F7CB2 /* LaunchScreen.storyboard */,
 				CFE937E6252E7D40009F7CB2 /* Info.plist */,
 			);
 			path = "Pig Game (Dice)";
@@ -108,6 +107,7 @@
 		CFE937EE252E85BD009F7CB2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFE937E3252E7D40009F7CB2 /* LaunchScreen.storyboard */,
 				CFE937DE252E7D3D009F7CB2 /* Main.storyboard */,
 			);
 			path = View;

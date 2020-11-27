@@ -7,13 +7,34 @@
 
 import Foundation
 
+// Available localization languages
 enum Language: String {
     case En = "En"
     case Ru = "Ru"
 }
 
-var currentLanguage: Language = .En
+// Enum of all the app's UI text elements and alerts
+enum LocalizedUI {
+    case newGameMessage
+    case newGameTitle
 
+    case winnerTitle
+    case winnerMessage
+    
+    case threw1Title
+    case threw1Message
+    
+    case threw6TwiceTitle
+    case threw6TwiceMessage
+    
+    case alertActionTitle
+    
+    func translate(to language: Language) -> String {
+        return LocalizationDictionary[self]?[language] ?? "Localization error"
+    }
+}
+
+// Dictionary used for storing localizations
 let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .newGameTitle: [.En: "New Game",
                     .Ru: "Новая игра"],
@@ -36,29 +57,3 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     
     .alertActionTitle: [.En: "Okay", .Ru: "Ок"]
 ]
-
-enum LocalizedUI {
-    case newGameMessage
-    case newGameTitle
-
-    case winnerTitle
-    case winnerMessage
-    
-    case threw1Title
-    case threw1Message
-    
-    case threw6TwiceTitle
-    case threw6TwiceMessage
-    
-    case alertActionTitle
-    
-    func translate(to language: Language) -> String {
-        return LocalizationDictionary[self]?[language] ?? "Localization error"
-    }
-}
-    
-    
-    
-    
-
-

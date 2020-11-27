@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Options screen
 class OptionsViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -14,9 +15,11 @@ class OptionsViewController: UIViewController {
         
         Options.load()
         
-        if Options.language == Language.En.rawValue {
+        // Note: view controller knows too much about options - might need refactoring
+        switch Options.language {
+        case .En:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 0
-        } else if Options.language == Language.Ru.rawValue {
+        case .Ru:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 1
         }
             
@@ -33,16 +36,19 @@ class OptionsViewController: UIViewController {
     
     @IBOutlet weak var ScoreLimitTextField: UITextField!
     
+    // Returt to the main screen without saving any changes to the Options
     @IBAction func CancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func SaveButtonPressed(_ sender: UIButton) {
-        
-        if LanguageSelectionSegmentedControl.selectedSegmentIndex == 0 {
-            Options.language = Language.En.rawValue
-        } else {
-            Options.language = Language.Ru.rawValue
+        switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
+        case 0:
+            Options.language = .En
+        case 1:
+            Options.language = .Ru
+        default:
+            print("Localization not found")
         }
         
         Options.player1Name = Player1NameTextField.text ?? "Player1"
@@ -52,6 +58,7 @@ class OptionsViewController: UIViewController {
             Options.scoreLimit = Int(scoreLimit) ?? 100
         }
         
+        // Dismiss view controller and save options
         self.dismiss(animated: true, completion: Options.save)
     }
 }

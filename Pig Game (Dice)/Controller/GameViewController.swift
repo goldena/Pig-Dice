@@ -7,16 +7,18 @@
 
 import UIKit
 
+// Main screen view controller
 class GameViewController: UIViewController {
     
+    // Dice faces
     let diceArray = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
     
     var game = Game()
-//    var localization = Localization()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Saves initial defaults if the game is launched for the first time
         Options.onFirstLaunch()
         Options.load()
                 
@@ -25,10 +27,11 @@ class GameViewController: UIViewController {
     }
             
     @IBAction func NewGameButtonPressed(_ sender: UIButton) {
+        // Reloads defaults in case there were changes
         Options.load()
         
-        showAlert(title: LocalizedUI.newGameTitle.translate(to: currentLanguage),
-                  message: LocalizedUI.newGameMessage.translate(to: currentLanguage))
+        showAlert(title: LocalizedUI.newGameTitle.translate(to: Options.language),
+                  message: LocalizedUI.newGameMessage.translate(to: Options.language))
 
         game.newGame()
     }
@@ -42,21 +45,21 @@ class GameViewController: UIViewController {
         
         switch game.activePlayer.state {
         case .winner:
-            showAlert(title: LocalizedUI.winnerTitle.translate(to: currentLanguage),
-                      message: "\(game.activePlayer.name) \(LocalizedUI.winnerTitle.translate(to: currentLanguage)) \(game.activePlayer.totalScore + game.activePlayer.roundScore)!")
+            showAlert(title: LocalizedUI.winnerTitle.translate(to: Options.language),
+                      message: "\(game.activePlayer.name) \(LocalizedUI.winnerTitle.translate(to: Options.language)) \(game.activePlayer.totalScore + game.activePlayer.roundScore)!")
             
-                game.newGame()
+            game.newGame()
             
         case .threw1:
-            showAlert(title: LocalizedUI.threw1Title.translate(to: currentLanguage),
-                      message: "\(game.activePlayer.name) \(LocalizedUI.threw1Message.translate(to: currentLanguage))")
+            showAlert(title: LocalizedUI.threw1Title.translate(to: Options.language),
+                      message: "\(game.activePlayer.name) \(LocalizedUI.threw1Message.translate(to: Options.language))")
             
             game.nextPlayer()
             game.activePlayer.newRound()
         
         case .threw6Twice:
-            showAlert(title: LocalizedUI.threw6TwiceTitle.translate(to: currentLanguage),
-                      message: "\(game.activePlayer.name) \(LocalizedUI.threw6TwiceMessage.translate(to: currentLanguage))")
+            showAlert(title: LocalizedUI.threw6TwiceTitle.translate(to: Options.language),
+                      message: "\(game.activePlayer.name) \(LocalizedUI.threw6TwiceMessage.translate(to: Options.language))")
             
             game.nextPlayer()
             game.activePlayer.newRound()
@@ -67,6 +70,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func HoldButtonPressed(_ sender: UIButton) {
+        // Hold current scores and change the active player
         game.activePlayer.hold()
                 
         game.nextPlayer()
@@ -86,16 +90,16 @@ class GameViewController: UIViewController {
     @IBOutlet weak var PlayerTwoScoreLabel: UILabel!
     
     @IBOutlet weak var CurrentPlayerLabel: UILabel!
-        
+    
+    // Displays info alert with Okay button
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(title: LocalizedUI.alertActionTitle.translate(to: currentLanguage), style: .default, handler: nil))
+        alertController.addAction(UIAlertAction(title: LocalizedUI.alertActionTitle.translate(to: Options.language), style: .default, handler: nil))
         
         self.present(alertController, animated: true, completion: updateUI)
     }
     
-    // Note - Localizae UI
     func updateUI() {
         self.ScoreLimitLabel.text = String(game.scoreLimit)
         

@@ -8,7 +8,6 @@
 import Foundation
 
 struct Game {
-        
     var player1 = Player(name: "Player1")
     var player2 = Player(name: "Player2")
     lazy var activePlayer = chooseRandomPlayer()
@@ -25,38 +24,36 @@ struct Game {
         }
     }
   
-    mutating func loadOptions() {
-        Options.load()
-        
-        player1.name = Options.player1Name
-        player2.name = Options.player2Name
-        scoreLimit = Options.scoreLimit
-    }
-
-    // Calculate scores ans set corresponding states
+    // Calculate scores ans set game states
     func calculateScores(_ player: Player) {
-        // Zero player's current round score if 1 is thrown
-        if player.dice == 1 {
-            player.state = .threw1
-            player.roundScore = 0
+        guard let dice = player.dice else {
+            print("Error - die was not thrown")
             return
         }
 
-        // Zero player's total score if 6 was thrown twice
-        if player.state == .threw6 && player.dice == 6 {
+        // Add scores on the dice to the current player scores
+        player.roundScore += dice
+        
+        switch dice {
+        // If one is thrown zero player's current round score, switch active player
+        case 1:
+            player.state = .threw1
+            player.roundScore = 0
+        case 2, 3, 4, 5:
+            player.state = .playing
+        case 6:
+            // Zero player's current and total scores if 6 was thrown twice
+            if player.state == .threw6 {
                 player.state = .threw6Twice
                 player.totalScore = 0
                 player.roundScore = 0
-                return
+            } else {
+                // Set the state if 6 was thrown the first time
+                player.state = .threw6
+            }
+        default:
+            print("Invalid score on the dice to be evaluated")
         }
-        
-        // Set the status if 6 was thrown first time
-        if player.state == .playing && player.dice == 6 {
-            player.state = .threw6
-        }
-                
-        // Add the thrown dice to current score if neither of above
-        player.roundScore += player.dice!
         
         // Check winning condition
         if player.roundScore + player.totalScore >= scoreLimit {
@@ -73,7 +70,7 @@ struct Game {
         }
     }
     
-    // Reinitiates the game with the previous player's names
+    // Init a new game with the player's names and score limit retreived from the defaults
     mutating func newGame() {
         player1 = Player(name: Options.player1Name)
         player2 = Player(name: Options.player2Name)
