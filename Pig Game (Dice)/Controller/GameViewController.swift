@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
     // Dice faces
     let diceArray = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
     
+    
     var game = Game()
     
     override func viewDidLoad() {
@@ -82,21 +83,22 @@ class GameViewController: UIViewController {
     }
     
     @IBOutlet weak var NewGameButton: UIButton!
-    
     @IBOutlet weak var RollButton: UIButton!
-    
     @IBOutlet weak var HoldButton: UIButton!
     
     @IBOutlet weak var DiceImage: UIImageView!
     
+    @IBOutlet weak var CurrentScoreTitle: UILabel!
     @IBOutlet weak var CurrentScoreLabel: UILabel!
     
+    @IBOutlet weak var ScoreLimitTitle: UILabel!
     @IBOutlet weak var ScoreLimitLabel: UILabel!
     
+    @IBOutlet weak var TotalScoresTitle: UILabel!
     @IBOutlet weak var PlayerOneScoreLabel: UILabel!
-    
     @IBOutlet weak var PlayerTwoScoreLabel: UILabel!
     
+    @IBOutlet weak var CurrentPlayerTitle: UILabel!
     @IBOutlet weak var CurrentPlayerLabel: UILabel!
     
     // Displays info alert with Okay button
@@ -109,24 +111,31 @@ class GameViewController: UIViewController {
     }
     
     func localiseUI() {
-        self.NewGameButton.setTitle(LocalisedUI.newGameButton.translate(to: Options.language), for: .normal)
-        self.RollButton.setTitle(LocalisedUI.rollButton.translate(to: Options.language), for: .normal)
-        self.HoldButton.setTitle(LocalisedUI.holdButton.translate(to: Options.language), for: .normal)
+        // Localise buttons
+        NewGameButton.setTitle(LocalisedUI.newGameButton.translate(to: Options.language), for: .normal)
+        RollButton.setTitle(LocalisedUI.rollButton.translate(to: Options.language), for: .normal)
+        HoldButton.setTitle(LocalisedUI.holdButton.translate(to: Options.language), for: .normal)
+        
+        // Localise text
+        CurrentScoreTitle.text = LocalisedUI.currentScoreTitle.translate(to: Options.language)
+        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
+        TotalScoresTitle.text = LocalisedUI.totalScoresTitle.translate(to: Options.language)
+        CurrentPlayerTitle.text = LocalisedUI.currentPlayerTitle.translate(to: Options.language)
     }
     
     func updateUI() {
-        self.ScoreLimitLabel.text = String(game.scoreLimit)
+        ScoreLimitLabel.text = String(game.scoreLimit)
         
-        self.CurrentPlayerLabel.text = game.activePlayer.name
-        self.PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
-        self.PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
+        CurrentPlayerLabel.text = game.activePlayer.name
+        PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
+        PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
         
-        self.CurrentScoreLabel.text = "\(game.activePlayer.roundScore)"
+        CurrentScoreLabel.text = "\(game.activePlayer.roundScore)"
         
         if game.activePlayer.dice != nil {
-            self.DiceImage.image = diceArray[game.activePlayer.dice! - 1]
+            DiceImage.image = diceArray[game.activePlayer.dice! - 1]
         } else {
-            self.DiceImage.image = nil
+            DiceImage.image = nil
         }
     }
 }

@@ -266,7 +266,9 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="CurrentPlayerLabel" destination="PQU-at-hv6" id="NCl-5m-7wN"/>
+                        <outlet property="CurrentPlayerTitle" destination="dQm-rB-I26" id="eCf-HM-BRw"/>
                         <outlet property="CurrentScoreLabel" destination="qYK-H4-1no" id="o8x-1r-L47"/>
+                        <outlet property="CurrentScoreTitle" destination="ztO-Hj-kKC" id="5IK-Db-RsL"/>
                         <outlet property="DiceImage" destination="yId-h9-dxi" id="cFF-Cu-4e6"/>
                         <outlet property="HoldButton" destination="soZ-OY-0ra" id="sDp-ga-5gk"/>
                         <outlet property="NewGameButton" destination="Y7p-81-9WF" id="z4D-nR-ll0"/>
@@ -274,6 +276,8 @@
                         <outlet property="PlayerTwoScoreLabel" destination="8qf-fe-LGh" id="PT3-8y-p5h"/>
                         <outlet property="RollButton" destination="aeJ-zM-yl3" id="XJx-fi-zHH"/>
                         <outlet property="ScoreLimitLabel" destination="Vpe-BQ-e1B" id="pbd-nw-whZ"/>
+                        <outlet property="ScoreLimitTitle" destination="SbH-n7-3m6" id="GOU-9w-XKh"/>
+                        <outlet property="TotalScoresTitle" destination="w7E-Jl-zpm" id="G0f-oy-Vcd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -448,10 +452,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="CancelButton" destination="XGQ-6o-BSK" id="kZC-iq-6hQ"/>
                         <outlet property="LanguageSelectionSegmentedControl" destination="buX-s3-ybv" id="TZY-tJ-2Nc"/>
+                        <outlet property="NoteLabel" destination="jJp-Jz-gjA" id="tYY-Lj-Uwa"/>
                         <outlet property="Player1NameTextField" destination="xwC-qB-lEk" id="s5e-RC-a7X"/>
+                        <outlet property="Player1NameTitle" destination="1sB-Uo-0N9" id="ueq-JP-ggl"/>
                         <outlet property="Player2NameTextField" destination="xoc-C5-qtC" id="Cdg-tE-Ooe"/>
+                        <outlet property="Player2NameTitle" destination="JST-AU-5q0" id="I78-Xc-AZV"/>
+                        <outlet property="SaveButton" destination="NVq-Wo-GaW" id="n7L-BC-qag"/>
                         <outlet property="ScoreLimitTextField" destination="9J2-W6-AZA" id="3JK-aW-FaX"/>
+                        <outlet property="ScoreLimitTitle" destination="4Ua-Zf-R71" id="57i-sm-9Z9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcE-Qj-gXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -478,13 +488,13 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Tlm-L5-ThG">
                                                 <rect key="frame" x="10" y="0.0" width="338" height="672"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <string key="text">GAME RULES: 
+                                                <mutableString key="text">GAME RULES: 
 - The game has 2 players, playing in rounds. The first player to play the first round is determined randomly
 - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
 - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
 - A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn.
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
-- The first player to reach 100 (the number can be changed in the options) points in total - wins the game</string>
+- The first player to reach 100 (the number can be changed in the options) points in total - wins the game</mutableString>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -536,6 +546,10 @@
                             <constraint firstItem="QL3-oQ-g2L" firstAttribute="leading" secondItem="1EO-q7-dL5" secondAttribute="leading" id="s7d-km-zke"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="BackButton" destination="92j-bO-tvX" id="zkF-a3-kL0"/>
+                        <outlet property="GameRulesTextView" destination="Tlm-L5-ThG" id="37J-QF-xhQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5bB-1g-zYa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

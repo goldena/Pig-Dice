@@ -15,6 +15,25 @@ class OptionsViewController: UIViewController {
         
         Options.load()
         
+        localiseUI()
+        updateUI()
+    }
+
+    func localiseUI() {
+        SaveButton.setTitle(LocalisedUI.saveButton.translate(to: Options.language), for: .normal)
+        CancelButton.setTitle(LocalisedUI.cancelButton.translate(to: Options.language), for: .normal)
+        
+        Player1NameTitle.text = LocalisedUI.player1NameTitle.translate(to: Options.language)
+        
+        Player2NameTitle.text = LocalisedUI.player2NameTitle.translate(to: Options.language)
+        
+        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
+        
+        NoteLabel.text = LocalisedUI.noteLabel.translate(to: Options.language)
+        NoteLabel.textAlignment = .natural
+    }
+    
+    func updateUI() {
         // Note: view controller knows too much about options - might need refactoring
         switch Options.language {
         case .En:
@@ -30,11 +49,19 @@ class OptionsViewController: UIViewController {
     
     @IBOutlet weak var LanguageSelectionSegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var Player1NameTitle: UILabel!
     @IBOutlet weak var Player1NameTextField: UITextField!
     
+    @IBOutlet weak var Player2NameTitle: UILabel!
     @IBOutlet weak var Player2NameTextField: UITextField!
     
+    @IBOutlet weak var ScoreLimitTitle: UILabel!
     @IBOutlet weak var ScoreLimitTextField: UITextField!
+    
+    @IBOutlet weak var NoteLabel: UILabel!
+    
+    @IBOutlet weak var CancelButton: UIButton!
+    @IBOutlet weak var SaveButton: UIButton!
     
     // Returt to the main screen without saving any changes to the Options
     @IBAction func CancelButtonPressed(_ sender: UIButton) {
@@ -51,11 +78,15 @@ class OptionsViewController: UIViewController {
             print("Localization not found")
         }
         
-        Options.player1Name = Player1NameTextField.text ?? "Player1"
-        Options.player2Name = Player2NameTextField.text ?? "Player2"
+        Options.player1Name = Player1NameTextField.text ?? Options.player1Name
+        Options.player2Name = Player2NameTextField.text ?? Options.player2Name
         
-        if let scoreLimit = ScoreLimitTextField.text {
-            Options.scoreLimit = Int(scoreLimit) ?? 100
+        if let scoreLimitString = ScoreLimitTextField.text {
+            if let scoreLimitInt = Int(scoreLimitString) {
+                Options.scoreLimit = scoreLimitInt
+            } else {
+                print("Invalid score limit input")
+            }
         }
         
         // Dismiss view controller and save options
