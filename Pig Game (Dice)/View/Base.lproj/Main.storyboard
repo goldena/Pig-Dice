@@ -53,7 +53,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="regular"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="vgd-1G-sKf" kind="presentation" identifier="ShowOptionsSegue" id="lmE-q8-DMF"/>
+                                                            <action selector="OptionsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GUz-pz-oVG"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7p-81-9WF" userLabel="Roll Button">
@@ -94,16 +94,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2iY-3c-grX" userLabel="Score Limit Stack View">
-                                                <rect key="frame" x="73" y="85" width="188.5" height="50"/>
+                                                <rect key="frame" x="77" y="84.5" width="180" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbH-n7-3m6">
-                                                        <rect key="frame" x="0.0" y="11" width="128.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="10.5" width="120" height="29"/>
                                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpe-BQ-e1B">
-                                                        <rect key="frame" x="138.5" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="130" y="0.0" width="50" height="50"/>
                                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -111,16 +111,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rZD-1u-Ja4" userLabel="Scores Stack View">
-                                                <rect key="frame" x="0.0" y="170" width="334" height="78"/>
+                                                <rect key="frame" x="0.0" y="169.5" width="334" height="79"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-Jl-zpm" userLabel="Total Scores Label">
-                                                        <rect key="frame" x="101" y="0.0" width="132" height="28"/>
+                                                        <rect key="frame" x="105" y="0.0" width="124" height="29"/>
                                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KAE-lT-Qro" userLabel="Total Scores Stack View">
-                                                        <rect key="frame" x="76.5" y="28" width="181" height="50"/>
+                                                        <rect key="frame" x="76.5" y="29" width="181" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQe-mb-J6Q" userLabel="Player1 Total Score Output">
                                                                 <rect key="frame" x="0.0" y="0.0" width="85.5" height="50"/>
@@ -146,13 +146,13 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dX2-Kd-BSc" userLabel="Current Player and Score Stack View">
-                                                <rect key="frame" x="43" y="438" width="248" height="163"/>
+                                                <rect key="frame" x="43" y="437.5" width="248" height="164"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bff-ev-g04" userLabel="Current Player Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="248" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQm-rB-I26" userLabel="Current Player Label">
-                                                                <rect key="frame" x="0.0" y="11" width="119" height="28"/>
+                                                                <rect key="frame" x="0.0" y="10.5" width="119" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -166,16 +166,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zWC-LX-wgS" userLabel="Current Score Stack View">
-                                                        <rect key="frame" x="59.5" y="113" width="129.5" height="50"/>
+                                                        <rect key="frame" x="62" y="114" width="124" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztO-Hj-kKC" userLabel="Current Score Label">
-                                                                <rect key="frame" x="0.0" y="11" width="69.5" height="28"/>
+                                                                <rect key="frame" x="0.0" y="10.5" width="64" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYK-H4-1no" userLabel="Current Score Output">
-                                                                <rect key="frame" x="79.5" y="0.0" width="50" height="50"/>
+                                                                <rect key="frame" x="74" y="0.0" width="50" height="50"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="24"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -287,19 +287,19 @@
         <!--Options View Controller-->
         <scene sceneID="FfP-Hn-fRG">
             <objects>
-                <viewController id="vgd-1G-sKf" userLabel="Options View Controller" customClass="OptionsViewController" customModule="Pig_Game__Dice_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OptionsViewController" id="vgd-1G-sKf" userLabel="Options View Controller" customClass="OptionsViewController" customModule="Pig_Game__Dice_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6aB-cR-ThG" userLabel="Main View">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="Nhh-Zg-uKh" userLabel="Background">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B33-Ze-0cD" userLabel="Options View">
-                                <rect key="frame" x="20" y="20" width="374" height="768"/>
+                                <rect key="frame" x="20" y="64" width="374" height="778"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jM5-Od-ULd" userLabel="Options Stack View">
-                                        <rect key="frame" x="8" y="18" width="358" height="732"/>
+                                        <rect key="frame" x="8" y="18" width="358" height="742"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4pj-DM-vJm" userLabel="Language Selection Stack View">
                                                 <rect key="frame" x="34.5" y="0.0" width="289" height="31"/>
@@ -320,7 +320,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-dO-9dL" userLabel="Player's Names Stack View">
-                                                <rect key="frame" x="54" y="146" width="250.5" height="70"/>
+                                                <rect key="frame" x="54" y="148.5" width="250.5" height="70"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Sf7-2j-4Ya">
                                                         <rect key="frame" x="0.0" y="0.0" width="250.5" height="34"/>
@@ -359,7 +359,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jVi-8v-pPE" userLabel="Score Limit Stack View">
-                                                <rect key="frame" x="98" y="331.5" width="162.5" height="34"/>
+                                                <rect key="frame" x="98" y="336.5" width="162.5" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ua-Zf-R71">
                                                         <rect key="frame" x="0.0" y="6" width="93" height="22"/>
@@ -376,12 +376,12 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note: Changes will take effect after pressing &quot;New Game&quot; button at the top of the game screen or after restarting the app." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJp-Jz-gjA" userLabel="ChangesWillTakeEffectLabel">
-                                                <rect key="frame" x="20" y="480.5" width="318" height="86.5"/>
+                                                <rect key="frame" x="20" y="488" width="318" height="86.5"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ubk-49-n7F">
-                                                <rect key="frame" x="69" y="682" width="220" height="50"/>
+                                                <rect key="frame" x="69" y="692" width="220" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGQ-6o-BSK" userLabel="Back Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
@@ -398,7 +398,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="CancelButtonPressed:" destination="vgd-1G-sKf" eventType="touchUpInside" id="gMv-Vh-0NR"/>
+                                                            <action selector="CancelButtonPressed:" destination="vgd-1G-sKf" eventType="touchUpInside" id="1EE-XT-4wH"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVq-Wo-GaW" userLabel="Back Button">
@@ -416,8 +416,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="CancelButtonPressed:" destination="vgd-1G-sKf" eventType="touchUpInside" id="PCM-xc-lep"/>
-                                                            <action selector="SaveButtonPressed:" destination="vgd-1G-sKf" eventType="touchUpInside" id="jve-LM-Yor"/>
+                                                            <action selector="SaveButtonPressed:" destination="vgd-1G-sKf" eventType="touchUpInside" id="h7M-OA-YM6"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -452,14 +451,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="CancelButton" destination="XGQ-6o-BSK" id="kZC-iq-6hQ"/>
+                        <outlet property="CancelButton" destination="XGQ-6o-BSK" id="Clt-Kc-QwH"/>
                         <outlet property="LanguageSelectionSegmentedControl" destination="buX-s3-ybv" id="TZY-tJ-2Nc"/>
                         <outlet property="NoteLabel" destination="jJp-Jz-gjA" id="tYY-Lj-Uwa"/>
                         <outlet property="Player1NameTextField" destination="xwC-qB-lEk" id="s5e-RC-a7X"/>
                         <outlet property="Player1NameTitle" destination="1sB-Uo-0N9" id="ueq-JP-ggl"/>
                         <outlet property="Player2NameTextField" destination="xoc-C5-qtC" id="Cdg-tE-Ooe"/>
                         <outlet property="Player2NameTitle" destination="JST-AU-5q0" id="I78-Xc-AZV"/>
-                        <outlet property="SaveButton" destination="NVq-Wo-GaW" id="n7L-BC-qag"/>
+                        <outlet property="SaveButton" destination="NVq-Wo-GaW" id="DL6-sE-QeJ"/>
                         <outlet property="ScoreLimitTextField" destination="9J2-W6-AZA" id="3JK-aW-FaX"/>
                         <outlet property="ScoreLimitTitle" destination="4Ua-Zf-R71" id="57i-sm-9Z9"/>
                     </connections>
@@ -488,13 +487,13 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Tlm-L5-ThG">
                                                 <rect key="frame" x="10" y="0.0" width="338" height="672"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <mutableString key="text">GAME RULES: 
+                                                <string key="text">GAME RULES: 
 - The game has 2 players, playing in rounds. The first player to play the first round is determined randomly
 - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
 - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
 - A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn.
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
-- The first player to reach 100 (the number can be changed in the options) points in total - wins the game</mutableString>
+- The first player to reach 100 (the number can be changed in the options) points in total - wins the game</string>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

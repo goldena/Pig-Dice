@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF18F395257594A50017873F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF18F394257594A50017873F /* Constants.swift */; };
 		CF52AFBC254ED91D0077F737 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52AFBB254ED91D0077F737 /* Options.swift */; };
 		CFD6115C2530F807008CF24A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6115B2530F806008CF24A /* Player.swift */; };
 		CFE2D96E2545B6FD00565EB8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF18F394257594A50017873F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CF52AFBB254ED91D0077F737 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		CFD6115B2530F806008CF24A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				CFE937F0252E8634009F7CB2 /* Game.swift */,
+				CF18F394257594A50017873F /* Constants.swift */,
 				CFF0E96C2551E7BC00D788D9 /* Localisation.swift */,
 				CFD6115B2530F806008CF24A /* Player.swift */,
 				CF52AFBB254ED91D0077F737 /* Options.swift */,
@@ -200,6 +203,7 @@
 				CFE937DD252E7D3D009F7CB2 /* GameViewController.swift in Sources */,
 				CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */,
 				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
+				CF18F395257594A50017873F /* Constants.swift in Sources */,
 				CFF0E96D2551E7BC00D788D9 /* Localisation.swift in Sources */,
 				CFD6115C2530F807008CF24A /* Player.swift in Sources */,
 				CF52AFBC254ED91D0077F737 /* Options.swift in Sources */,

@@ -7,18 +7,23 @@
 
 import UIKit
 
+protocol ViewControllerDelegate: UIViewController {
+    func viewWillDimiss()
+}
+
 // Options screen
 class OptionsViewController: UIViewController {
+    
+    weak var delegate: ViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Options.load()
-        
         localiseUI()
         updateUI()
     }
-
+    
     func localiseUI() {
         SaveButton.setTitle(LocalisedUI.saveButton.translate(to: Options.language), for: .normal)
         CancelButton.setTitle(LocalisedUI.cancelButton.translate(to: Options.language), for: .normal)
@@ -89,7 +94,10 @@ class OptionsViewController: UIViewController {
             }
         }
         
-        // Dismiss view controller and save options
-        self.dismiss(animated: true, completion: Options.save)
+        // Save options and dismiss view controller
+        Options.save()
+        delegate?.viewWillDimiss()
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }

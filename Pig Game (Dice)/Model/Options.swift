@@ -11,14 +11,14 @@ class Options {
     static let userDefaults = UserDefaults.standard
     
     // Default values for the first launch of the game
-    static var player1Name: String = "Player1"
-    static var player2Name: String = "Player2"
-    static var scoreLimit: Int = 100
-    static var language: Language = .En
+    static var player1Name: String  = Const.DefaultPlayer1Name
+    static var player2Name: String  = Const.DefaultPlayer2Name
+    static var scoreLimit: Int      = Const.DefaultScoreLimit
+    static var language: Language   = Const.DefaultLanguage
     
     // If the app is launched for the first time, then save defaults
     static func onFirstLaunch() {
-        if userDefaults.bool(forKey: "FirstLaunch") == false {
+        if userDefaults.bool(forKey: "DefaultsSaved") == false {
             Options.save()
         }
     }
@@ -42,7 +42,7 @@ class Options {
     
     // Saves defaults
     static func save() {
-        Options.userDefaults.set(true, forKey: "FirstLaunch")
+        Options.userDefaults.set(true, forKey: "DefaultsSaved")
         Options.userDefaults.set(Options.language.rawValue, forKey: "Language")
         Options.userDefaults.set(Options.player1Name, forKey: "Player1Name")
         Options.userDefaults.set(Options.player2Name, forKey: "Player2Name")

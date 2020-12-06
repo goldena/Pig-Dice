@@ -8,74 +8,82 @@
 import Foundation
 
 struct Game {
-    var player1 = Player(name: "Player1")
-    var player2 = Player(name: "Player2")
-    lazy var activePlayer = chooseRandomPlayer()
+    var player1 = Player(name: Const.DefaultPlayer1Name, isAI: false)
+    var player2 = Player(name: Const.DefaultPlayer2Name, isAI: true)
+    lazy var activePlayer = randomPlayer()
     
-    // Defaut score limit of the game
-    var scoreLimit = 100
+    var scoreLimit = Const.DefaultScoreLimit
     
     // Returns a random player
-    func chooseRandomPlayer() -> Player {
+    func randomPlayer() -> Player {
         if Int.random(in: 1...2) == 1  {
             return player1
         } else {
             return player2
         }
     }
-  
-    // Calculate scores ans set game states
-    func calculateScores(_ player: Player) {
-        guard let dice = player.dice else {
-            print("Error - die was not thrown")
-            return
-        }
-
-        // Add scores on the dice to the current player scores
-        player.roundScore += dice
-        
-        switch dice {
-        // If one is thrown zero player's current round score, switch active player
-        case 1:
-            player.state = .threw1
-            player.roundScore = 0
-        case 2, 3, 4, 5:
-            player.state = .playing
-        case 6:
-            // Zero player's current and total scores if 6 was thrown twice
-            if player.state == .threw6 {
-                player.state = .threw6Twice
-                player.totalScore = 0
-                player.roundScore = 0
-            } else {
-                // Set the state if 6 was thrown the first time
-                player.state = .threw6
-            }
-        default:
-            print("Invalid score on the dice to be evaluated")
-        }
-        
-        // Check winning condition
-        if player.roundScore + player.totalScore >= scoreLimit {
-            player.state = .winner
-        }
-    }
 
     // Sets the next player
     mutating func nextPlayer() {
+        // switch players
         if activePlayer === player1 {
             activePlayer = player2
         } else {
             activePlayer = player1
         }
+        
+        // Clear current score and round history
+        activePlayer.newRound()
     }
+ 
+    mutating func evalThrow() {
+        guard let dice = activePlayer.dice else {
+            print("Error - dice is nil")
+            return
+        }
+        
+        switch dice {
+        case 1:
+            nextPlayer()
+        case 2, 3, 4, 5:
+            activePlayer.roundHistory.append(dice)
+            activePlayer.roundScore += dice
+        case 6:
+            if activePlayer.roundHistory.last == 6 {
+                activePlayer.totalScore = 0
+                nextPlayer()
+            } else {
+                activePlayer.roundHistory.append(6)
+                activePlayer.roundScore += 6
+            }
+        default:
+            print("Invalid dice score")
+        }
+    }
+
+//    // Round played by AI
+//    mutating func playRound() {
+//        activePlayer.AINextMove()
+//
+//        // REMOVE:
+//        print(activePlayer.dice)
+//
+//            activePlayer.setState(limit: scoreLimit)
+//        }
+//
+//        if activePlayer.state != .winner {
+//            activePlayer.newRound()
+//            nextPlayer()
+//        }
+//    }
     
     // Init a new game with the player's names and score limit retreived from the defaults
     mutating func newGame() {
-        player1 = Player(name: Options.player1Name)
-        player2 = Player(name: Options.player2Name)
+        player1 = Player(name: Options.player1Name, isAI: false)
+        player2 = Player(name: Options.player2Name, isAI: true)
+        
         scoreLimit = Options.scoreLimit
 
-        activePlayer = chooseRandomPlayer()
+        activePlayer = randomPlayer()
     }
 }
