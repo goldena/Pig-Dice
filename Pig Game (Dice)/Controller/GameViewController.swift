@@ -26,7 +26,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         // Instantiate options VC in order for delegate to work
         optionsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "OptionsViewController")
-        optionsViewController.delegate = self
+        optionsViewController.optionsVCDelegate = self
 
         game.newGame()
         localiseUI()

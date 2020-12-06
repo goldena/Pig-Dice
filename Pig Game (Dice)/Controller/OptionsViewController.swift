@@ -12,12 +12,25 @@ protocol ViewControllerDelegate: UIViewController {
 }
 
 // Options screen
-class OptionsViewController: UIViewController {
+class OptionsViewController: UIViewController, UITextFieldDelegate {
     
-    weak var delegate: ViewControllerDelegate?
+    weak var optionsVCDelegate: ViewControllerDelegate?
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Player1NameTextField.delegate = self
+        Player2NameTextField.delegate = self
+        ScoreLimitTextField.delegate = self
+        
+        let tapOutsideTextField = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tapOutsideTextField.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapOutsideTextField)
         
         Options.load()
         localiseUI()
@@ -96,7 +109,7 @@ class OptionsViewController: UIViewController {
         
         // Save options and dismiss view controller
         Options.save()
-        delegate?.viewWillDimiss()
+        optionsVCDelegate?.viewWillDimiss()
         
         self.dismiss(animated: true, completion: nil)
     }
