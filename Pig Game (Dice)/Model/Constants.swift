@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum TypeOfGame: String {
+    case pigGame1Dice = "pigGame1Dice"
+    case pigGame2Dice = "pigGame2Dice"
+}
+
 struct Const {
     // Game
     static let DefaultScoreLimit = 100
@@ -15,6 +20,7 @@ struct Const {
     // Interface
     static let DefaultPlayer1Name = "Player1"
     static let DefaultPlayer2Name = "Player2"
+    static let DefaultTypeOfGame: TypeOfGame = .pigGame1Dice
     static let ButtonColor = UIColor(red: 0.603, green: 0.106, blue: 0.112, alpha: 1.0)
     static let DefaultLanguage = Language.En
 }

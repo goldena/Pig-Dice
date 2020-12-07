@@ -16,6 +16,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     
     weak var optionsVCDelegate: ViewControllerDelegate?
     
+    // Dismiss keyboard after pressing Return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -28,6 +29,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         Player2NameTextField.delegate = self
         ScoreLimitTextField.delegate = self
         
+        // Dismissed keyboard after tapping outside an edited field
         let tapOutsideTextField = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         tapOutsideTextField.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutsideTextField)
@@ -42,9 +44,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         CancelButton.setTitle(LocalisedUI.cancelButton.translate(to: Options.language), for: .normal)
         
         Player1NameTitle.text = LocalisedUI.player1NameTitle.translate(to: Options.language)
-        
         Player2NameTitle.text = LocalisedUI.player2NameTitle.translate(to: Options.language)
-        
         ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
         
         NoteLabel.text = LocalisedUI.noteLabel.translate(to: Options.language)
@@ -107,7 +107,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        // Save options and dismiss view controller
+        // Save options, call delegate to localise the Game screen and dismiss view controller
         Options.save()
         optionsVCDelegate?.viewWillDimiss()
         

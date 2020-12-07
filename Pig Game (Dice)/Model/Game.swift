@@ -36,18 +36,8 @@ struct Game {
         activePlayer.newRound()
     }
  
-    mutating func evalThrow() {
-        guard let dice = activePlayer.dice else {
-            print("Error - dice is nil")
-            return
-        }
-        
+    mutating func pigGame(_ dice: Int) {        
         switch dice {
-        case 1:
-            nextPlayer()
-        case 2, 3, 4, 5:
-            activePlayer.roundHistory.append(dice)
-            activePlayer.roundScore += dice
         case 6:
             if activePlayer.roundHistory.last == 6 {
                 activePlayer.totalScore = 0
@@ -56,11 +46,28 @@ struct Game {
                 activePlayer.roundHistory.append(6)
                 activePlayer.roundScore += 6
             }
+        case 1:
+            nextPlayer()
         default:
-            print("Invalid dice score")
+            activePlayer.roundHistory.append(dice)
+            activePlayer.roundScore += dice
         }
     }
-
+    
+    mutating func pigGame(_ dice1: Int, _ dice2: Int) {
+        switch (dice1, dice2) {
+        case (1, _), (_, 1):
+            nextPlayer()
+        case (6, 6):
+            activePlayer.totalScore = 0
+            nextPlayer()
+        default:
+            activePlayer.roundHistory.append(dice1)
+            activePlayer.roundHistory.append(dice2)
+            activePlayer.roundScore += dice1 + dice2
+        }
+    }
+        
 //    // Round played by AI
 //    mutating func playRound() {
 //        activePlayer.AINextMove()

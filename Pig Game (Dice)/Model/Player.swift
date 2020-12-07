@@ -13,11 +13,16 @@ class Player {
 
     var totalScore = 0
     var roundScore = 0
-    var dice: Int? = nil
+    var dice1: Int? = nil
+    var dice2: Int? = nil
     var roundHistory: [Int] = []
     
     func rollTheDice() {
-        dice = Int.random(in: 1...6)
+        dice1 = Int.random(in: 1...6)
+        
+        if Options.typeOfGame == .pigGame2Dice {
+            dice2 = Int.random(in: 1...6)
+        }
     }
         
     func hold() {
@@ -27,7 +32,8 @@ class Player {
     func newRound() {
         roundScore = 0
         roundHistory = []
-        dice = nil
+        dice1 = nil
+        dice2 = nil
     }
  
     // Used when the second player is played by computer

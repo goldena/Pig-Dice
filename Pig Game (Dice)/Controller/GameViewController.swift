@@ -60,18 +60,42 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         // Game mechanics: roll, calculate scores, check conditions, display alerts
         game.activePlayer.rollTheDice()
         updateUI()
-                    
-        if game.activePlayer.dice == 1 {
-            showAlert(title: LocalisedUI.threw1Title.translate(to: Options.language),
-                      message: "\(game.activePlayer.name) \(LocalisedUI.threw1Message.translate(to: Options.language))")
-        }
-            
-        if game.activePlayer.dice == 6 && game.activePlayer.roundHistory.last == 6 {
-            showAlert(title: LocalisedUI.threw6TwiceTitle.translate(to: Options.language),
-                      message: "\(game.activePlayer.name) \(LocalisedUI.threw6TwiceMessage.translate(to: Options.language))")
-        }
         
-        game.evalThrow()
+        if Options.typeOfGame == .pigGame1Dice {
+            guard let dice = game.activePlayer.dice1 else {
+                print("Dice is nil")
+                return
+            }
+            
+            if dice == 1 {
+                showAlert(title: LocalisedUI.threw1Title.translate(to: Options.language),
+                          message: "\(game.activePlayer.name) \(LocalisedUI.threw1Message.translate(to: Options.language))")
+            }
+            
+            if dice == 6 && game.activePlayer.roundHistory.last == 6 {
+                showAlert(title: LocalisedUI.threw6TwiceTitle.translate(to: Options.language),
+                          message: "\(game.activePlayer.name) \(LocalisedUI.threw6TwiceMessage.translate(to: Options.language))")
+            }
+            game.pigGame(dice)
+            
+        } else if Options.typeOfGame == .pigGame2Dice {
+            guard let dice1 = game.activePlayer.dice1,
+                  let dice2 = game.activePlayer.dice2 else {
+                print("One of dice is nil")
+                return
+            }
+            
+            if dice1 == 1 || dice2 == 1 {
+                showAlert(title: LocalisedUI.threw1Title.translate(to: Options.language),
+                          message: "\(game.activePlayer.name) \(LocalisedUI.threw1Message.translate(to: Options.language))")
+            }
+            
+            if dice1 == 6 && dice2 == 6 {
+                showAlert(title: LocalisedUI.threw6TwiceTitle.translate(to: Options.language),
+                          message: "\(game.activePlayer.name) \(LocalisedUI.threw6TwiceMessage.translate(to: Options.language))")
+            }
+            game.pigGame(dice1, dice2)
+        }
         updateUI()
 }
 
@@ -92,8 +116,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         updateUI()
         
         if game.activePlayer.totalScore >= Options.scoreLimit {
-            updateUI()
-            
             showAlert(title: LocalisedUI.winnerTitle.translate(to: Options.language),
                       message: "\(game.activePlayer.name) \(LocalisedUI.winnerMessage.translate(to: Options.language)) \(game.activePlayer.totalScore)!")
             game.newGame()
@@ -175,10 +197,16 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         CurrentScoreLabel.text = "\(game.activePlayer.roundScore)"
         
         // Hide dice image at the beginning of each round or a new game
-        if game.activePlayer.dice != nil {
-            DiceImage.image = diceArray[game.activePlayer.dice! - 1]
+        if game.activePlayer.dice1 != nil {
+            DiceImage.image = diceArray[game.activePlayer.dice1! - 1]
         } else {
             DiceImage.image = nil
+        }
+        
+        if game.activePlayer.dice2 != nil {
+            
+        } else {
+            
         }
     }
 }
