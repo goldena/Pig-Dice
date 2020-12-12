@@ -38,6 +38,7 @@ class Options {
             Options.player2Name = player2Name
         }
         
+        // NOTE: Bring back 1 dice game default
         if let typeOfGame = userDefaults.string(forKey: "TypeOfGame") {
             Options.typeOfGame = TypeOfGame.init(rawValue: typeOfGame) ?? .pigGame1Dice
         }

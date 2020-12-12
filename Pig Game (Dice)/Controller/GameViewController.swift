@@ -14,20 +14,29 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     let diceArray = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
     
     var game = Game()
-        
+    
+    var dice1ImageView: UIImageView!
+    var dice2ImageView: UIImageView?
+
     var optionsViewController = OptionsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        // Saves initial defaults if the game is launched for the first time
+        // Save initial defaults if the game is launched for the first time
         Options.onFirstLaunch()
         Options.load()
         
-        // Instantiate options VC in order for delegate to work
+        // Instantiate options for delegation
         optionsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "OptionsViewController")
         optionsViewController.optionsVCDelegate = self
-
+           
+        // Create dice Views depending on the type of game
+        createDice1ImageView()
+        if Options.typeOfGame == .pigGame2Dice {
+            createDice2ImageView()
+        }
+        
         game.newGame()
         localiseUI()
         updateUI()
@@ -37,9 +46,36 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     func viewWillDimiss() {
         Options.load()
         localiseUI()
-        print("Delegate method called")
     }
+
+    func createDice1ImageView() {
+        dice1ImageView = UIImageView()
+        dice1ImageView.contentMode = .scaleAspectFit
+        dice1ImageView.translatesAutoresizingMaskIntoConstraints = false
         
+//        NSLayoutConstraint.activate([
+//            dice1ImageView.widthAnchor.constraint(equalTo: 0.5, constant: 50.0),
+//            dice1ImageView.heightAnchor.constraint(equalTo: self, constant: 50.0),
+//        ])
+        
+        DiceImagesStackView.addArrangedSubview(dice1ImageView)
+    }
+
+    func createDice2ImageView() {
+        DiceImagesStackView.distribution = .fillEqually
+        DiceImagesStackView.alignment = .center
+        DiceImagesStackView.spacing = 0
+        
+        dice2ImageView = UIImageView()
+        dice2ImageView!.contentMode = .scaleAspectFit
+        dice2ImageView!.translatesAutoresizingMaskIntoConstraints = false
+        DiceImagesStackView.addArrangedSubview(dice2ImageView!)
+    }
+    
+//    func removeSecondDiceImageView() {
+//        dice2ImageView?.removeFromSuperview()
+//    }
+    
     @IBAction func NewGameButtonPressed(_ sender: UIButton) {
         // Reloads defaults in case there were changes
         Options.load()
@@ -129,7 +165,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     @IBOutlet weak var RollButton: UIButton!
     @IBOutlet weak var HoldButton: UIButton!
     
-    @IBOutlet weak var DiceImage: UIImageView!
+    @IBOutlet weak var DiceImagesStackView: UIStackView!
     
     @IBOutlet weak var CurrentScoreTitle: UILabel!
     @IBOutlet weak var CurrentScoreLabel: UILabel!
@@ -154,25 +190,25 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    func disableButton(_ button: UIButton) {
-        button.isEnabled = false
-        button.backgroundColor = .systemGray
-    }
-    
-    func enableButton(_ button: UIButton) {
-        button.isEnabled = true
-        button.backgroundColor = Const.ButtonColor
-    }
-
-    func disableButtons() {
-        disableButton(RollButton)
-        disableButton(HoldButton)
-    }
-    
-    func enableButtons() {
-        enableButton(RollButton)
-        enableButton(HoldButton)
-    }
+//    func disableButton(_ button: UIButton) {
+//        button.isEnabled = false
+//        button.backgroundColor = .systemGray
+//    }
+//
+//    func enableButton(_ button: UIButton) {
+//        button.isEnabled = true
+//        button.backgroundColor = Const.ButtonColor
+//    }
+//
+//    func disableButtons() {
+//        disableButton(RollButton)
+//        disableButton(HoldButton)
+//    }
+//
+//    func enableButtons() {
+//        enableButton(RollButton)
+//        enableButton(HoldButton)
+//    }
             
     func localiseUI() {
         // Localise buttons
@@ -186,8 +222,21 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         TotalScoresTitle.text = LocalisedUI.totalScoresTitle.translate(to: Options.language)
         CurrentPlayerTitle.text = LocalisedUI.currentPlayerTitle.translate(to: Options.language)
     }
-    
+        
     func updateUI() {
+        // Show or Hide dice image at the beginning of each round or a new game
+        if let dice1 = game.activePlayer.dice1 {
+            dice1ImageView.image = diceArray[dice1 - 1]
+        } else {
+            dice1ImageView.image = nil
+        }
+
+        if let dice2 = game.activePlayer.dice2 {
+            dice2ImageView?.image = diceArray[dice2 - 1]
+        } else {
+            dice2ImageView?.image = nil
+        }
+
         ScoreLimitLabel.text = String(game.scoreLimit)
         
         CurrentPlayerLabel.text = game.activePlayer.name
@@ -195,18 +244,5 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
         
         CurrentScoreLabel.text = "\(game.activePlayer.roundScore)"
-        
-        // Hide dice image at the beginning of each round or a new game
-        if game.activePlayer.dice1 != nil {
-            DiceImage.image = diceArray[game.activePlayer.dice1! - 1]
-        } else {
-            DiceImage.image = nil
-        }
-        
-        if game.activePlayer.dice2 != nil {
-            
-        } else {
-            
-        }
     }
 }

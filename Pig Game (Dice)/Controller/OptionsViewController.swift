@@ -52,14 +52,20 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateUI() {
-        // Note: view controller knows too much about options - might need refactoring
         switch Options.language {
         case .En:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 0
         case .Ru:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 1
         }
-            
+           
+        switch Options.typeOfGame {
+        case .pigGame1Dice:
+            With1or2DiceSegmentedControl.selectedSegmentIndex = 0
+        case .pigGame2Dice:
+            With1or2DiceSegmentedControl.selectedSegmentIndex = 1
+        }
+        
         Player1NameTextField.text = Options.player1Name
         Player2NameTextField.text = Options.player2Name
         ScoreLimitTextField.text = String(Options.scoreLimit)
@@ -76,10 +82,27 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ScoreLimitTitle: UILabel!
     @IBOutlet weak var ScoreLimitTextField: UITextField!
     
+    @IBOutlet weak var With1or2DiceTitle: UILabel!
+    @IBOutlet weak var With1or2DiceSegmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var NoteLabel: UILabel!
     
     @IBOutlet weak var CancelButton: UIButton!
     @IBOutlet weak var SaveButton: UIButton!
+    
+    // Changes localisation on the fly
+    @IBAction func LanguageSelectionChanged(_ sender: UISegmentedControl) {
+        switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
+        case 0:
+            Options.language = .En
+        case 1:
+            Options.language = .Ru
+        default:
+            print("Missing language selected")
+        }
+        
+        localiseUI()
+    }
     
     // Returt to the main screen without saving any changes to the Options
     @IBAction func CancelButtonPressed(_ sender: UIButton) {
@@ -93,7 +116,17 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         case 1:
             Options.language = .Ru
         default:
+            Options.language = .En
             print("Localization not found")
+        }
+        
+        switch With1or2DiceSegmentedControl.selectedSegmentIndex {
+        case 0:
+            Options.typeOfGame = .pigGame1Dice
+        case 1:
+            Options.typeOfGame = .pigGame2Dice
+        default:
+            break
         }
         
         Options.player1Name = Player1NameTextField.text ?? Options.player1Name
