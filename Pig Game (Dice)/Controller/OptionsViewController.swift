@@ -40,15 +40,28 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func localiseUI() {
-        SaveButton.setTitle(LocalisedUI.saveButton.translate(to: Options.language), for: .normal)
-        CancelButton.setTitle(LocalisedUI.cancelButton.translate(to: Options.language), for: .normal)
+        SaveButton
+            .setTitle(LocalisedUI.saveButton.translate(to: Options.language), for: .normal)
+        CancelButton
+            .setTitle(LocalisedUI.cancelButton.translate(to: Options.language), for: .normal)
+        With1or2DiceSegmentedControl
+            .setTitle(LocalisedUI.with1DiceSegmentedControlLabel.translate(to: Options.language), forSegmentAt: 0)
+        With1or2DiceSegmentedControl
+            .setTitle(LocalisedUI.with2DiceSegmentedControlLabel.translate(to: Options.language), forSegmentAt: 1)
         
-        Player1NameTitle.text = LocalisedUI.player1NameTitle.translate(to: Options.language)
-        Player2NameTitle.text = LocalisedUI.player2NameTitle.translate(to: Options.language)
-        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
+        Player1NameTitle
+            .text = LocalisedUI.player1NameTitle.translate(to: Options.language)
+        Player2NameTitle
+            .text = LocalisedUI.player2NameTitle.translate(to: Options.language)
+        ScoreLimitTitle
+            .text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
+        With1or2DiceTitle
+            .text = LocalisedUI.with1or2DiceTitle.translate(to: Options.language)
         
-        NoteLabel.text = LocalisedUI.noteLabel.translate(to: Options.language)
-        NoteLabel.textAlignment = .natural
+        NoteLabel
+            .text = LocalisedUI.noteLabel.translate(to: Options.language)
+        NoteLabel
+            .textAlignment = .natural
     }
     
     func updateUI() {
@@ -59,16 +72,19 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 1
         }
            
-        switch Options.typeOfGame {
+        switch Options.gameType {
         case .pigGame1Dice:
             With1or2DiceSegmentedControl.selectedSegmentIndex = 0
         case .pigGame2Dice:
             With1or2DiceSegmentedControl.selectedSegmentIndex = 1
         }
         
-        Player1NameTextField.text = Options.player1Name
-        Player2NameTextField.text = Options.player2Name
-        ScoreLimitTextField.text = String(Options.scoreLimit)
+        Player1NameTextField
+            .text = Options.player1Name
+        Player2NameTextField
+            .text = Options.player2Name
+        ScoreLimitTextField
+            .text = String(Options.scoreLimit)
     }
     
     @IBOutlet weak var LanguageSelectionSegmentedControl: UISegmentedControl!
@@ -122,9 +138,9 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         
         switch With1or2DiceSegmentedControl.selectedSegmentIndex {
         case 0:
-            Options.typeOfGame = .pigGame1Dice
+            Options.gameType = .pigGame1Dice
         case 1:
-            Options.typeOfGame = .pigGame2Dice
+            Options.gameType = .pigGame2Dice
         default:
             break
         }

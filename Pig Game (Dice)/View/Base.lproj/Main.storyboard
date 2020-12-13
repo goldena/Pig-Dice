@@ -94,7 +94,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2iY-3c-grX" userLabel="Score Limit Stack View">
-                                                <rect key="frame" x="0.0" y="92.666666666666657" width="310" height="40"/>
+                                                <rect key="frame" x="30.000000000000014" y="92.666666666666657" width="250.33333333333337" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbH-n7-3m6">
                                                         <rect key="frame" x="0.0" y="5.6666666666666856" width="120" height="29"/>
@@ -103,7 +103,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpe-BQ-e1B">
-                                                        <rect key="frame" x="130" y="0.0" width="180" height="40"/>
+                                                        <rect key="frame" x="130" y="0.0" width="120.33333333333331" height="40"/>
                                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -144,7 +144,7 @@
                                                     <constraint firstAttribute="height" constant="80" id="YJx-YV-mtI"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="uaM-ah-iaG" userLabel="Dice Images Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uaM-ah-iaG" userLabel="Dice Images Stack View">
                                                 <rect key="frame" x="0.0" y="298.33333333333331" width="310" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="pip-6H-1Iq"/>

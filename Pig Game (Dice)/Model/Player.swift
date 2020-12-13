@@ -19,10 +19,7 @@ class Player {
     
     func rollTheDice() {
         dice1 = Int.random(in: 1...6)
-        
-        if Options.typeOfGame == .pigGame2Dice {
-            dice2 = Int.random(in: 1...6)
-        }
+        dice2 = Int.random(in: 1...6)
     }
         
     func hold() {

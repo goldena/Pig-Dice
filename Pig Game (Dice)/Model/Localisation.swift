@@ -47,10 +47,13 @@ enum LocalisedUI {
     case player2NameTitle
     // case scoreLimitTitle - reuse of the same one from the Game View
     case noteLabel
+    case with1or2DiceTitle
 
-    // Options View - Buttons
+    // Options View - Buttons and controls
     case saveButton
     case cancelButton
+    case with1DiceSegmentedControlLabel
+    case with2DiceSegmentedControlLabel
 
     // Help View - Text
     case gameRulesTextView
@@ -126,15 +129,24 @@ let LocalisationDictionary: [LocalisedUI: [Language: String]] = [
     // .scoreLimitTitle: [.En: "Score Limit",
     //                    .Ru: "Лимит очков"],
  
-    .noteLabel: [.En: "Note: Changes will take effect after pressing NEW GAME button at the top of the game's main screen or after restarting the app.",
-                 .Ru: "Примечание: измения вступят в силу после нажания кнопки НОВАЯ ИГРА вверху главного экрана игры, либо после перезапуска приложения."],
+    .with1or2DiceTitle: [.En: "Play with",
+                             .Ru: "Играть с"],
+    
+    .noteLabel: [.En: "Note: Game-related options will take effect after pressing NEW GAME button at the top of the game's main screen, after one of the players wins the current game in progress, or after restarting the app.",
+                 .Ru: "Примечание: изменения относящиеся к правилам игры вступят в силу после нажания кнопки НОВАЯ ИГРА вверху главного экрана игры, выигрыша любого из игроков в текущей игре, либо после перезапуска приложения."],
 
-    // Options View - buttons
+    // Options View - buttons and contols
     .saveButton: [.En: "SAVE",
                   .Ru: "СОХРАНИТЬ"],
     
     .cancelButton: [.En: "CANCEL",
                     .Ru: "ОТМЕНА"],
+    
+    .with1DiceSegmentedControlLabel: [.En: "1 Dice",
+                                          .Ru: "1 кубик"],
+    
+    .with2DiceSegmentedControlLabel: [.En: "2 Dice",
+                                          .Ru: "2 кубика"],
     
     // Help View - Text
     .gameRulesTextView: [.En:

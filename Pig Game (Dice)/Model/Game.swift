@@ -9,11 +9,12 @@ import Foundation
 
 struct Game {
     var player1 = Player(name: Const.DefaultPlayer1Name, isAI: false)
-    var player2 = Player(name: Const.DefaultPlayer2Name, isAI: true)
+    var player2 = Player(name: Const.DefaultPlayer2Name, isAI: false)
     lazy var activePlayer = randomPlayer()
     
-    var scoreLimit = Const.DefaultScoreLimit
-    
+    var gameType = Options.gameType
+    var scoreLimit = Options.scoreLimit
+        
     // Returns a random player
     func randomPlayer() -> Player {
         if Int.random(in: 1...2) == 1  {
@@ -89,6 +90,7 @@ struct Game {
         player1 = Player(name: Options.player1Name, isAI: false)
         player2 = Player(name: Options.player2Name, isAI: true)
         
+        gameType = Options.gameType
         scoreLimit = Options.scoreLimit
 
         activePlayer = randomPlayer()

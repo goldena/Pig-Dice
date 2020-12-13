@@ -13,7 +13,7 @@ class Options {
     // Default values for the first launch of the game
     static var player1Name: String = Const.DefaultPlayer1Name
     static var player2Name: String = Const.DefaultPlayer2Name
-    static var typeOfGame: TypeOfGame = Const.DefaultTypeOfGame
+    static var gameType: TypeOfGame = Const.DefaultTypeOfGame
     static var scoreLimit: Int = Const.DefaultScoreLimit
     static var language: Language = Const.DefaultLanguage
     
@@ -40,7 +40,7 @@ class Options {
         
         // NOTE: Bring back 1 dice game default
         if let typeOfGame = userDefaults.string(forKey: "TypeOfGame") {
-            Options.typeOfGame = TypeOfGame.init(rawValue: typeOfGame) ?? .pigGame1Dice
+            Options.gameType = TypeOfGame.init(rawValue: typeOfGame) ?? .pigGame1Dice
         }
                 
         Options.scoreLimit = userDefaults.integer(forKey: "ScoreLimit")
@@ -52,7 +52,7 @@ class Options {
         Options.userDefaults.set(Options.language.rawValue, forKey: "Language")
         Options.userDefaults.set(Options.player1Name, forKey: "Player1Name")
         Options.userDefaults.set(Options.player2Name, forKey: "Player2Name")
-        Options.userDefaults.set(Options.typeOfGame.rawValue, forKey: "TypeOfGame")
+        Options.userDefaults.set(Options.gameType.rawValue, forKey: "TypeOfGame")
         Options.userDefaults.set(Options.scoreLimit, forKey: "ScoreLimit")
     }
 }

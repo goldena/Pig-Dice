@@ -16,8 +16,9 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     var game = Game()
     
     var dice1ImageView: UIImageView!
+    // The second dice ImageView is instantiated depending on a type of game
     var dice2ImageView: UIImageView?
-
+    
     var optionsViewController = OptionsViewController()
     
     override func viewDidLoad() {
@@ -33,7 +34,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
            
         // Create dice Views depending on the type of game
         createDice1ImageView()
-        if Options.typeOfGame == .pigGame2Dice {
+        if Options.gameType == .pigGame2Dice {
             createDice2ImageView()
         }
         
@@ -44,7 +45,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
     // Delegation func, to localise UI once the Options are saved
     func viewWillDimiss() {
-        Options.load()
         localiseUI()
     }
 
@@ -54,17 +54,15 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         dice1ImageView.translatesAutoresizingMaskIntoConstraints = false
         
 //        NSLayoutConstraint.activate([
-//            dice1ImageView.widthAnchor.constraint(equalTo: 0.5, constant: 50.0),
-//            dice1ImageView.heightAnchor.constraint(equalTo: self, constant: 50.0),
 //        ])
         
         DiceImagesStackView.addArrangedSubview(dice1ImageView)
     }
 
     func createDice2ImageView() {
-        DiceImagesStackView.distribution = .fillEqually
-        DiceImagesStackView.alignment = .center
-        DiceImagesStackView.spacing = 0
+//        DiceImagesStackView.distribution = .fillEqually
+//        DiceImagesStackView.alignment = .center
+//        DiceImagesStackView.spacing = 0
         
         dice2ImageView = UIImageView()
         dice2ImageView!.contentMode = .scaleAspectFit
@@ -72,9 +70,10 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         DiceImagesStackView.addArrangedSubview(dice2ImageView!)
     }
     
-//    func removeSecondDiceImageView() {
-//        dice2ImageView?.removeFromSuperview()
-//    }
+    func removeSecondDiceImageView() {
+        dice2ImageView?.removeFromSuperview()
+        dice2ImageView = nil
+    }
     
     @IBAction func NewGameButtonPressed(_ sender: UIButton) {
         // Reloads defaults in case there were changes
@@ -83,6 +82,14 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         showAlert(title: LocalisedUI.newGameTitle.translate(to: Options.language),
                   message: LocalisedUI.newGameMessage.translate(to: Options.language))
 
+        if Options.gameType == .pigGame2Dice && dice2ImageView == nil {
+            createDice2ImageView()
+        }
+        
+        if Options.gameType == .pigGame1Dice && dice2ImageView != nil {
+            removeSecondDiceImageView()
+        }
+        
         game.newGame()
         localiseUI()
         updateUI()
@@ -97,7 +104,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         game.activePlayer.rollTheDice()
         updateUI()
         
-        if Options.typeOfGame == .pigGame1Dice {
+        if game.gameType == .pigGame1Dice {
             guard let dice = game.activePlayer.dice1 else {
                 print("Dice is nil")
                 return
@@ -114,7 +121,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             }
             game.pigGame(dice)
             
-        } else if Options.typeOfGame == .pigGame2Dice {
+        } else if game.gameType == .pigGame2Dice {
             guard let dice1 = game.activePlayer.dice1,
                   let dice2 = game.activePlayer.dice2 else {
                 print("One of dice is nil")
@@ -151,9 +158,18 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         game.activePlayer.hold()
         updateUI()
         
-        if game.activePlayer.totalScore >= Options.scoreLimit {
+        if game.activePlayer.totalScore >= game.scoreLimit {
             showAlert(title: LocalisedUI.winnerTitle.translate(to: Options.language),
                       message: "\(game.activePlayer.name) \(LocalisedUI.winnerMessage.translate(to: Options.language)) \(game.activePlayer.totalScore)!")
+
+            if Options.gameType == .pigGame2Dice && dice2ImageView == nil {
+                createDice2ImageView()
+            }
+            
+            if Options.gameType == .pigGame1Dice && dice2ImageView != nil {
+                removeSecondDiceImageView()
+            }
+
             game.newGame()
         }
                 
@@ -212,15 +228,22 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             
     func localiseUI() {
         // Localise buttons
-        NewGameButton.setTitle(LocalisedUI.newGameButton.translate(to: Options.language), for: .normal)
-        RollButton.setTitle(LocalisedUI.rollButton.translate(to: Options.language), for: .normal)
-        HoldButton.setTitle(LocalisedUI.holdButton.translate(to: Options.language), for: .normal)
+        NewGameButton
+            .setTitle(LocalisedUI.newGameButton.translate(to: Options.language), for: .normal)
+        RollButton
+            .setTitle(LocalisedUI.rollButton.translate(to: Options.language), for: .normal)
+        HoldButton
+            .setTitle(LocalisedUI.holdButton.translate(to: Options.language), for: .normal)
         
         // Localise text
-        CurrentScoreTitle.text = LocalisedUI.currentScoreTitle.translate(to: Options.language)
-        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
-        TotalScoresTitle.text = LocalisedUI.totalScoresTitle.translate(to: Options.language)
-        CurrentPlayerTitle.text = LocalisedUI.currentPlayerTitle.translate(to: Options.language)
+        CurrentScoreTitle
+            .text = LocalisedUI.currentScoreTitle.translate(to: Options.language)
+        ScoreLimitTitle
+            .text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
+        TotalScoresTitle
+            .text = LocalisedUI.totalScoresTitle.translate(to: Options.language)
+        CurrentPlayerTitle
+            .text = LocalisedUI.currentPlayerTitle.translate(to: Options.language)
     }
         
     func updateUI() {
@@ -231,18 +254,25 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             dice1ImageView.image = nil
         }
 
-        if let dice2 = game.activePlayer.dice2 {
-            dice2ImageView?.image = diceArray[dice2 - 1]
-        } else {
-            dice2ImageView?.image = nil
+        if game.gameType == .pigGame2Dice {
+            if let dice2 = game.activePlayer.dice2 {
+                dice2ImageView?.image = diceArray[dice2 - 1]
+            } else {
+                dice2ImageView?.image = nil
+            }
         }
-
-        ScoreLimitLabel.text = String(game.scoreLimit)
         
-        CurrentPlayerLabel.text = game.activePlayer.name
-        PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
-        PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
+        ScoreLimitLabel
+            .text = String(game.scoreLimit)
         
-        CurrentScoreLabel.text = "\(game.activePlayer.roundScore)"
+        CurrentPlayerLabel
+            .text = game.activePlayer.name
+        PlayerOneScoreLabel
+            .text = "\(game.player1.name): \(game.player1.totalScore)"
+        PlayerTwoScoreLabel
+            .text = "\(game.player2.name): \(game.player2.totalScore)"
+        
+        CurrentScoreLabel
+            .text = "\(game.activePlayer.roundScore)"
     }
 }
