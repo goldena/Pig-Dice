@@ -50,6 +50,7 @@ enum LocalisedUI {
     case with1or2DiceTitle
 
     // Options View - Buttons and controls
+    case soundEnabledSwitch
     case saveButton
     case cancelButton
     case with1DiceSegmentedControlLabel
@@ -120,20 +121,30 @@ let LocalisationDictionary: [LocalisedUI: [Language: String]] = [
                   .Ru: "БРОСОК"],
     
     // Options View - text
+    .soundEnabledSwitch: [.En: "Sound Enabled",
+                          .Ru: "Звук включён"],
+    
     .player1NameTitle: [.En: "1st Player's Name",
                         .Ru: "Имя игрока 1"],
     
     .player2NameTitle: [.En: "2nd Player'a Name",
                         .Ru: "Имя игрока 2"],
     
+    // Reuse of the same one from the Options View
     // .scoreLimitTitle: [.En: "Score Limit",
     //                    .Ru: "Лимит очков"],
  
     .with1or2DiceTitle: [.En: "Play with",
                              .Ru: "Играть с"],
     
-    .noteLabel: [.En: "Note: Game-related options will take effect after pressing NEW GAME button at the top of the game's main screen, after one of the players wins the current game in progress, or after restarting the app.",
-                 .Ru: "Примечание: изменения относящиеся к правилам игры вступят в силу после нажания кнопки НОВАЯ ИГРА вверху главного экрана игры, выигрыша любого из игроков в текущей игре, либо после перезапуска приложения."],
+    .noteLabel: [.En:
+                    """
+                    Note: Game-related options will take effect after pressing NEW GAME button at the top of the game's main screen, after one of the players wins the current game in progress, or after restarting the app.
+                    """,
+                 .Ru:
+                    """
+                    Примечание: изменения относящиеся к правилам игры вступят в силу после нажания кнопки НОВАЯ ИГРА вверху главного экрана игры, выигрыша любого из игроков в текущей игре, либо после перезапуска приложения.
+                    """],
 
     // Options View - buttons and contols
     .saveButton: [.En: "SAVE",

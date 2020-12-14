@@ -40,28 +40,20 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func localiseUI() {
-        SaveButton
-            .setTitle(LocalisedUI.saveButton.translate(to: Options.language), for: .normal)
-        CancelButton
-            .setTitle(LocalisedUI.cancelButton.translate(to: Options.language), for: .normal)
-        With1or2DiceSegmentedControl
-            .setTitle(LocalisedUI.with1DiceSegmentedControlLabel.translate(to: Options.language), forSegmentAt: 0)
-        With1or2DiceSegmentedControl
-            .setTitle(LocalisedUI.with2DiceSegmentedControlLabel.translate(to: Options.language), forSegmentAt: 1)
+        let language = Options.language
         
-        Player1NameTitle
-            .text = LocalisedUI.player1NameTitle.translate(to: Options.language)
-        Player2NameTitle
-            .text = LocalisedUI.player2NameTitle.translate(to: Options.language)
-        ScoreLimitTitle
-            .text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
-        With1or2DiceTitle
-            .text = LocalisedUI.with1or2DiceTitle.translate(to: Options.language)
+        SaveButton.setTitle(LocalisedUI.saveButton.translate(to: language), for: .normal)
+        CancelButton.setTitle(LocalisedUI.cancelButton.translate(to: language), for: .normal)
+        With1or2DiceSegmentedControl.setTitle(LocalisedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
+        With1or2DiceSegmentedControl.setTitle(LocalisedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
         
-        NoteLabel
-            .text = LocalisedUI.noteLabel.translate(to: Options.language)
-        NoteLabel
-            .textAlignment = .natural
+        SoundEnabledTitle.text = LocalisedUI.soundEnabledSwitch.translate(to: language)
+        Player1NameTitle.text = LocalisedUI.player1NameTitle.translate(to: language)
+        Player2NameTitle.text = LocalisedUI.player2NameTitle.translate(to: language)
+        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: language)
+        With1or2DiceTitle.text = LocalisedUI.with1or2DiceTitle.translate(to: language)
+        NoteLabel.text = LocalisedUI.noteLabel.translate(to: language)
+        NoteLabel.textAlignment = .natural
     }
     
     func updateUI() {
@@ -72,6 +64,8 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 1
         }
            
+        SoundEnabledSwitch.isOn = Options.isSoundEnabled
+        
         switch Options.gameType {
         case .pigGame1Dice:
             With1or2DiceSegmentedControl.selectedSegmentIndex = 0
@@ -79,15 +73,15 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             With1or2DiceSegmentedControl.selectedSegmentIndex = 1
         }
         
-        Player1NameTextField
-            .text = Options.player1Name
-        Player2NameTextField
-            .text = Options.player2Name
-        ScoreLimitTextField
-            .text = String(Options.scoreLimit)
+        Player1NameTextField.text = Options.player1Name
+        Player2NameTextField.text = Options.player2Name
+        ScoreLimitTextField.text = String(Options.scoreLimit)
     }
     
     @IBOutlet weak var LanguageSelectionSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var SoundEnabledTitle: UILabel!
+    @IBOutlet weak var SoundEnabledSwitch: UISwitch!
     
     @IBOutlet weak var Player1NameTitle: UILabel!
     @IBOutlet weak var Player1NameTextField: UITextField!
@@ -135,6 +129,8 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             Options.language = .En
             print("Localization not found")
         }
+        
+        Options.isSoundEnabled = SoundEnabledSwitch.isOn
         
         switch With1or2DiceSegmentedControl.selectedSegmentIndex {
         case 0:

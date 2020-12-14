@@ -23,4 +23,5 @@ struct Const {
     static let DefaultTypeOfGame: TypeOfGame = .pigGame2Dice
     static let ButtonColor = UIColor(red: 0.603, green: 0.106, blue: 0.112, alpha: 1.0)
     static let DefaultLanguage = Language.En
+    static let DefaultIsSoundEnabled = true
 }

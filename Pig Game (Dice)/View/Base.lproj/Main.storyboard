@@ -332,14 +332,28 @@
                                                     </segmentedControl>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4E7-R0-Vlq">
+                                                <rect key="frame" x="80.333333333333329" y="98.666666666666657" width="173.66666666666669" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm0-jJ-xUt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZHn-dn-24J">
+                                                        <rect key="frame" x="124.66666666666669" y="0.0" width="51" height="31"/>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-dO-9dL" userLabel="Player's Names Stack View">
-                                                <rect key="frame" x="42" y="123.33333333333334" width="250" height="78"/>
+                                                <rect key="frame" x="42" y="197.33333333333331" width="250" height="78"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Sf7-2j-4Ya">
                                                         <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st Player's Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sB-Uo-0N9">
-                                                                <rect key="frame" x="0.0" y="6.3333333333333162" width="145.66666666666666" height="21.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="6.333333333333373" width="145.66666666666666" height="21.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -356,7 +370,7 @@
                                                         <rect key="frame" x="0.0" y="44" width="250" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd Player's Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JST-AU-5q0">
-                                                                <rect key="frame" x="0.0" y="6.3333333333333162" width="151.33333333333334" height="21.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="6.333333333333373" width="151.33333333333334" height="21.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -372,13 +386,13 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hkS-jN-DQO">
-                                                <rect key="frame" x="65" y="293.66666666666669" width="204" height="75"/>
+                                                <rect key="frame" x="65" y="343" width="204" height="75"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-hy-Mir" userLabel="1 or 2 Dice Selection Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="204" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play with:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwN-uq-jfH" userLabel="1 or 2 Dice Title">
-                                                                <rect key="frame" x="0.0" y="4.6666666666666288" width="77" height="21.666666666666668"/>
+                                                                <rect key="frame" x="0.0" y="4.6666666666666856" width="77" height="21.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -415,7 +429,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note: Changes will take effect after pressing &quot;New Game&quot; button at the top of the game screen or after restarting the app." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJp-Jz-gjA" userLabel="ChangesWillTakeEffectLabel">
-                                                <rect key="frame" x="20" y="461" width="294" height="86.666666666666629"/>
+                                                <rect key="frame" x="20" y="485.66666666666669" width="294" height="86.666666666666686"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
@@ -502,6 +516,8 @@
                         <outlet property="SaveButton" destination="NVq-Wo-GaW" id="DL6-sE-QeJ"/>
                         <outlet property="ScoreLimitTextField" destination="9J2-W6-AZA" id="3JK-aW-FaX"/>
                         <outlet property="ScoreLimitTitle" destination="4Ua-Zf-R71" id="57i-sm-9Z9"/>
+                        <outlet property="SoundEnabledSwitch" destination="ZHn-dn-24J" id="GiI-Qr-Aqf"/>
+                        <outlet property="SoundEnabledTitle" destination="gm0-jJ-xUt" id="EeV-QW-TCM"/>
                         <outlet property="With1or2DiceSegmentedControl" destination="4Uc-WM-0bH" id="IgN-og-PVC"/>
                         <outlet property="With1or2DiceTitle" destination="pwN-uq-jfH" id="XNt-3F-FTw"/>
                     </connections>

@@ -17,9 +17,10 @@ class HelpViewController: UIViewController {
     }
 
     func localiseUI() {
-        BackButton.setTitle(LocalisedUI.backButton.translate(to: Options.language), for: .normal)
+        let language = Options.language
         
-        GameRulesTextView.text = LocalisedUI.gameRulesTextView.translate(to: Options.language)
+        BackButton.setTitle(LocalisedUI.backButton.translate(to: language), for: .normal)
+        GameRulesTextView.text = LocalisedUI.gameRulesTextView.translate(to: language)
         GameRulesTextView.textAlignment = .natural
     }
 

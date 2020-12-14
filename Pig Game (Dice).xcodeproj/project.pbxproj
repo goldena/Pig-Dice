@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CF18F395257594A50017873F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF18F394257594A50017873F /* Constants.swift */; };
 		CF52AFBC254ED91D0077F737 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52AFBB254ED91D0077F737 /* Options.swift */; };
+		CFBBD7442587F4FD00CA625A /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBBD7432587F4FD00CA625A /* SoundController.swift */; };
+		CFBBD74C2587FAD600CA625A /* dice_roll.wav in Resources */ = {isa = PBXBuildFile; fileRef = CFBBD74B2587FAD600CA625A /* dice_roll.wav */; };
 		CFD6115C2530F807008CF24A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6115B2530F806008CF24A /* Player.swift */; };
 		CFE2D96E2545B6FD00565EB8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */; };
 		CFE2D9712545B75300565EB8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE2D9702545B75300565EB8 /* Lato-Regular.ttf */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		CF18F394257594A50017873F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CF52AFBB254ED91D0077F737 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		CFBBD7432587F4FD00CA625A /* SoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
+		CFBBD74B2587FAD600CA625A /* dice_roll.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dice_roll.wav; sourceTree = "<group>"; };
 		CFD6115B2530F806008CF24A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		CFE2D9702545B75300565EB8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -64,6 +68,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		CFBBD7462587F5C200CA625A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				CFBBD74B2587FAD600CA625A /* dice_roll.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		CFE937CC252E7D3D009F7CB2 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +98,7 @@
 				CFE937ED252E85B4009F7CB2 /* Model */,
 				CFE937EE252E85BD009F7CB2 /* View */,
 				CFE937EF252E85CB009F7CB2 /* Controller */,
+				CFBBD7462587F5C200CA625A /* Sounds */,
 				CF9F1B4C2540D88500C1979F /* Fonts */,
 				CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */,
 				CFE937DA252E7D3D009F7CB2 /* SceneDelegate.swift */,
@@ -122,6 +135,7 @@
 				CFE937DC252E7D3D009F7CB2 /* GameViewController.swift */,
 				CFE2D977254E093F00565EB8 /* OptionsViewController.swift */,
 				CFE2D9732546231F00565EB8 /* HelpViewController.swift */,
+				CFBBD7432587F4FD00CA625A /* SoundController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -187,6 +201,7 @@
 				CFE937E2252E7D40009F7CB2 /* Assets.xcassets in Resources */,
 				CFE2D9712545B75300565EB8 /* Lato-Regular.ttf in Resources */,
 				CFE937E0252E7D3D009F7CB2 /* Main.storyboard in Resources */,
+				CFBBD74C2587FAD600CA625A /* dice_roll.wav in Resources */,
 				CFE2D96E2545B6FD00565EB8 /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +216,7 @@
 				CFE2D9742546231F00565EB8 /* HelpViewController.swift in Sources */,
 				CFE2D978254E093F00565EB8 /* OptionsViewController.swift in Sources */,
 				CFE937DD252E7D3D009F7CB2 /* GameViewController.swift in Sources */,
+				CFBBD7442587F4FD00CA625A /* SoundController.swift in Sources */,
 				CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */,
 				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
 				CF18F395257594A50017873F /* Constants.swift in Sources */,

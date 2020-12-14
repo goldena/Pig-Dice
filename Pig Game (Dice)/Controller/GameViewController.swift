@@ -50,23 +50,19 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
     func createDice1ImageView() {
         dice1ImageView = UIImageView()
+        
         dice1ImageView.contentMode = .scaleAspectFit
         dice1ImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-//        NSLayoutConstraint.activate([
-//        ])
         
         DiceImagesStackView.addArrangedSubview(dice1ImageView)
     }
 
     func createDice2ImageView() {
-//        DiceImagesStackView.distribution = .fillEqually
-//        DiceImagesStackView.alignment = .center
-//        DiceImagesStackView.spacing = 0
-        
         dice2ImageView = UIImageView()
+        
         dice2ImageView!.contentMode = .scaleAspectFit
         dice2ImageView!.translatesAutoresizingMaskIntoConstraints = false
+
         DiceImagesStackView.addArrangedSubview(dice2ImageView!)
     }
     
@@ -102,6 +98,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     @IBAction func RollButtonPressed(_ sender: UIButton) {
         // Game mechanics: roll, calculate scores, check conditions, display alerts
         game.activePlayer.rollTheDice()
+        
+        if Options.isSoundEnabled {
+                    playSound("dice_roll", type: "wav")
+        }
+        
         updateUI()
         
         if game.gameType == .pigGame1Dice {
@@ -140,8 +141,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             game.pigGame(dice1, dice2)
         }
         updateUI()
-}
-
+    }
+    
 //    func ifAI() {
 //        if game.activePlayer.isAI {
 //            disableButtons()
@@ -227,23 +228,18 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 //    }
             
     func localiseUI() {
+        let language = Options.language
+        
         // Localise buttons
-        NewGameButton
-            .setTitle(LocalisedUI.newGameButton.translate(to: Options.language), for: .normal)
-        RollButton
-            .setTitle(LocalisedUI.rollButton.translate(to: Options.language), for: .normal)
-        HoldButton
-            .setTitle(LocalisedUI.holdButton.translate(to: Options.language), for: .normal)
+        NewGameButton.setTitle(LocalisedUI.newGameButton.translate(to: language), for: .normal)
+        RollButton.setTitle(LocalisedUI.rollButton.translate(to: language), for: .normal)
+        HoldButton.setTitle(LocalisedUI.holdButton.translate(to: language), for: .normal)
         
         // Localise text
-        CurrentScoreTitle
-            .text = LocalisedUI.currentScoreTitle.translate(to: Options.language)
-        ScoreLimitTitle
-            .text = LocalisedUI.scoreLimitTitle.translate(to: Options.language)
-        TotalScoresTitle
-            .text = LocalisedUI.totalScoresTitle.translate(to: Options.language)
-        CurrentPlayerTitle
-            .text = LocalisedUI.currentPlayerTitle.translate(to: Options.language)
+        CurrentScoreTitle.text = LocalisedUI.currentScoreTitle.translate(to: language)
+        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: language)
+        TotalScoresTitle.text = LocalisedUI.totalScoresTitle.translate(to: language)
+        CurrentPlayerTitle.text = LocalisedUI.currentPlayerTitle.translate(to: language)
     }
         
     func updateUI() {
@@ -262,17 +258,10 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             }
         }
         
-        ScoreLimitLabel
-            .text = String(game.scoreLimit)
-        
-        CurrentPlayerLabel
-            .text = game.activePlayer.name
-        PlayerOneScoreLabel
-            .text = "\(game.player1.name): \(game.player1.totalScore)"
-        PlayerTwoScoreLabel
-            .text = "\(game.player2.name): \(game.player2.totalScore)"
-        
-        CurrentScoreLabel
-            .text = "\(game.activePlayer.roundScore)"
+        ScoreLimitLabel.text = String(game.scoreLimit)
+        CurrentPlayerLabel.text = game.activePlayer.name
+        PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
+        PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
+        CurrentScoreLabel.text = "\(game.activePlayer.roundScore)"
     }
 }
