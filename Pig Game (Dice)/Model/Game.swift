@@ -9,7 +9,7 @@ import Foundation
 
 struct Game {
     var player1 = Player(name: Const.DefaultPlayer1Name, isAI: false)
-    var player2 = Player(name: Const.DefaultPlayer2Name, isAI: false)
+    var player2 = Player(name: Const.DefaultPlayer2Name, isAI: true)
     lazy var activePlayer = randomPlayer()
     
     var gameType = Options.gameType
@@ -37,6 +37,7 @@ struct Game {
         activePlayer.newRound()
     }
  
+    // Rules of score calculation for the Pig Game with one dice
     mutating func pigGame(_ dice: Int) {        
         switch dice {
         case 6:
@@ -55,6 +56,7 @@ struct Game {
         }
     }
     
+    // Rules of score calculation for the Pig Game with two dice
     mutating func pigGame(_ dice1: Int, _ dice2: Int) {
         switch (dice1, dice2) {
         case (1, _), (_, 1):
@@ -63,28 +65,13 @@ struct Game {
             activePlayer.totalScore = 0
             nextPlayer()
         default:
+            // Round history is not used anywhere yet for this type of game
             activePlayer.roundHistory.append(dice1)
             activePlayer.roundHistory.append(dice2)
             activePlayer.roundScore += dice1 + dice2
         }
     }
-        
-//    // Round played by AI
-//    mutating func playRound() {
-//        activePlayer.AINextMove()
-//
-//        // REMOVE:
-//        print(activePlayer.dice)
-//
-//            activePlayer.setState(limit: scoreLimit)
-//        }
-//
-//        if activePlayer.state != .winner {
-//            activePlayer.newRound()
-//            nextPlayer()
-//        }
-//    }
-    
+           
     // Init a new game with the player's names and score limit retreived from the defaults
     mutating func newGame() {
         player1 = Player(name: Options.player1Name, isAI: false)

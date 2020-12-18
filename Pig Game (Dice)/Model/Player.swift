@@ -32,24 +32,7 @@ class Player {
         dice1 = nil
         dice2 = nil
     }
- 
-    // Used when the second player is played by computer
-    func AINextMove() -> () {
-        if roundHistory.last == 6 {
-            return hold()
-        }
-        
-        if roundScore + totalScore >= Options.scoreLimit {
-            return hold()
-        }
-        
-        if roundScore <= Int.random(in: 12...24) {
-            return rollTheDice()
-        } else {
-            return self.hold()
-        }
-    }
-    
+         
     init(name: String, isAI: Bool) {
         self.name = name
         self.isAI = isAI
