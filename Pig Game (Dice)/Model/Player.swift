@@ -15,20 +15,20 @@ class Player {
     var roundScore = 0
     var dice1: Int? = nil
     var dice2: Int? = nil
-    var roundHistory: [Int] = []
+    var previousDiceIs6: Bool = false
     
-    func rollTheDice() {
+    func rollDice() {
         dice1 = Int.random(in: 1...6)
         dice2 = Int.random(in: 1...6)
     }
         
-    func hold() {
+    func holdRoundScore() {
         totalScore += roundScore
     }
     
-    func newRound() {
+    func clearRound() {
         roundScore = 0
-        roundHistory = []
+        previousDiceIs6 = false
         dice1 = nil
         dice2 = nil
     }

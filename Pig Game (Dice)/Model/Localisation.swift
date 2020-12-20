@@ -23,7 +23,7 @@ enum LocalisedUI {
     case newGameTitle
 
     case winnerTitle
-    case winnerMessage
+    case victoryMessage
     
     case threw1Title
     case threw1Message
@@ -55,6 +55,7 @@ enum LocalisedUI {
     case cancelButton
     case with1DiceSegmentedControlLabel
     case with2DiceSegmentedControlLabel
+    case is2ndPlayerAITitle
 
     // Help View - Text
     case gameRulesTextView
@@ -83,7 +84,7 @@ let LocalisationDictionary: [LocalisedUI: [Language: String]] = [
     
     .winnerTitle: [.En: "You have won!",
                    .Ru: "Вы выиграли!"],
-    .winnerMessage: [.En: "had won the game with total score",
+    .victoryMessage: [.En: "had won the game with total score",
                      .Ru: "- вы выиграли игру, набрав"],
     
     .threw1Title: [.En: "You have lost this round",
@@ -129,6 +130,9 @@ let LocalisationDictionary: [LocalisedUI: [Language: String]] = [
     
     .player2NameTitle: [.En: "2nd Player'a Name",
                         .Ru: "Имя игрока 2"],
+    
+    .is2ndPlayerAITitle: [.En: "2nd Player is AI",
+                          .Ru: "2-ой игрок - ИИ"],
     
     // Reuse of the same one from the Options View
     // .scoreLimitTitle: [.En: "Score Limit",

@@ -14,7 +14,7 @@ protocol ViewControllerDelegate: UIViewController {
 // Options screen
 class OptionsViewController: UIViewController, UITextFieldDelegate {
     
-    weak var optionsVCDelegate: ViewControllerDelegate?
+    weak var optionsViewControllerDelegate: ViewControllerDelegate?
     
     // Dismiss keyboard after pressing Return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -41,19 +41,20 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     
     func localiseUI() {
         let language = Options.language
+                
+        SoundEnabledTitle.text = LocalisedUI.soundEnabledSwitch.translate(to: language)
+        Player1NameTitle.text = LocalisedUI.player1NameTitle.translate(to: language)
+        Player2NameTitle.text = LocalisedUI.player2NameTitle.translate(to: language)
+        Is2ndPlayerAITitile.text = LocalisedUI.is2ndPlayerAITitle.translate(to: language)
+        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: language)
+        With1or2DiceTitle.text = LocalisedUI.with1or2DiceTitle.translate(to: language)
+        NoteLabel.text = LocalisedUI.noteLabel.translate(to: language)
+        NoteLabel.textAlignment = .natural
         
         SaveButton.setTitle(LocalisedUI.saveButton.translate(to: language), for: .normal)
         CancelButton.setTitle(LocalisedUI.cancelButton.translate(to: language), for: .normal)
         With1or2DiceSegmentedControl.setTitle(LocalisedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
         With1or2DiceSegmentedControl.setTitle(LocalisedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
-        
-        SoundEnabledTitle.text = LocalisedUI.soundEnabledSwitch.translate(to: language)
-        Player1NameTitle.text = LocalisedUI.player1NameTitle.translate(to: language)
-        Player2NameTitle.text = LocalisedUI.player2NameTitle.translate(to: language)
-        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: language)
-        With1or2DiceTitle.text = LocalisedUI.with1or2DiceTitle.translate(to: language)
-        NoteLabel.text = LocalisedUI.noteLabel.translate(to: language)
-        NoteLabel.textAlignment = .natural
     }
     
     func updateUI() {
@@ -75,6 +76,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         
         Player1NameTextField.text = Options.player1Name
         Player2NameTextField.text = Options.player2Name
+        Is2ndPlayerAISwitch.isOn = Options.is2ndPlayerAI
         ScoreLimitTextField.text = String(Options.scoreLimit)
     }
     
@@ -88,6 +90,9 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var Player2NameTitle: UILabel!
     @IBOutlet weak var Player2NameTextField: UITextField!
+    
+    @IBOutlet weak var Is2ndPlayerAITitile: UILabel!
+    @IBOutlet weak var Is2ndPlayerAISwitch: UISwitch!
     
     @IBOutlet weak var ScoreLimitTitle: UILabel!
     @IBOutlet weak var ScoreLimitTextField: UITextField!
@@ -143,6 +148,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         
         Options.player1Name = Player1NameTextField.text ?? Options.player1Name
         Options.player2Name = Player2NameTextField.text ?? Options.player2Name
+        Options.is2ndPlayerAI = Is2ndPlayerAISwitch.isOn
         
         if let scoreLimitString = ScoreLimitTextField.text {
             if let scoreLimitInt = Int(scoreLimitString) {
@@ -154,7 +160,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         
         // Save options, call delegate to localise the Game screen and dismiss view controller
         Options.save()
-        optionsVCDelegate?.viewWillDimiss()
+        optionsViewControllerDelegate?.viewWillDimiss()
         
         self.dismiss(animated: true, completion: nil)
     }

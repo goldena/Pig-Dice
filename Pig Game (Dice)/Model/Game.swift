@@ -9,12 +9,12 @@ import Foundation
 
 struct Game {
     var player1 = Player(name: Const.DefaultPlayer1Name, isAI: false)
-    var player2 = Player(name: Const.DefaultPlayer2Name, isAI: true)
+    var player2 = Player(name: Const.DefaultPlayer2Name, isAI: Const.Is2ndPlayerAI)
     lazy var activePlayer = randomPlayer()
     
     var gameType = Options.gameType
     var scoreLimit = Options.scoreLimit
-        
+    
     // Returns a random player
     func randomPlayer() -> Player {
         if Int.random(in: 1...2) == 1  {
@@ -23,63 +23,61 @@ struct Game {
             return player2
         }
     }
-
+    
     // Sets the next player
     mutating func nextPlayer() {
+        activePlayer.clearRound()
+        
         // switch players
         if activePlayer === player1 {
             activePlayer = player2
         } else {
             activePlayer = player1
         }
-        
-        // Clear current score and round history
-        activePlayer.newRound()
     }
- 
+    
     // Rules of score calculation for the Pig Game with one dice
-    mutating func pigGame(_ dice: Int) {        
+    mutating func pigGameCalculateScores(_ dice: Int) {
+        let player = activePlayer
+        
         switch dice {
         case 6:
-            if activePlayer.roundHistory.last == 6 {
-                activePlayer.totalScore = 0
-                nextPlayer()
+            if player.previousDiceIs6 {
+                player.totalScore = 0
+                player.roundScore = 0
             } else {
-                activePlayer.roundHistory.append(6)
-                activePlayer.roundScore += 6
+                player.roundScore += 6
             }
         case 1:
-            nextPlayer()
+            player.roundScore = 0
         default:
-            activePlayer.roundHistory.append(dice)
-            activePlayer.roundScore += dice
+            player.roundScore += dice
         }
     }
     
     // Rules of score calculation for the Pig Game with two dice
-    mutating func pigGame(_ dice1: Int, _ dice2: Int) {
+    mutating func pigGameCalculateScores(_ dice1: Int, _ dice2: Int) {
+        let player = activePlayer
+        
         switch (dice1, dice2) {
-        case (1, _), (_, 1):
-            nextPlayer()
         case (6, 6):
-            activePlayer.totalScore = 0
-            nextPlayer()
+            player.totalScore = 0
+            player.roundScore = 0
+        case (1, _), (_, 1):
+            player.roundScore = 0
         default:
-            // Round history is not used anywhere yet for this type of game
-            activePlayer.roundHistory.append(dice1)
-            activePlayer.roundHistory.append(dice2)
-            activePlayer.roundScore += dice1 + dice2
+            player.roundScore += dice1 + dice2
         }
     }
-           
+    
     // Init a new game with the player's names and score limit retreived from the defaults
-    mutating func newGame() {
+    mutating func initNewGame() {
         player1 = Player(name: Options.player1Name, isAI: false)
-        player2 = Player(name: Options.player2Name, isAI: true)
+        player2 = Player(name: Options.player2Name, isAI: Options.is2ndPlayerAI)
         
         gameType = Options.gameType
         scoreLimit = Options.scoreLimit
-
+        
         activePlayer = randomPlayer()
     }
 }
