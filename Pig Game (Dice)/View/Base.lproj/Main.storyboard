@@ -32,6 +32,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLh-4V-P5p" userLabel="Game View">
                                 <rect key="frame" x="20" y="64" width="374" height="729"/>
                                 <subviews>
+                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZV-er-P4Z" userLabel="Game View Background">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="729"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ohZ-jX-RTd" userLabel="Game Stack View">
                                         <rect key="frame" x="20" y="20" width="334" height="686"/>
                                         <subviews>
@@ -99,14 +103,13 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbH-n7-3m6">
                                                         <rect key="frame" x="0.0" y="5.5" width="120" height="29"/>
                                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
+                                                        <color key="highlightedColor" systemColor="labelColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpe-BQ-e1B">
                                                         <rect key="frame" x="130" y="0.0" width="108.5" height="40"/>
                                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
                                                         <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
+                                                        <color key="highlightedColor" systemColor="labelColor"/>
                                                     </label>
                                                 </subviews>
                                                 <constraints>
@@ -128,14 +131,12 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQm-rB-I26" userLabel="Current Player Label">
                                                                 <rect key="frame" x="0.0" y="6" width="115" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
+                                                                <color key="highlightedColor" systemColor="labelColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQU-at-hv6" userLabel="Current Player Output">
                                                                 <rect key="frame" x="125" y="0.0" width="115" height="41"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="24"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
+                                                                <color key="highlightedColor" systemColor="labelColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
@@ -145,14 +146,12 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztO-Hj-kKC" userLabel="Current Score Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
+                                                                <color key="highlightedColor" systemColor="labelColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYK-H4-1no" userLabel="Current Score Output">
                                                                 <rect key="frame" x="74" y="0.0" width="50" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="24"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
+                                                                <color key="highlightedColor" systemColor="labelColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
@@ -167,8 +166,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-Jl-zpm" userLabel="Total Scores Label">
                                                         <rect key="frame" x="105" y="0.0" width="124" height="29"/>
                                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
+                                                        <color key="highlightedColor" systemColor="labelColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KAE-lT-Qro" userLabel="Total Scores Stack View">
                                                         <rect key="frame" x="76.5" y="30" width="181" height="50"/>
@@ -176,14 +174,12 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQe-mb-J6Q" userLabel="Player1 Total Score Output">
                                                                 <rect key="frame" x="0.0" y="0.0" width="85.5" height="50"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
+                                                                <color key="highlightedColor" systemColor="labelColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qf-fe-LGh" userLabel="Player2 Total Score Output">
                                                                 <rect key="frame" x="95.5" y="0.0" width="85.5" height="50"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="24"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
+                                                                <color key="highlightedColor" systemColor="labelColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
@@ -250,12 +246,16 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.75436108732876717" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="ohZ-jX-RTd" secondAttribute="trailing" constant="12" id="9cM-Ey-xSq"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="ohZ-jX-RTd" secondAttribute="bottom" constant="15" id="RLA-LA-5Tu"/>
                                     <constraint firstItem="ohZ-jX-RTd" firstAttribute="leading" secondItem="pLh-4V-P5p" secondAttribute="leadingMargin" constant="12" id="T4O-v9-Wcd"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZZV-er-P4Z" secondAttribute="bottom" id="Wmg-tF-iqt"/>
+                                    <constraint firstItem="ZZV-er-P4Z" firstAttribute="leading" secondItem="pLh-4V-P5p" secondAttribute="leading" id="c98-oA-lxR"/>
                                     <constraint firstItem="ohZ-jX-RTd" firstAttribute="top" secondItem="pLh-4V-P5p" secondAttribute="topMargin" constant="12" id="d5C-gE-rTh"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZZV-er-P4Z" secondAttribute="trailing" id="mS9-CC-brS"/>
+                                    <constraint firstItem="ZZV-er-P4Z" firstAttribute="top" secondItem="pLh-4V-P5p" secondAttribute="top" id="reI-EF-xKD"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -292,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134.78260869565219" y="85.59782608695653"/>
+            <point key="canvasLocation" x="134.78260869565219" y="85.044642857142847"/>
         </scene>
         <!--Options View Controller-->
         <scene sceneID="FfP-Hn-fRG">
@@ -308,6 +308,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B33-Ze-0cD" userLabel="Options View">
                                 <rect key="frame" x="20" y="64" width="374" height="778"/>
                                 <subviews>
+                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJo-lW-S72" userLabel="Options View Background">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="778"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jM5-Od-ULd" userLabel="Options Stack View">
                                         <rect key="frame" x="8" y="18" width="358" height="742"/>
                                         <subviews>
@@ -317,7 +321,6 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language / Язык" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZx-wn-Dxw">
                                                         <rect key="frame" x="0.0" y="4.5" width="134" height="22"/>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="buX-s3-ybv">
@@ -343,6 +346,7 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZHn-dn-24J">
                                                         <rect key="frame" x="125" y="0.0" width="51" height="31"/>
+                                                        <color key="onTintColor" systemColor="systemGreenColor"/>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
@@ -355,12 +359,10 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st Player's Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sB-Uo-0N9">
                                                                 <rect key="frame" x="0.0" y="6" width="145.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xwC-qB-lEk" userLabel="Player One Name Text Field">
                                                                 <rect key="frame" x="161.5" y="0.0" width="89" height="34"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -372,12 +374,10 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd Player's Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JST-AU-5q0">
                                                                 <rect key="frame" x="0.0" y="6" width="151.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xoc-C5-qtC" userLabel="Player Two Name Text Field">
                                                                 <rect key="frame" x="161.5" y="0.0" width="89" height="34"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -389,11 +389,11 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd Player is AI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDV-uc-lH6" userLabel="Player 2 is AI Title">
                                                                 <rect key="frame" x="0.0" y="0.0" width="121.5" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DaT-Fg-QWz" userLabel="Player 2 is AI Switch">
                                                                 <rect key="frame" x="201.5" y="0.0" width="51" height="31"/>
+                                                                <color key="onTintColor" systemColor="systemGreenColor"/>
                                                             </switch>
                                                         </subviews>
                                                     </stackView>
@@ -408,7 +408,6 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play with:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwN-uq-jfH" userLabel="1 or 2 Dice Title">
                                                                 <rect key="frame" x="0.0" y="4.5" width="77" height="22"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4Uc-WM-0bH">
@@ -429,12 +428,10 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ua-Zf-R71">
                                                                 <rect key="frame" x="0.0" y="6" width="93" height="22"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9J2-W6-AZA">
                                                                 <rect key="frame" x="103" y="0.0" width="59.5" height="34"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
@@ -445,7 +442,6 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="Note: Changes will take effect after pressing &quot;New Game&quot; button at the top of the game screen or after restarting the app." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJp-Jz-gjA" userLabel="ChangesWillTakeEffectLabel">
                                                 <rect key="frame" x="20" y="535.5" width="318" height="86.5"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ubk-49-n7F" userLabel="Buttons Stack View">
                                                 <rect key="frame" x="12" y="692" width="334" height="50"/>
@@ -497,12 +493,16 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.75436108729999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="jM5-Od-ULd" secondAttribute="bottom" constant="10" id="5Dl-iE-G8M"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="jM5-Od-ULd" secondAttribute="trailing" id="DgF-HA-N0U"/>
                                     <constraint firstItem="jM5-Od-ULd" firstAttribute="top" secondItem="B33-Ze-0cD" secondAttribute="topMargin" constant="10" id="P3m-np-K4q"/>
+                                    <constraint firstItem="OJo-lW-S72" firstAttribute="leading" secondItem="B33-Ze-0cD" secondAttribute="leading" id="UMK-tq-teL"/>
                                     <constraint firstItem="jM5-Od-ULd" firstAttribute="leading" secondItem="B33-Ze-0cD" secondAttribute="leadingMargin" id="bk1-dK-oLb"/>
+                                    <constraint firstItem="OJo-lW-S72" firstAttribute="top" secondItem="B33-Ze-0cD" secondAttribute="top" id="ccL-Cc-9Ta"/>
+                                    <constraint firstAttribute="bottom" secondItem="OJo-lW-S72" secondAttribute="bottom" id="gMI-Af-bjC"/>
+                                    <constraint firstAttribute="trailing" secondItem="OJo-lW-S72" secondAttribute="trailing" id="xKO-BB-QrS"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -556,13 +556,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6cA-Q7-l7b" userLabel="Help View">
                                 <rect key="frame" x="20" y="20" width="374" height="768"/>
                                 <subviews>
+                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A69-vX-VQk" userLabel="Help View Background">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="768"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DS6-bg-oWU" userLabel="Help Stack View">
                                         <rect key="frame" x="8" y="18" width="358" height="732"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Tlm-L5-ThG">
                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="682"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -604,10 +608,14 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.75436108729999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="A69-vX-VQk" firstAttribute="top" secondItem="6cA-Q7-l7b" secondAttribute="top" id="2xu-bd-HwF"/>
                                     <constraint firstItem="DS6-bg-oWU" firstAttribute="leading" secondItem="6cA-Q7-l7b" secondAttribute="leadingMargin" id="4K4-iP-tbX"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="DS6-bg-oWU" secondAttribute="bottom" constant="10" id="4eL-aE-aK2"/>
+                                    <constraint firstAttribute="bottom" secondItem="A69-vX-VQk" secondAttribute="bottom" id="UFu-cO-q0I"/>
+                                    <constraint firstAttribute="trailing" secondItem="A69-vX-VQk" secondAttribute="trailing" id="aVA-AA-96N"/>
+                                    <constraint firstItem="A69-vX-VQk" firstAttribute="leading" secondItem="6cA-Q7-l7b" secondAttribute="leading" id="gYJ-4V-Zb0"/>
                                     <constraint firstItem="DS6-bg-oWU" firstAttribute="top" secondItem="6cA-Q7-l7b" secondAttribute="topMargin" constant="10" id="hf3-K8-hrC"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="DS6-bg-oWU" secondAttribute="trailing" id="oZB-qU-6oa"/>
                                 </constraints>
@@ -645,8 +653,14 @@
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="questionmark" catalog="system" width="96" height="128"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

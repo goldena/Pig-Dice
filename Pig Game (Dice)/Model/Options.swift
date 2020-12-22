@@ -8,7 +8,7 @@
 import Foundation
 
 class Options {
-    static let userDefaults = UserDefaults.standard
+    private static let userDefaults = UserDefaults.standard
     
     // Default values for the first launch of the game
     static var player1Name: String  = Const.DefaultPlayer1Name

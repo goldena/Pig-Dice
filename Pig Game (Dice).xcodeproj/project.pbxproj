@@ -23,7 +23,7 @@
 		CFE937E2252E7D40009F7CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE937E1252E7D40009F7CB2 /* Assets.xcassets */; };
 		CFE937E5252E7D40009F7CB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE937E3252E7D40009F7CB2 /* LaunchScreen.storyboard */; };
 		CFE937F1252E8634009F7CB2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE937F0252E8634009F7CB2 /* Game.swift */; };
-		CFF0E96D2551E7BC00D788D9 /* Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0E96C2551E7BC00D788D9 /* Localisation.swift */; };
+		CFF0E96D2551E7BC00D788D9 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0E96C2551E7BC00D788D9 /* Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 		CFE937E4252E7D40009F7CB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFE937E6252E7D40009F7CB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFE937F0252E8634009F7CB2 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		CFF0E96C2551E7BC00D788D9 /* Localisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localisation.swift; sourceTree = "<group>"; };
+		CFF0E96C2551E7BC00D788D9 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +113,7 @@
 			children = (
 				CFE937F0252E8634009F7CB2 /* Game.swift */,
 				CF18F394257594A50017873F /* Constants.swift */,
-				CFF0E96C2551E7BC00D788D9 /* Localisation.swift */,
+				CFF0E96C2551E7BC00D788D9 /* Localization.swift */,
 				CFD6115B2530F806008CF24A /* Player.swift */,
 				CF52AFBB254ED91D0077F737 /* Options.swift */,
 			);
@@ -220,7 +220,7 @@
 				CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */,
 				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
 				CF18F395257594A50017873F /* Constants.swift in Sources */,
-				CFF0E96D2551E7BC00D788D9 /* Localisation.swift in Sources */,
+				CFF0E96D2551E7BC00D788D9 /* Localization.swift in Sources */,
 				CFD6115C2530F807008CF24A /* Player.swift in Sources */,
 				CF52AFBC254ED91D0077F737 /* Options.swift in Sources */,
 				CFE937DB252E7D3D009F7CB2 /* SceneDelegate.swift in Sources */,

@@ -39,25 +39,25 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         updateUI()
     }
     
-    func localiseUI() {
+    private func localiseUI() {
         let language = Options.language
                 
-        SoundEnabledTitle.text = LocalisedUI.soundEnabledSwitch.translate(to: language)
-        Player1NameTitle.text = LocalisedUI.player1NameTitle.translate(to: language)
-        Player2NameTitle.text = LocalisedUI.player2NameTitle.translate(to: language)
-        Is2ndPlayerAITitile.text = LocalisedUI.is2ndPlayerAITitle.translate(to: language)
-        ScoreLimitTitle.text = LocalisedUI.scoreLimitTitle.translate(to: language)
-        With1or2DiceTitle.text = LocalisedUI.with1or2DiceTitle.translate(to: language)
-        NoteLabel.text = LocalisedUI.noteLabel.translate(to: language)
+        SoundEnabledTitle.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
+        Player1NameTitle.text = LocalizedUI.player1NameTitle.translate(to: language)
+        Player2NameTitle.text = LocalizedUI.player2NameTitle.translate(to: language)
+        Is2ndPlayerAITitile.text = LocalizedUI.is2ndPlayerAITitle.translate(to: language)
+        ScoreLimitTitle.text = LocalizedUI.scoreLimitTitle.translate(to: language)
+        With1or2DiceTitle.text = LocalizedUI.with1or2DiceTitle.translate(to: language)
+        NoteLabel.text = LocalizedUI.noteLabel.translate(to: language)
         NoteLabel.textAlignment = .natural
         
-        SaveButton.setTitle(LocalisedUI.saveButton.translate(to: language), for: .normal)
-        CancelButton.setTitle(LocalisedUI.cancelButton.translate(to: language), for: .normal)
-        With1or2DiceSegmentedControl.setTitle(LocalisedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
-        With1or2DiceSegmentedControl.setTitle(LocalisedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
+        SaveButton.setTitle(LocalizedUI.saveButton.translate(to: language), for: .normal)
+        CancelButton.setTitle(LocalizedUI.cancelButton.translate(to: language), for: .normal)
+        With1or2DiceSegmentedControl.setTitle(LocalizedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
+        With1or2DiceSegmentedControl.setTitle(LocalizedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
     }
     
-    func updateUI() {
+    private func updateUI() {
         switch Options.language {
         case .En:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 0
@@ -80,33 +80,33 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         ScoreLimitTextField.text = String(Options.scoreLimit)
     }
     
-    @IBOutlet weak var LanguageSelectionSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var LanguageSelectionSegmentedControl: UISegmentedControl!
     
-    @IBOutlet weak var SoundEnabledTitle: UILabel!
-    @IBOutlet weak var SoundEnabledSwitch: UISwitch!
+    @IBOutlet private weak var SoundEnabledTitle: UILabel!
+    @IBOutlet private weak var SoundEnabledSwitch: UISwitch!
     
-    @IBOutlet weak var Player1NameTitle: UILabel!
-    @IBOutlet weak var Player1NameTextField: UITextField!
+    @IBOutlet private weak var Player1NameTitle: UILabel!
+    @IBOutlet private weak var Player1NameTextField: UITextField!
     
-    @IBOutlet weak var Player2NameTitle: UILabel!
-    @IBOutlet weak var Player2NameTextField: UITextField!
+    @IBOutlet private weak var Player2NameTitle: UILabel!
+    @IBOutlet private weak var Player2NameTextField: UITextField!
     
-    @IBOutlet weak var Is2ndPlayerAITitile: UILabel!
-    @IBOutlet weak var Is2ndPlayerAISwitch: UISwitch!
+    @IBOutlet private weak var Is2ndPlayerAITitile: UILabel!
+    @IBOutlet private weak var Is2ndPlayerAISwitch: UISwitch!
     
-    @IBOutlet weak var ScoreLimitTitle: UILabel!
-    @IBOutlet weak var ScoreLimitTextField: UITextField!
+    @IBOutlet private weak var ScoreLimitTitle: UILabel!
+    @IBOutlet private weak var ScoreLimitTextField: UITextField!
     
-    @IBOutlet weak var With1or2DiceTitle: UILabel!
-    @IBOutlet weak var With1or2DiceSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var With1or2DiceTitle: UILabel!
+    @IBOutlet private weak var With1or2DiceSegmentedControl: UISegmentedControl!
     
-    @IBOutlet weak var NoteLabel: UILabel!
+    @IBOutlet private weak var NoteLabel: UILabel!
     
-    @IBOutlet weak var CancelButton: UIButton!
-    @IBOutlet weak var SaveButton: UIButton!
+    @IBOutlet private weak var CancelButton: UIButton!
+    @IBOutlet private weak var SaveButton: UIButton!
     
     // Changes localisation on the fly
-    @IBAction func LanguageSelectionChanged(_ sender: UISegmentedControl) {
+    @IBAction private func LanguageSelectionChanged(_ sender: UISegmentedControl) {
         switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.language = .En
@@ -120,11 +120,11 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Returt to the main screen without saving any changes to the Options
-    @IBAction func CancelButtonPressed(_ sender: UIButton) {
+    @IBAction private func CancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func SaveButtonPressed(_ sender: UIButton) {
+    @IBAction private func SaveButtonPressed(_ sender: UIButton) {
         switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.language = .En

@@ -26,7 +26,7 @@ class Player {
         totalScore += roundScore
     }
     
-    func clearRound() {
+    func clearAfterRound() {
         roundScore = 0
         previousDiceIs6 = false
         dice1 = nil

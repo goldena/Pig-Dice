@@ -24,9 +24,9 @@ struct Game {
         }
     }
     
-    // Sets the next player
+    // Clear current player, switch to the next player
     mutating func nextPlayer() {
-        activePlayer.clearRound()
+        activePlayer.clearAfterRound()
         
         // switch players
         if activePlayer === player1 {
@@ -36,8 +36,8 @@ struct Game {
         }
     }
     
-    // Rules of score calculation for the Pig Game with one dice
-    mutating func pigGameCalculateScores(_ dice: Int) {
+    // Score calculation for the Pig Game with one dice
+    mutating func calculateScores(_ dice: Int) {
         let player = activePlayer
         
         switch dice {
@@ -55,8 +55,8 @@ struct Game {
         }
     }
     
-    // Rules of score calculation for the Pig Game with two dice
-    mutating func pigGameCalculateScores(_ dice1: Int, _ dice2: Int) {
+    // Score calculation for the Pig Game with two dice
+    mutating func calculateScores(_ dice1: Int, _ dice2: Int) {
         let player = activePlayer
         
         switch (dice1, dice2) {

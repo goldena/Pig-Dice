@@ -16,19 +16,19 @@ class HelpViewController: UIViewController {
         localiseUI()
     }
 
-    func localiseUI() {
+    private func localiseUI() {
         let language = Options.language
         
-        BackButton.setTitle(LocalisedUI.backButton.translate(to: language), for: .normal)
-        GameRulesTextView.text = LocalisedUI.gameRulesTextView.translate(to: language)
+        BackButton.setTitle(LocalizedUI.backButton.translate(to: language), for: .normal)
+        GameRulesTextView.text = LocalizedUI.gameRulesTextView.translate(to: language)
         GameRulesTextView.textAlignment = .natural
     }
 
-    @IBOutlet weak var GameRulesTextView: UITextView!
+    @IBOutlet private weak var GameRulesTextView: UITextView!
     
-    @IBOutlet weak var BackButton: UIButton!
+    @IBOutlet private weak var BackButton: UIButton!
     
-    @IBAction func BackButtonPressed(_ sender: UIButton) {
+    @IBAction private func BackButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -14,7 +14,7 @@ enum Language: String {
 }
 
 // Enum of all the app's UI text elements and alerts
-enum LocalisedUI {
+enum LocalizedUI {
     // Global - Alerts
     case alertActionTitle
 
@@ -65,12 +65,12 @@ enum LocalisedUI {
     
     // Provides translation of IU elements to a given language
     func translate(to language: Language) -> String {
-        return LocalisationDictionary[self]?[language] ?? "Localization error"
+        return LocalizationDictionary[self]?[language] ?? "Localization error"
     }
 }
 
 // Dictionary used for storing localizations
-let LocalisationDictionary: [LocalisedUI: [Language: String]] = [
+let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     
     // Global - Alerts
     .alertActionTitle: [.En: "Okay",

@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-var audioPlayer: AVAudioPlayer?
+private var audioPlayer: AVAudioPlayer?
 
 func playSound(_ soundName: String, type: String) {
     guard let soundPath = Bundle.main.path(forResource: soundName, ofType: type) else {
