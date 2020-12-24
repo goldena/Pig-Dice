@@ -38,30 +38,43 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         DiceImagesStackView.addArrangedSubview(dice1ImageView)
         
         startNewGame()
+        updateColorMode()
+        updateUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        updateUI()
         alertThenHandleNewGame()
     }
     
     // Delegation func, to localise UI once the Options are saved
     func viewWillDimiss() {
+        updateColorMode()
         localiseUI()
+    }
+    
+    private func updateColorMode() {
+        switch Options.colorMode {
+        case .System:
+            overrideUserInterfaceStyle = .unspecified
+        case .Light:
+            overrideUserInterfaceStyle = .light
+        case .Dark:
+            overrideUserInterfaceStyle = .dark
+        }
     }
     
     // Add or Remove ImageView for the 2nd Dice
     private func updateDiceImageViews() {
-        if Options.gameType == .pigGame2Dice && dice2ImageView == nil {
+        if Options.gameType == .PigGame2Dice && dice2ImageView == nil {
             dice2ImageView = UIImageView()
             dice2ImageView!.contentMode = .scaleAspectFit
             dice2ImageView!.translatesAutoresizingMaskIntoConstraints = false
             DiceImagesStackView.addArrangedSubview(dice2ImageView!)
         }
         
-        if Options.gameType == .pigGame1Dice && dice2ImageView != nil {
+        if Options.gameType == .PigGame1Dice && dice2ImageView != nil {
             dice2ImageView?.removeFromSuperview()
             dice2ImageView = nil
         }
@@ -107,7 +120,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             }
             
             // Hold if previos throw was 6 (for a single dice game)
-            if Options.gameType == .pigGame1Dice && AIPlayer.previousDiceIs6 {
+            if Options.gameType == .PigGame1Dice && AIPlayer.previousDiceIs6 {
                 self.hold()
                 self.enableButtons()
                 return
@@ -210,7 +223,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             playSound("dice_roll", type: "wav")
         }
         
-        if game.gameType == .pigGame1Dice {
+        if game.gameType == .PigGame1Dice {
             guard let dice = player.dice1 else {
                 print("Dice is nil")
                 return
@@ -220,7 +233,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             alertThenHandleRollResult(dice)
         }
         
-        if game.gameType == .pigGame2Dice {
+        if game.gameType == .PigGame2Dice {
             guard let dice1 = player.dice1,
                   let dice2 = player.dice2 else {
                 print("One of dice is nil")
@@ -341,7 +354,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             dice1ImageView.image = nil
         }
         
-        if game.gameType == .pigGame2Dice {
+        if game.gameType == .PigGame2Dice {
             if let dice2 = game.activePlayer.dice2 {
                 dice2ImageView?.image = Const.DiceFaces[dice2 - 1]
             } else {

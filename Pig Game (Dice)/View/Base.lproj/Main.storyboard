@@ -315,43 +315,70 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jM5-Od-ULd" userLabel="Options Stack View">
                                         <rect key="frame" x="8" y="18" width="358" height="742"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4pj-DM-vJm" userLabel="Language Selection Stack View">
-                                                <rect key="frame" x="34.5" y="0.0" width="289" height="31"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Wq0-ah-1uc" userLabel="UI Options Stach View">
+                                                <rect key="frame" x="21" y="0.0" width="316.5" height="123"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language / Язык" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZx-wn-Dxw">
-                                                        <rect key="frame" x="0.0" y="4.5" width="134" height="22"/>
-                                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="buX-s3-ybv">
-                                                        <rect key="frame" x="144" y="0.0" width="145" height="32"/>
-                                                        <segments>
-                                                            <segment title="English"/>
-                                                            <segment title="Русский"/>
-                                                        </segments>
-                                                        <connections>
-                                                            <action selector="LanguageSelectionChanged:" destination="vgd-1G-sKf" eventType="valueChanged" id="2jW-cd-o0m"/>
-                                                        </connections>
-                                                    </segmentedControl>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4pj-DM-vJm" userLabel="Language Selection Stack View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="316.5" height="31"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language / Язык" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZx-wn-Dxw">
+                                                                <rect key="frame" x="0.0" y="4.5" width="134" height="22"/>
+                                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="buX-s3-ybv">
+                                                                <rect key="frame" x="171.5" y="0.0" width="145" height="32"/>
+                                                                <segments>
+                                                                    <segment title="English"/>
+                                                                    <segment title="Русский"/>
+                                                                </segments>
+                                                                <connections>
+                                                                    <action selector="LanguageSelectionChanged:" destination="vgd-1G-sKf" eventType="valueChanged" id="2jW-cd-o0m"/>
+                                                                </connections>
+                                                            </segmentedControl>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4E7-R0-Vlq" userLabel="Sound and Color Mode Stack View">
+                                                        <rect key="frame" x="0.0" y="46" width="316.5" height="31"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Effcects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm0-jJ-xUt">
+                                                                <rect key="frame" x="0.0" y="0.0" width="257.5" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZHn-dn-24J">
+                                                                <rect key="frame" x="267.5" y="0.0" width="51" height="31"/>
+                                                                <color key="onTintColor" systemColor="systemGreenColor"/>
+                                                            </switch>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hZn-8N-edW" userLabel="UI Color Mode Stack View">
+                                                        <rect key="frame" x="0.0" y="92" width="316.5" height="31"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Color Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lr-Ml-FHl">
+                                                                <rect key="frame" x="0.0" y="0.0" width="109.5" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sBc-XO-dRb" userLabel="UI ColorMode">
+                                                                <rect key="frame" x="119.5" y="0.0" width="197" height="32"/>
+                                                                <segments>
+                                                                    <segment title="System"/>
+                                                                    <segment title="Light"/>
+                                                                    <segment title="Dark"/>
+                                                                </segments>
+                                                                <connections>
+                                                                    <action selector="ColorModeSelectionChanged:" destination="vgd-1G-sKf" eventType="valueChanged" id="bb1-tE-SBf"/>
+                                                                </connections>
+                                                            </segmentedControl>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4E7-R0-Vlq" userLabel="Sound Switch Stack View">
-                                                <rect key="frame" x="92" y="101" width="174" height="31"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm0-jJ-xUt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="115" height="31"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZHn-dn-24J">
-                                                        <rect key="frame" x="125" y="0.0" width="51" height="31"/>
-                                                        <color key="onTintColor" systemColor="systemGreenColor"/>
-                                                    </switch>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-dO-9dL" userLabel="Player's Names Stack View">
-                                                <rect key="frame" x="54" y="202" width="250.5" height="119"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-dO-9dL" userLabel="Player's Names Stack View">
+                                                <rect key="frame" x="54" y="191.5" width="250.5" height="129"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Sf7-2j-4Ya" userLabel="Player 1 Name Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="250.5" height="34"/>
@@ -369,7 +396,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="USz-g2-MHc" userLabel="Player 2 Name Stack View">
-                                                        <rect key="frame" x="0.0" y="44" width="250.5" height="34"/>
+                                                        <rect key="frame" x="0.0" y="49" width="250.5" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd Player's Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JST-AU-5q0">
                                                                 <rect key="frame" x="0.0" y="6" width="151.5" height="22"/>
@@ -384,7 +411,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uNz-en-CgM" userLabel="If Player 2 is AI Stack View">
-                                                        <rect key="frame" x="0.0" y="88" width="250.5" height="31"/>
+                                                        <rect key="frame" x="0.0" y="98" width="250.5" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd Player is AI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDV-uc-lH6" userLabel="Player 2 is AI Title">
                                                                 <rect key="frame" x="0.0" y="0.0" width="121.5" height="31"/>
@@ -399,8 +426,8 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hkS-jN-DQO" userLabel="Game rules Stack View">
-                                                <rect key="frame" x="77" y="390.5" width="204" height="75"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hkS-jN-DQO" userLabel="Game rules Stack View">
+                                                <rect key="frame" x="77" y="389" width="204" height="80"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-hy-Mir" userLabel="1 or 2 Dice Selection Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="204" height="31"/>
@@ -423,7 +450,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jVi-8v-pPE" userLabel="Score Limit Stack View">
-                                                        <rect key="frame" x="21" y="41" width="162.5" height="34"/>
+                                                        <rect key="frame" x="21" y="46" width="162.5" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ua-Zf-R71">
                                                                 <rect key="frame" x="0.0" y="6" width="93" height="22"/>
@@ -440,7 +467,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="Note: Changes will take effect after pressing &quot;New Game&quot; button at the top of the game screen or after restarting the app." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJp-Jz-gjA" userLabel="ChangesWillTakeEffectLabel">
-                                                <rect key="frame" x="20" y="535.5" width="318" height="86.5"/>
+                                                <rect key="frame" x="20" y="537" width="318" height="86.5"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ubk-49-n7F" userLabel="Buttons Stack View">
@@ -521,6 +548,9 @@
                     </view>
                     <connections>
                         <outlet property="CancelButton" destination="XGQ-6o-BSK" id="Clt-Kc-QwH"/>
+                        <outlet property="ColorModeTitle" destination="9Lr-Ml-FHl" id="7VZ-wJ-GgK"/>
+                        <outlet property="GameTypeSegmentedControl" destination="4Uc-WM-0bH" id="IgN-og-PVC"/>
+                        <outlet property="GameTypeTitle" destination="pwN-uq-jfH" id="XNt-3F-FTw"/>
                         <outlet property="Is2ndPlayerAISwitch" destination="DaT-Fg-QWz" id="MKU-ZR-dwf"/>
                         <outlet property="Is2ndPlayerAITitile" destination="eDV-uc-lH6" id="tUB-Pf-Ejh"/>
                         <outlet property="LanguageSelectionSegmentedControl" destination="buX-s3-ybv" id="TZY-tJ-2Nc"/>
@@ -534,8 +564,7 @@
                         <outlet property="ScoreLimitTitle" destination="4Ua-Zf-R71" id="57i-sm-9Z9"/>
                         <outlet property="SoundEnabledSwitch" destination="ZHn-dn-24J" id="GiI-Qr-Aqf"/>
                         <outlet property="SoundEnabledTitle" destination="gm0-jJ-xUt" id="EeV-QW-TCM"/>
-                        <outlet property="With1or2DiceSegmentedControl" destination="4Uc-WM-0bH" id="IgN-og-PVC"/>
-                        <outlet property="With1or2DiceTitle" destination="pwN-uq-jfH" id="XNt-3F-FTw"/>
+                        <outlet property="UIColorModeSegmentedControl" destination="sBc-XO-dRb" id="pMc-zx-MCL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcE-Qj-gXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

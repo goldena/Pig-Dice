@@ -7,11 +7,11 @@
 
 import UIKit
 
+// Delegation Protocol to do on-fly-updates of the Main Game Screen for some Options
 protocol ViewControllerDelegate: UIViewController {
     func viewWillDimiss()
 }
 
-// Options screen
 class OptionsViewController: UIViewController, UITextFieldDelegate {
     
     weak var optionsViewControllerDelegate: ViewControllerDelegate?
@@ -25,9 +25,9 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Player1NameTextField.delegate = self
-        Player2NameTextField.delegate = self
-        ScoreLimitTextField.delegate = self
+        Player1NameTextField.delegate   = self
+        Player2NameTextField.delegate   = self
+        ScoreLimitTextField.delegate    = self
         
         // Dismissed keyboard after tapping outside an edited field
         let tapOutsideTextField = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -35,6 +35,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tapOutsideTextField)
         
         Options.load()
+        updateColorMode()
         localiseUI()
         updateUI()
     }
@@ -42,19 +43,33 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     private func localiseUI() {
         let language = Options.language
                 
-        SoundEnabledTitle.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
-        Player1NameTitle.text = LocalizedUI.player1NameTitle.translate(to: language)
-        Player2NameTitle.text = LocalizedUI.player2NameTitle.translate(to: language)
+        SoundEnabledTitle.text  = LocalizedUI.soundEnabledSwitch.translate(to: language)
+        ColorModeTitle.text     = LocalizedUI.colorModeSelectionTitle.translate(to: language)
+        
+        Player1NameTitle.text    = LocalizedUI.player1NameTitle.translate(to: language)
+        Player2NameTitle.text    = LocalizedUI.player2NameTitle.translate(to: language)
         Is2ndPlayerAITitile.text = LocalizedUI.is2ndPlayerAITitle.translate(to: language)
+        
         ScoreLimitTitle.text = LocalizedUI.scoreLimitTitle.translate(to: language)
-        With1or2DiceTitle.text = LocalizedUI.with1or2DiceTitle.translate(to: language)
-        NoteLabel.text = LocalizedUI.noteLabel.translate(to: language)
+        GameTypeTitle.text   = LocalizedUI.gameTypeTitle.translate(to: language)
+        
+        NoteLabel.text          = LocalizedUI.noteLabel.translate(to: language)
         NoteLabel.textAlignment = .natural
         
         SaveButton.setTitle(LocalizedUI.saveButton.translate(to: language), for: .normal)
         CancelButton.setTitle(LocalizedUI.cancelButton.translate(to: language), for: .normal)
-        With1or2DiceSegmentedControl.setTitle(LocalizedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
-        With1or2DiceSegmentedControl.setTitle(LocalizedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
+        
+        GameTypeSegmentedControl
+            .setTitle(LocalizedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
+        GameTypeSegmentedControl
+            .setTitle(LocalizedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
+        
+        UIColorModeSegmentedControl
+            .setTitle(LocalizedUI.colorSysModeSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
+        UIColorModeSegmentedControl
+            .setTitle(LocalizedUI.colorLightModeSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
+        UIColorModeSegmentedControl
+            .setTitle(LocalizedUI.colorDarkModeSegmentedControlLabel.translate(to: language), forSegmentAt: 2)
     }
     
     private func updateUI() {
@@ -64,26 +79,49 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         case .Ru:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 1
         }
+        
+        switch Options.colorMode {
+        case .System:
+            UIColorModeSegmentedControl.selectedSegmentIndex = 0
+        case .Light:
+            UIColorModeSegmentedControl.selectedSegmentIndex = 1
+        case .Dark:
+            UIColorModeSegmentedControl.selectedSegmentIndex = 2
+        }
            
         SoundEnabledSwitch.isOn = Options.isSoundEnabled
         
         switch Options.gameType {
-        case .pigGame1Dice:
-            With1or2DiceSegmentedControl.selectedSegmentIndex = 0
-        case .pigGame2Dice:
-            With1or2DiceSegmentedControl.selectedSegmentIndex = 1
+        case .PigGame1Dice:
+            GameTypeSegmentedControl.selectedSegmentIndex = 0
+        case .PigGame2Dice:
+            GameTypeSegmentedControl.selectedSegmentIndex = 1
         }
         
         Player1NameTextField.text = Options.player1Name
         Player2NameTextField.text = Options.player2Name
-        Is2ndPlayerAISwitch.isOn = Options.is2ndPlayerAI
-        ScoreLimitTextField.text = String(Options.scoreLimit)
+        Is2ndPlayerAISwitch.isOn  = Options.is2ndPlayerAI
+        ScoreLimitTextField.text  = String(Options.scoreLimit)
+    }
+    
+    private func updateColorMode() {
+        switch Options.colorMode {
+        case .System:
+            overrideUserInterfaceStyle = .unspecified
+        case .Light:
+            overrideUserInterfaceStyle = .light
+        case .Dark:
+            overrideUserInterfaceStyle = .dark
+        }
     }
     
     @IBOutlet private weak var LanguageSelectionSegmentedControl: UISegmentedControl!
     
     @IBOutlet private weak var SoundEnabledTitle: UILabel!
     @IBOutlet private weak var SoundEnabledSwitch: UISwitch!
+    
+    @IBOutlet private weak var ColorModeTitle: UILabel!
+    @IBOutlet private weak var UIColorModeSegmentedControl: UISegmentedControl!
     
     @IBOutlet private weak var Player1NameTitle: UILabel!
     @IBOutlet private weak var Player1NameTextField: UITextField!
@@ -97,8 +135,8 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var ScoreLimitTitle: UILabel!
     @IBOutlet private weak var ScoreLimitTextField: UITextField!
     
-    @IBOutlet private weak var With1or2DiceTitle: UILabel!
-    @IBOutlet private weak var With1or2DiceSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var GameTypeTitle: UILabel!
+    @IBOutlet private weak var GameTypeSegmentedControl: UISegmentedControl!
     
     @IBOutlet private weak var NoteLabel: UILabel!
     
@@ -119,6 +157,21 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         localiseUI()
     }
     
+    @IBAction private func ColorModeSelectionChanged(_ sender: UISegmentedControl) {
+        switch UIColorModeSegmentedControl.selectedSegmentIndex {
+        case 0:
+            Options.colorMode = .System
+        case 1:
+            Options.colorMode = .Light
+        case 2:
+            Options.colorMode = .Dark
+        default:
+            print("Missing Color Mode")
+        }
+        
+        updateColorMode()
+    }
+    
     // Returt to the main screen without saving any changes to the Options
     @IBAction private func CancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -137,11 +190,11 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         
         Options.isSoundEnabled = SoundEnabledSwitch.isOn
         
-        switch With1or2DiceSegmentedControl.selectedSegmentIndex {
+        switch GameTypeSegmentedControl.selectedSegmentIndex {
         case 0:
-            Options.gameType = .pigGame1Dice
+            Options.gameType = .PigGame1Dice
         case 1:
-            Options.gameType = .pigGame2Dice
+            Options.gameType = .PigGame2Dice
         default:
             break
         }

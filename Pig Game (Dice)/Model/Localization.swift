@@ -47,7 +47,11 @@ enum LocalizedUI {
     case player2NameTitle
     // case scoreLimitTitle - reuse of the same one from the Game View
     case noteLabel
-    case with1or2DiceTitle
+    case gameTypeTitle
+    case colorModeSelectionTitle
+    case colorSysModeSegmentedControlLabel
+    case colorLightModeSegmentedControlLabel
+    case colorDarkModeSegmentedControlLabel
 
     // Options View - Buttons and controls
     case soundEnabledSwitch
@@ -77,35 +81,33 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
                         .Ru: "Ок"],
     
     // Game View - Alerts
-    .newGameTitle: [.En: "New Game",
-                    .Ru: "Новая игра"],
-    .newGameMessage: [.En: "You have started a new game!",
-                      .Ru: "Вы начали новую игру!"],
+    .newGameTitle:      [.En: "New Game",
+                         .Ru: "Новая игра"],
+    .newGameMessage:    [.En: "You have started a new game!",
+                         .Ru: "Вы начали новую игру!"],
     
-    .winnerTitle: [.En: "You have won!",
-                   .Ru: "Вы выиграли!"],
-    .victoryMessage: [.En: "had won the game with total score",
-                     .Ru: "- вы выиграли игру, набрав"],
+    .winnerTitle:       [.En: "You have won!",
+                         .Ru: "Вы выиграли!"],
+    .victoryMessage:    [.En: "had won the game with total score",
+                         .Ru: "- вы выиграли игру, набрав"],
     
-    .threw1Title: [.En: "You have lost this round",
-                   .Ru: "Вы проиграли этот раунд"],
+    .threw1Title:   [.En: "You have lost this round",
+                     .Ru: "Вы проиграли этот раунд"],
     .threw1Message: [.En: "You threw one, your current score goes to zero",
                      .Ru: "- вы выбросили единицу, очки сгорают"],
    
-    .threw6TwiceTitle: [.En: "Busted!",
-                        .Ru: "Сгорел!"],
-    .threw6TwiceMessage: [.En: "had 6 thrown two times in a row, the total score goes to zero",
-                          .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
+    .threw6TwiceTitle:      [.En: "Busted!",
+                             .Ru: "Сгорел!"],
+    .threw6TwiceMessage:    [.En: "had 6 thrown two times in a row, the total score goes to zero",
+                             .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
     
     // Game View - Text
-    .scoreLimitTitle: [.En: "Score Limit:",
-                       .Ru: "Лимит очков:"],
-
+    .scoreLimitTitle:   [.En: "Score Limit:",
+                         .Ru: "Лимит очков:"],
     .currentScoreTitle: [.En: "Score:",
-                        .Ru: "Очки:"],
-
-    .totalScoresTitle: [.En: "Total Scores",
-                        .Ru: "Всего очков"],
+                         .Ru: "Очки:"],
+    .totalScoresTitle:  [.En: "Total Scores",
+                         .Ru: "Всего очков"],
     
     .currentPlayerTitle: [.En: "Player:",
                           .Ru: "Игрок:"],
@@ -114,32 +116,37 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     // Game View - Buttons
     .newGameButton: [.En: "NEW GAME",
                      .Ru: "НОВАЯ ИГРА"],
-    
-    .holdButton: [.En: "HOLD",
-                  .Ru: "ПАС"],
-    
-    .rollButton: [.En: "ROLL",
-                  .Ru: "БРОСОК"],
+    .holdButton:    [.En: "HOLD",
+                     .Ru: "ПАС"],
+    .rollButton:    [.En: "ROLL",
+                     .Ru: "БРОСОК"],
     
     // Options View - text
     .soundEnabledSwitch: [.En: "Sound Enabled",
                           .Ru: "Звук включён"],
     
-    .player1NameTitle: [.En: "1st Player's Name",
-                        .Ru: "Имя игрока 1"],
+    .colorModeSelectionTitle:               [.En: "Color Mode",
+                                             .Ru: "Цветовая схема"],
+    .colorSysModeSegmentedControlLabel:     [.En: "System",
+                                             .Ru: "Системы"],
+    .colorLightModeSegmentedControlLabel:   [.En: "Light",
+                                             .Ru: "Светлая"],
+    .colorDarkModeSegmentedControlLabel:    [.En: "Dark",
+                                             .Ru: "Тёмная"],
     
-    .player2NameTitle: [.En: "2nd Player'a Name",
-                        .Ru: "Имя игрока 2"],
-    
-    .is2ndPlayerAITitle: [.En: "2nd Player is AI",
-                          .Ru: "2-ой игрок - ИИ"],
+    .player1NameTitle:      [.En: "1st Player's Name",
+                             .Ru: "Имя игрока 1"],
+    .player2NameTitle:      [.En: "2nd Player'a Name",
+                             .Ru: "Имя игрока 2"],
+    .is2ndPlayerAITitle:    [.En: "2nd Player is AI",
+                             .Ru: "2-ой игрок - ИИ"],
     
     // Reuse of the same one from the Options View
     // .scoreLimitTitle: [.En: "Score Limit",
     //                    .Ru: "Лимит очков"],
  
-    .with1or2DiceTitle: [.En: "Play with",
-                             .Ru: "Играть с"],
+    .gameTypeTitle: [.En: "Play with",
+                     .Ru: "Играть с"],
     
     .noteLabel: [.En:
                     """
@@ -151,17 +158,15 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
                     """],
 
     // Options View - buttons and contols
-    .saveButton: [.En: "SAVE",
-                  .Ru: "СОХРАНИТЬ"],
-    
-    .cancelButton: [.En: "CANCEL",
-                    .Ru: "ОТМЕНА"],
+    .saveButton:    [.En: "SAVE",
+                     .Ru: "СОХРАНИТЬ"],
+    .cancelButton:  [.En: "CANCEL",
+                     .Ru: "ОТМЕНА"],
     
     .with1DiceSegmentedControlLabel: [.En: "1 Dice",
-                                          .Ru: "1 кубик"],
-    
+                                      .Ru: "1 кубик"],
     .with2DiceSegmentedControlLabel: [.En: "2 Dice",
-                                          .Ru: "2 кубика"],
+                                      .Ru: "2 кубика"],
     
     // Help View - Text
     .gameRulesTextView: [.En:

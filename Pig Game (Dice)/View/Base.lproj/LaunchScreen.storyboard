@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,21 +12,41 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="yIF-RZ-PIv" userLabel="Main View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="b87-Zk-2Dc" userLabel="Background">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="49O-rC-jZq" userLabel="Background">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdU-8u-Slp" userLabel="LaunchScreen View">
+                                <rect key="frame" x="20" y="64" width="374" height="778"/>
+                                <subviews>
+                                    <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUz-7c-THc" userLabel="LaunchScreen View Background">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="778"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fUz-7c-THc" secondAttribute="trailing" id="BrA-lF-Fol"/>
+                                    <constraint firstAttribute="bottom" secondItem="fUz-7c-THc" secondAttribute="bottom" id="UDK-85-kK9"/>
+                                    <constraint firstItem="fUz-7c-THc" firstAttribute="top" secondItem="qdU-8u-Slp" secondAttribute="top" id="lbE-M7-lU2"/>
+                                    <constraint firstItem="fUz-7c-THc" firstAttribute="leading" secondItem="qdU-8u-Slp" secondAttribute="leading" id="vUI-cj-c2e"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="jUT-9u-5xg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="b87-Zk-2Dc" secondAttribute="bottom" id="8v4-6I-ZV2"/>
-                            <constraint firstItem="b87-Zk-2Dc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="A8Y-oA-P9P"/>
-                            <constraint firstAttribute="trailing" secondItem="b87-Zk-2Dc" secondAttribute="trailing" id="haR-FN-ifD"/>
-                            <constraint firstItem="b87-Zk-2Dc" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="x1i-6A-sfe"/>
+                            <constraint firstItem="49O-rC-jZq" firstAttribute="leading" secondItem="yIF-RZ-PIv" secondAttribute="leading" id="Jon-sW-nWs"/>
+                            <constraint firstItem="49O-rC-jZq" firstAttribute="top" secondItem="yIF-RZ-PIv" secondAttribute="top" id="QKd-9K-bYD"/>
+                            <constraint firstItem="jUT-9u-5xg" firstAttribute="trailing" secondItem="qdU-8u-Slp" secondAttribute="trailing" constant="20" id="VPc-LS-8KZ"/>
+                            <constraint firstAttribute="trailing" secondItem="49O-rC-jZq" secondAttribute="trailing" id="XIk-d3-7UY"/>
+                            <constraint firstItem="qdU-8u-Slp" firstAttribute="leading" secondItem="jUT-9u-5xg" secondAttribute="leading" constant="20" id="Zwh-Eb-2Cp"/>
+                            <constraint firstAttribute="bottom" secondItem="49O-rC-jZq" secondAttribute="bottom" id="eFA-6U-0qO"/>
+                            <constraint firstItem="jUT-9u-5xg" firstAttribute="bottom" secondItem="qdU-8u-Slp" secondAttribute="bottom" constant="20" id="gF6-JK-b8O"/>
+                            <constraint firstItem="qdU-8u-Slp" firstAttribute="top" secondItem="jUT-9u-5xg" secondAttribute="top" constant="20" id="vIv-fz-7aJ"/>
                         </constraints>
                     </view>
                 </viewController>
