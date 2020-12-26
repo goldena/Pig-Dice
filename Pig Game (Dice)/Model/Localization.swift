@@ -29,7 +29,10 @@ enum LocalizedUI {
     case threw1Message
     
     case threw6TwiceTitle
+    // For one dice game type
     case threw6TwiceMessage
+    // For two dice game type
+    case threwTwo6Message
     
     // Game View - Text
     case currentScoreTitle
@@ -69,7 +72,15 @@ enum LocalizedUI {
     
     // Provides translation of IU elements to a given language
     func translate(to language: Language) -> String {
-        return LocalizationDictionary[self]?[language] ?? "Localization error"
+        return LocalizationDictionary[self]?[language] ?? "Localization error"        
+    }
+    
+    // Provides translation of IU elements to a given language
+    func translate(name: String?, to language: Language) -> String {
+        let name = name ?? ""
+        let localizedString = LocalizationDictionary[self]?[language] ?? "Localization error"
+        
+        return localizedString.replacingOccurrences(of: "NAME", with: "\(name)")
     }
 }
 
@@ -86,19 +97,21 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .newGameMessage:    [.En: "New game started!",
                          .Ru: "Начата новая игра!"],
     
-    .winnerTitle:       [.En: "You have won!",
-                         .Ru: "Вы выиграли!"],
-    .victoryMessage:    [.En: "had won the game with total score",
-                         .Ru: "- вы выиграли игру, набрав"],
+    .winnerTitle:       [.En: "NAME has won!",
+                         .Ru: "NAME выиграл!"],
+    .victoryMessage:    [.En: "NAME had won the game with total score",
+                         .Ru: "NAME - выиграл игру, набрав"],
     
-    .threw1Title:   [.En: "You have lost this round",
+    .threw1Title:   [.En: "NAME has lost this round",
                      .Ru: "Вы проиграли этот раунд"],
-    .threw1Message: [.En: "You threw one, your current score goes to zero",
-                     .Ru: "- вы выбросили единицу, очки сгорают"],
+    .threw1Message: [.En: "NAME threw one - round score goes to zero",
+                     .Ru: "NAME выбросил(а) единицу, очки сгорают"],
    
     .threw6TwiceTitle:      [.En: "Busted!",
                              .Ru: "Сгорел!"],
-    .threw6TwiceMessage:    [.En: "had 6 thrown two times in a row, the total score goes to zero",
+    .threwTwo6Message:      [.En: "NAME has thrown two 6, the total score goes to zero",
+                             .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
+    .threw6TwiceMessage:    [.En: "NAME has thrown 6 two times in a row, the total score goes to zero",
                              .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
     
     // Game View - Text

@@ -42,7 +42,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kdp-yA-5pp" userLabel="Config&amp;Help Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-2g-fVl" userLabel="Config Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-2g-fVl" userLabel="Config Button" customClass="customUIButton" customModule="Pig_Game__Dice_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -60,7 +60,7 @@
                                                             <action selector="OptionsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GUz-pz-oVG"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7p-81-9WF" userLabel="Roll Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7p-81-9WF" userLabel="Roll Button" customClass="customUIButton" customModule="Pig_Game__Dice_" customModuleProvider="target">
                                                         <rect key="frame" x="107" y="0.0" width="120" height="50"/>
                                                         <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -79,7 +79,7 @@
                                                             <action selector="NewGameButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c6h-DE-YSN"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5j0-qG-QYk" userLabel="Help Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5j0-qG-QYk" userLabel="Help Button" customClass="customUIButton" customModule="Pig_Game__Dice_" customModuleProvider="target">
                                                         <rect key="frame" x="284" y="0.0" width="50" height="50"/>
                                                         <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -191,7 +191,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="d00-Yr-rGt" userLabel="Buttons Stack View">
                                                 <rect key="frame" x="0.0" y="636" width="334" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeJ-zM-yl3" userLabel="Roll Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeJ-zM-yl3" userLabel="Roll Button" customClass="customUIButton" customModule="Pig_Game__Dice_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="157" height="50"/>
                                                         <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -209,7 +209,7 @@
                                                             <action selector="RollButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CZn-oG-ifA"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soZ-OY-0ra" userLabel="Hold Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soZ-OY-0ra" userLabel="Hold Button" customClass="customUIButton" customModule="Pig_Game__Dice_" customModuleProvider="target">
                                                         <rect key="frame" x="177" y="0.0" width="157" height="50"/>
                                                         <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -478,7 +478,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ubk-49-n7F" userLabel="Buttons Stack View">
                                                 <rect key="frame" x="12" y="692" width="334" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGQ-6o-BSK" userLabel="Back Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGQ-6o-BSK" userLabel="Back Button" customClass="customUIButton" customModule="Pig_Game__Dice_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="157" height="50"/>
                                                         <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -496,7 +496,7 @@
                                                             <action selector="CancelButtonPressed:" destination="vgd-1G-sKf" eventType="touchUpInside" id="1EE-XT-4wH"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVq-Wo-GaW" userLabel="Back Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVq-Wo-GaW" userLabel="Back Button" customClass="customUIButton" customModule="Pig_Game__Dice_" customModuleProvider="target">
                                                         <rect key="frame" x="177" y="0.0" width="157" height="50"/>
                                                         <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -607,7 +607,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OtT-8w-Tuc" userLabel="BackButtonVew">
                                                 <rect key="frame" x="12" y="682" width="334" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92j-bO-tvX" userLabel="Back Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92j-bO-tvX" userLabel="Back Button" customClass="customUIButton" customModule="Pig_Game__Dice_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
                                                         <color key="backgroundColor" red="0.60268509390000002" green="0.1062916592" blue="0.11218477039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>

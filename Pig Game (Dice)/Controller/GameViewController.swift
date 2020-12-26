@@ -54,16 +54,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         localiseUI()
     }
     
-    private func updateColorMode() {
-        switch Options.colorMode {
-        case .System:
-            overrideUserInterfaceStyle = .unspecified
-        case .Light:
-            overrideUserInterfaceStyle = .light
-        case .Dark:
-            overrideUserInterfaceStyle = .dark
-        }
-    }
+    
     
     // Add or Remove ImageView for the 2nd Dice
     private func updateDiceImageViews() {
@@ -148,8 +139,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         switch dice {
         case 1:
-            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(to: language),
-                                 message: "\(player.name) \(LocalizedUI.threw1Message.translate(to: language))",
+            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
+                                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
                                  handler: {
                                     self.game.nextPlayer()
                                     self.updateUI()
@@ -157,8 +148,10 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                                  })
         case 6:
             if game.activePlayer.previousDiceIs6 {
-                alertThenHandleEvent(title: LocalizedUI.threw6TwiceTitle.translate(to: Options.language),
-                                     message: "\(game.activePlayer.name) \(LocalizedUI.threw6TwiceMessage.translate(to: Options.language))",
+                alertThenHandleEvent(title: LocalizedUI.threw6TwiceTitle.translate(name: player.name,
+                                                                                   to: Options.language),
+                                     message: LocalizedUI.threw6TwiceMessage.translate(name: player.name,
+                                                                                       to: Options.language),
                                      handler: {
                                         self.game.nextPlayer()
                                         self.updateUI()
@@ -169,9 +162,9 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             }
         default:
             if dice == 6 {
-                game.activePlayer.previousDiceIs6 = true
+                player.previousDiceIs6 = true
             } else {
-                game.activePlayer.previousDiceIs6 = false
+                player.previousDiceIs6 = false
             }
                 
             nextMoveIfAI()
@@ -179,18 +172,24 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func alertThenHandleRollResult(_ dice1: Int, _ dice2: Int) {
+        let player = game.activePlayer
+        
         switch (dice1, dice2) {
         case (_, 1), (1, _):
-            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(to: Options.language),
-                                 message: "\(game.activePlayer.name) \(LocalizedUI.threw1Message.translate(to: Options.language))",
+            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(name: player.name,
+                                                                          to: Options.language),
+                                 message: LocalizedUI.threw1Message.translate(name: player.name,
+                                                                              to: Options.language),
                                  handler: {
                                     self.game.nextPlayer()
                                     self.updateUI()
                                     self.nextMoveIfAI()
                                  })
         case (6, 6):
-            alertThenHandleEvent(title: LocalizedUI.threw6TwiceTitle.translate(to: Options.language),
-                                 message: "\(game.activePlayer.name) \(LocalizedUI.threw6TwiceMessage.translate(to: Options.language))",
+            alertThenHandleEvent(title: LocalizedUI.threwTwo6Message.translate(name: player.name,
+                                                                               to: Options.language),
+                                 message: LocalizedUI.threwTwo6Message.translate(name: player.name,
+                                                                                   to: Options.language),
                                  handler: {
                                     self.game.nextPlayer()
                                     self.updateUI()
@@ -239,8 +238,9 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func alertThenHandleVictory() {
-        alertThenHandleEvent(title: LocalizedUI.winnerTitle.translate(to: Options.language),
-                             message: "\(game.activePlayer.name) \(LocalizedUI.victoryMessage.translate(to: Options.language)) \(game.activePlayer.totalScore)!",
+        alertThenHandleEvent(title: LocalizedUI.winnerTitle.translate(name: game.activePlayer.name,
+                                                                      to: Options.language),
+                             message: "\(LocalizedUI.victoryMessage.translate(name: game.activePlayer.name, to: Options.language)) \(game.activePlayer.totalScore)!",
                              handler: {
                                 self.startNewGame()
                                 self.alertThenHandleNewGame()
@@ -297,30 +297,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    private func disableButton(_ button: UIButton) {
-        DispatchQueue.main.async {
-            button.isEnabled = false
-            button.backgroundColor = .systemGray
-        }
-    }
-    
-    private func enableButton(_ button: UIButton) {
-        button.isEnabled = true
-        button.backgroundColor = Const.ButtonColor
-    }
-    
-    private func disableButtons(_ buttons: [UIButton]) {
-        for button in buttons {
-            disableButton(button)
-        }
-    }
-    
-    private func enableButtons(_ buttons: [UIButton]) {
-        for button in buttons {
-            enableButton(button)
-        }
-    }
-    
     private func localiseUI() {
         let language = Options.language
         
@@ -357,5 +333,40 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
         PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
         CurrentScoreLabel.text   = "\(game.activePlayer.roundScore)"
+    }
+}
+
+extension GameViewController {
+    private func updateColorMode() {
+        switch Options.colorMode {
+        case .System:
+            overrideUserInterfaceStyle = .unspecified
+        case .Light:
+            overrideUserInterfaceStyle = .light
+        case .Dark:
+            overrideUserInterfaceStyle = .dark
+        }
+    }
+
+    private func disableButton(_ button: UIButton) {
+        DispatchQueue.main.async {
+            button.isEnabled = false
+        }
+    }
+    
+    private func enableButton(_ button: UIButton) {
+        button.isEnabled = true
+    }
+    
+    private func disableButtons(_ buttons: [UIButton]) {
+        for button in buttons {
+            disableButton(button)
+        }
+    }
+    
+    private func enableButtons(_ buttons: [UIButton]) {
+        for button in buttons {
+            enableButton(button)
+        }
     }
 }
