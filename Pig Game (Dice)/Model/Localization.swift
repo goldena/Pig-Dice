@@ -83,8 +83,8 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     // Game View - Alerts
     .newGameTitle:      [.En: "New Game",
                          .Ru: "Новая игра"],
-    .newGameMessage:    [.En: "You have started a new game!",
-                         .Ru: "Вы начали новую игру!"],
+    .newGameMessage:    [.En: "New game started!",
+                         .Ru: "Начата новая игра!"],
     
     .winnerTitle:       [.En: "You have won!",
                          .Ru: "Вы выиграли!"],

@@ -72,12 +72,11 @@ struct Game {
     
     // Init a new game with the player's names and score limit retreived from the defaults
     mutating func initNewGame() {
-        player1 = Player(name: Options.player1Name, isAI: false)
-        player2 = Player(name: Options.player2Name, isAI: Options.is2ndPlayerAI)
-        
-        gameType = Options.gameType
-        scoreLimit = Options.scoreLimit
-        
-        activePlayer = randomPlayer()
+        player1         = Player(name: Options.player1Name, isAI: false)
+        player2         = Player(name: Options.player2Name, isAI: Options.is2ndPlayerAI)
+        activePlayer    = randomPlayer()
+
+        gameType    = Options.gameType
+        scoreLimit  = Options.scoreLimit
     }
 }

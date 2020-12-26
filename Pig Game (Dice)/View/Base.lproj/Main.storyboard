@@ -288,6 +288,11 @@
                         <outlet property="ScoreLimitLabel" destination="Vpe-BQ-e1B" id="pbd-nw-whZ"/>
                         <outlet property="ScoreLimitTitle" destination="SbH-n7-3m6" id="GOU-9w-XKh"/>
                         <outlet property="TotalScoresTitle" destination="w7E-Jl-zpm" id="G0f-oy-Vcd"/>
+                        <outletCollection property="ButtonsCollection" destination="aeJ-zM-yl3" collectionClass="NSMutableArray" id="m9F-IR-ebh"/>
+                        <outletCollection property="ButtonsCollection" destination="soZ-OY-0ra" collectionClass="NSMutableArray" id="Q1H-JQ-Rn9"/>
+                        <outletCollection property="ButtonsCollection" destination="rkU-2g-fVl" collectionClass="NSMutableArray" id="cNt-b1-UwG"/>
+                        <outletCollection property="ButtonsCollection" destination="5j0-qG-QYk" collectionClass="NSMutableArray" id="9u8-nC-13a"/>
+                        <outletCollection property="ButtonsCollection" destination="Y7p-81-9WF" collectionClass="NSMutableArray" id="pvN-B0-Kca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

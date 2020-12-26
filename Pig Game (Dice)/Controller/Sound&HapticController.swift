@@ -5,10 +5,22 @@
 //  Created by Denis Goloborodko on 14.12.20.
 //
 
-import Foundation
+import UIKit
 import AVFoundation
 
 private var audioPlayer: AVAudioPlayer?
+private var hapticGenerator: UINotificationFeedbackGenerator?
+
+
+func playHaptic() {
+    hapticGenerator = UINotificationFeedbackGenerator()
+    // hapticGenerator = UIImpactFeedbackGenerator(style: .light)
+    
+    hapticGenerator?.notificationOccurred(.success)
+    //hapticGenerator?.notificationOccurred(.warning)
+    
+    //hapticGenerator?.impactOccurred()
+}
 
 func playSound(_ soundName: String, type: String) {
     guard let soundPath = Bundle.main.path(forResource: soundName, ofType: type) else {

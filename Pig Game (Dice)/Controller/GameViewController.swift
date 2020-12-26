@@ -10,11 +10,11 @@ import UIKit
 // Main screen view controller
 class GameViewController: UIViewController, ViewControllerDelegate {
     
-    private var game = Game()
+    var game = Game()
     
     private var dice1ImageView: UIImageView!
-    // The second dice ImageView is programmatic, initialized depending on the game type
-    private var dice2ImageView: UIImageView?
+    // The second dice ImageView is programmatic, initialized depending on a game type
+    private var dice2ImageView: UIImageView!
     
     // For delegation needs, to dynamically update some of the options on the main game screen
     private var optionsViewController = OptionsViewController()
@@ -91,11 +91,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                              message: LocalizedUI.newGameMessage.translate(to: Options.language),
                              handler: {
                                 self.updateUI()
-                                
-                                if self.game.activePlayer.isAI {
-                                    self.nextMoveAsAI()
-                                }
-                             })
+                                self.nextMoveIfAI()
+                                })
     }
     
     private func startNewGame() {
@@ -106,23 +103,26 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         localiseUI()
     }
     
-    private func nextMoveAsAI() {
-        disableButtons()
+    private func nextMoveIfAI() {
+        guard game.activePlayer.isAI else {
+            return
+        }
+
+        disableButtons(ButtonsCollection)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
             let AIPlayer = self.game.activePlayer
-            
             // Hold if already had won the game
             if AIPlayer.roundScore + AIPlayer.totalScore >= Options.scoreLimit {
                 self.hold()
-                self.enableButtons()
+                self.enableButtons(self.ButtonsCollection)
                 return
             }
             
             // Hold if previos throw was 6 (for a single dice game)
             if Options.gameType == .PigGame1Dice && AIPlayer.previousDiceIs6 {
                 self.hold()
-                self.enableButtons()
+                self.enableButtons(self.ButtonsCollection)
                 return
             }
             
@@ -134,7 +134,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             } else {
                 self.roll()
             }
-            self.enableButtons()
+            self.enableButtons(self.ButtonsCollection)
         })
     }
     
@@ -143,17 +143,17 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func alertThenHandleRollResult(_ dice: Int) {
+        let player = game.activePlayer
+        let language = Options.language
+        
         switch dice {
         case 1:
-            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(to: Options.language),
-                                 message: "\(game.activePlayer.name) \(LocalizedUI.threw1Message.translate(to: Options.language))",
+            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(to: language),
+                                 message: "\(player.name) \(LocalizedUI.threw1Message.translate(to: language))",
                                  handler: {
                                     self.game.nextPlayer()
                                     self.updateUI()
-                                    
-                                    if self.game.activePlayer.isAI {
-                                        self.nextMoveAsAI()
-                                    }
+                                    self.nextMoveIfAI()
                                  })
         case 6:
             if game.activePlayer.previousDiceIs6 {
@@ -162,11 +162,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                                      handler: {
                                         self.game.nextPlayer()
                                         self.updateUI()
-                                        
-                                        if self.game.activePlayer.isAI {
-                                            self.nextMoveAsAI()
-                                        }
-                                     })
+                                        self.nextMoveIfAI()
+                                        })
             } else {
                 fallthrough
             }
@@ -177,9 +174,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 game.activePlayer.previousDiceIs6 = false
             }
                 
-            if game.activePlayer.isAI {
-                nextMoveAsAI()
-            }
+            nextMoveIfAI()
         }
     }
     
@@ -191,10 +186,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                                  handler: {
                                     self.game.nextPlayer()
                                     self.updateUI()
-                                    
-                                    if self.game.activePlayer.isAI {
-                                        self.nextMoveAsAI()
-                                    }
+                                    self.nextMoveIfAI()
                                  })
         case (6, 6):
             alertThenHandleEvent(title: LocalizedUI.threw6TwiceTitle.translate(to: Options.language),
@@ -202,15 +194,10 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                                  handler: {
                                     self.game.nextPlayer()
                                     self.updateUI()
-                                    
-                                    if self.game.activePlayer.isAI {
-                                        self.nextMoveAsAI()
-                                    }
+                                    self.nextMoveIfAI()
                                  })
         default:
-            if game.activePlayer.isAI {
-                nextMoveAsAI()
-            }
+            nextMoveIfAI()
         }
     }
     
@@ -218,6 +205,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         // Game mechanics: roll, calculate scores, check conditions, display alerts
         let player = game.activePlayer
         player.rollDice()
+        
+        playHaptic()
         
         if Options.isSoundEnabled {
             playSound("dice_roll", type: "wav")
@@ -269,15 +258,14 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         game.nextPlayer()
         updateUI()
-        
-        if game.activePlayer.isAI {
-            nextMoveAsAI()
-        }
+        nextMoveIfAI()
     }
     
     @IBAction private func HoldButtonPressed(_ sender: UIButton) {
         hold()
     }
+    
+    @IBOutlet var ButtonsCollection: [UIButton]!
     
     @IBOutlet private weak var NewGameButton: UIButton!
     @IBOutlet private weak var RollButton: UIButton!
@@ -321,14 +309,16 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         button.backgroundColor = Const.ButtonColor
     }
     
-    private func disableButtons() {
-        disableButton(RollButton)
-        disableButton(HoldButton)
+    private func disableButtons(_ buttons: [UIButton]) {
+        for button in buttons {
+            disableButton(button)
+        }
     }
     
-    private func enableButtons() {
-        enableButton(RollButton)
-        enableButton(HoldButton)
+    private func enableButtons(_ buttons: [UIButton]) {
+        for button in buttons {
+            enableButton(button)
+        }
     }
     
     private func localiseUI() {
