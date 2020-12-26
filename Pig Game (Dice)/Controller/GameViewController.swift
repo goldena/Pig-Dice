@@ -10,14 +10,53 @@ import UIKit
 // Main screen view controller
 class GameViewController: UIViewController, ViewControllerDelegate {
     
-    var game = Game()
+    @IBOutlet var ButtonsCollection: [UIButton]!
+    @IBOutlet private weak var NewGameButton: UIButton!
+    @IBOutlet private weak var RollButton: UIButton!
+    @IBOutlet private weak var HoldButton: UIButton!
     
+    // StackView for programmatically adding/removing 2-nd Dice
+    @IBOutlet private weak var DiceImagesStackView: UIStackView!
+    
+    @IBOutlet private weak var CurrentScoreTitle: UILabel!
+    @IBOutlet private weak var CurrentScoreLabel: UILabel!
+    
+    @IBOutlet private weak var ScoreLimitTitle: UILabel!
+    @IBOutlet private weak var ScoreLimitLabel: UILabel!
+    
+    @IBOutlet private weak var TotalScoresTitle: UILabel!
+    @IBOutlet private weak var PlayerOneScoreLabel: UILabel!
+    @IBOutlet private weak var PlayerTwoScoreLabel: UILabel!
+    
+    @IBOutlet private weak var CurrentPlayerTitle: UILabel!
+    @IBOutlet private weak var CurrentPlayerLabel: UILabel!
+    
+    @IBAction private func RollButtonPressed(_ sender: UIButton) {
+        roll()
+    }
+    
+    @IBAction private func HoldButtonPressed(_ sender: UIButton) {
+        hold()
+    }
+    
+    @IBAction private func OptionsButtonPressed(_ sender: Any) {
+        self.present(optionsViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
+        // Reloads defaults in case there were changes
+        startNewGame()
+        alertThenHandleNewGame()
+    }
+        
     private var dice1ImageView: UIImageView!
     // The second dice ImageView is programmatic, initialized depending on a game type
     private var dice2ImageView: UIImageView!
     
     // For delegation needs, to dynamically update some of the options on the main game screen
     private var optionsViewController = OptionsViewController()
+    
+    var game = Game()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +93,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         localiseUI()
     }
     
-    
-    
     // Add or Remove ImageView for the 2nd Dice
     private func updateDiceImageViews() {
         if Options.gameType == .PigGame2Dice && dice2ImageView == nil {
@@ -70,13 +107,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             dice2ImageView = nil
         }
     }
-    
-    @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
-        // Reloads defaults in case there were changes
-        startNewGame()
-        alertThenHandleNewGame()
-    }
-    
+        
     private func alertThenHandleNewGame() {
         alertThenHandleEvent(title: LocalizedUI.newGameTitle.translate(to: Options.language),
                              message: LocalizedUI.newGameMessage.translate(to: Options.language),
@@ -128,19 +159,17 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             self.enableButtons(self.ButtonsCollection)
         })
     }
-    
-    @IBAction private func OptionsButtonPressed(_ sender: Any) {
-        self.present(optionsViewController, animated: true, completion: nil)
-    }
-    
+        
     private func alertThenHandleRollResult(_ dice: Int) {
         let player = game.activePlayer
         let language = Options.language
         
         switch dice {
         case 1:
-            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
-                                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
+            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(name: player.name,
+                                                                          to: language),
+                                 message: LocalizedUI.threw1Message.translate(name: player.name,
+                                                                              to: language),
                                  handler: {
                                     self.game.nextPlayer()
                                     self.updateUI()
@@ -232,15 +261,12 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             alertThenHandleRollResult(dice1, dice2)
         }
     }
-    
-    @IBAction private func RollButtonPressed(_ sender: UIButton) {
-        roll()
-    }
-    
+        
     private func alertThenHandleVictory() {
         alertThenHandleEvent(title: LocalizedUI.winnerTitle.translate(name: game.activePlayer.name,
                                                                       to: Options.language),
-                             message: "\(LocalizedUI.victoryMessage.translate(name: game.activePlayer.name, to: Options.language)) \(game.activePlayer.totalScore)!",
+                             message: LocalizedUI.victoryMessage.translate(name: game.activePlayer.name,
+                                                                           to: Options.language) + String(game.activePlayer.totalScore),
                              handler: {
                                 self.startNewGame()
                                 self.alertThenHandleNewGame()
@@ -260,33 +286,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         updateUI()
         nextMoveIfAI()
     }
-    
-    @IBAction private func HoldButtonPressed(_ sender: UIButton) {
-        hold()
-    }
-    
-    @IBOutlet var ButtonsCollection: [UIButton]!
-    
-    @IBOutlet private weak var NewGameButton: UIButton!
-    @IBOutlet private weak var RollButton: UIButton!
-    @IBOutlet private weak var HoldButton: UIButton!
-    
-    // StackView for programmatically adding/removing 2-nd Dice
-    @IBOutlet private weak var DiceImagesStackView: UIStackView!
-    
-    @IBOutlet private weak var CurrentScoreTitle: UILabel!
-    @IBOutlet private weak var CurrentScoreLabel: UILabel!
-    
-    @IBOutlet private weak var ScoreLimitTitle: UILabel!
-    @IBOutlet private weak var ScoreLimitLabel: UILabel!
-    
-    @IBOutlet private weak var TotalScoresTitle: UILabel!
-    @IBOutlet private weak var PlayerOneScoreLabel: UILabel!
-    @IBOutlet private weak var PlayerTwoScoreLabel: UILabel!
-    
-    @IBOutlet private weak var CurrentPlayerTitle: UILabel!
-    @IBOutlet private weak var CurrentPlayerLabel: UILabel!
-    
     
     // Displays info alert with Okay button
     private func alertThenHandleEvent(title: String, message: String, handler: @escaping () -> Void) {
