@@ -58,6 +58,7 @@ enum LocalizedUI {
 
     // Options View - Buttons and controls
     case soundEnabledSwitch
+    case vibrationEnabledSwitch
     case saveButton
     case cancelButton
     case with1DiceSegmentedControlLabel
@@ -80,7 +81,7 @@ enum LocalizedUI {
         let name = name ?? ""
         let localizedString = LocalizationDictionary[self]?[language] ?? "Localization error"
         
-        return localizedString.replacingOccurrences(of: "NAME", with: "\(name)")
+        return localizedString.replacingOccurrences(of: "@NAME", with: "\(name)")
     }
 }
 
@@ -97,21 +98,21 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .newGameMessage:    [.En: "New game started!",
                          .Ru: "Начата новая игра!"],
     
-    .winnerTitle:       [.En: "NAME has won!",
-                         .Ru: "NAME выиграл!"],
-    .victoryMessage:    [.En: "NAME had won the game with total score",
-                         .Ru: "NAME - выиграл игру, набрав"],
+    .winnerTitle:       [.En: "@NAME has won!",
+                         .Ru: "@NAME выиграл!"],
+    .victoryMessage:    [.En: "@NAME has won the game with the total score ",
+                         .Ru: "@NAME - выиграл игру, набрав "],
     
-    .threw1Title:   [.En: "NAME has lost this round",
-                     .Ru: "Вы проиграли этот раунд"],
-    .threw1Message: [.En: "NAME threw one - round score goes to zero",
-                     .Ru: "NAME выбросил(а) единицу, очки сгорают"],
+    .threw1Title:   [.En: "@NAME has lost this round",
+                     .Ru: "@NAME проиграли этот раунд"],
+    .threw1Message: [.En: "@NAME threw one - round score goes to zero",
+                     .Ru: "@NAME выбросил(а) единицу, очки сгорают"],
    
     .threw6TwiceTitle:      [.En: "Busted!",
                              .Ru: "Сгорел!"],
-    .threwTwo6Message:      [.En: "NAME has thrown two 6, the total score goes to zero",
-                             .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
-    .threw6TwiceMessage:    [.En: "NAME has thrown 6 two times in a row, the total score goes to zero",
+    .threwTwo6Message:      [.En: "@NAME has thrown two 6, the total score goes to zero",
+                             .Ru: "@NAME выбросил 6 два раза подряд, общие очки теперь ноль"],
+    .threw6TwiceMessage:    [.En: "@NAME has thrown 6 two times in a row, the total score goes to zero",
                              .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
     
     // Game View - Text
@@ -135,8 +136,10 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
                      .Ru: "БРОСОК"],
     
     // Options View - text
-    .soundEnabledSwitch: [.En: "Sound Enabled",
-                          .Ru: "Звук включён"],
+    .soundEnabledSwitch: [.En: "Sound",
+                          .Ru: "Звук"],
+    .vibrationEnabledSwitch: [.En: "Vibration",
+                              .Ru: "Вибрация"],
     
     .colorModeSelectionTitle:               [.En: "Color Mode",
                                              .Ru: "Цветовая схема"],
@@ -185,21 +188,33 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .gameRulesTextView: [.En:
                             """
                             GAME RULES:
-                            - The game has 2 players, playing in rounds. The first player to play the first round is determined randomly
-                            - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
-                            - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
+
+                            - The game has 2 players, playing in rounds. The first player to play the first round is determined randomly.
+
+                            - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score.
+
+                            - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn.
+
                             - A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn.
-                            - The player can choose to 'Hold', which means that his ROUND score gets added to his TOTAL score. After that, it's the next player's turn
+
+                            - The player can choose to 'Hold', which means that his ROUND score gets added to his TOTAL score. After that, it's the next player's turn.
+
                             - The first player to reach 100 (the number can be changed in the options) points in total - wins the game.
                             """,
                          .Ru:
                             """
                             ПРАВИЛА ИГРЫ:
+
                             - В игре участвуют два игрока, играющие по очередию. Первый игрок первого раунда определятеся случайно;
-                            - В течение своего хода игрок может бросать кость неограниченное число раз. Каждый результат броска добавляется к его очкам за раунд.
+
+                            - В течение своего хода игрок может бросать кость неограниченное число раз. Каждый результат броска добавляется к его очкам за раунд;
+
                             - Но, если игрок выбросит 1, то все очки набранные в текущем раунде сгорают и ход переходит к другому икроку;
+
                             - Игрок теряет ВСЕ набранные очки когда выбрасывает две 6 подряд. После этого ход переходит к другому игроку;
-                            - Игрок может выбрать "ПАС", что означает сохранение очков набранных в текущем раунде в общем счёте. Ход переходит к другому игроку.
+
+                            - Игрок может выбрать "ПАС", что означает сохранение очков набранных в текущем раунде в общем счёте. Ход переходит к другому игроку;
+
                             - Первый из игроков, который наберёт всего 100 очков (лимит можно изменить в настройках) - побеждает.
                             """],
 

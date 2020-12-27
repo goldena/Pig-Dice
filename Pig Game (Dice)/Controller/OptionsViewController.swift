@@ -13,6 +13,8 @@ protocol ViewControllerDelegate: UIViewController {
 }
 
 class OptionsViewController: UIViewController, UITextFieldDelegate {
+
+// TODO: refactor
     
     weak var optionsViewControllerDelegate: ViewControllerDelegate?
     
@@ -44,6 +46,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         let language = Options.language
                 
         SoundEnabledTitle.text  = LocalizedUI.soundEnabledSwitch.translate(to: language)
+        VibrationEnabledTitle.text = LocalizedUI.vibrationEnabledSwitch.translate(to: language)
         ColorModeTitle.text     = LocalizedUI.colorModeSelectionTitle.translate(to: language)
         
         Player1NameTitle.text    = LocalizedUI.player1NameTitle.translate(to: language)
@@ -90,6 +93,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         }
            
         SoundEnabledSwitch.isOn = Options.isSoundEnabled
+        VibrationEnabledSwitch.isOn = Options.isVibrationEnabled
         
         switch Options.gameType {
         case .PigGame1Dice:
@@ -119,6 +123,9 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet private weak var SoundEnabledTitle: UILabel!
     @IBOutlet private weak var SoundEnabledSwitch: UISwitch!
+    
+    @IBOutlet weak var VibrationEnabledTitle: UILabel!
+    @IBOutlet weak var VibrationEnabledSwitch: UISwitch!
     
     @IBOutlet private weak var ColorModeTitle: UILabel!
     @IBOutlet private weak var UIColorModeSegmentedControl: UISegmentedControl!
@@ -189,6 +196,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         }
         
         Options.isSoundEnabled = SoundEnabledSwitch.isOn
+        Options.isVibrationEnabled = VibrationEnabledSwitch.isOn
         
         switch GameTypeSegmentedControl.selectedSegmentIndex {
         case 0:

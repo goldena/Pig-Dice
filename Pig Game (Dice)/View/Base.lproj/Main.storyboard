@@ -321,10 +321,10 @@
                                         <rect key="frame" x="8" y="18" width="358" height="742"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Wq0-ah-1uc" userLabel="UI Options Stach View">
-                                                <rect key="frame" x="21" y="0.0" width="316.5" height="123"/>
+                                                <rect key="frame" x="20" y="0.0" width="318" height="123"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4pj-DM-vJm" userLabel="Language Selection Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="316.5" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="318" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language / Язык" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZx-wn-Dxw">
                                                                 <rect key="frame" x="0.0" y="4.5" width="134" height="22"/>
@@ -332,7 +332,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="buX-s3-ybv">
-                                                                <rect key="frame" x="171.5" y="0.0" width="145" height="32"/>
+                                                                <rect key="frame" x="173" y="0.0" width="145" height="32"/>
                                                                 <segments>
                                                                     <segment title="English"/>
                                                                     <segment title="Русский"/>
@@ -343,23 +343,32 @@
                                                             </segmentedControl>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4E7-R0-Vlq" userLabel="Sound and Color Mode Stack View">
-                                                        <rect key="frame" x="0.0" y="46" width="316.5" height="31"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4E7-R0-Vlq" userLabel="Sound&amp;Vibration Stack View">
+                                                        <rect key="frame" x="0.0" y="46" width="318" height="31"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Effcects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm0-jJ-xUt">
-                                                                <rect key="frame" x="0.0" y="0.0" width="257.5" height="31"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm0-jJ-xUt">
+                                                                <rect key="frame" x="0.0" y="0.0" width="49" height="31"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZHn-dn-24J">
-                                                                <rect key="frame" x="267.5" y="0.0" width="51" height="31"/>
+                                                                <rect key="frame" x="89.5" y="0.0" width="51" height="31"/>
                                                                 <color key="onTintColor" systemColor="systemGreenColor"/>
+                                                            </switch>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-Hc-WGR" userLabel="Vibration Enabled Title">
+                                                                <rect key="frame" x="169.5" y="0.0" width="68.5" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Vz-G7-bCG" userLabel="Vibration Enabled Switch">
+                                                                <rect key="frame" x="269" y="0.0" width="51" height="31"/>
                                                             </switch>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hZn-8N-edW" userLabel="UI Color Mode Stack View">
-                                                        <rect key="frame" x="0.0" y="92" width="316.5" height="31"/>
+                                                        <rect key="frame" x="0.0" y="92" width="318" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Color Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lr-Ml-FHl">
                                                                 <rect key="frame" x="0.0" y="0.0" width="109.5" height="31"/>
@@ -368,7 +377,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sBc-XO-dRb" userLabel="UI ColorMode">
-                                                                <rect key="frame" x="119.5" y="0.0" width="197" height="32"/>
+                                                                <rect key="frame" x="119.5" y="0.0" width="198.5" height="32"/>
                                                                 <segments>
                                                                     <segment title="System"/>
                                                                     <segment title="Light"/>
@@ -521,7 +530,9 @@
                                             <constraint firstAttribute="trailing" secondItem="jJp-Jz-gjA" secondAttribute="trailing" constant="20" id="IPE-9Z-IhU"/>
                                             <constraint firstAttribute="trailing" secondItem="ubk-49-n7F" secondAttribute="trailing" constant="12" id="SUE-3i-Itt"/>
                                             <constraint firstItem="jJp-Jz-gjA" firstAttribute="leading" secondItem="jM5-Od-ULd" secondAttribute="leading" constant="20" id="pW1-bf-4t5"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wq0-ah-1uc" secondAttribute="trailing" constant="20" id="tAl-F9-dgh"/>
                                             <constraint firstItem="ubk-49-n7F" firstAttribute="leading" secondItem="jM5-Od-ULd" secondAttribute="leading" constant="12" id="xo8-6h-kxb"/>
+                                            <constraint firstItem="Wq0-ah-1uc" firstAttribute="leading" secondItem="jM5-Od-ULd" secondAttribute="leading" constant="20" id="ybQ-Xl-8eh"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -570,6 +581,8 @@
                         <outlet property="SoundEnabledSwitch" destination="ZHn-dn-24J" id="GiI-Qr-Aqf"/>
                         <outlet property="SoundEnabledTitle" destination="gm0-jJ-xUt" id="EeV-QW-TCM"/>
                         <outlet property="UIColorModeSegmentedControl" destination="sBc-XO-dRb" id="pMc-zx-MCL"/>
+                        <outlet property="VibrationEnabledSwitch" destination="8Vz-G7-bCG" id="Foj-Fn-qgE"/>
+                        <outlet property="VibrationEnabledTitle" destination="QrK-Hc-WGR" id="00p-3Y-2lE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcE-Qj-gXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

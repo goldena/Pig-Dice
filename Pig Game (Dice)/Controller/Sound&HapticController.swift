@@ -9,17 +9,20 @@ import UIKit
 import AVFoundation
 
 private var audioPlayer: AVAudioPlayer?
-private var hapticGenerator: UINotificationFeedbackGenerator?
+//private var hapticGenerator: UINotificationFeedbackGenerator?
+private var hapticGenerator: UIImpactFeedbackGenerator?
 
-
+// TODO: Remove the commented lines
 func playHaptic() {
-    hapticGenerator = UINotificationFeedbackGenerator()
-    // hapticGenerator = UIImpactFeedbackGenerator(style: .light)
+    if Options.isVibrationEnabled {
+        //hapticGenerator = UINotificationFeedbackGenerator()
+        hapticGenerator = UIImpactFeedbackGenerator(style: .light)
     
-    hapticGenerator?.notificationOccurred(.success)
-    //hapticGenerator?.notificationOccurred(.warning)
+        //hapticGenerator?.notificationOccurred(.success)
+        //hapticGenerator?.notificationOccurred(.warning)
     
-    //hapticGenerator?.impactOccurred()
+        hapticGenerator?.impactOccurred()
+    }
 }
 
 func playSound(_ soundName: String, type: String) {

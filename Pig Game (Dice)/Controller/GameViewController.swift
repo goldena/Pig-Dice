@@ -218,7 +218,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             alertThenHandleEvent(title: LocalizedUI.threwTwo6Message.translate(name: player.name,
                                                                                to: Options.language),
                                  message: LocalizedUI.threwTwo6Message.translate(name: player.name,
-                                                                                   to: Options.language),
+                                                                                 to: Options.language),
                                  handler: {
                                     self.game.nextPlayer()
                                     self.updateUI()
