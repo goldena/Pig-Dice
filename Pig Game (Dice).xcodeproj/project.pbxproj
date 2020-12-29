@@ -70,12 +70,12 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		CFB46DAD2597D60500ADB6FD /* CocoaTouch */ = {
+		CFB46DAD2597D60500ADB6FD /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				CFB46DAA2597CD3B00ADB6FD /* customUIButton.swift */,
 			);
-			path = CocoaTouch;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		CFBBD7462587F5C200CA625A /* Sounds */ = {
@@ -108,7 +108,7 @@
 				CFE937ED252E85B4009F7CB2 /* Model */,
 				CFE937EE252E85BD009F7CB2 /* View */,
 				CFE937EF252E85CB009F7CB2 /* Controller */,
-				CFB46DAD2597D60500ADB6FD /* CocoaTouch */,
+				CFB46DAD2597D60500ADB6FD /* CustomViews */,
 				CFBBD7462587F5C200CA625A /* Sounds */,
 				CF9F1B4C2540D88500C1979F /* Fonts */,
 				CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */,

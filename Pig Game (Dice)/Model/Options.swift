@@ -53,6 +53,7 @@ class Options {
         if let typeOfGame = userDefaults.string(forKey: "GameType") {
             Options.gameType = GameType.init(rawValue: typeOfGame) ?? .PigGame1Dice
         }
+        
         Options.scoreLimit = userDefaults.integer(forKey: "ScoreLimit")
     }
     

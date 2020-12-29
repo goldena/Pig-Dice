@@ -13,15 +13,118 @@ protocol ViewControllerDelegate: UIViewController {
 }
 
 class OptionsViewController: UIViewController, UITextFieldDelegate {
-
-// TODO: refactor
-    
     weak var optionsViewControllerDelegate: ViewControllerDelegate?
+
+    @IBOutlet private weak var LanguageSelectionSegmentedControl: UISegmentedControl!
     
-    // Dismiss keyboard after pressing Return key
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    @IBOutlet private weak var SoundEnabledTitle: UILabel!
+    @IBOutlet private weak var SoundEnabledSwitch: UISwitch!
+    
+    @IBOutlet weak var VibrationEnabledTitle: UILabel!
+    @IBOutlet weak var VibrationEnabledSwitch: UISwitch!
+    
+    @IBOutlet private weak var ColorModeTitle: UILabel!
+    @IBOutlet private weak var UIColorModeSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet private weak var Player1NameLabel: UILabel!
+    @IBOutlet private weak var Player1NameTextField: UITextField!
+    
+    @IBOutlet private weak var Player2NameLabel: UILabel!
+    @IBOutlet private weak var Player2NameTextField: UITextField!
+    
+    @IBOutlet private weak var Is2ndPlayerAILabel: UILabel!
+    @IBOutlet private weak var Is2ndPlayerAISwitch: UISwitch!
+    
+    @IBOutlet private weak var ScoreLimitLabel: UILabel!
+    @IBOutlet private weak var ScoreLimitTextField: UITextField!
+    @IBOutlet weak var ScoreLimitRangeLabel: UILabel!
+    
+    
+    @IBOutlet private weak var GameTypeTitle: UILabel!
+    @IBOutlet private weak var GameTypeSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet private weak var NoteLabel: UILabel!
+    
+    @IBOutlet private weak var CancelButton: UIButton!
+    @IBOutlet private weak var SaveButton: UIButton!
+
+    // Returt to the main screen without saving any changes to the Options
+    @IBAction private func CancelButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // Changes localisation on the fly
+    @IBAction private func LanguageSelectionChanged(_ sender: UISegmentedControl) {
+        switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
+        case 0:
+            Options.language = .En
+        case 1:
+            Options.language = .Ru
+        default:
+            print("Missing language selected")
+        }
+        
+        localizeUI()
+    }
+    
+    @IBAction private func ColorModeSelectionChanged(_ sender: UISegmentedControl) {
+        switch UIColorModeSegmentedControl.selectedSegmentIndex {
+        case 0:
+            Options.colorMode = .System
+        case 1:
+            Options.colorMode = .Light
+        case 2:
+            Options.colorMode = .Dark
+        default:
+            print("Missing Color Mode")
+        }
+        
+        updateColorMode()
+    }
+
+    @IBAction private func SaveButtonPressed(_ sender: UIButton) {
+        switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
+        case 0:
+            Options.language = .En
+        case 1:
+            Options.language = .Ru
+        default:
+            Options.language = .En
+            print("Localization not found")
+        }
+        
+        Options.isSoundEnabled = SoundEnabledSwitch.isOn
+        Options.isVibrationEnabled = VibrationEnabledSwitch.isOn
+        
+        switch GameTypeSegmentedControl.selectedSegmentIndex {
+        case 0:
+            Options.gameType = .PigGame1Dice
+        case 1:
+            Options.gameType = .PigGame2Dice
+        default:
+            break
+        }
+        
+        Options.player1Name     = Player1NameTextField.text ?? Options.player1Name
+        Options.player2Name     = Player2NameTextField.text ?? Options.player2Name
+        Options.is2ndPlayerAI   = Is2ndPlayerAISwitch.isOn
+        
+        if let newScoreLimitString = ScoreLimitTextField.text {
+            if let newScoreLimit = Int(newScoreLimitString) {
+                if 10...1000 ~= newScoreLimit {
+                    Options.scoreLimit = newScoreLimit
+                } else {
+                    updateUI()
+                    print("Invalid score limit range, reverting to default")
+                }
+            }
+        }
+            
+        // Save options, call delegate to localise the Game screen and dismiss view controller
+        Options.save()
+        optionsViewControllerDelegate?.viewWillDimiss()
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -38,23 +141,29 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         
         Options.load()
         updateColorMode()
-        localiseUI()
+        localizeUI()
         updateUI()
     }
+
+    // Dismiss keyboard after pressing Return key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
-    private func localiseUI() {
+    private func localizeUI() {
         let language = Options.language
                 
-        SoundEnabledTitle.text  = LocalizedUI.soundEnabledSwitch.translate(to: language)
+        SoundEnabledTitle.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
         VibrationEnabledTitle.text = LocalizedUI.vibrationEnabledSwitch.translate(to: language)
-        ColorModeTitle.text     = LocalizedUI.colorModeSelectionTitle.translate(to: language)
+        ColorModeTitle.text = LocalizedUI.colorModeSelectionLabel.translate(to: language)
         
-        Player1NameTitle.text    = LocalizedUI.player1NameTitle.translate(to: language)
-        Player2NameTitle.text    = LocalizedUI.player2NameTitle.translate(to: language)
-        Is2ndPlayerAITitile.text = LocalizedUI.is2ndPlayerAITitle.translate(to: language)
+        Player1NameLabel.text    = LocalizedUI.player1NameLabel.translate(to: language)
+        Player2NameLabel.text    = LocalizedUI.player2NameLabel.translate(to: language)
+        Is2ndPlayerAILabel.text = LocalizedUI.is2ndPlayerAILabel.translate(to: language)
         
-        ScoreLimitTitle.text = LocalizedUI.scoreLimitTitle.translate(to: language)
-        GameTypeTitle.text   = LocalizedUI.gameTypeTitle.translate(to: language)
+        ScoreLimitLabel.text = LocalizedUI.scoreLimitLabel.translate(to: language)
+        GameTypeTitle.text   = LocalizedUI.gameTypeLabel.translate(to: language)
         
         NoteLabel.text          = LocalizedUI.noteLabel.translate(to: language)
         NoteLabel.textAlignment = .natural
@@ -92,7 +201,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             UIColorModeSegmentedControl.selectedSegmentIndex = 2
         }
            
-        SoundEnabledSwitch.isOn = Options.isSoundEnabled
+        SoundEnabledSwitch.isOn     = Options.isSoundEnabled
         VibrationEnabledSwitch.isOn = Options.isVibrationEnabled
         
         switch Options.gameType {
@@ -117,112 +226,5 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         case .Dark:
             overrideUserInterfaceStyle = .dark
         }
-    }
-    
-    @IBOutlet private weak var LanguageSelectionSegmentedControl: UISegmentedControl!
-    
-    @IBOutlet private weak var SoundEnabledTitle: UILabel!
-    @IBOutlet private weak var SoundEnabledSwitch: UISwitch!
-    
-    @IBOutlet weak var VibrationEnabledTitle: UILabel!
-    @IBOutlet weak var VibrationEnabledSwitch: UISwitch!
-    
-    @IBOutlet private weak var ColorModeTitle: UILabel!
-    @IBOutlet private weak var UIColorModeSegmentedControl: UISegmentedControl!
-    
-    @IBOutlet private weak var Player1NameTitle: UILabel!
-    @IBOutlet private weak var Player1NameTextField: UITextField!
-    
-    @IBOutlet private weak var Player2NameTitle: UILabel!
-    @IBOutlet private weak var Player2NameTextField: UITextField!
-    
-    @IBOutlet private weak var Is2ndPlayerAITitile: UILabel!
-    @IBOutlet private weak var Is2ndPlayerAISwitch: UISwitch!
-    
-    @IBOutlet private weak var ScoreLimitTitle: UILabel!
-    @IBOutlet private weak var ScoreLimitTextField: UITextField!
-    
-    @IBOutlet private weak var GameTypeTitle: UILabel!
-    @IBOutlet private weak var GameTypeSegmentedControl: UISegmentedControl!
-    
-    @IBOutlet private weak var NoteLabel: UILabel!
-    
-    @IBOutlet private weak var CancelButton: UIButton!
-    @IBOutlet private weak var SaveButton: UIButton!
-    
-    // Changes localisation on the fly
-    @IBAction private func LanguageSelectionChanged(_ sender: UISegmentedControl) {
-        switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
-        case 0:
-            Options.language = .En
-        case 1:
-            Options.language = .Ru
-        default:
-            print("Missing language selected")
-        }
-        
-        localiseUI()
-    }
-    
-    @IBAction private func ColorModeSelectionChanged(_ sender: UISegmentedControl) {
-        switch UIColorModeSegmentedControl.selectedSegmentIndex {
-        case 0:
-            Options.colorMode = .System
-        case 1:
-            Options.colorMode = .Light
-        case 2:
-            Options.colorMode = .Dark
-        default:
-            print("Missing Color Mode")
-        }
-        
-        updateColorMode()
-    }
-    
-    // Returt to the main screen without saving any changes to the Options
-    @IBAction private func CancelButtonPressed(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction private func SaveButtonPressed(_ sender: UIButton) {
-        switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
-        case 0:
-            Options.language = .En
-        case 1:
-            Options.language = .Ru
-        default:
-            Options.language = .En
-            print("Localization not found")
-        }
-        
-        Options.isSoundEnabled = SoundEnabledSwitch.isOn
-        Options.isVibrationEnabled = VibrationEnabledSwitch.isOn
-        
-        switch GameTypeSegmentedControl.selectedSegmentIndex {
-        case 0:
-            Options.gameType = .PigGame1Dice
-        case 1:
-            Options.gameType = .PigGame2Dice
-        default:
-            break
-        }
-        
-        Options.player1Name = Player1NameTextField.text ?? Options.player1Name
-        Options.player2Name = Player2NameTextField.text ?? Options.player2Name
-        Options.is2ndPlayerAI = Is2ndPlayerAISwitch.isOn
-        
-        if let scoreLimitString = ScoreLimitTextField.text {
-            if let scoreLimitInt = Int(scoreLimitString) {
-                Options.scoreLimit = scoreLimitInt
-            } else {
-                print("Invalid score limit input")
-            }
-        }
-        
-        // Save options, call delegate to localise the Game screen and dismiss view controller
-        Options.save()
-        optionsViewControllerDelegate?.viewWillDimiss()
-        
-        self.dismiss(animated: true, completion: nil)
     }
 }

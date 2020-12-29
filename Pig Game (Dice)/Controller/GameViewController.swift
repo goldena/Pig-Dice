@@ -18,18 +18,18 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     // StackView for programmatically adding/removing 2-nd Dice
     @IBOutlet private weak var DiceImagesStackView: UIStackView!
     
-    @IBOutlet private weak var CurrentScoreTitle: UILabel!
     @IBOutlet private weak var CurrentScoreLabel: UILabel!
+    @IBOutlet private weak var CurrentScoreValue: UILabel!
     
-    @IBOutlet private weak var ScoreLimitTitle: UILabel!
     @IBOutlet private weak var ScoreLimitLabel: UILabel!
+    @IBOutlet private weak var ScoreLimitValue: UILabel!
     
-    @IBOutlet private weak var TotalScoresTitle: UILabel!
-    @IBOutlet private weak var PlayerOneScoreLabel: UILabel!
-    @IBOutlet private weak var PlayerTwoScoreLabel: UILabel!
+    @IBOutlet private weak var TotalScoresLabel: UILabel!
+    @IBOutlet private weak var PlayerOneScoreValue: UILabel!
+    @IBOutlet private weak var PlayerTwoScoreValue: UILabel!
     
-    @IBOutlet private weak var CurrentPlayerTitle: UILabel!
     @IBOutlet private weak var CurrentPlayerLabel: UILabel!
+    @IBOutlet private weak var CurrentPlayerName: UILabel!
     
     @IBAction private func RollButtonPressed(_ sender: UIButton) {
         roll()
@@ -305,10 +305,10 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         HoldButton.setTitle(LocalizedUI.holdButton.translate(to: language), for: .normal)
         
         // Localise text
-        CurrentScoreTitle.text  = LocalizedUI.currentScoreTitle.translate(to: language)
-        ScoreLimitTitle.text    = LocalizedUI.scoreLimitTitle.translate(to: language)
-        TotalScoresTitle.text   = LocalizedUI.totalScoresTitle.translate(to: language)
-        CurrentPlayerTitle.text = LocalizedUI.currentPlayerTitle.translate(to: language)
+        CurrentScoreLabel.text  = LocalizedUI.currentScoreLabel.translate(to: language)
+        ScoreLimitLabel.text    = LocalizedUI.scoreLimitLabel.translate(to: language)
+        TotalScoresLabel.text   = LocalizedUI.totalScoresLabel.translate(to: language)
+        CurrentPlayerLabel.text = LocalizedUI.currentPlayerLabel.translate(to: language)
     }
     
     private func updateUI() {
@@ -327,11 +327,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             }
         }
         
-        ScoreLimitLabel.text     = String(game.scoreLimit)
-        CurrentPlayerLabel.text  = game.activePlayer.name
-        PlayerOneScoreLabel.text = "\(game.player1.name): \(game.player1.totalScore)"
-        PlayerTwoScoreLabel.text = "\(game.player2.name): \(game.player2.totalScore)"
-        CurrentScoreLabel.text   = "\(game.activePlayer.roundScore)"
+        ScoreLimitValue.text     = String(game.scoreLimit)
+        CurrentPlayerName.text  = game.activePlayer.name
+        PlayerOneScoreValue.text = "\(game.player1.name): \(game.player1.totalScore)"
+        PlayerTwoScoreValue.text = "\(game.player2.name): \(game.player2.totalScore)"
+        CurrentScoreValue.text   = "\(game.activePlayer.roundScore)"
     }
 }
 

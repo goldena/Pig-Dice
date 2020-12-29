@@ -19,8 +19,8 @@ enum LocalizedUI {
     case alertActionTitle
 
     // Game View - Alerts
-    case newGameMessage
     case newGameTitle
+    case newGameMessage
 
     case winnerTitle
     case victoryMessage
@@ -35,10 +35,10 @@ enum LocalizedUI {
     case threwTwo6Message
     
     // Game View - Text
-    case currentScoreTitle
-    case scoreLimitTitle
-    case totalScoresTitle
-    case currentPlayerTitle
+    case currentScoreLabel
+    case scoreLimitLabel
+    case totalScoresLabel
+    case currentPlayerLabel
 
     // Game View - Buttons
     case newGameButton
@@ -46,12 +46,13 @@ enum LocalizedUI {
     case rollButton
     
     // Options View - Text
-    case player1NameTitle
-    case player2NameTitle
-    // case scoreLimitTitle - reuse of the same one from the Game View
+    case player1NameLabel
+    case player2NameLabel
+    // case scoreLimitLabel - reuse of the same one from the Game View
+    case scoreLimitRangeLabel
     case noteLabel
-    case gameTypeTitle
-    case colorModeSelectionTitle
+    case gameTypeLabel
+    case colorModeSelectionLabel
     case colorSysModeSegmentedControlLabel
     case colorLightModeSegmentedControlLabel
     case colorDarkModeSegmentedControlLabel
@@ -63,11 +64,11 @@ enum LocalizedUI {
     case cancelButton
     case with1DiceSegmentedControlLabel
     case with2DiceSegmentedControlLabel
-    case is2ndPlayerAITitle
+    case is2ndPlayerAILabel
 
     // Help View - Text
     case gameRulesTextView
-
+    
     // Help View - Buttons
     case backButton
     
@@ -116,14 +117,14 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
                              .Ru: "- выбросил 6 два раза подряд, общие очки теперь ноль"],
     
     // Game View - Text
-    .scoreLimitTitle:   [.En: "Score Limit:",
+    .scoreLimitLabel:   [.En: "Score Limit:",
                          .Ru: "Лимит очков:"],
-    .currentScoreTitle: [.En: "Score:",
+    .currentScoreLabel: [.En: "Score:",
                          .Ru: "Очки:"],
-    .totalScoresTitle:  [.En: "Total Scores",
+    .totalScoresLabel:  [.En: "Total Scores",
                          .Ru: "Всего очков"],
     
-    .currentPlayerTitle: [.En: "Player:",
+    .currentPlayerLabel: [.En: "Player:",
                           .Ru: "Игрок:"],
 
     
@@ -141,7 +142,7 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .vibrationEnabledSwitch: [.En: "Vibration",
                               .Ru: "Вибрация"],
     
-    .colorModeSelectionTitle:               [.En: "Color Mode",
+    .colorModeSelectionLabel:               [.En: "Color Mode",
                                              .Ru: "Цветовая схема"],
     .colorSysModeSegmentedControlLabel:     [.En: "System",
                                              .Ru: "Системы"],
@@ -150,25 +151,28 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .colorDarkModeSegmentedControlLabel:    [.En: "Dark",
                                              .Ru: "Тёмная"],
     
-    .player1NameTitle:      [.En: "1st Player's Name",
+    .player1NameLabel:      [.En: "1st Player's Name",
                              .Ru: "Имя игрока 1"],
-    .player2NameTitle:      [.En: "2nd Player'a Name",
+    .player2NameLabel:      [.En: "2nd Player'a Name",
                              .Ru: "Имя игрока 2"],
-    .is2ndPlayerAITitle:    [.En: "2nd Player is AI",
+    .is2ndPlayerAILabel:    [.En: "2nd Player is AI",
                              .Ru: "2-ой игрок - ИИ"],
     
     // Reuse of the same one from the Options View
-    // .scoreLimitTitle: [.En: "Score Limit",
+    // .scoreLimitLabel: [.En: "Score Limit",
     //                    .Ru: "Лимит очков"],
- 
-    .gameTypeTitle: [.En: "Play with",
+
+    .scoreLimitRangeLabel:  [.En: "* in range from 10 to 1000",
+                             .Ru: "* в пределах от 10 до 1000"],
+
+    .gameTypeLabel: [.En: "Play with",
                      .Ru: "Играть с"],
     
     .noteLabel: [.En:
                     """
                     Note: Game-related options will take effect after pressing NEW GAME button at the top of the game's main screen, after one of the players wins the current game in progress, or after restarting the app.
                     """,
-                 .Ru:
+                    .Ru:
                     """
                     Примечание: изменения относящиеся к правилам игры вступят в силу после нажания кнопки НОВАЯ ИГРА вверху главного экрана игры, выигрыша любого из игроков в текущей игре, либо после перезапуска приложения.
                     """],

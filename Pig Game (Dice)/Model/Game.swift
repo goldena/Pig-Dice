@@ -12,8 +12,8 @@ struct Game {
     var player2 = Player(name: Const.DefaultPlayer2Name, isAI: Const.Is2ndPlayerAI)
     lazy var activePlayer = randomPlayer()
     
-    var gameType = Options.gameType
-    var scoreLimit = Options.scoreLimit
+    var gameType    = Options.gameType
+    var scoreLimit  = Options.scoreLimit
     
     // Returns a random player
     func randomPlayer() -> Player {
