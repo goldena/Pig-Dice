@@ -9,18 +9,8 @@ GAME RULES:
 - The player can choose to 'Hold', which means that his ROUND score gets added to his TOTAL score. After that, it's the next player's turn
 - The first player to reach 100 (the number can be changed in the options) points in total - wins the game
 
-<div class="row">
-  <div class="column">
-    <img src="Screenshots/img1.png" alt=Gameplay" width="250">
-  </div>
-  <div class="column">
-    <img src="Screenshots/img2.png" alt=Options" width="250">
-  </div>
-  <div class="column">
-    <img src="Screenshots/img3.png" alt=Help" width="250">
-  </div>
-</div>
-
-<img src="Screenshots/img1.png" alt="Gameplay Screenshot" width="250"/>
-<img src="Screenshots/img2.png" alt="Gameplay Screenshot" width="250"/>
-<img src="Screenshots/img3.png" alt="Gameplay Screenshot" width="250"/>
+<p float="left">
+  <img src="Screenshots/img1.png" alt=Gameplay" width="250">
+  <img src="Screenshots/img3.png" alt=Options" width="250">
+  <img src="Screenshots/img2.png" alt=Options" width="250">
+</p>
