@@ -9,6 +9,6 @@ GAME RULES:
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
 - The first player to reach 100 (the number can be changed in the options) points in total - wins the game
 
-![Screenshot 1](Screenshots/img1.png?raw=true "Gameplay" | width=100px)
+![Screenshot 1](Screenshots/img1.png?raw=true "Gameplay")
 
 [[Screenshots/img1.png|width=400px]]
