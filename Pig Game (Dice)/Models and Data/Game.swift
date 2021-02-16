@@ -8,23 +8,28 @@
 import Foundation
 
 struct Game {
+    // MARK: - Property(s)
+    
     var player1 = Player(name: Const.DefaultPlayer1Name, isAI: false)
     var player2 = Player(name: Const.DefaultPlayer2Name, isAI: Const.Is2ndPlayerAI)
+
     lazy var activePlayer = randomPlayer()
     
     var gameType    = Options.gameType
     var scoreLimit  = Options.scoreLimit
     
+    // MARK: - Method(s)
+    
     // Returns a random player
     func randomPlayer() -> Player {
-        if Int.random(in: 1...2) == 1  {
+        if Bool.random()  {
             return player1
         } else {
             return player2
         }
     }
     
-    // Clear current player, switch to the next player
+    // Clear current player's state, switch to the next player
     mutating func nextPlayer() {
         activePlayer.clearAfterRound()
         
@@ -48,8 +53,10 @@ struct Game {
             } else {
                 player.roundScore += 6
             }
+            
         case 1:
             player.roundScore = 0
+            
         default:
             player.roundScore += dice
         }
@@ -63,8 +70,10 @@ struct Game {
         case (6, 6):
             player.totalScore = 0
             player.roundScore = 0
+            
         case (1, _), (_, 1):
             player.roundScore = 0
+            
         default:
             player.roundScore += dice1 + dice2
         }

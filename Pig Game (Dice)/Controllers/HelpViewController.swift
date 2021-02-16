@@ -9,6 +9,8 @@ import UIKit
 
 class HelpViewController: UIViewController {
 
+    // MARK: - Outlet(s)
+    
     @IBOutlet private weak var GameRulesTextView: UITextView!
     
     @IBOutlet private weak var BackButton: UIButton!
@@ -17,6 +19,8 @@ class HelpViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +28,8 @@ class HelpViewController: UIViewController {
         localizeUI()
     }
 
+    // MARK: - Method(s)
+    
     private func localizeUI() {
         let language = Options.language
         

@@ -8,6 +8,9 @@
 import Foundation
 
 class Player {
+
+    // MARK: - Property(s)
+    
     var name: String
     var isAI: Bool
 
@@ -16,6 +19,8 @@ class Player {
     var dice1: Int? = nil
     var dice2: Int? = nil
     var previousDiceIs6: Bool = false
+    
+    // MARK: - Method(s)
     
     func rollDice() {
         dice1 = Int.random(in: 1...6)

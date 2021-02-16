@@ -105,9 +105,9 @@
 		CFE937D7252E7D3D009F7CB2 /* Pig Game (Dice) */ = {
 			isa = PBXGroup;
 			children = (
-				CFE937ED252E85B4009F7CB2 /* Model */,
-				CFE937EE252E85BD009F7CB2 /* View */,
-				CFE937EF252E85CB009F7CB2 /* Controller */,
+				CFE937ED252E85B4009F7CB2 /* Models and Data */,
+				CFE937EE252E85BD009F7CB2 /* Views */,
+				CFE937EF252E85CB009F7CB2 /* Controllers */,
 				CFB46DAD2597D60500ADB6FD /* CustomViews */,
 				CFBBD7462587F5C200CA625A /* Sounds */,
 				CF9F1B4C2540D88500C1979F /* Fonts */,
@@ -119,7 +119,7 @@
 			path = "Pig Game (Dice)";
 			sourceTree = "<group>";
 		};
-		CFE937ED252E85B4009F7CB2 /* Model */ = {
+		CFE937ED252E85B4009F7CB2 /* Models and Data */ = {
 			isa = PBXGroup;
 			children = (
 				CFE937F0252E8634009F7CB2 /* Game.swift */,
@@ -128,19 +128,19 @@
 				CFD6115B2530F806008CF24A /* Player.swift */,
 				CF52AFBB254ED91D0077F737 /* Options.swift */,
 			);
-			path = Model;
+			path = "Models and Data";
 			sourceTree = "<group>";
 		};
-		CFE937EE252E85BD009F7CB2 /* View */ = {
+		CFE937EE252E85BD009F7CB2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				CFE937E3252E7D40009F7CB2 /* LaunchScreen.storyboard */,
 				CFE937DE252E7D3D009F7CB2 /* Main.storyboard */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		CFE937EF252E85CB009F7CB2 /* Controller */ = {
+		CFE937EF252E85CB009F7CB2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				CFE937DC252E7D3D009F7CB2 /* GameViewController.swift */,
@@ -148,7 +148,7 @@
 				CFE2D9732546231F00565EB8 /* HelpViewController.swift */,
 				CFBBD7432587F4FD00CA625A /* Sound&HapticController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

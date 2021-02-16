@@ -8,6 +8,9 @@
 import Foundation
 
 class Options {
+    
+    // MARK: - Property(s)
+    
     private static let userDefaults = UserDefaults.standard
     
     // Default values for the first launch of the game
@@ -23,6 +26,8 @@ class Options {
     static var gameType: GameType   = Const.DefaultTypeOfGame
     static var scoreLimit: Int      = Const.DefaultScoreLimit
     
+    // MARK: - Method(s)
+    
     // If the app is launched for the first time, then save defaults
     static func onFirstLaunch() {
         if userDefaults.bool(forKey: "DefaultsSaved") == false {
@@ -35,15 +40,18 @@ class Options {
         if let language = userDefaults.string(forKey: "Language") {
             Options.language = Language.init(rawValue: language) ?? .En
         }
+        
         if let colorMode = userDefaults.string(forKey: "ColorMode") {
             Options.colorMode = ColorMode.init(rawValue: colorMode) ?? .System
         }
+        
         Options.isSoundEnabled = userDefaults.bool(forKey: "IsSoundEnabled")
         Options.isVibrationEnabled = userDefaults.bool(forKey: "IsVibrationEnabled")
         
         if let player1Name = userDefaults.string(forKey: "Player1Name") {
             Options.player1Name = player1Name
         }
+        
         if let player2Name = userDefaults.string(forKey: "Player2Name") {
             Options.player2Name = player2Name
         }
@@ -61,16 +69,16 @@ class Options {
     static func save() {
         Options.userDefaults.set(true, forKey: "DefaultsSaved")
 
-        Options.userDefaults.set(Options.language.rawValue,     forKey: "Language")
-        Options.userDefaults.set(Options.isSoundEnabled,        forKey: "IsSoundEnabled")
-        Options.userDefaults.set(Options.isVibrationEnabled,    forKey: "IsVibrationEnabled")
-        Options.userDefaults.set(Options.colorMode.rawValue,    forKey: "ColorMode")
+        Options.userDefaults.set(Options.language.rawValue, forKey: "Language")
+        Options.userDefaults.set(Options.isSoundEnabled, forKey: "IsSoundEnabled")
+        Options.userDefaults.set(Options.isVibrationEnabled, forKey: "IsVibrationEnabled")
+        Options.userDefaults.set(Options.colorMode.rawValue, forKey: "ColorMode")
 
-        Options.userDefaults.set(Options.player1Name,   forKey: "Player1Name")
-        Options.userDefaults.set(Options.player2Name,   forKey: "Player2Name")
+        Options.userDefaults.set(Options.player1Name, forKey: "Player1Name")
+        Options.userDefaults.set(Options.player2Name, forKey: "Player2Name")
         Options.userDefaults.set(Options.is2ndPlayerAI, forKey: "Is2ndPlayerAI")
 
         Options.userDefaults.set(Options.gameType.rawValue, forKey: "GameType")
-        Options.userDefaults.set(Options.scoreLimit,        forKey: "ScoreLimit")
+        Options.userDefaults.set(Options.scoreLimit, forKey: "ScoreLimit")
     }
 }
