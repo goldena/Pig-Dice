@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF18F395257594A50017873F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF18F394257594A50017873F /* Constants.swift */; };
+		CF2DDE9F25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */; };
 		CF52AFBC254ED91D0077F737 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52AFBB254ED91D0077F737 /* Options.swift */; };
 		CFB46DAB2597CD3B00ADB6FD /* customUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB46DAA2597CD3B00ADB6FD /* customUIButton.swift */; };
 		CFBBD7442587F4FD00CA625A /* Sound&HapticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBBD7432587F4FD00CA625A /* Sound&HapticController.swift */; };
@@ -27,8 +28,21 @@
 		CFF0E96D2551E7BC00D788D9 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0E96C2551E7BC00D788D9 /* Localization.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CF2DDEA125DDBE0E006ECD0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE937CD252E7D3D009F7CB2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFE937D4252E7D3D009F7CB2;
+			remoteInfo = "Pig Dice Game";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		CF18F394257594A50017873F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CF2DDE9C25DDBE0E006ECD0F /* Pig Dice GameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pig Dice GameTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pig_Dice_GameTests.swift; sourceTree = "<group>"; };
+		CF2DDEA025DDBE0E006ECD0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF52AFBB254ED91D0077F737 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		CFB46DAA2597CD3B00ADB6FD /* customUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customUIButton.swift; sourceTree = "<group>"; };
 		CFBBD7432587F4FD00CA625A /* Sound&HapticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sound&HapticController.swift"; sourceTree = "<group>"; };
@@ -38,7 +52,7 @@
 		CFE2D9702545B75300565EB8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		CFE2D9732546231F00565EB8 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		CFE2D977254E093F00565EB8 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
-		CFE937D5252E7D3D009F7CB2 /* Pig Game (Dice).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pig Game (Dice).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFE937D5252E7D3D009F7CB2 /* Pig Dice Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pig Dice Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFE937DA252E7D3D009F7CB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CFE937DC252E7D3D009F7CB2 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +65,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CF2DDE9925DDBE0E006ECD0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CFE937D2252E7D3D009F7CB2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF2DDE9D25DDBE0E006ECD0F /* Pig Dice GameTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */,
+				CF2DDEA025DDBE0E006ECD0F /* Info.plist */,
+			);
+			path = "Pig Dice GameTests";
+			sourceTree = "<group>";
+		};
 		CF9F1B4C2540D88500C1979F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,7 +119,8 @@
 		CFE937CC252E7D3D009F7CB2 = {
 			isa = PBXGroup;
 			children = (
-				CFE937D7252E7D3D009F7CB2 /* Pig Game (Dice) */,
+				CFE937D7252E7D3D009F7CB2 /* Pig Dice Game */,
+				CF2DDE9D25DDBE0E006ECD0F /* Pig Dice GameTests */,
 				CFE937D6252E7D3D009F7CB2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,12 +128,13 @@
 		CFE937D6252E7D3D009F7CB2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CFE937D5252E7D3D009F7CB2 /* Pig Game (Dice).app */,
+				CFE937D5252E7D3D009F7CB2 /* Pig Dice Game.app */,
+				CF2DDE9C25DDBE0E006ECD0F /* Pig Dice GameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CFE937D7252E7D3D009F7CB2 /* Pig Game (Dice) */ = {
+		CFE937D7252E7D3D009F7CB2 /* Pig Dice Game */ = {
 			isa = PBXGroup;
 			children = (
 				CFE937ED252E85B4009F7CB2 /* Models and Data */,
@@ -116,7 +148,7 @@
 				CFE937E1252E7D40009F7CB2 /* Assets.xcassets */,
 				CFE937E6252E7D40009F7CB2 /* Info.plist */,
 			);
-			path = "Pig Game (Dice)";
+			path = "Pig Dice Game";
 			sourceTree = "<group>";
 		};
 		CFE937ED252E85B4009F7CB2 /* Models and Data */ = {
@@ -154,9 +186,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CFE937D4252E7D3D009F7CB2 /* Pig Game (Dice) */ = {
+		CF2DDE9B25DDBE0E006ECD0F /* Pig Dice GameTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CFE937E9252E7D40009F7CB2 /* Build configuration list for PBXNativeTarget "Pig Game (Dice)" */;
+			buildConfigurationList = CF2DDEA325DDBE0E006ECD0F /* Build configuration list for PBXNativeTarget "Pig Dice GameTests" */;
+			buildPhases = (
+				CF2DDE9825DDBE0E006ECD0F /* Sources */,
+				CF2DDE9925DDBE0E006ECD0F /* Frameworks */,
+				CF2DDE9A25DDBE0E006ECD0F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF2DDEA225DDBE0E006ECD0F /* PBXTargetDependency */,
+			);
+			name = "Pig Dice GameTests";
+			productName = "Pig Dice GameTests";
+			productReference = CF2DDE9C25DDBE0E006ECD0F /* Pig Dice GameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CFE937D4252E7D3D009F7CB2 /* Pig Dice Game */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFE937E9252E7D40009F7CB2 /* Build configuration list for PBXNativeTarget "Pig Dice Game" */;
 			buildPhases = (
 				CFE937D1252E7D3D009F7CB2 /* Sources */,
 				CFE937D2252E7D3D009F7CB2 /* Frameworks */,
@@ -166,9 +216,9 @@
 			);
 			dependencies = (
 			);
-			name = "Pig Game (Dice)";
+			name = "Pig Dice Game";
 			productName = "Pig Game (Dice)";
-			productReference = CFE937D5252E7D3D009F7CB2 /* Pig Game (Dice).app */;
+			productReference = CFE937D5252E7D3D009F7CB2 /* Pig Dice Game.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -177,15 +227,19 @@
 		CFE937CD252E7D3D009F7CB2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					CF2DDE9B25DDBE0E006ECD0F = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = CFE937D4252E7D3D009F7CB2;
+					};
 					CFE937D4252E7D3D009F7CB2 = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
 				};
 			};
-			buildConfigurationList = CFE937D0252E7D3D009F7CB2 /* Build configuration list for PBXProject "Pig Game (Dice)" */;
+			buildConfigurationList = CFE937D0252E7D3D009F7CB2 /* Build configuration list for PBXProject "Pig Dice Game" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -198,12 +252,20 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CFE937D4252E7D3D009F7CB2 /* Pig Game (Dice) */,
+				CFE937D4252E7D3D009F7CB2 /* Pig Dice Game */,
+				CF2DDE9B25DDBE0E006ECD0F /* Pig Dice GameTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CF2DDE9A25DDBE0E006ECD0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CFE937D3252E7D3D009F7CB2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,6 +282,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CF2DDE9825DDBE0E006ECD0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF2DDE9F25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CFE937D1252E7D3D009F7CB2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +311,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CF2DDEA225DDBE0E006ECD0F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFE937D4252E7D3D009F7CB2 /* Pig Dice Game */;
+			targetProxy = CF2DDEA125DDBE0E006ECD0F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		CFE937DE252E7D3D009F7CB2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -261,6 +339,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CF2DDEA425DDBE0E006ECD0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YLBX7YJ47Z;
+				INFOPLIST_FILE = "Pig Dice GameTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.denisgoloborodko.Pig-Dice-GameTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pig Dice Game.app/Pig Dice Game";
+			};
+			name = Debug;
+		};
+		CF2DDEA525DDBE0E006ECD0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YLBX7YJ47Z;
+				INFOPLIST_FILE = "Pig Dice GameTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.denisgoloborodko.Pig-Dice-GameTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pig Dice Game.app/Pig Dice Game";
+			};
+			name = Release;
+		};
 		CFE937E7252E7D40009F7CB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -384,12 +504,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YLBX7YJ47Z;
-				INFOPLIST_FILE = "Pig Game (Dice)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Pig Dice Game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.denisgoloborodko.Pig-Game--Dice-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.denisgoloborodko.Pig-Dice-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,12 +523,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YLBX7YJ47Z;
-				INFOPLIST_FILE = "Pig Game (Dice)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Pig Dice Game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.denisgoloborodko.Pig-Game--Dice-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.denisgoloborodko.Pig-Dice-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -418,7 +538,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CFE937D0252E7D3D009F7CB2 /* Build configuration list for PBXProject "Pig Game (Dice)" */ = {
+		CF2DDEA325DDBE0E006ECD0F /* Build configuration list for PBXNativeTarget "Pig Dice GameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF2DDEA425DDBE0E006ECD0F /* Debug */,
+				CF2DDEA525DDBE0E006ECD0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFE937D0252E7D3D009F7CB2 /* Build configuration list for PBXProject "Pig Dice Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFE937E7252E7D40009F7CB2 /* Debug */,
@@ -427,7 +556,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CFE937E9252E7D40009F7CB2 /* Build configuration list for PBXNativeTarget "Pig Game (Dice)" */ = {
+		CFE937E9252E7D40009F7CB2 /* Build configuration list for PBXNativeTarget "Pig Dice Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFE937EA252E7D40009F7CB2 /* Debug */,

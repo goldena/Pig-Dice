@@ -1,6 +1,6 @@
 //
 //  Player.swift
-//  Pig Game (Dice)
+//  Pig Dice Game
 //
 //  Created by Denis Goloborodko on 10/9/20.
 //

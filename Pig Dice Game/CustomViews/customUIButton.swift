@@ -1,6 +1,6 @@
 //
 //  customUIButton.swift
-//  Pig Game (Dice)
+//  Pig Dice Game
 //
 //  Created by Denis Goloborodko on 26.12.20.
 //

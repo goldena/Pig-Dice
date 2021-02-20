@@ -1,6 +1,6 @@
 //
-//  LocalizationEN.swift
-//  Pig Game (Dice)
+//  Localization.swift
+//  Pig Dice Game
 //
 //  Created by Denis Goloborodko on 11/3/20.
 //

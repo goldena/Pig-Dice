@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Pig Game (Dice)
+//  Pig Dice Game
 //
 //  Created by Denis Goloborodko on 10/8/20.
 //
@@ -9,6 +9,19 @@ import UIKit
 
 // Main screen view controller
 class GameViewController: UIViewController, ViewControllerDelegate {
+ 
+    // MARK: - Properties
+    
+    private var dice1ImageView: UIImageView!
+    // The second dice ImageView is programmatic, initialized depending on a game type
+    private var dice2ImageView: UIImageView!
+    
+    // For delegation needs, to dynamically update some of the options on the main game screen
+    private var optionsViewController = OptionsViewController()
+    
+    var game = Game()
+    
+    // MARK: - Properties - IBOutlet(s)
     
     @IBOutlet var ButtonsCollection: [UIButton]!
     @IBOutlet private weak var NewGameButton: UIButton!
@@ -30,34 +43,9 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     @IBOutlet private weak var CurrentPlayerLabel: UILabel!
     @IBOutlet private weak var CurrentPlayerName: UILabel!
-    
-    @IBAction private func RollButtonPressed(_ sender: UIButton) {
-        roll()
-    }
-    
-    @IBAction private func HoldButtonPressed(_ sender: UIButton) {
-        hold()
-    }
-    
-    @IBAction private func OptionsButtonPressed(_ sender: Any) {
-        self.present(optionsViewController, animated: true, completion: nil)
-    }
-    
-    @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
-        // Reloads defaults in case there were changes
-        startNewGame()
-        alertThenHandleNewGame()
-    }
+     
+    // MARK: - View Lifecycle
         
-    private var dice1ImageView: UIImageView!
-    // The second dice ImageView is programmatic, initialized depending on a game type
-    private var dice2ImageView: UIImageView!
-    
-    // For delegation needs, to dynamically update some of the options on the main game screen
-    private var optionsViewController = OptionsViewController()
-    
-    var game = Game()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,11 +58,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             .instantiateViewController(identifier: "OptionsViewController")
         optionsViewController.optionsViewControllerDelegate = self
         
-        // Create Dice 1 ImageView
-        dice1ImageView = UIImageView()
-        dice1ImageView.contentMode = .scaleAspectFit
-        dice1ImageView.translatesAutoresizingMaskIntoConstraints = false
-        DiceImagesStackView.addArrangedSubview(dice1ImageView)
+        addDice1ImageView()
         
         startNewGame()
         updateColorMode()
@@ -93,28 +77,54 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         localiseUI()
     }
     
+    private func addDice1ImageView() {
+        // Create Dice 1 ImageView
+        dice1ImageView = UIImageView()
+        dice1ImageView.translatesAutoresizingMaskIntoConstraints = false
+        dice1ImageView.contentMode = .scaleAspectFit
+        DiceImagesStackView.addArrangedSubview(dice1ImageView)
+    }
+    
     // Add or Remove ImageView for the 2nd Dice
     private func updateDiceImageViews() {
-        if Options.gameType == .PigGame2Dice && dice2ImageView == nil {
+        if game.gameType == .PigGame2Dice && dice2ImageView == nil {
             dice2ImageView = UIImageView()
             dice2ImageView!.contentMode = .scaleAspectFit
             dice2ImageView!.translatesAutoresizingMaskIntoConstraints = false
             DiceImagesStackView.addArrangedSubview(dice2ImageView!)
         }
         
-        if Options.gameType == .PigGame1Dice && dice2ImageView != nil {
+        if game.gameType == .PigGame1Dice && dice2ImageView != nil {
             dice2ImageView?.removeFromSuperview()
             dice2ImageView = nil
         }
     }
-        
+
+    // MARK: - Methods - Actions
+    
+    @IBAction private func RollButtonPressed(_ sender: UIButton) { roll() }
+    @IBAction private func HoldButtonPressed(_ sender: UIButton) { hold() }
+    
+    @IBAction private func OptionsButtonPressed(_ sender: Any) {
+        self.present(optionsViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
+        // Reloads defaults in case there were changes
+        startNewGame()
+        alertThenHandleNewGame()
+    }
+
+    // MARK: - Methods
+    
     private func alertThenHandleNewGame() {
-        alertThenHandleEvent(title: LocalizedUI.newGameTitle.translate(to: Options.language),
-                             message: LocalizedUI.newGameMessage.translate(to: Options.language),
-                             handler: {
-                                self.updateUI()
-                                self.nextMoveIfAI()
-                                })
+        alertThenHandleEvent(
+            title: LocalizedUI.newGameTitle.translate(to: Options.language),
+            message: LocalizedUI.newGameMessage.translate(to: Options.language),
+            handler: {
+                self.updateUI()
+                self.nextMoveIfAI()
+            })
     }
     
     private func startNewGame() {
@@ -126,13 +136,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func nextMoveIfAI() {
-        guard game.activePlayer.isAI else {
-            return
-        }
+        guard game.activePlayer.isAI else { return }
 
         disableButtons(ButtonsCollection)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             let AIPlayer = self.game.activePlayer
             // Hold if already had won the game
             if AIPlayer.roundScore + AIPlayer.totalScore >= Options.scoreLimit {
@@ -141,15 +149,15 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 return
             }
             
-            // Hold if previos throw was 6 (for a single dice game)
-            if Options.gameType == .PigGame1Dice && AIPlayer.previousDiceIs6 {
+            // Hold if previous throw was 6 (for a single dice game)
+            if self.game.gameType == .PigGame1Dice && AIPlayer.previousDiceIs6 {
                 self.hold()
                 self.enableButtons(self.ButtonsCollection)
                 return
             }
             
             // Hold if above some random cap, otherwise throw again
-            // TODO: impelement more sophisticated AI behaviour,
+            // TODO: implement more sophisticated AI behaviour,
             // more risk-prone, when the rival is far ahead and vice-versa
             if AIPlayer.roundScore >= Int.random(in: 12...24) {
                 self.hold()
@@ -157,7 +165,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 self.roll()
             }
             self.enableButtons(self.ButtonsCollection)
-        })
+        }
     }
         
     private func alertThenHandleRollResult(_ dice: Int) {
@@ -166,29 +174,29 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         switch dice {
         case 1:
-            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(name: player.name,
-                                                                          to: language),
-                                 message: LocalizedUI.threw1Message.translate(name: player.name,
-                                                                              to: language),
-                                 handler: {
-                                    self.game.nextPlayer()
-                                    self.updateUI()
-                                    self.nextMoveIfAI()
-                                 })
+            alertThenHandleEvent(
+                title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
+                message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
+                handler: {
+                    self.game.nextPlayer()
+                    self.updateUI()
+                    self.nextMoveIfAI()
+                })
+            
         case 6:
             if game.activePlayer.previousDiceIs6 {
-                alertThenHandleEvent(title: LocalizedUI.threw6TwiceTitle.translate(name: player.name,
-                                                                                   to: Options.language),
-                                     message: LocalizedUI.threw6TwiceMessage.translate(name: player.name,
-                                                                                       to: Options.language),
-                                     handler: {
-                                        self.game.nextPlayer()
-                                        self.updateUI()
-                                        self.nextMoveIfAI()
-                                        })
+                alertThenHandleEvent(
+                    title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: Options.language),
+                    message: LocalizedUI.threw6TwiceMessage.translate(name: player.name, to: Options.language),
+                    handler: {
+                        self.game.nextPlayer()
+                        self.updateUI()
+                        self.nextMoveIfAI()
+                    })
             } else {
                 fallthrough
             }
+            
         default:
             if dice == 6 {
                 player.previousDiceIs6 = true
@@ -205,25 +213,25 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         switch (dice1, dice2) {
         case (_, 1), (1, _):
-            alertThenHandleEvent(title: LocalizedUI.threw1Title.translate(name: player.name,
-                                                                          to: Options.language),
-                                 message: LocalizedUI.threw1Message.translate(name: player.name,
-                                                                              to: Options.language),
-                                 handler: {
-                                    self.game.nextPlayer()
-                                    self.updateUI()
-                                    self.nextMoveIfAI()
-                                 })
+            alertThenHandleEvent(
+                title: LocalizedUI.threw1Title.translate(name: player.name, to: Options.language),
+                message: LocalizedUI.threw1Message.translate(name: player.name, to: Options.language),
+                handler: {
+                    self.game.nextPlayer()
+                    self.updateUI()
+                    self.nextMoveIfAI()
+                })
+            
         case (6, 6):
-            alertThenHandleEvent(title: LocalizedUI.threwTwo6Message.translate(name: player.name,
-                                                                               to: Options.language),
-                                 message: LocalizedUI.threwTwo6Message.translate(name: player.name,
-                                                                                 to: Options.language),
-                                 handler: {
-                                    self.game.nextPlayer()
-                                    self.updateUI()
-                                    self.nextMoveIfAI()
-                                 })
+            alertThenHandleEvent(
+                title: LocalizedUI.threwTwo6Message.translate(name: player.name, to: Options.language),
+                message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: Options.language),
+                handler: {
+                    self.game.nextPlayer()
+                    self.updateUI()
+                    self.nextMoveIfAI()
+                })
+            
         default:
             nextMoveIfAI()
         }
@@ -234,6 +242,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         let player = game.activePlayer
         player.rollDice()
         
+        #warning("Check if the option for haptics works")
         playHaptic()
         
         if Options.isSoundEnabled {
@@ -241,21 +250,16 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         }
         
         if game.gameType == .PigGame1Dice {
-            guard let dice = player.dice1 else {
-                print("Dice is nil")
-                return
-            }
+            guard let dice = player.dice1 else { return }
+            
             game.calculateScores(dice)
             updateUI()
             alertThenHandleRollResult(dice)
         }
         
         if game.gameType == .PigGame2Dice {
-            guard let dice1 = player.dice1,
-                  let dice2 = player.dice2 else {
-                print("One of dice is nil")
-                return
-            }
+            guard let dice1 = player.dice1, let dice2 = player.dice2 else { return }
+            
             game.calculateScores(dice1, dice2)
             updateUI()
             alertThenHandleRollResult(dice1, dice2)
@@ -263,14 +267,14 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
         
     private func alertThenHandleVictory() {
-        alertThenHandleEvent(title: LocalizedUI.winnerTitle.translate(name: game.activePlayer.name,
-                                                                      to: Options.language),
-                             message: LocalizedUI.victoryMessage.translate(name: game.activePlayer.name,
-                                                                           to: Options.language) + String(game.activePlayer.totalScore),
-                             handler: {
-                                self.startNewGame()
-                                self.alertThenHandleNewGame()
-                             })
+        alertThenHandleEvent(
+            title: LocalizedUI.winnerTitle.translate(name: game.activePlayer.name, to: Options.language),
+            message: LocalizedUI.victoryMessage.translate(name: game.activePlayer.name, to: Options.language)
+                + String(game.activePlayer.totalScore),
+            handler: {
+                self.startNewGame()
+                self.alertThenHandleNewGame()
+            })
     }
     
     private func hold() {
@@ -291,7 +295,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private func alertThenHandleEvent(title: String, message: String, handler: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(title: LocalizedUI.alertActionTitle.translate(to: Options.language), style: .default, handler: { _ in handler() }))
+        alertController.addAction(UIAlertAction(
+            title: LocalizedUI.alertActionTitle.translate(to: Options.language),
+            style: .default,
+            handler: { _ in handler() }
+        ))
         
         self.present(alertController, animated: true, completion: nil)
     }
@@ -328,7 +336,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         }
         
         ScoreLimitValue.text     = String(game.scoreLimit)
-        CurrentPlayerName.text  = game.activePlayer.name
+        CurrentPlayerName.text   = game.activePlayer.name
         PlayerOneScoreValue.text = "\(game.player1.name): \(game.player1.totalScore)"
         PlayerTwoScoreValue.text = "\(game.player2.name): \(game.player2.totalScore)"
         CurrentScoreValue.text   = "\(game.activePlayer.roundScore)"
@@ -340,8 +348,10 @@ extension GameViewController {
         switch Options.colorMode {
         case .System:
             overrideUserInterfaceStyle = .unspecified
+            
         case .Light:
             overrideUserInterfaceStyle = .light
+            
         case .Dark:
             overrideUserInterfaceStyle = .dark
         }

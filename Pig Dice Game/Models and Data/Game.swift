@@ -1,36 +1,33 @@
 //
 //  DiceGameModel.swift
-//  Pig Game (Dice)
+//  Pig Dice Game
 //
 //  Created by Denis Goloborodko on 10/8/20.
 //
 
 import Foundation
 
-struct Game {
+class Game {
+    
     // MARK: - Property(s)
     
-    var player1 = Player(name: Const.DefaultPlayer1Name, isAI: false)
-    var player2 = Player(name: Const.DefaultPlayer2Name, isAI: Const.Is2ndPlayerAI)
-
+    var player1 = Player(name: Options.player1Name, isAI: false)
+    var player2 = Player(name: Options.player2Name, isAI: Options.is2ndPlayerAI)
+    
     lazy var activePlayer = randomPlayer()
     
-    var gameType    = Options.gameType
-    var scoreLimit  = Options.scoreLimit
+    var gameType = Options.gameType
+    var scoreLimit = Options.scoreLimit
     
     // MARK: - Method(s)
     
     // Returns a random player
     func randomPlayer() -> Player {
-        if Bool.random()  {
-            return player1
-        } else {
-            return player2
-        }
+        Bool.random() ? player1 : player2
     }
     
     // Clear current player's state, switch to the next player
-    mutating func nextPlayer() {
+    func nextPlayer() {
         activePlayer.clearAfterRound()
         
         // switch players
@@ -42,7 +39,7 @@ struct Game {
     }
     
     // Score calculation for the Pig Game with one dice
-    mutating func calculateScores(_ dice: Int) {
+    func calculateScores(_ dice: Int) {
         let player = activePlayer
         
         switch dice {
@@ -63,7 +60,7 @@ struct Game {
     }
     
     // Score calculation for the Pig Game with two dice
-    mutating func calculateScores(_ dice1: Int, _ dice2: Int) {
+    func calculateScores(_ dice1: Int, _ dice2: Int) {
         let player = activePlayer
         
         switch (dice1, dice2) {
@@ -79,12 +76,12 @@ struct Game {
         }
     }
     
-    // Init a new game with the player's names and score limit retreived from the defaults
-    mutating func initNewGame() {
+    // Init a new game with the player's names and score limit retrieved from the defaults
+    func initNewGame() {
         player1         = Player(name: Options.player1Name, isAI: false)
         player2         = Player(name: Options.player2Name, isAI: Options.is2ndPlayerAI)
         activePlayer    = randomPlayer()
-
+        
         gameType    = Options.gameType
         scoreLimit  = Options.scoreLimit
     }

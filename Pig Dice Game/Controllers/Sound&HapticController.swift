@@ -1,6 +1,6 @@
 //
 //  SoundController.swift
-//  Pig Game (Dice)
+//  Pig Dice Game
 //
 //  Created by Denis Goloborodko on 14.12.20.
 //
