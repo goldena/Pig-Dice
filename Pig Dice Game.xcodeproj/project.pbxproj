@@ -154,10 +154,10 @@
 		CFE937ED252E85B4009F7CB2 /* Models and Data */ = {
 			isa = PBXGroup;
 			children = (
+				CFD6115B2530F806008CF24A /* Player.swift */,
 				CFE937F0252E8634009F7CB2 /* Game.swift */,
 				CF18F394257594A50017873F /* Constants.swift */,
 				CFF0E96C2551E7BC00D788D9 /* Localization.swift */,
-				CFD6115B2530F806008CF24A /* Player.swift */,
 				CF52AFBB254ED91D0077F737 /* Options.swift */,
 			);
 			path = "Models and Data";

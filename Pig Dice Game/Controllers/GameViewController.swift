@@ -13,14 +13,14 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     // MARK: - Properties
     
     private var dice1ImageView: UIImageView!
-    // The second dice ImageView is programmatic, initialized depending on a game type
+    // The second dice ImageView is programmatic, initialised depending on a game type
     private var dice2ImageView: UIImageView!
     
     // For delegation needs, to dynamically update some of the options on the main game screen
     private var optionsViewController = OptionsViewController()
     
     var game = Game()
-    
+        
     // MARK: - Properties - IBOutlet(s)
     
     @IBOutlet var ButtonsCollection: [UIButton]!
@@ -94,6 +94,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             DiceImagesStackView.addArrangedSubview(dice2ImageView!)
         }
         
+        #warning("Deal with left-aligned dice for one dice game")
         if game.gameType == .PigGame1Dice && dice2ImageView != nil {
             dice2ImageView?.removeFromSuperview()
             dice2ImageView = nil
@@ -142,32 +143,49 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             let AIPlayer = self.game.activePlayer
+            
             // Hold if already had won the game
             if AIPlayer.roundScore + AIPlayer.totalScore >= Options.scoreLimit {
                 self.hold()
+                
                 self.enableButtons(self.ButtonsCollection)
                 return
             }
             
-            // Hold if previous throw was 6 (for a single dice game)
-            if self.game.gameType == .PigGame1Dice && AIPlayer.previousDiceIs6 {
-                self.hold()
-                self.enableButtons(self.ButtonsCollection)
-                return
+            // Hold if previous throw was 6 (for a one dice game)
+            if self.game.gameType == .PigGame1Dice {
+                if let dice = AIPlayer.dice1 {
+                    if dice == 6 {
+                        self.hold()
+                        
+                        self.enableButtons(self.ButtonsCollection)
+                        return
+                    }
+                }
             }
             
             // Hold if above some random cap, otherwise throw again
             // TODO: implement more sophisticated AI behaviour,
-            // more risk-prone, when the rival is far ahead and vice-versa
+            // more risk-prone, when the rival is close to winning the game and vice-versa
             if AIPlayer.roundScore >= Int.random(in: 12...24) {
                 self.hold()
             } else {
                 self.roll()
             }
+            
             self.enableButtons(self.ButtonsCollection)
         }
     }
+     
+    // Handle switching to the next player
+    func handleNextPlayer() {
+        game.activePlayer.clearStateAfterRound()
+        game.nextPlayer()
         
+        updateUI()
+        nextMoveIfAI()
+    }
+    
     private func alertThenHandleRollResult(_ dice: Int) {
         let player = game.activePlayer
         let language = Options.language
@@ -178,48 +196,36 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
                 handler: {
-                    self.game.nextPlayer()
-                    self.updateUI()
-                    self.nextMoveIfAI()
+                    self.handleNextPlayer()
                 })
             
         case 6:
-            if game.activePlayer.previousDiceIs6 {
+            if player.previousDice != nil && player.previousDice == 6 {
                 alertThenHandleEvent(
                     title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: Options.language),
                     message: LocalizedUI.threw6TwiceMessage.translate(name: player.name, to: Options.language),
                     handler: {
-                        self.game.nextPlayer()
-                        self.updateUI()
-                        self.nextMoveIfAI()
+                        self.handleNextPlayer()
                     })
             } else {
                 fallthrough
             }
             
         default:
-            if dice == 6 {
-                player.previousDiceIs6 = true
-            } else {
-                player.previousDiceIs6 = false
-            }
-                
             nextMoveIfAI()
         }
     }
     
     private func alertThenHandleRollResult(_ dice1: Int, _ dice2: Int) {
         let player = game.activePlayer
-        
+                
         switch (dice1, dice2) {
         case (_, 1), (1, _):
             alertThenHandleEvent(
                 title: LocalizedUI.threw1Title.translate(name: player.name, to: Options.language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: Options.language),
                 handler: {
-                    self.game.nextPlayer()
-                    self.updateUI()
-                    self.nextMoveIfAI()
+                    self.handleNextPlayer()
                 })
             
         case (6, 6):
@@ -227,9 +233,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 title: LocalizedUI.threwTwo6Message.translate(name: player.name, to: Options.language),
                 message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: Options.language),
                 handler: {
-                    self.game.nextPlayer()
-                    self.updateUI()
-                    self.nextMoveIfAI()
+                    self.handleNextPlayer()
                 })
             
         default:
@@ -240,6 +244,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private func roll() {
         // Game mechanics: roll, calculate scores, check conditions, display alerts
         let player = game.activePlayer
+
         player.rollDice()
         
         #warning("Check if the option for haptics works")

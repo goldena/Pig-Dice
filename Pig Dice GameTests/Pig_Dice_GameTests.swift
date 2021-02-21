@@ -56,7 +56,7 @@ class Pig_1Dice_GameTests: XCTestCase {
         sut.calculateScores(6)
         sut.activePlayer.holdRoundScore()
 
-        XCTAssertEqual(sut.activePlayer.previousDiceIs6, true)
+        XCTAssertEqual(sut.activePlayer.previousDice, true)
         XCTAssertEqual(sut.activePlayer.roundScore, 6)
         XCTAssertEqual(sut.activePlayer.totalScore, 8)
     }

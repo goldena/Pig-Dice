@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Game {
+struct Game {
     
     // MARK: - Property(s)
     
@@ -26,11 +26,8 @@ class Game {
         Bool.random() ? player1 : player2
     }
     
-    // Clear current player's state, switch to the next player
-    func nextPlayer() {
-        activePlayer.clearAfterRound()
-        
-        // switch players
+    // Switch to the next player
+    mutating func nextPlayer() {
         if activePlayer === player1 {
             activePlayer = player2
         } else {
@@ -39,20 +36,20 @@ class Game {
     }
     
     // Score calculation for the Pig Game with one dice
-    func calculateScores(_ dice: Int) {
+    mutating func calculateScores(_ dice: Int) {
         let player = activePlayer
         
         switch dice {
-        case 6:
-            if player.previousDiceIs6 {
-                player.totalScore = 0
-                player.roundScore = 0
-            } else {
-                player.roundScore += 6
-            }
-            
         case 1:
             player.roundScore = 0
+
+        case 6:
+            if player.previousDice == 6 {
+                player.roundScore = 0
+                player.totalScore = 0
+            } else {
+                fallthrough
+            }
             
         default:
             player.roundScore += dice
@@ -60,24 +57,24 @@ class Game {
     }
     
     // Score calculation for the Pig Game with two dice
-    func calculateScores(_ dice1: Int, _ dice2: Int) {
+    mutating func calculateScores(_ dice1: Int, _ dice2: Int) {
         let player = activePlayer
         
         switch (dice1, dice2) {
-        case (6, 6):
-            player.totalScore = 0
-            player.roundScore = 0
-            
         case (1, _), (_, 1):
             player.roundScore = 0
-            
+
+        case (6, 6):
+            player.roundScore = 0
+            player.totalScore = 0
+
         default:
             player.roundScore += dice1 + dice2
         }
     }
     
     // Init a new game with the player's names and score limit retrieved from the defaults
-    func initNewGame() {
+    mutating func initNewGame() {
         player1         = Player(name: Options.player1Name, isAI: false)
         player2         = Player(name: Options.player2Name, isAI: Options.is2ndPlayerAI)
         activePlayer    = randomPlayer()

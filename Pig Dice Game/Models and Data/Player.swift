@@ -16,28 +16,39 @@ class Player {
 
     var totalScore = 0
     var roundScore = 0
+    
     var dice1: Int? = nil
     var dice2: Int? = nil
-    var previousDiceIs6: Bool = false
+    var previousDice: Int? = nil
     
     // MARK: - Method(s)
     
     func rollDice() {
+        previousDice = dice1
+            
         dice1 = Int.random(in: 1...6)
         dice2 = Int.random(in: 1...6)
     }
         
     func holdRoundScore() {
         totalScore += roundScore
+        
+        clearStateAfterRound()
     }
     
-    func clearAfterRound() {
+    func clearStateAfterRound() {
         roundScore = 0
-        previousDiceIs6 = false
         dice1 = nil
         dice2 = nil
+        previousDice = nil
     }
-         
+     
+    func clearStateAfterGame() {
+        clearStateAfterRound()
+        
+        totalScore = 0
+    }
+    
     init(name: String, isAI: Bool) {
         self.name = name
         self.isAI = isAI
