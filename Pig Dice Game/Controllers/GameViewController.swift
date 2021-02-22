@@ -12,8 +12,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
  
     // MARK: - Properties
     
+    // Dice ImageView are programmatically added or remover, depending on a game type
     private var dice1ImageView: UIImageView!
-    // The second dice ImageView is programmatic, initialised depending on a game type
     private var dice2ImageView: UIImageView!
     
     // For delegation needs, to dynamically update some of the options on the main game screen
@@ -28,7 +28,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     @IBOutlet private weak var RollButton: UIButton!
     @IBOutlet private weak var HoldButton: UIButton!
     
-    // StackView for programmatically adding/removing 2-nd Dice
+    // StackView for programmatically adding/removing Dice
     @IBOutlet private weak var DiceImagesStackView: UIStackView!
     
     @IBOutlet private weak var CurrentScoreLabel: UILabel!
@@ -51,23 +51,43 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         // Save initial defaults if the game is launched for the first time
         Options.onFirstLaunch()
-        Options.load()
         
         // Instantiate Options ViewController for delegation
         optionsViewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(identifier: "OptionsViewController")
         optionsViewController.optionsViewControllerDelegate = self
         
-        addDice1ImageView()
+        addDiceImageView(&dice1ImageView)
+        addDiceImageView(&dice2ImageView)
         
         startNewGame()
         updateColorMode()
         updateUI()
     }
+ 
+    private func addDiceImageView( _ diceImageView: inout UIImageView!) {
+        // Create Dice ImageView and add it to the StackView
+        diceImageView = UIImageView()
+        diceImageView.translatesAutoresizingMaskIntoConstraints = false
+        diceImageView.contentMode = .scaleAspectFit
+        DiceImagesStackView.addArrangedSubview(diceImageView)
+    }
+    
+    // Show or hide the second dice ImageView
+    private func updateDiceImageViews() {
+        switch game.gameType {
+        case .PigGame1Dice:
+            dice2ImageView.isHidden = true
+            
+        case .PigGame2Dice:
+            dice2ImageView.isHidden = false
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        updateDiceImageViews()
         alertThenHandleNewGame()
     }
     
@@ -76,31 +96,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         updateColorMode()
         localiseUI()
     }
-    
-    private func addDice1ImageView() {
-        // Create Dice 1 ImageView
-        dice1ImageView = UIImageView()
-        dice1ImageView.translatesAutoresizingMaskIntoConstraints = false
-        dice1ImageView.contentMode = .scaleAspectFit
-        DiceImagesStackView.addArrangedSubview(dice1ImageView)
-    }
-    
-    // Add or Remove ImageView for the 2nd Dice
-    private func updateDiceImageViews() {
-        if game.gameType == .PigGame2Dice && dice2ImageView == nil {
-            dice2ImageView = UIImageView()
-            dice2ImageView!.contentMode = .scaleAspectFit
-            dice2ImageView!.translatesAutoresizingMaskIntoConstraints = false
-            DiceImagesStackView.addArrangedSubview(dice2ImageView!)
-        }
         
-        #warning("Deal with left-aligned dice for one dice game")
-        if game.gameType == .PigGame1Dice && dice2ImageView != nil {
-            dice2ImageView?.removeFromSuperview()
-            dice2ImageView = nil
-        }
-    }
-
     // MARK: - Methods - Actions
     
     @IBAction private func RollButtonPressed(_ sender: UIButton) { roll() }
@@ -113,6 +109,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
         // Reloads defaults in case there were changes
         startNewGame()
+        
+        updateDiceImageViews()
         alertThenHandleNewGame()
     }
 
@@ -130,7 +128,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     private func startNewGame() {
         Options.load()
-        updateDiceImageViews()
         
         game.initNewGame()
         localiseUI()

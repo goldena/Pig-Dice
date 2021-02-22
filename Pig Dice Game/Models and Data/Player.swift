@@ -42,13 +42,7 @@ class Player {
         dice2 = nil
         previousDice = nil
     }
-     
-    func clearStateAfterGame() {
-        clearStateAfterRound()
-        
-        totalScore = 0
-    }
-    
+
     init(name: String, isAI: Bool) {
         self.name = name
         self.isAI = isAI
