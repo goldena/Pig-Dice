@@ -109,7 +109,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
         startNewGame()
-        
         alertThenHandleNewGame()
     }
 
@@ -130,7 +129,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         game.initNewGame()
         
         updateDiceImageViews()
-        // localizeUI()
         updateUI()
     }
     
@@ -142,24 +140,23 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             let AIPlayer = self.game.activePlayer
             
+            // Enable buttons upon exiting the scope
+            defer {
+                self.enableButtons(self.ButtonsCollection)
+            }
+            
             // Hold if already had won the game
             if AIPlayer.roundScore + AIPlayer.totalScore >= Options.scoreLimit {
                 self.hold()
-                
-                self.enableButtons(self.ButtonsCollection)
                 return
             }
             
             // Hold if previous throw was 6 (for a one dice game)
             if self.game.gameType == .PigGame1Dice {
-                if let dice = AIPlayer.dice1 {
-                    if dice == 6 {
+                if AIPlayer.dice1 == 6 {
                         self.hold()
-                        
-                        self.enableButtons(self.ButtonsCollection)
                         return
                     }
-                }
             }
             
             // Hold if above some random cap, otherwise throw again
@@ -170,14 +167,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             } else {
                 self.roll()
             }
-            
-            self.enableButtons(self.ButtonsCollection)
         }
     }
      
     // Handle switching to the next player
     func handleNextPlayer() {
-        game.activePlayer.clearStateAfterRound()
         game.nextPlayer()
         
         updateUI()
@@ -198,7 +192,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 })
             
         case 6:
-            if player.previousDice != nil && player.previousDice == 6 {
+            if player.previousDice == 6 {
                 alertThenHandleEvent(
                     title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: Options.language),
                     message: LocalizedUI.threw6TwiceMessage.translate(name: player.name, to: Options.language),
@@ -245,26 +239,28 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
         player.rollDice()
         
-        #warning("Check if the option for haptics works")
         playHaptic()
         
         if Options.isSoundEnabled {
             playSound("dice_roll", type: "wav")
         }
         
-        if game.gameType == .PigGame1Dice {
+        switch game.gameType {
+        case .PigGame1Dice:
             guard let dice = player.dice1 else { return }
             
             game.calculateScores(dice)
             updateUI()
+            
             alertThenHandleRollResult(dice)
-        }
-        
-        if game.gameType == .PigGame2Dice {
-            guard let dice1 = player.dice1, let dice2 = player.dice2 else { return }
+            
+        case .PigGame2Dice:
+            guard let dice1 = player.dice1,
+                  let dice2 = player.dice2 else { return }
             
             game.calculateScores(dice1, dice2)
             updateUI()
+            
             alertThenHandleRollResult(dice1, dice2)
         }
     }
@@ -276,6 +272,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 + String(game.activePlayer.totalScore),
             handler: {
                 self.startNewGame()
+                
                 self.alertThenHandleNewGame()
             })
     }
@@ -286,12 +283,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         if game.activePlayer.totalScore >= game.scoreLimit {
             alertThenHandleVictory()
+            
             return
         }
         
-        game.nextPlayer()
-        updateUI()
-        nextMoveIfAI()
+        handleNextPlayer()
     }
     
     // Displays info alert with Okay button

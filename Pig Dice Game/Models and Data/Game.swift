@@ -26,8 +26,10 @@ struct Game {
         Bool.random() ? player1 : player2
     }
     
-    // Switch to the next player
+    // Clear state and switch to the next player
     mutating func nextPlayer() {
+        activePlayer.clearStateAfterRound()
+        
         if activePlayer === player1 {
             activePlayer = player2
         } else {
