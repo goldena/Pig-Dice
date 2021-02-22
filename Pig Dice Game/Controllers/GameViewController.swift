@@ -109,6 +109,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
         startNewGame()
+        
         alertThenHandleNewGame()
     }
 
@@ -138,12 +139,12 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         disableButtons(ButtonsCollection)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            let AIPlayer = self.game.activePlayer
-            
             // Enable buttons upon exiting the scope
             defer {
                 self.enableButtons(self.ButtonsCollection)
             }
+
+            let AIPlayer = self.game.activePlayer
             
             // Hold if already had won the game
             if AIPlayer.roundScore + AIPlayer.totalScore >= Options.scoreLimit {
@@ -171,7 +172,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
      
     // Handle switching to the next player
-    func handleNextPlayer() {
+    func switchToNextPlayer() {
         game.nextPlayer()
         
         updateUI()
@@ -188,7 +189,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
                 handler: {
-                    self.handleNextPlayer()
+                    self.switchToNextPlayer()
                 })
             
         case 6:
@@ -197,7 +198,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                     title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: Options.language),
                     message: LocalizedUI.threw6TwiceMessage.translate(name: player.name, to: Options.language),
                     handler: {
-                        self.handleNextPlayer()
+                        self.switchToNextPlayer()
                     })
             } else {
                 fallthrough
@@ -217,7 +218,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 title: LocalizedUI.threw1Title.translate(name: player.name, to: Options.language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: Options.language),
                 handler: {
-                    self.handleNextPlayer()
+                    self.switchToNextPlayer()
                 })
             
         case (6, 6):
@@ -225,7 +226,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: Options.language),
                 message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: Options.language),
                 handler: {
-                    self.handleNextPlayer()
+                    self.switchToNextPlayer()
                 })
             
         default:
@@ -282,12 +283,13 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         game.activePlayer.holdRoundScore()
         
         if game.activePlayer.totalScore >= game.scoreLimit {
+            updateUI()
             alertThenHandleVictory()
             
             return
         }
         
-        handleNextPlayer()
+        switchToNextPlayer()
     }
     
     // Displays info alert with Okay button

@@ -33,7 +33,7 @@ class Player {
     func holdRoundScore() {
         totalScore += roundScore
         
-        clearStateAfterRound()
+        // clearStateAfterRound()
     }
     
     func clearStateAfterRound() {
