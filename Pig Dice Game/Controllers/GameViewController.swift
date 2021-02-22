@@ -56,13 +56,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         optionsViewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(identifier: "OptionsViewController")
         optionsViewController.optionsViewControllerDelegate = self
-        
-        addDiceImageView(&dice1ImageView)
-        addDiceImageView(&dice2ImageView)
-        
-        startNewGame()
-        updateColorMode()
-        updateUI()
     }
  
     private func addDiceImageView( _ diceImageView: inout UIImageView!) {
@@ -84,17 +77,25 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        addDiceImageView(&dice1ImageView)
+        addDiceImageView(&dice2ImageView)
+        
+        startNewGame()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
-        updateDiceImageViews()
+
         alertThenHandleNewGame()
     }
     
-    // Delegation func, to localise UI once the Options are saved
+    // Delegation func, to localize UI once the Options are saved
     func viewWillDimiss() {
         updateColorMode()
-        localiseUI()
+        localizeUI()
     }
         
     // MARK: - Methods - Actions
@@ -107,10 +108,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
-        // Reloads defaults in case there were changes
         startNewGame()
         
-        updateDiceImageViews()
         alertThenHandleNewGame()
     }
 
@@ -128,9 +127,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     private func startNewGame() {
         Options.load()
-        
         game.initNewGame()
-        localiseUI()
+        
+        updateDiceImageViews()
+        // localizeUI()
+        updateUI()
     }
     
     private func nextMoveIfAI() {
@@ -227,7 +228,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             
         case (6, 6):
             alertThenHandleEvent(
-                title: LocalizedUI.threwTwo6Message.translate(name: player.name, to: Options.language),
+                title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: Options.language),
                 message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: Options.language),
                 handler: {
                     self.handleNextPlayer()
@@ -306,7 +307,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    private func localiseUI() {
+    private func localizeUI() {
         let language = Options.language
         
         // Localise buttons
