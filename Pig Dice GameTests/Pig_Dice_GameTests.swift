@@ -42,9 +42,12 @@ class Player_Class_Tests: XCTestCase {
     }
     
     func testDiceAreRolledForTheNextThrows() {
+        let previousDice = sut.dice1
+        
         sut.rollDice()
         
         XCTAssertNotNil(sut.previousDice, "Previous dice is nil after the second throw of the round")
+        XCTAssertEqual(sut.previousDice, previousDice, "Previous dice is wrong")
         
         XCTAssertNotNil(sut.dice1, "Dice 1 is nil after the first throw")
         XCTAssertGreaterThanOrEqual(sut.dice1!, 1, "Dice 1 is smaller than 1")
@@ -97,60 +100,38 @@ class Pig_1Dice_GameTests: XCTestCase {
     }
     
     // MARK: - Test(s)
-    
-    func testActivePlayerInitialState() throws {
-        XCTAssertEqual(sut.activePlayer.roundScore, 0, "Round score is not zero at game init")
-        XCTAssertEqual(sut.activePlayer.totalScore, 0, "Total score is not zero at game init")
-    }
-    
-    func testDiceAreBeingThrown() throws {
-        sut.activePlayer.rollDice()
-        
-        XCTAssertNil(sut.activePlayer.previousDice, "Previous dice not nil, while it should be")
-        XCTAssertNotNil(sut.activePlayer.dice1, "Dice one is nil while it should not be.")
-        XCTAssertNotNil(sut.activePlayer.dice1, "Dice one is nil while it should not be.")
-    }
-        
+                
     func testCalculateScoreOneDice1() throws {
-//        sut.activePlayer.addRoundScore(1)
-//        sut.calculateScores(1)
-//        sut.activePlayer.holdRoundScore()
+        sut.calculateScores(1)
         
-        XCTAssertEqual(sut.activePlayer.previousDice, 0, "Previous dice is not zero after 1 is thrown")
         XCTAssertEqual(sut.activePlayer.roundScore, 0, "Round score is not 0 after 1 is thrown")
         XCTAssertEqual(sut.activePlayer.totalScore, 0, "Round score is not 0 after 1 is thrown")
     }
     
     func testCalculateScoreOneDice5() throws {
-//        sut.activePlayer.addRoundScore(5)
-//        sut.calculateScores(5)
-//        sut.activePlayer.holdRoundScore()
+        let randomDiceExcept1 = Int.random(in: 2...6)
         
-        XCTAssertEqual(sut.activePlayer.roundScore, 0, "Round score is not 0 after 1 is thrown")
-        XCTAssertEqual(sut.activePlayer.totalScore, 0, "Round score is not 0 after 1 is thrown")
-    }
-    
-    
-    // 2 is thrown - the current score should be 2
-    func testCalculateScoreOneDice2() throws {
-//        sut.activePlayer.dice1 = 2
-//        sut.calculateScores(2)
-//        sut.activePlayer.holdRoundScore()
+        sut.calculateScores(randomDiceExcept1)
         
-        XCTAssertEqual(sut.activePlayer.roundScore, 2)
-        XCTAssertEqual(sut.activePlayer.totalScore, 2)
+        XCTAssertEqual(sut.activePlayer.roundScore, randomDiceExcept1, "Scores were not added to the Round Score")
+        
+        sut.activePlayer.holdRoundScore()
+        
+        XCTAssertEqual(sut.activePlayer.roundScore, 0, "Round Score were not cleared")
+        XCTAssertEqual(sut.activePlayer.totalScore, randomDiceExcept1, "Total Score were not updated")
     }
 
     func testCalculateScoreOneDice6() throws {
-//        sut.activePlayer.dice1 = 6
-//        sut.calculateScores(6)
-//        sut.activePlayer.holdRoundScore()
+        sut.activePlayer.rollDice()
+        sut.activePlayer.addRoundScore(sut.activePlayer.dice1!)
+        sut.activePlayer.holdRoundScore()
         
-//        sut.activePlayer.dice1 = 2
-//        sut.calculateScores(2)
-//        sut.activePlayer.holdRoundScore()
-
-        XCTAssertEqual(sut.activePlayer.roundScore, 8)
-        XCTAssertEqual(sut.activePlayer.totalScore, 8)
+        while sut.activePlayer.totalScore != 0 {
+            sut.activePlayer.rollDice()
+            sut.calculateScores(sut.activePlayer.dice1!)
+        }
+        
+        XCTAssertEqual(sut.activePlayer.previousDice, sut.activePlayer.dice1, "Failed a condition for clearing total score")
+        XCTAssertEqual(sut.activePlayer.previousDice, 6, "Total score was cleared for a wrong reason")
     }
 }
