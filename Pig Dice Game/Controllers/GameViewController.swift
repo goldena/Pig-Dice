@@ -101,6 +101,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     // MARK: - Methods - Actions
     
     @IBAction private func RollButtonPressed(_ sender: UIButton) { roll() }
+    
     @IBAction private func HoldButtonPressed(_ sender: UIButton) { hold() }
     
     @IBAction private func OptionsButtonPressed(_ sender: Any) {

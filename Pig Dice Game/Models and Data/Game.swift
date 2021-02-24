@@ -11,14 +11,14 @@ struct Game {
     
     // MARK: - Property(s)
     
+    var gameType = Options.gameType
+    var scoreLimit = Options.scoreLimit
+    
     var player1 = Player(name: Options.player1Name, isAI: false)
     var player2 = Player(name: Options.player2Name, isAI: Options.is2ndPlayerAI)
     
     lazy var activePlayer = randomPlayer()
-    
-    var gameType = Options.gameType
-    var scoreLimit = Options.scoreLimit
-    
+        
     // MARK: - Method(s)
     
     // Returns a random player
@@ -43,18 +43,18 @@ struct Game {
         
         switch dice {
         case 1:
-            player.roundScore = 0
+            player.clearRoundScore()
 
         case 6:
             if player.previousDice == 6 {
-                player.roundScore = 0
-                player.totalScore = 0
+                player.clearRoundScore()
+                player.clearTotalScore()
             } else {
                 fallthrough
             }
             
         default:
-            player.roundScore += dice
+            player.addRoundScore(dice)
         }
     }
     
@@ -64,14 +64,14 @@ struct Game {
         
         switch (dice1, dice2) {
         case (1, _), (_, 1):
-            player.roundScore = 0
+            player.clearRoundScore()
 
         case (6, 6):
-            player.roundScore = 0
-            player.totalScore = 0
+            player.clearRoundScore()
+            player.clearTotalScore()
 
         default:
-            player.roundScore += dice1 + dice2
+            player.addRoundScore(dice1 + dice2)
         }
     }
     

@@ -7,19 +7,19 @@
 
 import Foundation
 
-class Player {
+final class Player {
 
     // MARK: - Property(s)
     
-    var name: String
-    var isAI: Bool
+    private(set) var name: String
+    private(set) var isAI: Bool
 
-    var totalScore = 0
-    var roundScore = 0
+    private(set) var totalScore = 0
+    private(set) var roundScore = 0
     
-    var dice1: Int? = nil
-    var dice2: Int? = nil
-    var previousDice: Int? = nil
+    private(set) var dice1: Int?
+    private(set) var dice2: Int?
+    private(set) var previousDice: Int?
     
     // MARK: - Method(s)
     
@@ -29,18 +29,30 @@ class Player {
         dice1 = Int.random(in: 1...6)
         dice2 = Int.random(in: 1...6)
     }
-        
+       
+    func addRoundScore(_ score: Int) {
+        roundScore += score
+    }
+    
     func holdRoundScore() {
         totalScore += roundScore
-        
-        // clearStateAfterRound()
+        clearRoundScore()
+    }
+    
+    func clearRoundScore() {
+        roundScore = 0
+    }
+    
+    func clearTotalScore() {
+        totalScore = 0
     }
     
     func clearStateAfterRound() {
-        roundScore = 0
         dice1 = nil
         dice2 = nil
         previousDice = nil
+        
+        clearRoundScore()
     }
 
     init(name: String, isAI: Bool) {
