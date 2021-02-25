@@ -20,6 +20,14 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private var optionsViewController = OptionsViewController()
     
     var game = Game()
+    
+    var playerColor: UIColor {
+        if game.activePlayer === game.player1 {
+            return Const.Player1Color
+        } else {
+            return Const.Player2Color
+        }
+    }
         
     // MARK: - Properties - IBOutlet(s)
     
@@ -97,14 +105,26 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         updateColorMode()
         localizeUI()
     }
+      
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "ShowHelpSegue" else { return }
         
+        if let helpViewController = segue.destination as? HelpViewController {
+            helpViewController.playerColor = playerColor
+        }
+    }
+    
     // MARK: - Methods - Actions
     
-    @IBAction private func RollButtonPressed(_ sender: UIButton) { roll() }
+    @IBAction private func RollButtonPressed(_ sender: UIButton) {
+        roll()
+    }
     
     @IBAction private func HoldButtonPressed(_ sender: UIButton) { hold() }
     
     @IBAction private func OptionsButtonPressed(_ sender: Any) {
+        optionsViewController.playerColor = playerColor
+
         self.present(optionsViewController, animated: true, completion: nil)
     }
     
@@ -337,47 +357,17 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             }
         }
         
+        // Change color of buttons for the second player, when it is not AI
+        if game.activePlayer === game.player2 && !game.activePlayer.isAI {
+            changeColorOfButtons(ButtonsCollection, to: Const.Player2Color)
+        } else {
+            changeColorOfButtons(ButtonsCollection, to: Const.Player1Color)
+        }
+        
         ScoreLimitValue.text     = String(game.scoreLimit)
         CurrentPlayerName.text   = game.activePlayer.name
         PlayerOneScoreValue.text = "\(game.player1.name): \(game.player1.totalScore)"
         PlayerTwoScoreValue.text = "\(game.player2.name): \(game.player2.totalScore)"
         CurrentScoreValue.text   = "\(game.activePlayer.roundScore)"
-    }
-}
-
-extension GameViewController {
-    private func updateColorMode() {
-        switch Options.colorMode {
-        case .System:
-            overrideUserInterfaceStyle = .unspecified
-            
-        case .Light:
-            overrideUserInterfaceStyle = .light
-            
-        case .Dark:
-            overrideUserInterfaceStyle = .dark
-        }
-    }
-
-    private func disableButton(_ button: UIButton) {
-        DispatchQueue.main.async {
-            button.isEnabled = false
-        }
-    }
-    
-    private func enableButton(_ button: UIButton) {
-        button.isEnabled = true
-    }
-    
-    private func disableButtons(_ buttons: [UIButton]) {
-        for button in buttons {
-            disableButton(button)
-        }
-    }
-    
-    private func enableButtons(_ buttons: [UIButton]) {
-        for button in buttons {
-            enableButton(button)
-        }
     }
 }

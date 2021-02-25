@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Game {
     
@@ -18,7 +19,7 @@ struct Game {
     var player2 = Player(name: Options.player2Name, isAI: Options.is2ndPlayerAI)
     
     lazy var activePlayer = randomPlayer()
-        
+            
     // MARK: - Method(s)
     
     // Returns a random player

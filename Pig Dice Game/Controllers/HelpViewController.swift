@@ -9,6 +9,9 @@ import UIKit
 
 class HelpViewController: UIViewController {
 
+    // MARK: - Property(s)
+    var playerColor: UIColor!
+    
     // MARK: - Outlet(s)
     
     @IBOutlet private weak var GameRulesTextView: UITextView!
@@ -26,6 +29,7 @@ class HelpViewController: UIViewController {
         
         Options.load()
         localizeUI()
+        updateUI()
     }
 
     // MARK: - Method(s)
@@ -36,5 +40,9 @@ class HelpViewController: UIViewController {
         BackButton.setTitle(LocalizedUI.backButton.translate(to: language), for: .normal)
         GameRulesTextView.text = LocalizedUI.gameRulesTextView.translate(to: language)
         GameRulesTextView.textAlignment = .natural
+    }
+    
+    private func updateUI() {
+        changeColorOfButton(BackButton, to: playerColor)
     }
 }

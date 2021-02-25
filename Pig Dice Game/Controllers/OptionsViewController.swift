@@ -14,6 +14,7 @@ protocol ViewControllerDelegate: UIViewController {
 
 class OptionsViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Property(s)
+    var playerColor: UIColor? = nil
     
     weak var optionsViewControllerDelegate: ViewControllerDelegate?
 
@@ -223,6 +224,9 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             UIColorModeSegmentedControl.selectedSegmentIndex = 2
         }
            
+        SaveButton.backgroundColor = playerColor
+        CancelButton.backgroundColor = playerColor
+        
         SoundEnabledSwitch.isOn     = Options.isSoundEnabled
         VibrationEnabledSwitch.isOn = Options.isVibrationEnabled
         
@@ -238,18 +242,5 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
         Player2NameTextField.text = Options.player2Name
         Is2ndPlayerAISwitch.isOn  = Options.is2ndPlayerAI
         ScoreLimitTextField.text  = String(Options.scoreLimit)
-    }
-    
-    private func updateColorMode() {
-        switch Options.colorMode {
-        case .System:
-            overrideUserInterfaceStyle = .unspecified
-            
-        case .Light:
-            overrideUserInterfaceStyle = .light
-            
-        case .Dark:
-            overrideUserInterfaceStyle = .dark
-        }
     }
 }
