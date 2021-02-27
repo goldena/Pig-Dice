@@ -105,7 +105,6 @@
 		CFB46DAD2597D60500ADB6FD /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -182,6 +181,7 @@
 				CFE2D9732546231F00565EB8 /* HelpViewController.swift */,
 				CFBBD7432587F4FD00CA625A /* Sound&HapticController.swift */,
 				CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */,
+				CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
