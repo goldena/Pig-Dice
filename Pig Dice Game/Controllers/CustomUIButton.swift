@@ -20,7 +20,7 @@ class CustomUIButton: UIButton {
             }
         }
     }
-    
+
     override open var isEnabled: Bool {
         didSet {
             if isEnabled {
