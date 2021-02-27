@@ -69,7 +69,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             Options.language = .Ru
             
         default:
-            print("Missing language selected")
+            NSLog("Missing language selected")
         }
         
         localizeUI()
@@ -87,7 +87,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             Options.colorMode = .Dark
             
         default:
-            print("Missing Color Mode")
+            NSLog("Missing Color Mode")
         }
         
         updateColorMode()
@@ -103,7 +103,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
             
         default:
             Options.language = .En
-            print("Localization not found")
+            NSLog("Localization not found")
         }
         
         Options.isSoundEnabled = SoundEnabledSwitch.isOn
@@ -130,7 +130,7 @@ class OptionsViewController: UIViewController, UITextFieldDelegate {
                     Options.scoreLimit = newScoreLimit
                 } else {
                     updateUI()
-                    print("Invalid score limit range, reverting to default")
+                    NSLog("Invalid score limit range, reverting to default")
                 }
             }
         }

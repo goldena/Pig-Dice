@@ -21,7 +21,7 @@ func playHaptic() {
 
 func playSound(_ soundName: String, type: String) {
     guard let soundPath = Bundle.main.path(forResource: soundName, ofType: type) else {
-        print("Could not find sound file")
+        NSLog("Could not find sound file")
         return
     }
     
@@ -29,6 +29,6 @@ func playSound(_ soundName: String, type: String) {
         audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundPath))
         audioPlayer?.play()
     } catch {
-        print("Could not play sound, \(error)")
+        NSLog("Could not play sound, \(error)")
     }
 }
