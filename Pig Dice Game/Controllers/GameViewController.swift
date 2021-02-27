@@ -106,6 +106,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         localizeUI()
     }
       
+    // Pass data about color of buttons to Help ViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "ShowHelpSegue" else { return }
         
@@ -159,36 +160,17 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
         disableButtons(ButtonsCollection)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            // Enable buttons upon exiting the scope
-            defer {
-                self.enableButtons(self.ButtonsCollection)
-            }
-
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+            guard let self = self else { return }
+            
             let AIPlayer = self.game.activePlayer
-            
-            // Hold if already had won the game
-            if AIPlayer.roundScore + AIPlayer.totalScore >= Options.scoreLimit {
-                self.hold()
-                return
+            var otherPlayerRoundScore: Int {
+                AIPlayer === self.game.player1 ? self.game.player2.roundScore : self.game.player1.roundScore
             }
             
-            // Hold if previous throw was 6 (for a one dice game)
-            if self.game.gameType == .PigGame1Dice {
-                if AIPlayer.dice1 == 6 {
-                        self.hold()
-                        return
-                    }
-            }
-            
-            // Hold if above some random cap, otherwise throw again
-            // TODO: implement more sophisticated AI behaviour,
-            // more risk-prone, when the rival is close to winning the game and vice-versa
-            if AIPlayer.roundScore >= Int.random(in: 12...24) {
-                self.hold()
-            } else {
-                self.roll()
-            }
+            AIPlayer.rollOrHold(if: otherPlayerRoundScore) ? self.roll() : self.hold()
+
+            self.enableButtons(self.ButtonsCollection)
         }
     }
      
@@ -277,8 +259,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             alertThenHandleRollResult(dice)
             
         case .PigGame2Dice:
-            guard let dice1 = player.dice1,
-                  let dice2 = player.dice2 else { return }
+            guard let dice1 = player.dice1, let dice2 = player.dice2 else { return }
             
             game.calculateScores(dice1, dice2)
             updateUI()
@@ -329,12 +310,12 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private func localizeUI() {
         let language = Options.language
         
-        // Localise buttons
+        // Localize buttons
         NewGameButton.setTitle(LocalizedUI.newGameButton.translate(to: language), for: .normal)
         RollButton.setTitle(LocalizedUI.rollButton.translate(to: language), for: .normal)
         HoldButton.setTitle(LocalizedUI.holdButton.translate(to: language), for: .normal)
         
-        // Localise text
+        // Localize text
         CurrentScoreLabel.text  = LocalizedUI.currentScoreLabel.translate(to: language)
         ScoreLimitLabel.text    = LocalizedUI.scoreLimitLabel.translate(to: language)
         TotalScoresLabel.text   = LocalizedUI.totalScoresLabel.translate(to: language)
@@ -342,13 +323,14 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func updateUI() {
-        // Show or Hide dice image at the beginning of each round or a new game
+        // Show or Hide dice 1 image at the beginning of each round or a new game
         if let dice1 = game.activePlayer.dice1 {
             dice1ImageView.image = Const.DiceFaces[dice1 - 1]
         } else {
             dice1ImageView.image = nil
         }
-        
+
+        // Show or Hide dice 2 image at the beginning of each round or a new game
         if game.gameType == .PigGame2Dice {
             if let dice2 = game.activePlayer.dice2 {
                 dice2ImageView?.image = Const.DiceFaces[dice2 - 1]

@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIViewController {
+    
     func updateColorMode() {
         switch Options.colorMode {
         case .System:

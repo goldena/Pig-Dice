@@ -55,6 +55,42 @@ final class Player {
         clearRoundScore()
     }
 
+    func rollOrHold(if otherPlayerRoundScore: Int) -> Bool {
+        // Hold if already had won the game
+        if roundScore + totalScore >= Options.scoreLimit {
+            return false
+        }
+        
+        // Hold if previous throw was 6 (for a one dice game) and total score above 10
+        if Options.gameType == .PigGame1Dice && dice1 == 6 {
+            return totalScore <= 10 ? true : false
+        }
+             
+        // If other player is close to winning the game, risk more
+        var minAcceptableRisk: Int {
+            if Options.scoreLimit - otherPlayerRoundScore <= 25 {
+                return Options.scoreLimit - otherPlayerRoundScore
+            } else {
+                return 16
+            }
+        }
+        
+        // If way ahead other player, don't risk
+        var maxAcceptableRisk: Int {
+            if otherPlayerRoundScore - roundScore > 50 {
+                return Int(Double(minAcceptableRisk) * 1.1)
+            } else {
+                return Int(Double(minAcceptableRisk) * 1.5)
+            }
+        }
+        
+        if roundScore >= Int.random(in: minAcceptableRisk...maxAcceptableRisk) {
+            return false
+        } else {
+            return true
+        }
+    }
+        
     init(name: String, isAI: Bool) {
         self.name = name
         self.isAI = isAI
