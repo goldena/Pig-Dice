@@ -61,9 +61,13 @@ final class Player {
             return false
         }
         
-        // Hold if previous throw was 6 (for a one dice game) and total score above 10
+        // Hold if the throw was 6 (for a one dice game), total score and round score above 10
         if Options.gameType == .PigGame1Dice && dice1 == 6 {
-            return totalScore <= 10 ? true : false
+            if roundScore <= 10 && totalScore <= 10 {
+                return true
+            } else {
+                return false
+            }
         }
              
         // If other player is close to winning the game, risk more
@@ -75,7 +79,7 @@ final class Player {
             }
         }
         
-        // If way ahead other player, don't risk
+        // If 50+ points ahead of other player - don't risk
         var maxAcceptableRisk: Int {
             if otherPlayerRoundScore - roundScore > 50 {
                 return Int(Double(minAcceptableRisk) * 1.1)
@@ -84,13 +88,16 @@ final class Player {
             }
         }
         
+        // Add minimal randomization to AI
         if roundScore >= Int.random(in: minAcceptableRisk...maxAcceptableRisk) {
             return false
         } else {
             return true
         }
     }
-        
+      
+    // MARK: - Initializer(s)
+    
     init(name: String, isAI: Bool) {
         self.name = name
         self.isAI = isAI

@@ -117,10 +117,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     // MARK: - Methods - Actions
     
-    @IBAction private func RollButtonPressed(_ sender: UIButton) {
-        roll()
-    }
-    
+    @IBAction private func RollButtonPressed(_ sender: UIButton) { roll() }
     @IBAction private func HoldButtonPressed(_ sender: UIButton) { hold() }
     
     @IBAction private func OptionsButtonPressed(_ sender: Any) {
@@ -152,6 +149,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         game.initNewGame()
         
         updateDiceImageViews()
+        localizeUI()
         updateUI()
     }
     
