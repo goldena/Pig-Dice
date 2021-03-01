@@ -614,11 +614,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="768"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DS6-bg-oWU" userLabel="Help Stack View">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DS6-bg-oWU" userLabel="Help Stack View">
                                         <rect key="frame" x="8" y="18" width="358" height="732"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Tlm-L5-ThG">
-                                                <rect key="frame" x="0.0" y="0.0" width="358" height="682"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="358" height="674"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>

@@ -162,6 +162,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             guard let self = self else { return }
             
             let AIPlayer = self.game.activePlayer
+            
             var otherPlayerRoundScore: Int {
                 AIPlayer === self.game.player1 ? self.game.player2.roundScore : self.game.player1.roundScore
             }

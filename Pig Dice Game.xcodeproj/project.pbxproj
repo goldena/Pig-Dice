@@ -84,6 +84,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF0586C225ED890300AB3A15 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
 		CF2DDE9D25DDBE0E006ECD0F /* Pig Dice GameTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +149,7 @@
 				CFE937EE252E85BD009F7CB2 /* Views */,
 				CFE937EF252E85CB009F7CB2 /* Controllers */,
 				CFB46DAD2597D60500ADB6FD /* CustomViews */,
+				CF0586C225ED890300AB3A15 /* Utilites */,
 				CFBBD7462587F5C200CA625A /* Sounds */,
 				CF9F1B4C2540D88500C1979F /* Fonts */,
 				CFE937D8252E7D3D009F7CB2 /* AppDelegate.swift */,
