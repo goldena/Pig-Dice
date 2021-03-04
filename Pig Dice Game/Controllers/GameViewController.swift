@@ -17,7 +17,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private var dice2ImageView: UIImageView!
     
     // For delegation needs, to dynamically update some of the options on the main game screen
-    private var optionsViewController = OptionsViewController()
+    private var optionsViewController: OptionsViewController!
     
     var game = Game()
     
@@ -63,6 +63,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         // Instantiate Options ViewController for delegation
         optionsViewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(identifier: "OptionsViewController")
+        
         optionsViewController.optionsViewControllerDelegate = self
     }
  
@@ -123,7 +124,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     @IBAction private func OptionsButtonPressed(_ sender: Any) {
         optionsViewController.playerColor = playerColor
 
-        self.present(optionsViewController, animated: true, completion: nil)
+        present(optionsViewController, animated: true, completion: nil)
     }
     
     @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
