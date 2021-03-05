@@ -415,12 +415,12 @@
         <scene sceneID="b8D-UG-pnk">
             <objects>
                 <tableViewController storyboardIdentifier="OptionsListViewController" id="aTr-GO-KPg" customClass="OptionsTableViewController" customModule="Pig_Dice_Game" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="C00-dx-yly">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="20" id="C00-dx-yly">
                         <rect key="frame" x="0.0" y="0.0" width="374" height="720"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Language / Язык" id="ylp-Rb-23U">
+                            <tableViewSection headerTitle="Language / Язык" footerTitle=" " id="ylp-Rb-23U">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="d9W-DW-4Ai">
                                         <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
@@ -435,6 +435,9 @@
                                                         <segment title="English"/>
                                                         <segment title="Русский"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="LanguageSelectionChanged:" destination="aTr-GO-KPg" eventType="valueChanged" id="RjL-Np-mht"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -447,7 +450,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="UI Color Mode" id="Rag-GK-ExM">
+                            <tableViewSection headerTitle="UI Color Mode" footerTitle=" " id="Rag-GK-ExM">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DnT-Bv-7XF">
                                         <rect key="frame" x="0.0" y="127.5" width="374" height="43.5"/>
@@ -463,6 +466,9 @@
                                                         <segment title="Light"/>
                                                         <segment title="Dark"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="ColorModeSelectionChanged:" destination="aTr-GO-KPg" eventType="valueChanged" id="FXg-y3-scl"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -475,7 +481,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Sound and Haptics" id="xwe-ia-f7V">
+                            <tableViewSection headerTitle="Sound and Haptics" footerTitle=" " id="xwe-ia-f7V">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6zf-Kv-uBI">
                                         <rect key="frame" x="0.0" y="227" width="374" height="43.5"/>
@@ -532,7 +538,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Players" id="YRn-0o-ACr">
+                            <tableViewSection headerTitle="Players" footerTitle=" " id="YRn-0o-ACr">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KvA-aV-vfo">
                                         <rect key="frame" x="0.0" y="370" width="374" height="43.5"/>
@@ -617,7 +623,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Game rules" footerTitle="Within range of 10 to 1000" id="kBo-H1-4oh">
+                            <tableViewSection headerTitle="Game rules" footerTitle=" " id="kBo-H1-4oh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lsB-hI-oIw">
                                         <rect key="frame" x="0.0" y="556.5" width="374" height="43.5"/>
@@ -669,18 +675,37 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gpf-tz-57A">
+                                        <rect key="frame" x="0.0" y="643.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gpf-tz-57A" id="Egs-TX-d6m">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*Within range of 10 to 1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ4-dT-fph">
+                                                    <rect key="frame" x="20" y="11" width="220" height="22"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WJ4-dT-fph" firstAttribute="centerY" secondItem="Egs-TX-d6m" secondAttribute="centerY" id="LnO-fT-eS4"/>
+                                                <constraint firstItem="WJ4-dT-fph" firstAttribute="leading" secondItem="Egs-TX-d6m" secondAttribute="leadingMargin" id="gae-3W-H8A"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="amL-EB-xD8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bJA-Xa-niA">
-                                        <rect key="frame" x="0.0" y="699.5" width="374" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="743" width="374" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bJA-Xa-niA" id="zTR-Qm-bVj">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="1.1920928955078125e-07"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note: Changes will take effect after pressing &quot;New Game&quot; button at the top of the game screen or after restarting the app." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gED-PZ-zIK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note: Changes will take effect after pressing &quot;New Game&quot; button at the top of the game screen or after restarting the app." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gED-PZ-zIK">
                                                     <rect key="frame" x="8" y="8" width="358" height="61"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

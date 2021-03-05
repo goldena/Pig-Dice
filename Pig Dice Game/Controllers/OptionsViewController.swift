@@ -17,9 +17,9 @@ class OptionsViewController: UIViewController {
     // MARK: - Property(s)
     var playerColor: UIColor?
     
-    var options: OptionsTableViewController!
+    var optionsList: OptionsTableViewController!
     
-    weak var optionsViewControllerDelegate: ViewControllerDelegate?
+    weak var delegate: ViewControllerDelegate?
 
     // MARK: - Outlet(s)
         
@@ -34,7 +34,7 @@ class OptionsViewController: UIViewController {
     }
     
     @IBAction private func SaveButtonPressed(_ sender: UIButton) {
-        switch options.LanguageSelectionSegmentedControl.selectedSegmentIndex {
+        switch optionsList.LanguageSelectionSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.language = .En
             
@@ -46,10 +46,10 @@ class OptionsViewController: UIViewController {
             NSLog("Localization not found")
         }
         
-        Options.isSoundEnabled = options.SoundEnabledSwitch.isOn
-        Options.isVibrationEnabled = options.VibrationEnabledSwitch.isOn
+        Options.isSoundEnabled = optionsList.SoundEnabledSwitch.isOn
+        Options.isVibrationEnabled = optionsList.VibrationEnabledSwitch.isOn
         
-        switch options.GameTypeSegmentedControl.selectedSegmentIndex {
+        switch optionsList.GameTypeSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.gameType = .PigGame1Dice
             
@@ -60,24 +60,21 @@ class OptionsViewController: UIViewController {
             break
         }
         
-        Options.player1Name     = options.Player1NameTextField.text ?? Options.player1Name
-        Options.player2Name     = options.Player2NameTextField.text ?? Options.player2Name
-        Options.is2ndPlayerAI   = options.Is2ndPlayerAISwitch.isOn
+        Options.player1Name = optionsList.Player1NameTextField.text ?? Options.player1Name
+        Options.player2Name = optionsList.Player2NameTextField.text ?? Options.player2Name
+        Options.is2ndPlayerAI = optionsList.Is2ndPlayerAISwitch.isOn
         
-        if let newScoreLimitString = options.ScoreLimitTextField.text {
-            if let newScoreLimit = Int(newScoreLimitString) {
-                if 10...1000 ~= newScoreLimit {
-                    Options.scoreLimit = newScoreLimit
-                } else {
-                    options.ScoreLimitTextField.text = String(100)
-                    NSLog("Invalid score limit range, reverting to default")
-                }
+        if let newScoreLimit = Int(optionsList.ScoreLimitTextField.text ?? "") {
+            if 10...1000 ~= newScoreLimit {
+                Options.scoreLimit = newScoreLimit
+            } else {
+                NSLog("Invalid score limit range, reverting to default")
             }
         }
             
         // Save options, call delegate to localize the Game screen and dismiss view controller
         Options.save()
-        optionsViewControllerDelegate?.viewWillDimiss()
+        delegate?.viewWillDimiss()
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -98,7 +95,7 @@ class OptionsViewController: UIViewController {
         guard segue.identifier == "EmbeddedTableViewControllerSegue" else { return }
         
         if let optionsTableViewController = segue.destination as? OptionsTableViewController {
-            options = optionsTableViewController
+            optionsList = optionsTableViewController
         } else {
             fatalError("Could not downcast UITableViewController to OptionsTableViewController")
         }

@@ -64,7 +64,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         optionsViewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(identifier: "OptionsViewController")
         
-        optionsViewController.optionsViewControllerDelegate = self
+        optionsViewController.delegate = self
     }
  
     private func addDiceImageView( _ diceImageView: inout UIImageView!) {
