@@ -32,17 +32,17 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var Player2NameLabel: UILabel!
     @IBOutlet weak var Player2NameTextField: UITextField!
     
-//    @IBOutlet weak var Is2ndPlayerAILabel: UILabel!
+    @IBOutlet weak var Is2ndPlayerAILabel: UILabel!
     @IBOutlet weak var Is2ndPlayerAISwitch: UISwitch!
     
     @IBOutlet weak var ScoreLimitLabel: UILabel!
     @IBOutlet weak var ScoreLimitTextField: UITextField!
-//    @IBOutlet weak var ScoreLimitRangeLabel: UILabel!
+    @IBOutlet weak var ScoreLimitRangeLabel: UILabel!
     
 //    @IBOutlet weak var GameTypeLabel: UILabel!
     @IBOutlet weak var GameTypeSegmentedControl: UISegmentedControl!
     
-//    @IBOutlet private weak var NoteLabel: UILabel!
+    @IBOutlet private weak var NoteLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +96,18 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         updateColorMode()
     }
     
+//    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        switch section {
+//        case 0:
+//        case 1:
+//        case 2:
+//        case 3:
+//        case 4:
+//        case 5:
+//        case 6:
+//        }
+//    }
+    
     // MARK: - Method(s)
     
     private func localizeUI() {
@@ -107,13 +119,13 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         
         Player1NameLabel.text = LocalizedUI.player1NameLabel.translate(to: language)
         Player2NameLabel.text = LocalizedUI.player2NameLabel.translate(to: language)
-//        Is2ndPlayerAILabel.text = LocalizedUI.is2ndPlayerAILabel.translate(to: language)
+        Is2ndPlayerAILabel.text = LocalizedUI.is2ndPlayerAILabel.translate(to: language)
         
         ScoreLimitLabel.text = LocalizedUI.scoreLimitLabel.translate(to: language)
 //        GameTypeTitle.text = LocalizedUI.gameTypeLabel.translate(to: language)
         
-//        NoteLabel.text = LocalizedUI.noteLabel.translate(to: language)
-//        NoteLabel.textAlignment = .natural
+        NoteLabel.text = LocalizedUI.noteLabel.translate(to: language)
+        NoteLabel.textAlignment = .natural
                 
         GameTypeSegmentedControl
             .setTitle(LocalizedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
