@@ -76,6 +76,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         }
         
         localizeUI()
+        tableView.reloadData()
     }
     
     @IBAction private func ColorModeSelectionChanged(_ sender: UISegmentedControl) {
@@ -95,18 +96,34 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         
         updateColorMode()
     }
+            
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let language = Options.language
+        
+        #warning("add proper localized strings")
+        switch section {
+        case 0:
+            return NSLocalizedString("Language / Язык", comment: "")
+        case 1:
+            return LocalizedUI.colorModeSelectionLabel.translate(to: language)
+        case 2:
+            return NSLocalizedString("Sound and Vibration", comment: "")
+        case 3:
+            return NSLocalizedString("Players", comment: "")
+        case 4:
+            return LocalizedUI.gameTypeLabel.translate(to: language)
+        case 5:
+            return NSLocalizedString("Note", comment: "")
+        default:
+            return nil
+        }
+    }
     
-//    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        switch section {
-//        case 0:
-//        case 1:
-//        case 2:
-//        case 3:
-//        case 4:
-//        case 5:
-//        case 6:
-//        }
-//    }
+    #warning("Start here")
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        indexPath == IndexPath(row: 0, section: 5) ? 132 : tableView.rowHeight
+        
+    }
     
     // MARK: - Method(s)
     
@@ -115,14 +132,12 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
                 
         SoundEnabledLabel.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
         VibrationEnabledLabel.text = LocalizedUI.vibrationEnabledSwitch.translate(to: language)
-//        ColorModeLabel.text = LocalizedUI.colorModeSelectionLabel.translate(to: language)
         
         Player1NameLabel.text = LocalizedUI.player1NameLabel.translate(to: language)
         Player2NameLabel.text = LocalizedUI.player2NameLabel.translate(to: language)
         Is2ndPlayerAILabel.text = LocalizedUI.is2ndPlayerAILabel.translate(to: language)
         
         ScoreLimitLabel.text = LocalizedUI.scoreLimitLabel.translate(to: language)
-//        GameTypeTitle.text = LocalizedUI.gameTypeLabel.translate(to: language)
         
         NoteLabel.text = LocalizedUI.noteLabel.translate(to: language)
         NoteLabel.textAlignment = .natural
