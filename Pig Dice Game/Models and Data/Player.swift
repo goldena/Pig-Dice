@@ -36,6 +36,7 @@ final class Player {
     
     func holdRoundScore() {
         totalScore += roundScore
+        
         clearRoundScore()
     }
     

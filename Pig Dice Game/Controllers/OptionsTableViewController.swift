@@ -52,9 +52,9 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         tapOutsideTextField.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutsideTextField)
         
-        Player1NameTextField.delegate   = self
-        Player2NameTextField.delegate   = self
-        ScoreLimitTextField.delegate    = self
+        Player1NameTextField.delegate = self
+        Player2NameTextField.delegate = self
+        ScoreLimitTextField.delegate = self
         
         // Making 
         tableView.rowHeight = UITableView.automaticDimension
