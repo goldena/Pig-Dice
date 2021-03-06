@@ -54,19 +54,23 @@ enum LocalizedUI {
     case scoreLimitRangeLabel
     case noteLabel
     case gameTypeLabel
-    case colorModeSelectionLabel
+    case colorModeSectionTitle
     case colorSysModeSegmentedControlLabel
     case colorLightModeSegmentedControlLabel
     case colorDarkModeSegmentedControlLabel
     
     // Options View - Buttons and controls
+    case languageSectionTitle
+    case soundAndVibrationSectionTitle
     case soundEnabledSwitch
     case vibrationEnabledSwitch
     case saveButton
     case cancelButton
     case with1DiceSegmentedControlLabel
     case with2DiceSegmentedControlLabel
+    case playersSegmentTitle
     case is2ndPlayerAILabel
+    case noteSegmentTitle
     
     // Help View - Text
     case gameRulesTextView
@@ -76,7 +80,7 @@ enum LocalizedUI {
     
     // Provides translation of IU elements to a given language
     func translate(to language: Language) -> String {
-        return LocalizationDictionary[self]?[language] ?? "Localization error"        
+        return LocalizationDictionary[self]?[language] ?? "Localization error"
     }
     
     // Provides translation of IU elements to a given language
@@ -175,6 +179,15 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     ],
     
     // Options View - text
+    .languageSectionTitle: [
+        .En: "Language / Язык",
+        .Ru: "Язык / Language"
+    ],
+    
+    .soundAndVibrationSectionTitle: [
+        .En: "Sound and Vibration",
+        .Ru: "Звук и вибрация"],
+    
     .soundEnabledSwitch: [
         .En: "Sound",
         .Ru: "Звук"
@@ -184,7 +197,7 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
         .Ru: "Вибрация"
     ],
     
-    .colorModeSelectionLabel: [
+    .colorModeSectionTitle: [
         .En: "Color Mode",
         .Ru: "Цветовая схема"
     ],
@@ -199,6 +212,11 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .colorDarkModeSegmentedControlLabel: [
         .En: "Dark",
         .Ru: "Тёмная"
+    ],
+    
+    .playersSegmentTitle: [
+        .En: "Players",
+        .Ru: "Игроки"
     ],
     
     .player1NameLabel: [
@@ -224,8 +242,13 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     ],
     
     .gameTypeLabel: [
-        .En: "Play with",
-        .Ru: "Играть с"
+        .En: "Game Rules",
+        .Ru: "Правила игры"
+    ],
+    
+    .noteSegmentTitle: [
+        .En: "Note",
+        .Ru: "Примечание"
     ],
     
     .noteLabel: [

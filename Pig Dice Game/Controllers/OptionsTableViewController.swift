@@ -67,10 +67,8 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         switch LanguageSelectionSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.language = .En
-            
         case 1:
             Options.language = .Ru
-            
         default:
             NSLog("Missing language selected")
         }
@@ -83,13 +81,10 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         switch UIColorModeSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.colorMode = .System
-            
         case 1:
             Options.colorMode = .Light
-            
         case 2:
             Options.colorMode = .Dark
-            
         default:
             NSLog("Missing Color Mode")
         }
@@ -100,20 +95,19 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let language = Options.language
         
-        #warning("add proper localized strings")
         switch section {
         case 0:
-            return NSLocalizedString("Language / Язык", comment: "")
+            return LocalizedUI.languageSectionTitle.translate(to: language)
         case 1:
-            return LocalizedUI.colorModeSelectionLabel.translate(to: language)
+            return LocalizedUI.colorModeSectionTitle.translate(to: language)
         case 2:
-            return NSLocalizedString("Sound and Vibration", comment: "")
+            return LocalizedUI.soundAndVibrationSectionTitle.translate(to: language)
         case 3:
-            return NSLocalizedString("Players", comment: "")
+            return LocalizedUI.playersSegmentTitle.translate(to: language)
         case 4:
             return LocalizedUI.gameTypeLabel.translate(to: language)
         case 5:
-            return NSLocalizedString("Note", comment: "")
+            return LocalizedUI.noteSegmentTitle.translate(to: language)
         default:
             return nil
         }
