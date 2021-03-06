@@ -21,12 +21,9 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     var game = Game()
     
+    // Return button color of players (for hot-seat game)
     var playerColor: UIColor {
-        if game.activePlayer === game.player1 {
-            return Const.Player1Color
-        } else {
-            return Const.Player2Color
-        }
+        game.activePlayer === game.player1 ? Const.Player1Color : Const.Player2Color
     }
         
     // MARK: - Properties - IBOutlet(s)

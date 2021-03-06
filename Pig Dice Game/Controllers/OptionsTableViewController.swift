@@ -116,12 +116,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
             return nil
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        indexPath == IndexPath(row: 0, section: 5) ? 132 : tableView.rowHeight
-//        // 132
-//    }
-    
+        
     // MARK: - Method(s)
     
     private func localizeUI() {
@@ -156,7 +151,6 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         switch Options.language {
         case .En:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 0
-            
         case .Ru:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 1
         }
@@ -164,10 +158,8 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         switch Options.colorMode {
         case .System:
             UIColorModeSegmentedControl.selectedSegmentIndex = 0
-            
         case .Light:
             UIColorModeSegmentedControl.selectedSegmentIndex = 1
-            
         case .Dark:
             UIColorModeSegmentedControl.selectedSegmentIndex = 2
         }
@@ -178,7 +170,6 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         switch Options.gameType {
         case .PigGame1Dice:
             GameTypeSegmentedControl.selectedSegmentIndex = 0
-            
         case .PigGame2Dice:
             GameTypeSegmentedControl.selectedSegmentIndex = 1
         }

@@ -37,10 +37,8 @@ class OptionsViewController: UIViewController {
         switch optionsList.LanguageSelectionSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.language = .En
-            
         case 1:
             Options.language = .Ru
-            
         default:
             Options.language = .En
             NSLog("Localization not found")
@@ -52,19 +50,18 @@ class OptionsViewController: UIViewController {
         switch optionsList.GameTypeSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.gameType = .PigGame1Dice
-            
         case 1:
             Options.gameType = .PigGame2Dice
-            
         default:
-            break
+            Options.gameType = Const.DefaultGameType
+            NSLog("Game Type not found")
         }
         
         Options.player1Name = optionsList.Player1NameTextField.text ?? Options.player1Name
         Options.player2Name = optionsList.Player2NameTextField.text ?? Options.player2Name
         Options.is2ndPlayerAI = optionsList.Is2ndPlayerAISwitch.isOn
         
-        if let newScoreLimit = Int(optionsList.ScoreLimitTextField.text ?? "") {
+        if let newScoreLimit = Int(optionsList.ScoreLimitTextField.text ?? "Invalid input") {
             if 10...1000 ~= newScoreLimit {
                 Options.scoreLimit = newScoreLimit
             } else {

@@ -23,7 +23,7 @@ class Options {
     static var player2Name: String  = Const.DefaultPlayer2Name
     static var is2ndPlayerAI: Bool  = Const.Is2ndPlayerAI
 
-    static var gameType: GameType   = Const.DefaultTypeOfGame
+    static var gameType: GameType   = Const.DefaultGameType
     static var scoreLimit: Int      = Const.DefaultScoreLimit
     
     // MARK: - Method(s)
