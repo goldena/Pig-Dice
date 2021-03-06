@@ -56,6 +56,10 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         Player2NameTextField.delegate   = self
         ScoreLimitTextField.delegate    = self
         
+        // Making 
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200
+        
         localizeUI()
         updateUI()
     }
@@ -113,11 +117,10 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    #warning("Start here")
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath == IndexPath(row: 0, section: 5) ? 132 : tableView.rowHeight
-        
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        indexPath == IndexPath(row: 0, section: 5) ? 132 : tableView.rowHeight
+//        // 132
+//    }
     
     // MARK: - Method(s)
     
