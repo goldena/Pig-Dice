@@ -15,7 +15,7 @@ protocol ViewControllerDelegate: UIViewController {
 class OptionsViewController: UIViewController {
         
     // MARK: - Property(s)
-    var playerColor: UIColor?
+    var is2ndPlayer: Bool?
     
     var optionsList: OptionsTableViewController!
     
@@ -104,6 +104,9 @@ class OptionsViewController: UIViewController {
     }
     
     func updateUI() {
+        guard let is2ndPlayer = is2ndPlayer else { return }
+        let playerColor = is2ndPlayer ? Const.Player2Color : Const.Player1Color
+        
         SaveButton.backgroundColor = playerColor
         CancelButton.backgroundColor = playerColor
     }

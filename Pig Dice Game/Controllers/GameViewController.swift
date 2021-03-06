@@ -21,11 +21,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     var game = Game()
     
-    // Return button color of players (for hot-seat game)
-    var playerColor: UIColor {
-        game.activePlayer === game.player1 ? Const.Player1Color : Const.Player2Color
+    // Check for changing buttons' color of the second human player (for hot-seat game)
+    var is2ndPlayer: Bool {
+        game.activePlayer === game.player2 ? true : false
     }
-        
+    
     // MARK: - Properties - IBOutlet(s)
     
     @IBOutlet var ButtonsCollection: [UIButton]!
@@ -77,7 +77,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         switch game.gameType {
         case .PigGame1Dice:
             dice2ImageView.isHidden = true
-            
         case .PigGame2Dice:
             dice2ImageView.isHidden = false
         }
@@ -109,7 +108,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         guard segue.identifier == "ShowHelpSegue" else { return }
         
         if let helpViewController = segue.destination as? HelpViewController {
-            helpViewController.playerColor = playerColor
+            helpViewController.is2ndPlayer = is2ndPlayer
         }
     }
     
@@ -119,14 +118,13 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     @IBAction private func HoldButtonPressed(_ sender: UIButton) { hold() }
     
     @IBAction private func OptionsButtonPressed(_ sender: Any) {
-        optionsViewController.playerColor = playerColor
+        optionsViewController.is2ndPlayer = is2ndPlayer
 
         present(optionsViewController, animated: true, completion: nil)
     }
     
     @IBAction private func NewGameButtonPressed(_ sender: UIButton) {
         startNewGame()
-        
         alertThenHandleNewGame()
     }
 
@@ -183,27 +181,17 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         let player = game.activePlayer
         let language = Options.language
         
-        switch dice {
-        case 1:
+        switch (dice, player.previousDice) {
+        case (1, _):
             alertThenHandleEvent(
                 title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
-                handler: {
-                    self.switchToNextPlayer()
-                })
-            
-        case 6:
-            if player.previousDice == 6 {
-                alertThenHandleEvent(
-                    title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: Options.language),
-                    message: LocalizedUI.threw6TwiceMessage.translate(name: player.name, to: Options.language),
-                    handler: {
-                        self.switchToNextPlayer()
-                    })
-            } else {
-                fallthrough
-            }
-            
+                handler: { self.switchToNextPlayer() })
+        case (6, 6):
+            alertThenHandleEvent(
+                title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: language),
+                message: LocalizedUI.threw6TwiceMessage.translate(name: player.name, to: language),
+                handler: { self.switchToNextPlayer() })
         default:
             nextMoveIfAI()
         }
@@ -211,24 +199,19 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     private func alertThenHandleRollResult(_ dice1: Int, _ dice2: Int) {
         let player = game.activePlayer
+        let language = Options.language
                 
         switch (dice1, dice2) {
         case (_, 1), (1, _):
             alertThenHandleEvent(
-                title: LocalizedUI.threw1Title.translate(name: player.name, to: Options.language),
-                message: LocalizedUI.threw1Message.translate(name: player.name, to: Options.language),
-                handler: {
-                    self.switchToNextPlayer()
-                })
-            
+                title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
+                message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
+                handler: { self.switchToNextPlayer() })
         case (6, 6):
             alertThenHandleEvent(
-                title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: Options.language),
-                message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: Options.language),
-                handler: {
-                    self.switchToNextPlayer()
-                })
-            
+                title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: language),
+                message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: language),
+                handler: { self.switchToNextPlayer() })
         default:
             nextMoveIfAI()
         }
@@ -240,10 +223,10 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
         player.rollDice()
         
-        playHaptic()
+        SoundAndHapticController.playHaptic()
         
         if Options.isSoundEnabled {
-            playSound("dice_roll", type: "wav")
+            SoundAndHapticController.playSound(Const.DiceRollSoundFileName, type: Const.DiceRollSoundFileType)
         }
         
         switch game.gameType {
@@ -266,22 +249,26 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
         
     private func alertThenHandleVictory() {
+        let player = game.activePlayer
+        let language = Options.language
+        
         alertThenHandleEvent(
-            title: LocalizedUI.winnerTitle.translate(name: game.activePlayer.name, to: Options.language),
-            message: LocalizedUI.victoryMessage.translate(name: game.activePlayer.name, to: Options.language)
-                + String(game.activePlayer.totalScore),
+            title: LocalizedUI.winnerTitle.translate(name: player.name, to: language),
+            message: LocalizedUI.victoryMessage.translate(name: player.name, to: language)
+                + String(player.totalScore),
             handler: {
                 self.startNewGame()
-                
                 self.alertThenHandleNewGame()
             })
     }
     
     private func hold() {
-        // Hold current scores
-        game.activePlayer.holdRoundScore()
+        let player = game.activePlayer
         
-        if game.activePlayer.totalScore >= game.scoreLimit {
+        // Hold current scores
+        player.holdRoundScore()
+        
+        if player.totalScore >= game.scoreLimit {
             updateUI()
             alertThenHandleVictory()
             
@@ -320,8 +307,10 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func updateUI() {
+        let player = game.activePlayer
+        
         // Show or Hide dice 1 image at the beginning of each round or a new game
-        if let dice1 = game.activePlayer.dice1 {
+        if let dice1 = player.dice1 {
             dice1ImageView.image = Const.DiceFaces[dice1 - 1]
         } else {
             dice1ImageView.image = nil
@@ -329,7 +318,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
         // Show or Hide dice 2 image at the beginning of each round or a new game
         if game.gameType == .PigGame2Dice {
-            if let dice2 = game.activePlayer.dice2 {
+            if let dice2 = player.dice2 {
                 dice2ImageView?.image = Const.DiceFaces[dice2 - 1]
             } else {
                 dice2ImageView?.image = nil
@@ -337,16 +326,16 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         }
         
         // Change color of buttons for the second player, when it is not AI
-        if game.activePlayer === game.player2 && !game.activePlayer.isAI {
+        if player === game.player2 && game.activePlayer.isAI == false {
             changeColorOfButtons(ButtonsCollection, to: Const.Player2Color)
         } else {
             changeColorOfButtons(ButtonsCollection, to: Const.Player1Color)
         }
         
         ScoreLimitValue.text     = String(game.scoreLimit)
-        CurrentPlayerName.text   = game.activePlayer.name
+        CurrentPlayerName.text   = player.name
         PlayerOneScoreValue.text = "\(game.player1.name): \(game.player1.totalScore)"
         PlayerTwoScoreValue.text = "\(game.player2.name): \(game.player2.totalScore)"
-        CurrentScoreValue.text   = "\(game.activePlayer.roundScore)"
+        CurrentScoreValue.text   = "\(player.roundScore)"
     }
 }

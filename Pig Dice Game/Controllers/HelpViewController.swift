@@ -10,13 +10,14 @@ import UIKit
 class HelpViewController: UIViewController {
 
     // MARK: - Property(s)
-    var playerColor: UIColor!
+    var is2ndPlayer: Bool?
     
     // MARK: - Outlet(s)
     
     @IBOutlet private weak var GameRulesTextView: UITextView!
-    
     @IBOutlet private weak var BackButton: UIButton!
+    
+    // MARK: - Action(s)
     
     @IBAction private func BackButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -43,6 +44,9 @@ class HelpViewController: UIViewController {
     }
     
     private func updateUI() {
+        guard let is2ndPlayer = is2ndPlayer else { return }
+        let playerColor = is2ndPlayer ? Const.Player2Color : Const.Player1Color
+        
         changeColorOfButton(BackButton, to: playerColor)
     }
 }

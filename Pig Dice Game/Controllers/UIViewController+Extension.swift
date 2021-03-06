@@ -13,12 +13,20 @@ extension UIViewController {
         switch Options.colorMode {
         case .System:
             overrideUserInterfaceStyle = .unspecified
-            
         case .Light:
             overrideUserInterfaceStyle = .light
-            
         case .Dark:
             overrideUserInterfaceStyle = .dark
+        }
+    }
+    
+    func changeColorOfButton(_ button: UIButton, to color: UIColor) {
+        button.backgroundColor = color
+    }
+    
+    func changeColorOfButtons(_ buttons: [UIButton], to color: UIColor) {
+        for button in buttons {
+            changeColorOfButton(button, to: color)
         }
     }
 
@@ -41,16 +49,6 @@ extension UIViewController {
     func enableButtons(_ buttons: [UIButton]) {
         for button in buttons {
             enableButton(button)
-        }
-    }
-    
-    func changeColorOfButton(_ button: UIButton, to color: UIColor) {
-        button.backgroundColor = color
-    }
-    
-    func changeColorOfButtons(_ buttons: [UIButton], to color: UIColor) {
-        for button in buttons {
-            changeColorOfButton(button, to: color)
         }
     }
 }
