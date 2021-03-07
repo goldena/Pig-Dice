@@ -51,4 +51,18 @@ extension UIViewController {
             enableButton(button)
         }
     }
+    
+    // Displays info alert with Okay button
+    func alertThenHandleEvent(title: String, message: String, handler: @escaping () -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(
+            title: LocalizedUI.alertActionTitle.translate(to: Options.language),
+            style: .default,
+            handler: { _ in handler() }
+        ))
+        
+        present(alertController, animated: true, completion: nil)
+    }
+
 }

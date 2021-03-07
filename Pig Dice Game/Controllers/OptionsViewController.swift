@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Delegation Protocol for on-fly-updates of the Main Game Screen for some Options
+// Delegation Protocol for instant updates of the Main Game Screen for some Options
 protocol ViewControllerDelegate: UIViewController {
     func viewWillDimiss()
 }
@@ -40,7 +40,7 @@ class OptionsViewController: UIViewController {
         case 1:
             Options.language = .Ru
         default:
-            Options.language = .En
+            Options.language = Const.DefaultLanguage
             NSLog("Localization not found")
         }
         
@@ -62,11 +62,7 @@ class OptionsViewController: UIViewController {
         Options.is2ndPlayerAI = optionsList.Is2ndPlayerAISwitch.isOn
         
         if let newScoreLimit = Int(optionsList.ScoreLimitTextField.text ?? "Invalid input") {
-            if 10...1000 ~= newScoreLimit {
-                Options.scoreLimit = newScoreLimit
-            } else {
-                NSLog("Invalid score limit range, reverting to default")
-            }
+            Options.scoreLimit = newScoreLimit
         }
             
         // Save options, call delegate to localize the Game screen and dismiss view controller

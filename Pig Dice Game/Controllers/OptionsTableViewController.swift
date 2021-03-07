@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol OptionsTableViewControllerDelegate {
-    func UIOptionsAreUpdated()
-}
-
 class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: - Outlet(s)
@@ -23,7 +19,6 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var VibrationEnabledLabel: UILabel!
     @IBOutlet weak var VibrationEnabledSwitch: UISwitch!
     
-//    @IBOutlet weak var ColorModeTitle: UILabel!
     @IBOutlet weak var UIColorModeSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var Player1NameLabel: UILabel!
@@ -38,8 +33,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var ScoreLimitLabel: UILabel!
     @IBOutlet weak var ScoreLimitTextField: UITextField!
     @IBOutlet weak var ScoreLimitRangeLabel: UILabel!
-    
-//    @IBOutlet weak var GameTypeLabel: UILabel!
+
     @IBOutlet weak var GameTypeSegmentedControl: UISegmentedControl!
     
     @IBOutlet private weak var NoteLabel: UILabel!
@@ -63,7 +57,61 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         localizeUI()
         updateUI()
     }
+     
+    // Localize section titles
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let language = Options.language
         
+        switch section {
+        case 0:
+            return LocalizedUI.languageSectionTitle.translate(to: language)
+        case 1:
+            return LocalizedUI.colorModeSectionTitle.translate(to: language)
+        case 2:
+            return LocalizedUI.soundAndVibrationSectionTitle.translate(to: language)
+        case 3:
+            return LocalizedUI.playersSegmentTitle.translate(to: language)
+        case 4:
+            return LocalizedUI.gameTypeLabel.translate(to: language)
+        case 5:
+            return LocalizedUI.noteSegmentTitle.translate(to: language)
+        default:
+            return nil
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+        case ScoreLimitTextField:
+            // Check if the input of Score limit is valid and within range, else alert and revert to the default
+            guard let newScoreLimit = Int(textField.text ?? "Invalid input"),
+                  10...1000 ~= newScoreLimit else {
+                alertThenHandleEvent(
+                    title: "Invalid Score Limit input or range",
+                    message: "The Score Limit will be set to the default value: \(Const.DefaultScoreLimit)",
+                    handler: {
+                        textField.text = String(Const.DefaultScoreLimit)
+                    })
+                return
+            }
+        case Player1NameTextField, Player2NameTextField:
+            guard let isEmptyString = textField.text?.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+            
+            if isEmptyString {
+                alertThenHandleEvent(
+                    title: "Empty or invalid name",
+                    message: "The name will be set to a default one",
+                    handler: {
+                        textField.text = (textField === self.Player1NameTextField) ? Const.DefaultPlayer1Name : Const.DefaultPlayer2Name
+                    })
+                return
+            }
+        default:
+            NSLog("Unexpected fallthrough while matching text fields of the options list")
+            return
+        }
+    }
+    
     // MARK: - Action(s)
     
     // Changes localization on the fly
@@ -95,33 +143,12 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         
         updateColorMode()
     }
-            
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let language = Options.language
-        
-        switch section {
-        case 0:
-            return LocalizedUI.languageSectionTitle.translate(to: language)
-        case 1:
-            return LocalizedUI.colorModeSectionTitle.translate(to: language)
-        case 2:
-            return LocalizedUI.soundAndVibrationSectionTitle.translate(to: language)
-        case 3:
-            return LocalizedUI.playersSegmentTitle.translate(to: language)
-        case 4:
-            return LocalizedUI.gameTypeLabel.translate(to: language)
-        case 5:
-            return LocalizedUI.noteSegmentTitle.translate(to: language)
-        default:
-            return nil
-        }
-    }
-        
+    
     // MARK: - Method(s)
     
     private func localizeUI() {
         let language = Options.language
-                
+        
         SoundEnabledLabel.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
         VibrationEnabledLabel.text = LocalizedUI.vibrationEnabledSwitch.translate(to: language)
         
@@ -133,7 +160,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         
         NoteLabel.text = LocalizedUI.noteLabel.translate(to: language)
         NoteLabel.textAlignment = .natural
-                
+        
         GameTypeSegmentedControl
             .setTitle(LocalizedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
         GameTypeSegmentedControl
@@ -163,7 +190,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         case .Dark:
             UIColorModeSegmentedControl.selectedSegmentIndex = 2
         }
-                   
+        
         SoundEnabledSwitch.isOn     = Options.isSoundEnabled
         VibrationEnabledSwitch.isOn = Options.isVibrationEnabled
         

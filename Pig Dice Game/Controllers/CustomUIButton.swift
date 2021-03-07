@@ -13,11 +13,10 @@ class CustomUIButton: UIButton {
         didSet {
             if isHighlighted {
                 setTitleColor(.lightGray, for: .highlighted)
-                backgroundColor = self.backgroundColor?.withAlphaComponent(0.9)
             } else {
                 setTitleColor(.white, for: .normal)
-                backgroundColor = self.backgroundColor?.withAlphaComponent(0.9)
             }
+            backgroundColor = self.backgroundColor?.withAlphaComponent(0.9)
         }
     }
 

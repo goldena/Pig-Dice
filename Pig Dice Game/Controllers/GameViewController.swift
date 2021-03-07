@@ -216,6 +216,20 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             nextMoveIfAI()
         }
     }
+            
+    private func alertThenHandleVictory() {
+        let player = game.activePlayer
+        let language = Options.language
+        
+        alertThenHandleEvent(
+            title: LocalizedUI.winnerTitle.translate(name: player.name, to: language),
+            message: LocalizedUI.victoryMessage.translate(name: player.name, to: language)
+                + String(player.totalScore),
+            handler: {
+                self.startNewGame()
+                self.alertThenHandleNewGame()
+            })
+    }
     
     private func roll() {
         // Game mechanics: roll, calculate scores, check conditions, display alerts
@@ -235,32 +249,16 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             
             game.calculateScores(dice)
             updateUI()
-            
             alertThenHandleRollResult(dice)
-            
         case .PigGame2Dice:
             guard let dice1 = player.dice1, let dice2 = player.dice2 else { return }
             
             game.calculateScores(dice1, dice2)
             updateUI()
-            
             alertThenHandleRollResult(dice1, dice2)
         }
     }
-        
-    private func alertThenHandleVictory() {
-        let player = game.activePlayer
-        let language = Options.language
-        
-        alertThenHandleEvent(
-            title: LocalizedUI.winnerTitle.translate(name: player.name, to: language),
-            message: LocalizedUI.victoryMessage.translate(name: player.name, to: language)
-                + String(player.totalScore),
-            handler: {
-                self.startNewGame()
-                self.alertThenHandleNewGame()
-            })
-    }
+
     
     private func hold() {
         let player = game.activePlayer
@@ -277,20 +275,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         switchToNextPlayer()
     }
-    
-    // Displays info alert with Okay button
-    private func alertThenHandleEvent(title: String, message: String, handler: @escaping () -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(
-            title: LocalizedUI.alertActionTitle.translate(to: Options.language),
-            style: .default,
-            handler: { _ in handler() }
-        ))
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     private func localizeUI() {
         let language = Options.language
         
