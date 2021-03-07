@@ -46,6 +46,8 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         tapOutsideTextField.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutsideTextField)
         
+        addToolbarWithDoneButton(to: ScoreLimitTextField)
+        
         Player1NameTextField.delegate = self
         Player2NameTextField.delegate = self
         ScoreLimitTextField.delegate = self
@@ -57,7 +59,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         localizeUI()
         updateUI()
     }
-     
+         
     // Localize section titles
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let language = Options.language

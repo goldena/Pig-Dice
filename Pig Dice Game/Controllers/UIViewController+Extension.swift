@@ -65,4 +65,19 @@ extension UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
+    func addToolbarWithDoneButton(to textField: UITextField) {
+        let toolBarWithDoneButton = UIToolbar()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissKeyboard))
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolBarWithDoneButton.items = [spacer, doneButton]
+        toolBarWithDoneButton.autoresizingMask = .flexibleHeight
+        
+        textField.inputAccessoryView = toolBarWithDoneButton
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
