@@ -41,18 +41,13 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Dismissed keyboard after tapping outside an edited field
-        let tapOutsideTextField = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        tapOutsideTextField.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapOutsideTextField)
-        
-        addToolbarWithDoneButton(to: ScoreLimitTextField)
+        addTapOutsideTextFieldGestureRecognizer()        
+        ScoreLimitTextField.addToolbarWithDoneButton()
         
         Player1NameTextField.delegate = self
         Player2NameTextField.delegate = self
         ScoreLimitTextField.delegate = self
         
-        // Making 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
         

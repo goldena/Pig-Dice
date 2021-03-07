@@ -64,20 +64,32 @@ extension UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    func addTapOutsideTextFieldGestureRecognizer() {
+        // Dismissed keyboard after tapping outside an edited field
+        let tapOutsideTextField = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tapOutsideTextField.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapOutsideTextField)
+    }
+}
 
-    func addToolbarWithDoneButton(to textField: UITextField) {
-        let toolBarWithDoneButton = UIToolbar()
+extension UITextField {
+    
+    // Add toolbar with 'done' button for a numeric keyboard ()
+    func addToolbarWithDoneButton() {
+        let toolbarWithDoneButton = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissKeyboard))
-        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbarWithDoneButton.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissKeyboard))
+        ]
         
-        toolBarWithDoneButton.items = [spacer, doneButton]
-        toolBarWithDoneButton.autoresizingMask = .flexibleHeight
+        toolbarWithDoneButton.sizeToFit()
         
-        textField.inputAccessoryView = toolBarWithDoneButton
+        self.inputAccessoryView = toolbarWithDoneButton
     }
     
     @objc func dismissKeyboard() {
-        view.endEditing(true)
+        self.resignFirstResponder()
     }
 }
