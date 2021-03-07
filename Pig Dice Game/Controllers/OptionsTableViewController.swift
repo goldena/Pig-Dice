@@ -47,14 +47,19 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         Player1NameTextField.delegate = self
         Player2NameTextField.delegate = self
         ScoreLimitTextField.delegate = self
-        
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 200
-        
+                
         localizeUI()
         updateUI()
     }
-         
+       
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath == IndexPath(row: 0, section: 5) {
+            return 132
+        } else {
+            return tableView.rowHeight
+        }
+    }
+    
     // Localize section titles
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let language = Options.language

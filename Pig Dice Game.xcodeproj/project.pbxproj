@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF0586D825F02E6100AB3A15 /* OptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0586D725F02E6000AB3A15 /* OptionsTableViewController.swift */; };
+		CF180BAF25F5704E00A21051 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF180BAE25F5704E00A21051 /* UITextField+Extension.swift */; };
 		CF18F395257594A50017873F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF18F394257594A50017873F /* Constants.swift */; };
 		CF2DDE9F25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */; };
 		CF38BC0C25E84FA800FA0E72 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		CF0586D725F02E6000AB3A15 /* OptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewController.swift; sourceTree = "<group>"; };
+		CF180BAE25F5704E00A21051 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		CF18F394257594A50017873F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CF2DDE9C25DDBE0E006ECD0F /* Pig Dice GameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pig Dice GameTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pig_Dice_GameTests.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				CFE2D9732546231F00565EB8 /* HelpViewController.swift */,
 				CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */,
 				CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */,
+				CF180BAE25F5704E00A21051 /* UITextField+Extension.swift */,
 				CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */,
 				CFE2D977254E093F00565EB8 /* OptionsViewController.swift */,
 				CF0586D725F02E6000AB3A15 /* OptionsTableViewController.swift */,
@@ -308,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF180BAF25F5704E00A21051 /* UITextField+Extension.swift in Sources */,
 				CFE2D9742546231F00565EB8 /* HelpViewController.swift in Sources */,
 				CF38BC0C25E84FA800FA0E72 /* UIViewController+Extension.swift in Sources */,
 				CFE2D978254E093F00565EB8 /* OptionsViewController.swift in Sources */,
