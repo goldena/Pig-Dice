@@ -86,6 +86,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
             guard let newScoreLimit = Int(textField.text ?? "Invalid input"),
                   10...1000 ~= newScoreLimit else {
                 alertThenHandleEvent(
+                    color: Const.Player1Color,
                     title: "Invalid Score Limit input or range",
                     message: "The Score Limit will be set to the default value: \(Const.DefaultScoreLimit)",
                     handler: {
@@ -98,6 +99,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
             
             if isEmptyString {
                 alertThenHandleEvent(
+                    color: Const.Player1Color,
                     title: "Empty or invalid name",
                     message: "The name will be set to a default one",
                     handler: {
