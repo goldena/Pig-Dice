@@ -132,7 +132,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     private func alertThenHandleNewGame() {
         alertThenHandleEvent(
-            color: Const.Player1Color,
+            color: is2ndPlayer ? Const.Player2Color : Const.Player1Color,
             title: LocalizedUI.newGameTitle.translate(to: Options.language),
             message: LocalizedUI.newGameMessage.translate(to: Options.language),
             handler: {
@@ -181,17 +181,18 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private func alertThenHandleRollResult(_ dice: Int) {
         let player = game.activePlayer
         let language = Options.language
+        let playerColor = is2ndPlayer ? Const.Player2Color : Const.Player1Color
         
         switch (dice, player.previousDice) {
         case (1, _):
             alertThenHandleEvent(
-                color: Const.Player1Color,
+                color: playerColor,
                 title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
         case (6, 6):
             alertThenHandleEvent(
-                color: Const.Player1Color,
+                color: playerColor,
                 title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: language),
                 message: LocalizedUI.threw6TwiceMessage.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
@@ -203,17 +204,18 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private func alertThenHandleRollResult(_ dice1: Int, _ dice2: Int) {
         let player = game.activePlayer
         let language = Options.language
+        let playerColor = is2ndPlayer ? Const.Player2Color : Const.Player1Color
                 
         switch (dice1, dice2) {
         case (_, 1), (1, _):
             alertThenHandleEvent(
-                color: Const.Player1Color,
+                color: playerColor,
                 title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
         case (6, 6):
             alertThenHandleEvent(
-                color: Const.Player1Color,
+                color: playerColor,
                 title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: language),
                 message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
@@ -227,7 +229,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         let language = Options.language
         
         alertThenHandleEvent(
-            color: Const.Player1Color,
+            color: is2ndPlayer ? Const.Player2Color : Const.Player1Color,
             title: LocalizedUI.winnerTitle.translate(name: player.name, to: language),
             message: LocalizedUI.victoryMessage.translate(name: player.name, to: language)
                 + String(player.totalScore),
