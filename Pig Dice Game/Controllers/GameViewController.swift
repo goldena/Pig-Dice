@@ -155,7 +155,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
         disableButtons(ButtonsCollection)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + Const.delay) { [weak self] in
+
             guard let self = self else { return }
             
             let AIPlayer = self.game.activePlayer
@@ -245,10 +246,20 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
         player.rollDice()
         
+        // Play vibration
         SoundAndHapticController.playHaptic()
         
+        // Play sound
         if Options.isSoundEnabled {
             SoundAndHapticController.playSound(Const.DiceRollSoundFileName, type: Const.DiceRollSoundFileType)
+        }
+        
+        #warning("Add some kind of animation between throws")
+        
+        // Play dice animation
+        dice1ImageView.rotate(degrees: Bool.random() ? 360 : -360 , duration: Const.delay / 2)
+        if dice2ImageView != nil {
+            dice2ImageView.rotate(degrees: Bool.random() ? 360 : -360, duration: Const.delay / 2)
         }
         
         switch game.gameType {
@@ -267,7 +278,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         }
     }
 
-    
     private func hold() {
         let player = game.activePlayer
         
