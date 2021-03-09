@@ -54,30 +54,22 @@ extension UIViewController {
     
     // Displays info alert with Okay button
     func alertThenHandleEvent(color: UIColor, title: String, message: String, handler: @escaping () -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(
-            title: LocalizedUI.alertActionTitle.translate(to: Options.language),
-            style: .default,
-            handler: { _ in handler() }
-        ))
-        
-        #warning("Refactor")
-        // Insert a new line, to add space between the title and the message
+        alertController.addAction(
+            UIAlertAction(
+                title: LocalizedUI.alertActionTitle.translate(to: Options.language),
+                style: .default,
+                handler: { _ in handler() }
+            )
+        )
         
         // Customize font, design and color.
         alertController.view.tintColor = color
-
-        let attributedTitle = NSMutableAttributedString(string: "\n" + title)
-        let attributedMessage = NSMutableAttributedString(string: "\n" + message)
         
-        if let titleFont = UIFont(name: "Lato-Regular", size: 18) {
-            attributedTitle.addAttributes([NSAttributedString.Key.font: titleFont], range: NSMakeRange(0, title.utf8.count + 1))
-        }
-        
-        if let messageFont = UIFont(name: "Lato-Regular", size: 18) {
-            attributedMessage.addAttributes([NSAttributedString.Key.font: messageFont], range: NSMakeRange(0, message.utf8.count + 1))
-        }
+        // Insert a new line, to add space between the title and the message
+        let attributedTitle = makeNSMutableAttributedString(fromString: "\n" + title, usingFont: Const.font)
+        let attributedMessage = makeNSMutableAttributedString(fromString: "\n" + message, usingFont: Const.font)
 
         alertController.setValue(attributedTitle, forKey: "attributedTitle")
         alertController.setValue(attributedMessage, forKey: "attributedMessage")

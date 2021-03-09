@@ -36,6 +36,8 @@ struct Const {
     static let Is2ndPlayerAI = true
     static let DefaultGameType: GameType = .PigGame2Dice
     
+    static let font = "Lato-Regular"
+    
     static let Player1Color = UIColor(red: 0.603, green: 0.106, blue: 0.112, alpha: 1.0)
     static let Player2Color = UIColor(red: 0.24, green: 0.47, blue: 0.85, alpha: 1.0)
 

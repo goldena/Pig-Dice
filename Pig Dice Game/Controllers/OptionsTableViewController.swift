@@ -36,7 +36,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var GameTypeSegmentedControl: UISegmentedControl!
     
-    @IBOutlet private weak var NoteLabel: UILabel!
+    @IBOutlet weak var NoteLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +83,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         switch textField {
         case ScoreLimitTextField:
             // Check if the input of Score limit is valid and within range, else alert and revert to the default
+            #warning("Refactor")
             guard let newScoreLimit = Int(textField.text ?? "Invalid input"),
                   10...1000 ~= newScoreLimit else {
                 alertThenHandleEvent(
@@ -175,7 +176,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
             .setTitle(LocalizedUI.colorDarkModeSegmentedControlLabel.translate(to: language), forSegmentAt: 2)
     }
     
-    private func updateUI() {
+    func updateUI() {
         switch Options.language {
         case .En:
             LanguageSelectionSegmentedControl.selectedSegmentIndex = 0
