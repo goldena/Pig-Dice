@@ -54,7 +54,7 @@ extension UIViewController {
     
     // Displays info alert with Okay button
     func alertThenHandleEvent(color: UIColor, title: String, message: String, handler: @escaping () -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
         alertController.addAction(
             UIAlertAction(

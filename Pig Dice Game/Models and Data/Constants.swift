@@ -23,6 +23,7 @@ enum ColorMode: String {
 struct Const {
     // Assets
     static let DiceFaces = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
+    static let DiceSize = 100
     static let DiceRollSoundFileName = "dice_roll"
     static let DiceRollSoundFileType = "wav"
     

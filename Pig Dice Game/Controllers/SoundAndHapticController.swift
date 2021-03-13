@@ -18,10 +18,8 @@ class SoundAndHapticController {
     // MARK: - Method(s)
     
     static func playHaptic() {
-        if Options.isVibrationEnabled {
-            hapticGenerator = UIImpactFeedbackGenerator(style: .light)
-            hapticGenerator?.impactOccurred()
-        }
+        hapticGenerator = UIImpactFeedbackGenerator(style: .light)
+        hapticGenerator?.impactOccurred()
     }
 
     static func playSound(_ soundName: String, type: String) {

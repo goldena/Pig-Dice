@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 // Main screen view controller
 class GameViewController: UIViewController, ViewControllerDelegate {
@@ -17,7 +18,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private var dice2ImageView: UIImageView!
     
     private var dynamicAnimator: UIDynamicAnimator!
-
+    private var collisionBehavior: UICollisionBehavior!
+    private var bouncingBehavior: UIDynamicItemBehavior!
+    private var gravityBehavior: UIGravityBehavior!
+    private var motionManager: CMMotionManager!
+    
     // For delegation needs, to dynamically update some of the options on the main game screen
     private var optionsViewController: OptionsViewController!
     
@@ -64,12 +69,51 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         optionsViewController.delegate = self
         
-        dynamicAnimator = UIDynamicAnimator(referenceView: DiceAnimationView)
+        configAnimation()
     }
- 
+
+    func configAnimation() {
+        dynamicAnimator = UIDynamicAnimator(referenceView: DiceAnimationView)
+        
+        gravityBehavior = UIGravityBehavior()
+        dynamicAnimator.addBehavior(gravityBehavior)
+
+        collisionBehavior = UICollisionBehavior()
+        collisionBehavior.collisionDelegate = self
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        dynamicAnimator.addBehavior(collisionBehavior)
+        
+        bouncingBehavior = UIDynamicItemBehavior()
+        bouncingBehavior.elasticity = 0.5
+        dynamicAnimator.addBehavior(bouncingBehavior)
+        
+        motionManager = CMMotionManager()
+        
+        if motionManager.isAccelerometerAvailable {
+            motionManager.accelerometerUpdateInterval = 0.1
+
+            motionManager.startAccelerometerUpdates(to: .main) { [weak self] (accelerometerData, error) in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    NSLog("Failed to fetch data from accelerometer with an error: \(error)")
+                    return
+                }
+
+                guard let accelerometerData = accelerometerData else { return }
+
+                self.gravityBehavior.gravityDirection = CGVector(
+                    dx: accelerometerData.acceleration.x,
+                    dy: accelerometerData.acceleration.y * -1
+                )
+            }
+        }
+
+    }
+
+    
     private func configDiceImageView( _ diceImageView: inout UIImageView!) {
-        diceImageView = UIImageView()
-        // diceImageView.translatesAutoresizingMaskIntoConstraints = false
+        diceImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.DiceSize, height: Const.DiceSize))
         diceImageView.contentMode = .scaleAspectFit
     }
      
@@ -229,68 +273,36 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 self.alertThenHandleNewGame()
             })
     }
-
-    var squares: [UIView] = []
-    var gravityBehavior: UIGravityBehavior!
-
-    private func animateDice(dice: UIImageView) {
-        var collisionBehavior: UICollisionBehavior!
-        var bouncingBehavior: UIDynamicItemBehavior!
-        
+    
+    private func animateDiceImageView(_ diceImageView: UIImageView) {
         var randomMidX: CGFloat {
             UIScreen.main.bounds.midX + CGFloat.random(in: -50...50)
         }
         
-        dynamicAnimator.removeAllBehaviors()
-                
-//        let dynamicDice = dice as UIDynamicItem
-                
-        print(UIScreen.main.bounds.midX)
-        print(randomMidX)
+        // Cleanup from the previous animation
+        collisionBehavior.removeItem(diceImageView)
+        bouncingBehavior.removeItem(diceImageView)
+        gravityBehavior.removeItem(diceImageView)
         
-        let square = UIView(frame: CGRect(x: randomMidX, y: 0, width: 100, height: 100))
-        square.backgroundColor = .green
-        DiceAnimationView.addSubview(square)
-        squares.append(square)
-        
-        gravityBehavior = UIGravityBehavior(items: squares)
-        dynamicAnimator.addBehavior(gravityBehavior)
-        // gravityBehavior.gravityDirection = CGVector(dx: 0, dy: 1)
-        
-        collisionBehavior = UICollisionBehavior(items: squares)
-        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
-        dynamicAnimator.addBehavior(collisionBehavior)
-        
-        bouncingBehavior = UIDynamicItemBehavior(items: squares)
-        bouncingBehavior.elasticity = 0.5
-        bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: square)
-        dynamicAnimator.addBehavior(bouncingBehavior)
-        
-//        dice1ImageView.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
-//        dice1ImageView.contentMode = .scaleAspectFit
-//        dice1ImageView.removeFromSuperview()
-        
-        // dice1ImageView.center = DiceAnimationView.center
+        diceImageView.center = CGPoint(x: randomMidX, y: view.frame.minY + diceImageView.frame.height / 2)
+        DiceAnimationView.addSubview(diceImageView)
 
-//        DiceAnimationView.addSubview(dice1ImageView)
-        // dice1ImageView.clipsToBounds = true
+        collisionBehavior.addItem(diceImageView)
+
+        bouncingBehavior.addItem(diceImageView)
+        bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: diceImageView)
+
+        gravityBehavior.addItem(diceImageView)
     }
     
     private func roll() {
         // Game mechanics: roll, calculate scores, check conditions, display alerts
         let player = game.activePlayer
-
+        
         player.rollDice()
         
-        // Play vibration
-        SoundAndHapticController.playHaptic()
-        
-        // Play sound
-        if Options.isSoundEnabled {
-            SoundAndHapticController.playSound(Const.DiceRollSoundFileName, type: Const.DiceRollSoundFileType)
-        }
-        
-        animateDice(dice: dice1ImageView)
+        #warning("AnimateDice is called from here")
+        animateDiceImageView(dice1ImageView)
                 
         switch game.gameType {
         case .PigGame1Dice:
@@ -340,22 +352,16 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func updateUI() {
+        // motionManager.stopAccelerometerUpdates()
+        
         let player = game.activePlayer
         
-        // Show or Hide dice 1 image at the beginning of each round or a new game
-        
-        if player.dice1 == nil {
-            squares.forEach { (square) in
-                square.removeFromSuperview()
-            }
-            
-            squares.removeAll()
+        if let dice1 = player.dice1 {
+            dice1ImageView.image = Const.DiceFaces[dice1 - 1]
+        } else {
+            dice1ImageView.removeFromSuperview()
         }
-//        if let dice1 = player.dice1 {
-//            dice1ImageView.image = Const.DiceFaces[dice1 - 1]
-//        } else {
-//            dice1ImageView.image = nil
-//        }
+            
 
         // Show or Hide dice 2 image at the beginning of each round or a new game
         
@@ -380,5 +386,25 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         PlayerOneScoreValue.text = "\(game.player1.name): \(game.player1.totalScore)"
         PlayerTwoScoreValue.text = "\(game.player2.name): \(game.player2.totalScore)"
         CurrentScoreValue.text   = "\(player.roundScore)"
+    }
+}
+
+extension GameViewController: UICollisionBehaviorDelegate {
+    
+    func collisionBehavior(
+        _ behavior: UICollisionBehavior,
+        beganContactFor item: UIDynamicItem,
+        withBoundaryIdentifier identifier: NSCopying?, at p: CGPoint
+    ) {
+        
+        // Play vibration
+        if Options.isVibrationEnabled {
+            SoundAndHapticController.playHaptic()
+        }
+            
+        // Play sound
+        if Options.isSoundEnabled {
+            SoundAndHapticController.playSound(Const.DiceRollSoundFileName, type: Const.DiceRollSoundFileType)
+        }
     }
 }
