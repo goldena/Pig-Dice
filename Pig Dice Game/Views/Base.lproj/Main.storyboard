@@ -98,7 +98,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dX2-Kd-BSc" userLabel="Current Player and Score Stack View">
-                                                <rect key="frame" x="0.0" y="112.5" width="358" height="80"/>
+                                                <rect key="frame" x="0.0" y="72.5" width="358" height="80"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bff-ev-g04" userLabel="Current Player Stack View">
                                                         <rect key="frame" x="59" y="0.0" width="240" height="41"/>
@@ -135,14 +135,15 @@
                                                     <constraint firstAttribute="height" constant="80" id="lBE-RJ-aMO"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uaM-ah-iaG" userLabel="Dice Images Stack View">
-                                                <rect key="frame" x="0.0" y="255" width="358" height="100"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTe-nj-2d5" userLabel="Dice Animation View">
+                                                <rect key="frame" x="0.0" y="175" width="358" height="300"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="pip-6H-1Iq"/>
+                                                    <constraint firstAttribute="height" constant="300" id="ET1-Y4-oCr"/>
                                                 </constraints>
-                                            </stackView>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rZD-1u-Ja4" userLabel="Scores Stack View">
-                                                <rect key="frame" x="0.0" y="418" width="358" height="80"/>
+                                                <rect key="frame" x="0.0" y="498" width="358" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-Jl-zpm" userLabel="Total Scores Label">
                                                         <rect key="frame" x="117" y="0.0" width="124" height="29"/>
@@ -170,7 +171,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2iY-3c-grX" userLabel="Score Limit Stack View">
-                                                <rect key="frame" x="60" y="560.5" width="238.5" height="40"/>
+                                                <rect key="frame" x="60" y="600.5" width="238.5" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbH-n7-3m6">
                                                         <rect key="frame" x="0.0" y="5.5" width="120" height="29"/>
@@ -231,15 +232,15 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="GTe-nj-2d5" secondAttribute="trailing" id="3Tp-sP-Xiw"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="kdp-yA-5pp" secondAttribute="trailing" id="4UH-lP-8AU"/>
                                             <constraint firstItem="kdp-yA-5pp" firstAttribute="top" secondItem="ohZ-jX-RTd" secondAttribute="top" id="6si-F6-QhG"/>
-                                            <constraint firstItem="uaM-ah-iaG" firstAttribute="leading" secondItem="ohZ-jX-RTd" secondAttribute="leadingMargin" id="7af-4u-Utv"/>
                                             <constraint firstItem="rZD-1u-Ja4" firstAttribute="leading" secondItem="ohZ-jX-RTd" secondAttribute="leadingMargin" id="9Pc-RX-R2e"/>
                                             <constraint firstAttribute="trailing" secondItem="d00-Yr-rGt" secondAttribute="trailing" id="G3l-Rq-Igh"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="uaM-ah-iaG" secondAttribute="trailing" id="Nye-p8-sB6"/>
                                             <constraint firstAttribute="bottom" secondItem="d00-Yr-rGt" secondAttribute="bottom" id="bXh-Bh-yGG"/>
                                             <constraint firstItem="d00-Yr-rGt" firstAttribute="leading" secondItem="ohZ-jX-RTd" secondAttribute="leading" id="eHm-aQ-yae"/>
                                             <constraint firstItem="dX2-Kd-BSc" firstAttribute="leading" secondItem="ohZ-jX-RTd" secondAttribute="leading" id="iRi-WG-vAy"/>
+                                            <constraint firstItem="GTe-nj-2d5" firstAttribute="leading" secondItem="ohZ-jX-RTd" secondAttribute="leading" id="my0-PG-YBL"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="rZD-1u-Ja4" secondAttribute="trailing" id="pZ0-yq-PON"/>
                                             <constraint firstAttribute="trailing" secondItem="dX2-Kd-BSc" secondAttribute="trailing" id="sNT-Yg-ezh"/>
                                             <constraint firstItem="kdp-yA-5pp" firstAttribute="leading" secondItem="ohZ-jX-RTd" secondAttribute="leadingMargin" id="wjN-yw-UFp"/>
@@ -279,7 +280,7 @@
                         <outlet property="CurrentPlayerName" destination="PQU-at-hv6" id="NCl-5m-7wN"/>
                         <outlet property="CurrentScoreLabel" destination="ztO-Hj-kKC" id="ei4-bW-dDB"/>
                         <outlet property="CurrentScoreValue" destination="qYK-H4-1no" id="xSa-ue-Sqi"/>
-                        <outlet property="DiceImagesStackView" destination="uaM-ah-iaG" id="7fi-Ii-vFx"/>
+                        <outlet property="DiceAnimationView" destination="GTe-nj-2d5" id="6HA-uN-Ywz"/>
                         <outlet property="HoldButton" destination="soZ-OY-0ra" id="sDp-ga-5gk"/>
                         <outlet property="NewGameButton" destination="Y7p-81-9WF" id="z4D-nR-ll0"/>
                         <outlet property="PlayerOneScoreValue" destination="GQe-mb-J6Q" id="1rK-zz-jWD"/>

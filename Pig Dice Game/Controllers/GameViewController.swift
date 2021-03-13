@@ -1,7 +1,7 @@
 //
 //  ViewController.swift
 //  Pig Dice Game
-//
+//
 //  Created by Denis Goloborodko on 10/8/20.
 //
 
@@ -16,6 +16,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private var dice1ImageView: UIImageView!
     private var dice2ImageView: UIImageView!
     
+    private var dynamicAnimator: UIDynamicAnimator!
+
     // For delegation needs, to dynamically update some of the options on the main game screen
     private var optionsViewController: OptionsViewController!
     
@@ -32,9 +34,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     @IBOutlet private weak var NewGameButton: UIButton!
     @IBOutlet private weak var RollButton: UIButton!
     @IBOutlet private weak var HoldButton: UIButton!
-    
-    // StackView for programmatically adding/removing Dice
-    @IBOutlet private weak var DiceImagesStackView: UIStackView!
+        
+    @IBOutlet weak var DiceAnimationView: UIView!
     
     @IBOutlet private weak var CurrentScoreLabel: UILabel!
     @IBOutlet private weak var CurrentScoreValue: UILabel!
@@ -62,31 +63,21 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             .instantiateViewController(identifier: "OptionsViewController")
         
         optionsViewController.delegate = self
+        
+        dynamicAnimator = UIDynamicAnimator(referenceView: DiceAnimationView)
     }
  
-    private func addDiceImageView( _ diceImageView: inout UIImageView!) {
-        // Create Dice ImageView and add it to the StackView
+    private func configDiceImageView( _ diceImageView: inout UIImageView!) {
         diceImageView = UIImageView()
-        diceImageView.translatesAutoresizingMaskIntoConstraints = false
+        // diceImageView.translatesAutoresizingMaskIntoConstraints = false
         diceImageView.contentMode = .scaleAspectFit
-        DiceImagesStackView.addArrangedSubview(diceImageView)
     }
-    
-    // Show or hide the second dice ImageView
-    private func updateDiceImageViews() {
-        switch game.gameType {
-        case .PigGame1Dice:
-            dice2ImageView.isHidden = true
-        case .PigGame2Dice:
-            dice2ImageView.isHidden = false
-        }
-    }
-    
+     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        addDiceImageView(&dice1ImageView)
-        addDiceImageView(&dice2ImageView)
+        configDiceImageView(&dice1ImageView)
+        configDiceImageView(&dice2ImageView)
         
         startNewGame()
     }
@@ -98,7 +89,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     // Delegation func, to localize UI once the Options are saved
-    func viewWillDimiss() {
+    func optionsViewControllerWillDismiss() {
         updateColorMode()
         localizeUI()
     }
@@ -145,7 +136,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         Options.load()
         game.initNewGame()
         
-        updateDiceImageViews()
+        // updateDiceImageViews()
         localizeUI()
         updateUI()
     }
@@ -156,7 +147,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         disableButtons(ButtonsCollection)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + Const.delay) { [weak self] in
-
             guard let self = self else { return }
             
             let AIPlayer = self.game.activePlayer
@@ -239,6 +229,52 @@ class GameViewController: UIViewController, ViewControllerDelegate {
                 self.alertThenHandleNewGame()
             })
     }
+
+    var squares: [UIView] = []
+    var gravityBehavior: UIGravityBehavior!
+
+    private func animateDice(dice: UIImageView) {
+        var collisionBehavior: UICollisionBehavior!
+        var bouncingBehavior: UIDynamicItemBehavior!
+        
+        var randomMidX: CGFloat {
+            UIScreen.main.bounds.midX + CGFloat.random(in: -50...50)
+        }
+        
+        dynamicAnimator.removeAllBehaviors()
+                
+//        let dynamicDice = dice as UIDynamicItem
+                
+        print(UIScreen.main.bounds.midX)
+        print(randomMidX)
+        
+        let square = UIView(frame: CGRect(x: randomMidX, y: 0, width: 100, height: 100))
+        square.backgroundColor = .green
+        DiceAnimationView.addSubview(square)
+        squares.append(square)
+        
+        gravityBehavior = UIGravityBehavior(items: squares)
+        dynamicAnimator.addBehavior(gravityBehavior)
+        // gravityBehavior.gravityDirection = CGVector(dx: 0, dy: 1)
+        
+        collisionBehavior = UICollisionBehavior(items: squares)
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        dynamicAnimator.addBehavior(collisionBehavior)
+        
+        bouncingBehavior = UIDynamicItemBehavior(items: squares)
+        bouncingBehavior.elasticity = 0.5
+        bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: square)
+        dynamicAnimator.addBehavior(bouncingBehavior)
+        
+//        dice1ImageView.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
+//        dice1ImageView.contentMode = .scaleAspectFit
+//        dice1ImageView.removeFromSuperview()
+        
+        // dice1ImageView.center = DiceAnimationView.center
+
+//        DiceAnimationView.addSubview(dice1ImageView)
+        // dice1ImageView.clipsToBounds = true
+    }
     
     private func roll() {
         // Game mechanics: roll, calculate scores, check conditions, display alerts
@@ -254,14 +290,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             SoundAndHapticController.playSound(Const.DiceRollSoundFileName, type: Const.DiceRollSoundFileType)
         }
         
-        #warning("Add some kind of animation between throws")
-        
-        // Play dice animation
-        dice1ImageView.rotate(degrees: Bool.random() ? 360 : -360 , duration: Const.delay / 2)
-        if dice2ImageView != nil {
-            dice2ImageView.rotate(degrees: Bool.random() ? 360 : -360, duration: Const.delay / 2)
-        }
-        
+        animateDice(dice: dice1ImageView)
+                
         switch game.gameType {
         case .PigGame1Dice:
             guard let dice = player.dice1 else { return }
@@ -313,20 +343,30 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         let player = game.activePlayer
         
         // Show or Hide dice 1 image at the beginning of each round or a new game
-        if let dice1 = player.dice1 {
-            dice1ImageView.image = Const.DiceFaces[dice1 - 1]
-        } else {
-            dice1ImageView.image = nil
+        
+        if player.dice1 == nil {
+            squares.forEach { (square) in
+                square.removeFromSuperview()
+            }
+            
+            squares.removeAll()
         }
+//        if let dice1 = player.dice1 {
+//            dice1ImageView.image = Const.DiceFaces[dice1 - 1]
+//        } else {
+//            dice1ImageView.image = nil
+//        }
 
         // Show or Hide dice 2 image at the beginning of each round or a new game
-        if game.gameType == .PigGame2Dice {
-            if let dice2 = player.dice2 {
-                dice2ImageView?.image = Const.DiceFaces[dice2 - 1]
-            } else {
-                dice2ImageView?.image = nil
-            }
-        }
+        
+        
+//        if game.gameType == .PigGame2Dice {
+//            if let dice2 = player.dice2 {
+//                dice2ImageView?.image = Const.DiceFaces[dice2 - 1]
+//            } else {
+//                dice2ImageView?.image = nil
+//            }
+//        }
         
         // Change color of buttons for the second player, when it is not AI
         if player === game.player2 && game.activePlayer.isAI == false {

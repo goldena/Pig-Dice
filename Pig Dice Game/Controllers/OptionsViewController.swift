@@ -9,7 +9,7 @@ import UIKit
 
 // Delegation Protocol for instant updates of the Main Game Screen for some Options
 protocol ViewControllerDelegate: UIViewController {
-    func viewWillDimiss()
+    func optionsViewControllerWillDismiss()
 }
 
 class OptionsViewController: UIViewController {
@@ -69,7 +69,7 @@ class OptionsViewController: UIViewController {
             
         // Save options, call delegate to localize the Game screen and dismiss view controller
         Options.save()
-        delegate?.viewWillDimiss()
+        delegate?.optionsViewControllerWillDismiss()
         
         self.dismiss(animated: true, completion: nil)
     }
