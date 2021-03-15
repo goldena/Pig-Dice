@@ -68,7 +68,7 @@ extension UIViewController {
         alertController.view.tintColor = color
         
         // Insert a new line, to add space between the title and the message
-        let attributedTitle = makeNSMutableAttributedString(fromString: "\n" + title, usingFont: Const.font)
+        let attributedTitle = makeNSMutableAttributedString(fromString: title, usingFont: Const.font)
         let attributedMessage = makeNSMutableAttributedString(fromString: "\n" + message, usingFont: Const.font)
 
         alertController.setValue(attributedTitle, forKey: "attributedTitle")

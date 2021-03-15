@@ -11,6 +11,7 @@
 		CF180BAF25F5704E00A21051 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF180BAE25F5704E00A21051 /* UITextField+Extension.swift */; };
 		CF180BB325F80DD400A21051 /* makeNSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF180BB225F80DD400A21051 /* makeNSMutableAttributedString.swift */; };
 		CF180BB925F8136F00A21051 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF180BB825F8136F00A21051 /* UIImageView+Extension.swift */; };
+		CF180BBD25FE254800A21051 /* dice_roll_single_collision.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF180BBC25FE254800A21051 /* dice_roll_single_collision.wav */; };
 		CF18F395257594A50017873F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF18F394257594A50017873F /* Constants.swift */; };
 		CF2DDE9F25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */; };
 		CF38BC0C25E84FA800FA0E72 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */; };
@@ -48,6 +49,7 @@
 		CF180BAE25F5704E00A21051 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		CF180BB225F80DD400A21051 /* makeNSMutableAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = makeNSMutableAttributedString.swift; sourceTree = "<group>"; };
 		CF180BB825F8136F00A21051 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		CF180BBC25FE254800A21051 /* dice_roll_single_collision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dice_roll_single_collision.wav; sourceTree = "<group>"; };
 		CF18F394257594A50017873F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CF2DDE9C25DDBE0E006ECD0F /* Pig Dice GameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pig Dice GameTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pig_Dice_GameTests.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		CFBBD7462587F5C200CA625A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				CF180BBC25FE254800A21051 /* dice_roll_single_collision.wav */,
 				CFBBD74B2587FAD600CA625A /* dice_roll.wav */,
 			);
 			path = Sounds;
@@ -297,6 +300,7 @@
 				CFE937E2252E7D40009F7CB2 /* Assets.xcassets in Resources */,
 				CFE2D9712545B75300565EB8 /* Lato-Regular.ttf in Resources */,
 				CFE937E0252E7D3D009F7CB2 /* Main.storyboard in Resources */,
+				CF180BBD25FE254800A21051 /* dice_roll_single_collision.wav in Resources */,
 				CFBBD74C2587FAD600CA625A /* dice_roll.wav in Resources */,
 				CFE2D96E2545B6FD00565EB8 /* Lato-Light.ttf in Resources */,
 			);

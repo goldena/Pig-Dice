@@ -22,6 +22,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private var bouncingBehavior: UIDynamicItemBehavior!
     private var gravityBehavior: UIGravityBehavior!
     private var motionManager: CMMotionManager!
+    private var accelerometerUpdatesOperationQueue: OperationQueue!
     
     // For delegation needs, to dynamically update some of the options on the main game screen
     private var optionsViewController: OptionsViewController!
@@ -85,14 +86,21 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         bouncingBehavior = UIDynamicItemBehavior()
         bouncingBehavior.elasticity = 0.5
+        bouncingBehavior.density = 0.9
+        bouncingBehavior.friction = 0.3
         dynamicAnimator.addBehavior(bouncingBehavior)
         
         motionManager = CMMotionManager()
+        motionManager.accelerometerUpdateInterval = 0.1
         
-        if motionManager.isAccelerometerAvailable {
-            motionManager.accelerometerUpdateInterval = 0.1
+        accelerometerUpdatesOperationQueue = OperationQueue()
+        accelerometerUpdatesOperationQueue.maxConcurrentOperationCount = 1
+        accelerometerUpdatesOperationQueue.qualityOfService = .background
+        // accelerometerUpdatesOperationQueue.waitUntilAllOperationsAreFinished()
 
-            motionManager.startAccelerometerUpdates(to: .main) { [weak self] (accelerometerData, error) in
+        if motionManager.isAccelerometerAvailable {
+            // motionManager.accelerometerUpdateInterval = 0.1
+            motionManager.startAccelerometerUpdates(to: accelerometerUpdatesOperationQueue) { [weak self] (accelerometerData, error) in
                 guard let self = self else { return }
                 
                 if let error = error {
@@ -102,19 +110,22 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
                 guard let accelerometerData = accelerometerData else { return }
 
-                self.gravityBehavior.gravityDirection = CGVector(
-                    dx: accelerometerData.acceleration.x,
-                    dy: accelerometerData.acceleration.y * -1
-                )
+                DispatchQueue.main.async {
+                    self.gravityBehavior.gravityDirection = CGVector(
+                        dx: accelerometerData.acceleration.x,
+                        dy: accelerometerData.acceleration.y * -1
+                    )
+                }
             }
         }
 
     }
-
     
     private func configDiceImageView( _ diceImageView: inout UIImageView!) {
         diceImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.DiceSize, height: Const.DiceSize))
-        diceImageView.contentMode = .scaleAspectFit
+        diceImageView.contentMode = .scaleAspectFill
+        // diceImageView.translatesAutoresizingMaskIntoConstraints = false
+        DiceAnimationView.addSubview(diceImageView)
     }
      
     override func viewWillAppear(_ animated: Bool) {
@@ -180,7 +191,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         Options.load()
         game.initNewGame()
         
-        // updateDiceImageViews()
         localizeUI()
         updateUI()
     }
@@ -276,23 +286,58 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     private func animateDiceImageView(_ diceImageView: UIImageView) {
         var randomMidX: CGFloat {
-            UIScreen.main.bounds.midX + CGFloat.random(in: -50...50)
+            DiceAnimationView.frame.midX + CGFloat.random(in: -50...50)
+        }
+        var minY: CGFloat {
+            diceImageView.frame.height / 2
         }
         
-        // Cleanup from the previous animation
+        // Cleanup animation behaviour
         collisionBehavior.removeItem(diceImageView)
         bouncingBehavior.removeItem(diceImageView)
         gravityBehavior.removeItem(diceImageView)
+
+        // Fadeout and reappear at the top of the view
+        UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.2,
+            delay: 0.0,
+            options: .curveEaseInOut,
+            animations: { diceImageView.alpha = 0.0 }
+        ) { _ in
+            diceImageView.center = CGPoint(x: randomMidX, y: minY)
+            diceImageView.alpha = 1.0
+            self.DiceAnimationView.layoutIfNeeded()
+            
+            self.collisionBehavior.addItem(diceImageView)
+            self.bouncingBehavior.addItem(diceImageView)
+            self.bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: diceImageView)
+            self.gravityBehavior.addItem(diceImageView)
+        }
         
-        diceImageView.center = CGPoint(x: randomMidX, y: view.frame.minY + diceImageView.frame.height / 2)
-        DiceAnimationView.addSubview(diceImageView)
-
-        collisionBehavior.addItem(diceImageView)
-
-        bouncingBehavior.addItem(diceImageView)
-        bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: diceImageView)
-
-        gravityBehavior.addItem(diceImageView)
+//        UIView.animate(
+//            withDuration: 0.2,
+//            delay: 0.0,
+//            options: .curveEaseInOut,
+//            animations: { diceImageView.alpha = 0.0 },
+//            completion: { _ in
+//                // Cleanup from the previous animation
+//                self.collisionBehavior.removeItem(diceImageView)
+//                self.bouncingBehavior.removeItem(diceImageView)
+//                self.gravityBehavior.removeItem(diceImageView)
+//
+//                #warning("Start here")
+//                diceImageView.center = CGPoint(
+//                    x: randomMidX,
+//                    y: minY
+//                )
+//                diceImageView.alpha = 1.0
+//                self.DiceAnimationView.layoutIfNeeded()
+//
+//                self.collisionBehavior.addItem(diceImageView)
+//                self.bouncingBehavior.addItem(diceImageView)
+//                self.bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: diceImageView)
+//                self.gravityBehavior.addItem(diceImageView)
+//            })
     }
     
     private func roll() {
@@ -303,6 +348,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         #warning("AnimateDice is called from here")
         animateDiceImageView(dice1ImageView)
+        animateDiceImageView(dice2ImageView)
                 
         switch game.gameType {
         case .PigGame1Dice:
@@ -352,27 +398,15 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func updateUI() {
-        // motionManager.stopAccelerometerUpdates()
-        
         let player = game.activePlayer
-        
+
         if let dice1 = player.dice1 {
             dice1ImageView.image = Const.DiceFaces[dice1 - 1]
-        } else {
-            dice1ImageView.removeFromSuperview()
         }
-            
 
-        // Show or Hide dice 2 image at the beginning of each round or a new game
-        
-        
-//        if game.gameType == .PigGame2Dice {
-//            if let dice2 = player.dice2 {
-//                dice2ImageView?.image = Const.DiceFaces[dice2 - 1]
-//            } else {
-//                dice2ImageView?.image = nil
-//            }
-//        }
+        if game.gameType == .PigGame2Dice, let dice2 = player.dice2 {
+            dice2ImageView?.image = Const.DiceFaces[dice2 - 1]
+        }
         
         // Change color of buttons for the second player, when it is not AI
         if player === game.player2 && game.activePlayer.isAI == false {
