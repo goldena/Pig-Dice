@@ -438,7 +438,9 @@ extension GameViewController: UICollisionBehaviorDelegate {
             
         // Play sound
         if Options.isSoundEnabled {
-            SoundAndHapticController.playSound(Const.DiceRollSoundFileName, type: Const.DiceRollSoundFileType)
-        }
+            SoundAndHapticController.playSound(
+                Const.DiceRollSoundFileName.randomElement() ?? "",
+                type: Const.DiceRollSoundFileType
+            )}
     }
 }
