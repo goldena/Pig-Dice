@@ -189,9 +189,18 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
     
     private func startNewGame() {
+        dice1ImageView.alpha = 0.0
+        dice2ImageView.alpha = 0.0
+        
+        removeBehaviours(from: dice1ImageView)
+        removeBehaviours(from: dice2ImageView)
+        
+        dice1ImageView.removeFromSuperview()
+        dice2ImageView.removeFromSuperview()
+        
         Options.load()
         game.initNewGame()
-        
+                
         localizeUI()
         updateUI()
     }
@@ -293,10 +302,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             diceImageView.frame.height / 2
         }
         
-        // Cleanup animation behaviour
-        collisionBehavior.removeItem(diceImageView)
-        bouncingBehavior.removeItem(diceImageView)
-        gravityBehavior.removeItem(diceImageView)
+        removeBehaviours(from: diceImageView)
         
         // Fadeout and reappear at the top of the view
         UIViewPropertyAnimator.runningPropertyAnimator(
@@ -309,11 +315,23 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             diceImageView.alpha = 1.0
             self.DiceAnimationView.layoutIfNeeded()
             
-            self.collisionBehavior.addItem(diceImageView)
-            self.bouncingBehavior.addItem(diceImageView)
+            self.addBehaviours(to: diceImageView)
             self.bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: diceImageView)
-            self.gravityBehavior.addItem(diceImageView)
         }
+    }
+    
+    // Remove animation behaviours
+    private func removeBehaviours(from diceImageView: UIImageView) {
+        collisionBehavior.removeItem(diceImageView)
+        bouncingBehavior.removeItem(diceImageView)
+        gravityBehavior.removeItem(diceImageView)
+    }
+    
+    // Add animation behaviours
+    private func addBehaviours(to diceImageView: UIImageView) {
+        self.collisionBehavior.addItem(diceImageView)
+        self.bouncingBehavior.addItem(diceImageView)
+        self.gravityBehavior.addItem(diceImageView)
     }
     
     private func roll() {
@@ -322,15 +340,14 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         player.rollDice()
         
-        if game.gameType == .PigGame1Dice {
-            dice2ImageView.removeFromSuperview()
-            
-            animateDiceImageView(dice1ImageView)
-        }
+        dice1ImageView.removeFromSuperview()
+        dice2ImageView.removeFromSuperview()
+        
+        DiceAnimationView.addSubview(dice1ImageView)
+        animateDiceImageView(dice1ImageView)
         
         if game.gameType == .PigGame2Dice {
             DiceAnimationView.addSubview(dice2ImageView)
-            
             animateDiceImageView(dice2ImageView)
         }
                 
