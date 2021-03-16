@@ -22,6 +22,10 @@ class SoundAndHapticController {
         hapticGenerator?.impactOccurred()
     }
 
+    static func prepareToPlaySound() {
+        audioPlayer?.prepareToPlay()
+    }
+    
     static func playSound(_ soundName: String, type: String) {
         guard let soundPath = Bundle.main.path(forResource: soundName, ofType: type) else {
             NSLog("Could not find sound file")

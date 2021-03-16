@@ -162,6 +162,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         Is2ndPlayerAILabel.text = LocalizedUI.is2ndPlayerAILabel.translate(to: language)
         
         ScoreLimitLabel.text = LocalizedUI.scoreLimitLabel.translate(to: language)
+        ScoreLimitRangeLabel.text = LocalizedUI.scoreLimitRangeLabel.translate(to: language)
         
         NoteLabel.text = LocalizedUI.noteLabel.translate(to: language)
         NoteLabel.textAlignment = .natural

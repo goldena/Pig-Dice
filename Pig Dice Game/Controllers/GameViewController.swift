@@ -339,10 +339,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         let player = game.activePlayer
         
         player.rollDice()
-        
-        dice1ImageView.removeFromSuperview()
-        dice2ImageView.removeFromSuperview()
-        
+                
         DiceAnimationView.addSubview(dice1ImageView)
         animateDiceImageView(dice1ImageView)
         
