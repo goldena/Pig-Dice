@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="49O-rC-jZq" userLabel="Background">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdU-8u-Slp" userLabel="LaunchScreen View">
                                 <rect key="frame" x="20" y="64" width="374" height="778"/>
                                 <subviews>
@@ -39,12 +36,8 @@
                         <viewLayoutGuide key="safeArea" id="jUT-9u-5xg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="49O-rC-jZq" firstAttribute="leading" secondItem="yIF-RZ-PIv" secondAttribute="leading" id="Jon-sW-nWs"/>
-                            <constraint firstItem="49O-rC-jZq" firstAttribute="top" secondItem="yIF-RZ-PIv" secondAttribute="top" id="QKd-9K-bYD"/>
                             <constraint firstItem="jUT-9u-5xg" firstAttribute="trailing" secondItem="qdU-8u-Slp" secondAttribute="trailing" constant="20" id="VPc-LS-8KZ"/>
-                            <constraint firstAttribute="trailing" secondItem="49O-rC-jZq" secondAttribute="trailing" id="XIk-d3-7UY"/>
                             <constraint firstItem="qdU-8u-Slp" firstAttribute="leading" secondItem="jUT-9u-5xg" secondAttribute="leading" constant="20" id="Zwh-Eb-2Cp"/>
-                            <constraint firstAttribute="bottom" secondItem="49O-rC-jZq" secondAttribute="bottom" id="eFA-6U-0qO"/>
                             <constraint firstItem="jUT-9u-5xg" firstAttribute="bottom" secondItem="qdU-8u-Slp" secondAttribute="bottom" constant="20" id="gF6-JK-b8O"/>
                             <constraint firstItem="qdU-8u-Slp" firstAttribute="top" secondItem="jUT-9u-5xg" secondAttribute="top" constant="20" id="vIv-fz-7aJ"/>
                         </constraints>
@@ -56,7 +49,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="5120" height="3200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

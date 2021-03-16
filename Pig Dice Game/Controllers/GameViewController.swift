@@ -30,7 +30,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     var game = Game()
     
     // Check for changing buttons' color of the second human player (for hot-seat game)
-    var is2ndPlayer: Bool {
+    private var is2ndPlayer: Bool {
         game.activePlayer === game.player2 ? true : false
     }
     
@@ -69,10 +69,32 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             .instantiateViewController(identifier: "OptionsViewController")
         
         optionsViewController.delegate = self
+    }
+     
+    // Delegation func, to localize UI once the Options are saved
+    func optionsViewControllerWillDismiss() {
+        updateColorMode()
+        localizeUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        configDiceImageView(&dice1ImageView)
+        configDiceImageView(&dice2ImageView)
         
         configAnimation()
+        configMotionManager()
+        
+        startNewGame()
     }
-
+    
+    private func configDiceImageView( _ diceImageView: inout UIImageView!) {
+        diceImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.DiceSize, height: Const.DiceSize))
+        diceImageView.contentMode = .scaleAspectFill
+        diceImageView.alpha = 0.0
+    }
+    
     func configAnimation() {
         dynamicAnimator = UIDynamicAnimator(referenceView: DiceAnimationView)
         
@@ -89,52 +111,37 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         bouncingBehavior.density = 0.9
         bouncingBehavior.friction = 0.3
         dynamicAnimator.addBehavior(bouncingBehavior)
-        
+    }
+    
+    func configMotionManager() {
         motionManager = CMMotionManager()
-        motionManager.accelerometerUpdateInterval = 0.1
         
+        guard motionManager.isAccelerometerAvailable else { return }
+
+        // Setup Operations Queue for Accelerometer updates
         accelerometerUpdatesOperationQueue = OperationQueue()
         accelerometerUpdatesOperationQueue.maxConcurrentOperationCount = 1
         accelerometerUpdatesOperationQueue.qualityOfService = .background
-        // accelerometerUpdatesOperationQueue.waitUntilAllOperationsAreFinished()
-
-        if motionManager.isAccelerometerAvailable {
-            // motionManager.accelerometerUpdateInterval = 0.1
-            motionManager.startAccelerometerUpdates(to: accelerometerUpdatesOperationQueue) { [weak self] (accelerometerData, error) in
-                guard let self = self else { return }
-                
-                if let error = error {
-                    NSLog("Failed to fetch data from accelerometer with an error: \(error)")
-                    return
-                }
-
-                guard let accelerometerData = accelerometerData else { return }
-
-                DispatchQueue.main.async {
-                    self.gravityBehavior.gravityDirection = CGVector(
-                        dx: accelerometerData.acceleration.x,
-                        dy: accelerometerData.acceleration.y * -1
-                    )
-                }
+        
+        motionManager.accelerometerUpdateInterval = 0.1
+        
+        motionManager.startAccelerometerUpdates(to: accelerometerUpdatesOperationQueue) { [weak self] (accelerometerData, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                NSLog("Failed to fetch data from accelerometer with an error: \(error)")
+                return
+            }
+            
+            guard let accelerometerData = accelerometerData else { return }
+            
+            DispatchQueue.main.async {
+                self.gravityBehavior.gravityDirection = CGVector(
+                    dx: accelerometerData.acceleration.x,
+                    dy: accelerometerData.acceleration.y * -1
+                )
             }
         }
-
-    }
-    
-    private func configDiceImageView( _ diceImageView: inout UIImageView!) {
-        diceImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.DiceSize, height: Const.DiceSize))
-        diceImageView.contentMode = .scaleAspectFill
-        // diceImageView.translatesAutoresizingMaskIntoConstraints = false
-        DiceAnimationView.addSubview(diceImageView)
-    }
-     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        configDiceImageView(&dice1ImageView)
-        configDiceImageView(&dice2ImageView)
-        
-        startNewGame()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -142,13 +149,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
 
         alertThenHandleNewGame()
     }
-    
-    // Delegation func, to localize UI once the Options are saved
-    func optionsViewControllerWillDismiss() {
-        updateColorMode()
-        localizeUI()
-    }
-      
+          
     // Pass data about color of buttons to Help ViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "ShowHelpSegue" else { return }
@@ -296,7 +297,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         collisionBehavior.removeItem(diceImageView)
         bouncingBehavior.removeItem(diceImageView)
         gravityBehavior.removeItem(diceImageView)
-
+        
         // Fadeout and reappear at the top of the view
         UIViewPropertyAnimator.runningPropertyAnimator(
             withDuration: 0.2,
@@ -313,31 +314,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             self.bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: diceImageView)
             self.gravityBehavior.addItem(diceImageView)
         }
-        
-//        UIView.animate(
-//            withDuration: 0.2,
-//            delay: 0.0,
-//            options: .curveEaseInOut,
-//            animations: { diceImageView.alpha = 0.0 },
-//            completion: { _ in
-//                // Cleanup from the previous animation
-//                self.collisionBehavior.removeItem(diceImageView)
-//                self.bouncingBehavior.removeItem(diceImageView)
-//                self.gravityBehavior.removeItem(diceImageView)
-//
-//                #warning("Start here")
-//                diceImageView.center = CGPoint(
-//                    x: randomMidX,
-//                    y: minY
-//                )
-//                diceImageView.alpha = 1.0
-//                self.DiceAnimationView.layoutIfNeeded()
-//
-//                self.collisionBehavior.addItem(diceImageView)
-//                self.bouncingBehavior.addItem(diceImageView)
-//                self.bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: diceImageView)
-//                self.gravityBehavior.addItem(diceImageView)
-//            })
     }
     
     private func roll() {
@@ -346,9 +322,17 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         player.rollDice()
         
-        #warning("AnimateDice is called from here")
-        animateDiceImageView(dice1ImageView)
-        animateDiceImageView(dice2ImageView)
+        if game.gameType == .PigGame1Dice {
+            dice2ImageView.removeFromSuperview()
+            
+            animateDiceImageView(dice1ImageView)
+        }
+        
+        if game.gameType == .PigGame2Dice {
+            DiceAnimationView.addSubview(dice2ImageView)
+            
+            animateDiceImageView(dice2ImageView)
+        }
                 
         switch game.gameType {
         case .PigGame1Dice:
