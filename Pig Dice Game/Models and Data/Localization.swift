@@ -115,8 +115,8 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     ],
     
     .winnerTitle: [
-        .En: "@NAME has won!",
-        .Ru: "Победитель @NAME!"
+        .En: "The Winner!",
+        .Ru: "Победитель!"
     ],
     .victoryMessage: [
         .En: "@NAME has won the game with the total score ",
@@ -124,8 +124,8 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     ],
     
     .threw1Title: [
-        .En: "@NAME has lost this round",
-        .Ru: "@NAME проиграл(а) раунд"
+        .En: "Round is lost",
+        .Ru: "Раунд проигран"
     ],
     .threw1Message: [
         .En: "@NAME threw one - round score goes to zero",
@@ -224,7 +224,7 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
         .Ru: "Имя игрока 1"
     ],
     .player2NameLabel: [
-        .En: "2nd Player'a Name",
+        .En: "2nd Player's Name",
         .Ru: "Имя игрока 2"
     ],
     .is2ndPlayerAILabel: [

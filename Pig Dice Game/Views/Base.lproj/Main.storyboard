@@ -26,6 +26,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="9Bi-wa-q9c" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLh-4V-P5p" userLabel="Game View">
                                 <rect key="frame" x="20" y="64" width="374" height="729"/>
                                 <subviews>
@@ -261,9 +264,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pLh-4V-P5p" secondAttribute="bottom" constant="20" id="3DM-Mi-bXJ"/>
+                            <constraint firstItem="9Bi-wa-q9c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dVR-uQ-yFo"/>
                             <constraint firstItem="pLh-4V-P5p" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="i3K-qy-YeW"/>
+                            <constraint firstAttribute="bottom" secondItem="9Bi-wa-q9c" secondAttribute="bottom" id="liG-2X-dIF"/>
                             <constraint firstItem="pLh-4V-P5p" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="mbA-sZ-FM6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pLh-4V-P5p" secondAttribute="trailing" constant="20" id="nXr-BC-LCX"/>
+                            <constraint firstAttribute="trailing" secondItem="9Bi-wa-q9c" secondAttribute="trailing" id="xm6-vu-K8N"/>
+                            <constraint firstItem="9Bi-wa-q9c" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="z3z-4b-NqY"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -301,6 +308,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="rtT-mn-jpX" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IuM-rq-dVe" userLabel="Options View">
                                 <rect key="frame" x="20" y="64" width="374" height="778"/>
                                 <subviews>
@@ -388,6 +398,10 @@
                             <constraint firstItem="IuM-rq-dVe" firstAttribute="top" secondItem="Z6w-VP-qlC" secondAttribute="top" constant="20" id="GgA-kw-Hba"/>
                             <constraint firstItem="Z6w-VP-qlC" firstAttribute="bottom" secondItem="IuM-rq-dVe" secondAttribute="bottom" constant="20" id="HOw-IO-RoJ"/>
                             <constraint firstItem="IuM-rq-dVe" firstAttribute="leading" secondItem="Z6w-VP-qlC" secondAttribute="leading" constant="20" id="KoI-32-8wM"/>
+                            <constraint firstAttribute="bottom" secondItem="rtT-mn-jpX" secondAttribute="bottom" id="KwY-tu-3St"/>
+                            <constraint firstItem="rtT-mn-jpX" firstAttribute="leading" secondItem="Z6w-VP-qlC" secondAttribute="leading" id="QJA-qT-7nY"/>
+                            <constraint firstItem="rtT-mn-jpX" firstAttribute="trailing" secondItem="Z6w-VP-qlC" secondAttribute="trailing" id="ZII-yC-7OH"/>
+                            <constraint firstItem="rtT-mn-jpX" firstAttribute="top" secondItem="z55-wQ-kLg" secondAttribute="top" id="adE-4N-yD9"/>
                             <constraint firstItem="Z6w-VP-qlC" firstAttribute="trailing" secondItem="IuM-rq-dVe" secondAttribute="trailing" constant="20" id="qJg-YG-gun"/>
                         </constraints>
                     </view>
@@ -537,12 +551,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st Player's Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sB-Uo-0N9">
-                                                    <rect key="frame" x="20" y="11" width="145.5" height="22"/>
+                                                    <rect key="frame" x="20" y="11.5" width="151.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Placeholder" borderStyle="roundedRect" placeholder="Player1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xwC-qB-lEk" userLabel="Player One Name Text Field">
-                                                    <rect key="frame" x="175.5" y="5" width="162.5" height="34"/>
+                                                    <rect key="frame" x="181.5" y="5" width="156.5" height="34"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -564,12 +578,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd Player's Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JST-AU-5q0">
-                                                    <rect key="frame" x="20" y="11" width="151.5" height="22"/>
+                                                    <rect key="frame" x="20" y="11.5" width="157.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Placeholder" borderStyle="roundedRect" placeholder="Player2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xoc-C5-qtC" userLabel="Player Two Name Text Field">
-                                                    <rect key="frame" x="181.5" y="5" width="156.5" height="34"/>
+                                                    <rect key="frame" x="187.5" y="5" width="150.5" height="34"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -591,7 +605,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd Player is AI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDV-uc-lH6" userLabel="Player 2 is AI Title">
-                                                    <rect key="frame" x="20" y="11" width="259" height="22"/>
+                                                    <rect key="frame" x="20" y="11.5" width="259" height="21"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -645,12 +659,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit*:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ua-Zf-R71">
-                                                    <rect key="frame" x="20" y="11" width="100" height="22"/>
+                                                    <rect key="frame" x="20" y="11.5" width="102.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9J2-W6-AZA">
-                                                    <rect key="frame" x="130" y="5" width="208" height="34"/>
+                                                    <rect key="frame" x="132.5" y="5" width="205.5" height="34"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
@@ -672,7 +686,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*Within range of 10 to 1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ4-dT-fph" userLabel="Range Note">
-                                                    <rect key="frame" x="8" y="11" width="342" height="22"/>
+                                                    <rect key="frame" x="8" y="11.5" width="342" height="21"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -750,6 +764,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="QL3-oQ-g2L" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6cA-Q7-l7b" userLabel="Help View">
                                 <rect key="frame" x="20" y="20" width="374" height="768"/>
                                 <subviews>
@@ -812,8 +829,12 @@
                         <constraints>
                             <constraint firstItem="4Yg-t0-8Ig" firstAttribute="trailing" secondItem="6cA-Q7-l7b" secondAttribute="trailing" constant="20" id="QVo-BK-m5W"/>
                             <constraint firstItem="4Yg-t0-8Ig" firstAttribute="bottom" secondItem="6cA-Q7-l7b" secondAttribute="bottom" constant="20" id="RaG-o2-A7h"/>
+                            <constraint firstAttribute="trailing" secondItem="QL3-oQ-g2L" secondAttribute="trailing" id="W74-na-oz6"/>
+                            <constraint firstAttribute="bottom" secondItem="QL3-oQ-g2L" secondAttribute="bottom" id="ZWS-9g-SlX"/>
                             <constraint firstItem="6cA-Q7-l7b" firstAttribute="top" secondItem="4Yg-t0-8Ig" secondAttribute="top" constant="20" id="cNb-Fa-vIC"/>
                             <constraint firstItem="6cA-Q7-l7b" firstAttribute="leading" secondItem="4Yg-t0-8Ig" secondAttribute="leading" constant="20" id="f3B-po-yH0"/>
+                            <constraint firstItem="QL3-oQ-g2L" firstAttribute="top" secondItem="1EO-q7-dL5" secondAttribute="top" id="nap-cD-rca"/>
+                            <constraint firstItem="QL3-oQ-g2L" firstAttribute="leading" secondItem="1EO-q7-dL5" secondAttribute="leading" id="s7d-km-zke"/>
                         </constraints>
                     </view>
                     <connections>
@@ -829,6 +850,7 @@
     <resources>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>
         <image name="arrow.uturn.left" catalog="system" width="128" height="112"/>
+        <image name="back" width="5120" height="3200"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="pencil" catalog="system" width="128" height="113"/>

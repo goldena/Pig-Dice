@@ -83,7 +83,6 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         switch textField {
         case ScoreLimitTextField:
             // Check if the input of Score limit is valid and within range, else alert and revert to the default
-            #warning("Refactor")
             guard let newScoreLimit = Int(textField.text ?? "Invalid input"),
                   10...1000 ~= newScoreLimit else {
                 alertThenHandleEvent(
@@ -126,6 +125,10 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         default:
             NSLog("Missing language selected")
         }
+        
+        // Localize parent View Controller
+        let optionsViewController = self.parent as? OptionsViewController
+        optionsViewController?.localizeUI()
         
         localizeUI()
         tableView.reloadData()
