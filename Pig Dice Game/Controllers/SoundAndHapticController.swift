@@ -14,33 +14,44 @@ class SoundAndHapticController {
         
     static private var hapticGenerator: UIImpactFeedbackGenerator?
 
-    // MARK: - Method(s)
+    static private var cachedSounds: [Sound] = []
     
+    private class Sound {
+        var soundID: SystemSoundID
+        var soundURL: URL
+        
+        init(soundID: SystemSoundID, soundURL: URL) {
+            self.soundID = soundID
+            self.soundURL = soundURL
+        }
+    }
+    
+    // MARK: - Method(s)
+        
     static func playHaptic() {
         hapticGenerator = UIImpactFeedbackGenerator(style: .light)
         hapticGenerator?.impactOccurred()
     }
     
-    #warning("refactor using dictionary and find out something about volume level")
-    static func playRandomSound(_ soundNames: [String], type: String) {
-        var soundIDs: [SystemSoundID] = []
-        var soundURLs: [URL] = []
-        
+    static func cacheSounds(soundNames: [String], fileType: String) {
         for index in 0..<soundNames.count {
             guard let soundURL = Bundle.main.url(
                     forResource: soundNames[index],
-                    withExtension: Const.SoundFileType
+                    withExtension: fileType
             ) else {
                 NSLog("Could not find sound file")
                 return
             }
-            soundIDs.append(SystemSoundID(index))
-            soundURLs.append(soundURL)
+            
+            let newSound = Sound(soundID: SystemSoundID(index), soundURL: soundURL)
+            cachedSounds.append(newSound)
         }
+    }
+    
+    static func playRandomCachedSound() {
+        guard let randomCachedSound = cachedSounds.randomElement() else { return }
         
-        let randomSound = Int.random(in: 0..<soundNames.count)
-        
-        AudioServicesCreateSystemSoundID(soundURLs[randomSound] as CFURL, &soundIDs[randomSound])
-        AudioServicesPlaySystemSound(soundIDs[randomSound])
+        AudioServicesCreateSystemSoundID(randomCachedSound.soundURL as CFURL, &randomCachedSound.soundID)
+        AudioServicesPlaySystemSound(randomCachedSound.soundID)
     }
 }

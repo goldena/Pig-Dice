@@ -69,6 +69,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             .instantiateViewController(identifier: "OptionsViewController")
         
         optionsViewController.delegate = self
+        
+        SoundAndHapticController.cacheSounds(soundNames: Const.DiceRollSoundFileNames, fileType: Const.SoundFileType)
     }
      
     // Delegation func, to localize UI once the Options are saved
@@ -442,7 +444,7 @@ extension GameViewController: UICollisionBehaviorDelegate {
             
         // Play sound
         if Options.isSoundEnabled {
-            SoundAndHapticController.playRandomSound(Const.DiceRollSoundFileNames, type: Const.SoundFileType)
+            SoundAndHapticController.playRandomCachedSound()
         }
     }
 }
