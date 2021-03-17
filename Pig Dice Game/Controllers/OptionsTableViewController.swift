@@ -146,6 +146,10 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
             NSLog("Missing Color Mode")
         }
         
+        // Update Color Mode of the parent View Controller
+        let optionsViewController = self.parent as? OptionsViewController
+        optionsViewController?.updateColorMode()
+        
         updateColorMode()
     }
     

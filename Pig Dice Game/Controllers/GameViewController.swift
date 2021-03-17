@@ -201,6 +201,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         Options.load()
         game.initNewGame()
                 
+        updateColorMode()
         localizeUI()
         updateUI()
     }
@@ -436,9 +437,7 @@ extension GameViewController: UICollisionBehaviorDelegate {
             
         // Play sound
         if Options.isSoundEnabled {
-            SoundAndHapticController.playSound(
-                Const.DiceRollSoundFileName.randomElement() ?? "",
-                type: Const.DiceRollSoundFileType
-            )}
+            SoundAndHapticController.playRandomSound(Const.DiceRollSoundFileNames, type: Const.SoundFileType)
+        }
     }
 }

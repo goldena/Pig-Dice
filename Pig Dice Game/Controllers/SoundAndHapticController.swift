@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import AVFoundation
+import AudioToolbox
 
 class SoundAndHapticController {
  
     // MARK: - Property(s)
-    
-    static private var audioPlayer: AVAudioPlayer?
+        
     static private var hapticGenerator: UIImpactFeedbackGenerator?
 
     // MARK: - Method(s)
@@ -21,22 +20,27 @@ class SoundAndHapticController {
         hapticGenerator = UIImpactFeedbackGenerator(style: .light)
         hapticGenerator?.impactOccurred()
     }
-
-    static func prepareToPlaySound() {
-        audioPlayer?.prepareToPlay()
-    }
     
-    static func playSound(_ soundName: String, type: String) {
-        guard let soundPath = Bundle.main.path(forResource: soundName, ofType: type) else {
-            NSLog("Could not find sound file")
-            return
+    #warning("refactor using dictionary and find out something about volume level")
+    static func playRandomSound(_ soundNames: [String], type: String) {
+        var soundIDs: [SystemSoundID] = []
+        var soundURLs: [URL] = []
+        
+        for index in 0..<soundNames.count {
+            guard let soundURL = Bundle.main.url(
+                    forResource: soundNames[index],
+                    withExtension: Const.SoundFileType
+            ) else {
+                NSLog("Could not find sound file")
+                return
+            }
+            soundIDs.append(SystemSoundID(index))
+            soundURLs.append(soundURL)
         }
         
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundPath))
-            audioPlayer?.play()
-        } catch {
-            NSLog("Could not play sound, \(error)")
-        }
+        let randomSound = Int.random(in: 0..<soundNames.count)
+        
+        AudioServicesCreateSystemSoundID(soundURLs[randomSound] as CFURL, &soundIDs[randomSound])
+        AudioServicesPlaySystemSound(soundIDs[randomSound])
     }
 }

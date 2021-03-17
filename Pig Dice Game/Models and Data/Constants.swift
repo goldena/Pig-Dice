@@ -24,8 +24,8 @@ struct Const {
     // Assets
     static let DiceFaces = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
     static let DiceSize = 100
-    static let DiceRollSoundFileName = ["dice_collision1", "dice_collision2", "dice_collision3", "dice_collision4"]
-    static let DiceRollSoundFileType = "wav"
+    static let DiceRollSoundFileNames = ["dice_collision1", "dice_collision2", "dice_collision3", "dice_collision4"]
+    static let SoundFileType = "wav"
     
     // Game
     static let DefaultScoreLimit = 100
