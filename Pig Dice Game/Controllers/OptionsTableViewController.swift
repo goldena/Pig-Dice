@@ -125,13 +125,13 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         default:
             NSLog("Missing language selected")
         }
+                
+        localizeUI()
+        tableView.reloadData()
         
         // Localize parent View Controller
         let optionsViewController = self.parent as? OptionsViewController
         optionsViewController?.localizeUI()
-        
-        localizeUI()
-        tableView.reloadData()
     }
     
     @IBAction private func ColorModeSelectionChanged(_ sender: UISegmentedControl) {
@@ -146,11 +146,11 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
             NSLog("Missing Color Mode")
         }
         
+        updateColorMode()
+        
         // Update Color Mode of the parent View Controller
         let optionsViewController = self.parent as? OptionsViewController
         optionsViewController?.updateColorMode()
-        
-        updateColorMode()
     }
     
     // MARK: - Method(s)

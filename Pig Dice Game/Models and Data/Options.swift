@@ -28,8 +28,15 @@ class Options {
     
     // MARK: - Method(s)
     
-    // If the app is launched for the first time, then save defaults
+    // If the app is launched for the first time, check preferred language and save defaults
     static func onFirstLaunch() {
+        switch Locale.preferredLanguages.first {
+        case "ru", "be", "uk":
+            Options.language = .Ru
+        default:
+            Options.language = .En
+        }
+        
         if userDefaults.bool(forKey: "DefaultsSaved") == false {
             Options.save()
         }
