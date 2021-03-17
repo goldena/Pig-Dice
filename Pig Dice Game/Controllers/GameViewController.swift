@@ -86,6 +86,8 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         configAnimation()
         configMotionManager()
         
+        makeButtonsRounded(ButtonsCollection, withRadius: Const.buttonCornerRadius)
+        
         startNewGame()
     }
     
@@ -93,6 +95,9 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         diceImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.DiceSize, height: Const.DiceSize))
         diceImageView.contentMode = .scaleAspectFill
         diceImageView.alpha = 0.0
+        
+        diceImageView.layer.cornerRadius = 8
+        diceImageView.layer.masksToBounds = true
     }
     
     func configAnimation() {
@@ -191,7 +196,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private func startNewGame() {
         dice1ImageView.alpha = 0.0
         dice2ImageView.alpha = 0.0
-        
+                
         removeBehaviours(from: dice1ImageView)
         removeBehaviours(from: dice2ImageView)
         

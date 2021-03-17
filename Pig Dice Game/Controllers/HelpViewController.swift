@@ -28,6 +28,8 @@ class HelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        makeButtonRounded(BackButton, withRadius: Const.buttonCornerRadius)
+        
         Options.load()
         localizeUI()
         updateUI()

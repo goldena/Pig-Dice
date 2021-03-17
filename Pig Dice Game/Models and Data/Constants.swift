@@ -37,6 +37,7 @@ struct Const {
     static let DefaultGameType: GameType = .PigGame2Dice
     
     static let font = "Lato-Regular"
+    static let buttonCornerRadius = CGFloat(8)
     
     static let delay = 2.0
     

@@ -52,6 +52,16 @@ extension UIViewController {
         }
     }
     
+    func makeButtonRounded(_ button: UIButton, withRadius: CGFloat) {
+        button.layer.cornerRadius = withRadius
+    }
+    
+    func makeButtonsRounded(_ buttons: [UIButton], withRadius: CGFloat) {
+        for button in buttons {
+            makeButtonRounded(button, withRadius: withRadius)
+        }
+    }
+    
     // Displays info alert with Okay button
     func alertThenHandleEvent(color: UIColor, title: String, message: String, handler: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)

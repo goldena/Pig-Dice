@@ -78,7 +78,9 @@ class OptionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                        
+             
+        makeButtonsRounded([SaveButton, CancelButton], withRadius: Const.buttonCornerRadius)
+        
         Options.load()
         
         updateColorMode()
