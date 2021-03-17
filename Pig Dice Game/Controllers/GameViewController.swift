@@ -302,12 +302,12 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             })
     }
     
-    private func animateDiceImageView(_ diceImageView: UIImageView) {
+    private func animateDiceImageView(_ diceImageView: UIImageView, diceFace dice: Int) {
         var randomMidX: CGFloat {
             DiceAnimationView.frame.midX + CGFloat.random(in: -50...50)
         }
         var minY: CGFloat {
-            diceImageView.frame.height / 2
+            diceImageView.frame.height / 2 + 1
         }
         
         removeBehaviours(from: diceImageView)
@@ -320,6 +320,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             animations: { diceImageView.alpha = 0.0 }
         ) { _ in
             diceImageView.center = CGPoint(x: randomMidX, y: minY)
+            diceImageView.image = Const.DiceFaces[dice - 1]
             diceImageView.alpha = 1.0
             self.DiceAnimationView.layoutIfNeeded()
             
@@ -347,15 +348,18 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         let player = game.activePlayer
         
         player.rollDice()
-                
-        DiceAnimationView.addSubview(dice1ImageView)
-        animateDiceImageView(dice1ImageView)
-        
-        if game.gameType == .PigGame2Dice {
-            DiceAnimationView.addSubview(dice2ImageView)
-            animateDiceImageView(dice2ImageView)
+
+        if let dice1 = player.dice1 {
+            DiceAnimationView.addSubview(dice1ImageView)
+            animateDiceImageView(dice1ImageView, diceFace: dice1)
         }
-                
+            
+        if game.gameType == .PigGame2Dice,
+           let dice2 = player.dice2 {
+            DiceAnimationView.addSubview(dice2ImageView)
+            animateDiceImageView(dice2ImageView, diceFace: dice2)
+        }
+        
         switch game.gameType {
         case .PigGame1Dice:
             guard let dice = player.dice1 else { return }
@@ -405,14 +409,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     private func updateUI() {
         let player = game.activePlayer
-
-        if let dice1 = player.dice1 {
-            dice1ImageView.image = Const.DiceFaces[dice1 - 1]
-        }
-
-        if game.gameType == .PigGame2Dice, let dice2 = player.dice2 {
-            dice2ImageView?.image = Const.DiceFaces[dice2 - 1]
-        }
         
         // Change color of buttons for the second player, when it is not AI
         if player === game.player2 && game.activePlayer.isAI == false {
