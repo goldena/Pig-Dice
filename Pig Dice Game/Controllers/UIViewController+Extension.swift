@@ -94,6 +94,19 @@ extension UIViewController {
             }
         }
         
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            
+            popoverController.sourceRect = CGRect(
+                x: self.view.bounds.midX,
+                y: self.view.bounds.maxY - 150,
+                width: 0,
+                height: 0
+            )
+            
+            popoverController.permittedArrowDirections = []
+        }
+        
         present(alertController, animated: true, completion: nil)
     }
     

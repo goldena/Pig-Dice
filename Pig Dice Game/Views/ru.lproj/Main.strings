@@ -1,0 +1,105 @@
+
+/* Class = "UILabel"; text = "1st Player's Name:"; ObjectID = "1sB-Uo-0N9"; */
+"1sB-Uo-0N9.text" = "1st Player's Name:";
+
+/* Class = "UILabel"; text = "Score Limit*:"; ObjectID = "4Ua-Zf-R71"; */
+"4Ua-Zf-R71.text" = "Score Limit*:";
+
+/* Class = "UISegmentedControl"; 4Uc-WM-0bH.segmentTitles[0] = "With 1 dice"; ObjectID = "4Uc-WM-0bH"; */
+"4Uc-WM-0bH.segmentTitles[0]" = "With 1 dice";
+
+/* Class = "UISegmentedControl"; 4Uc-WM-0bH.segmentTitles[1] = "With 2 dice"; ObjectID = "4Uc-WM-0bH"; */
+"4Uc-WM-0bH.segmentTitles[1]" = "With 2 dice";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "7hl-HE-NIa"; */
+"7hl-HE-NIa.normalTitle" = "CANCEL";
+
+/* Class = "UIButton"; normalTitle = "BACK"; ObjectID = "92j-bO-tvX"; */
+"92j-bO-tvX.normalTitle" = "BACK";
+
+/* Class = "UITextField"; placeholder = "100"; ObjectID = "9J2-W6-AZA"; */
+"9J2-W6-AZA.placeholder" = "100";
+
+/* Class = "UILabel"; text = "2nd Player's Name:"; ObjectID = "JST-AU-5q0"; */
+"JST-AU-5q0.text" = "2nd Player's Name:";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "K9e-sH-Slb"; */
+"K9e-sH-Slb.normalTitle" = "SAVE";
+
+/* Class = "UILabel"; text = "Vibration"; ObjectID = "QrK-Hc-WGR"; */
+"QrK-Hc-WGR.text" = "Vibration";
+
+/* Class = "UITableViewSection"; headerTitle = "UI Color Mode"; ObjectID = "Rag-GK-ExM"; */
+"Rag-GK-ExM.headerTitle" = "UI Color Mode";
+
+/* Class = "UILabel"; text = "Score Limit:"; ObjectID = "SbH-n7-3m6"; */
+"SbH-n7-3m6.text" = "Score Limit:";
+
+/* Class = "UILabel"; text = "*Within range of 10 to 1000"; ObjectID = "WJ4-dT-fph"; */
+"WJ4-dT-fph.text" = "*Within range of 10 to 1000";
+
+/* Class = "UIButton"; normalTitle = "NEW GAME"; ObjectID = "Y7p-81-9WF"; */
+"Y7p-81-9WF.normalTitle" = "NEW GAME";
+
+/* Class = "UITableViewSection"; headerTitle = "Players"; ObjectID = "YRn-0o-ACr"; */
+"YRn-0o-ACr.headerTitle" = "Players";
+
+/* Class = "UIButton"; normalTitle = "ROLL"; ObjectID = "aeJ-zM-yl3"; */
+"aeJ-zM-yl3.normalTitle" = "ROLL";
+
+/* Class = "UISegmentedControl"; buX-s3-ybv.segmentTitles[0] = "English"; ObjectID = "buX-s3-ybv"; */
+"buX-s3-ybv.segmentTitles[0]" = "English";
+
+/* Class = "UISegmentedControl"; buX-s3-ybv.segmentTitles[1] = "Русский"; ObjectID = "buX-s3-ybv"; */
+"buX-s3-ybv.segmentTitles[1]" = "Русский";
+
+/* Class = "UILabel"; text = "Player:"; ObjectID = "dQm-rB-I26"; */
+"dQm-rB-I26.text" = "Player:";
+
+/* Class = "UILabel"; text = "2nd Player is AI"; ObjectID = "eDV-uc-lH6"; */
+"eDV-uc-lH6.text" = "2nd Player is AI";
+
+/* Class = "UILabel"; text = "Note: Changes will take effect after pressing \"New Game\" button at the top of the game screen or after restarting the app."; ObjectID = "gED-PZ-zIK"; */
+"gED-PZ-zIK.text" = "Note: Changes will take effect after pressing \"New Game\" button at the top of the game screen or after restarting the app.";
+
+/* Class = "UILabel"; text = "Sound"; ObjectID = "gm0-jJ-xUt"; */
+"gm0-jJ-xUt.text" = "Sound";
+
+/* Class = "UITableViewSection"; headerTitle = "Game rules"; ObjectID = "kBo-H1-4oh"; */
+"kBo-H1-4oh.headerTitle" = "Game rules";
+
+/* Class = "UISegmentedControl"; sBc-XO-dRb.segmentTitles[0] = "System"; ObjectID = "sBc-XO-dRb"; */
+"sBc-XO-dRb.segmentTitles[0]" = "System";
+
+/* Class = "UISegmentedControl"; sBc-XO-dRb.segmentTitles[1] = "Light"; ObjectID = "sBc-XO-dRb"; */
+"sBc-XO-dRb.segmentTitles[1]" = "Light";
+
+/* Class = "UISegmentedControl"; sBc-XO-dRb.segmentTitles[2] = "Dark"; ObjectID = "sBc-XO-dRb"; */
+"sBc-XO-dRb.segmentTitles[2]" = "Dark";
+
+/* Class = "UIButton"; normalTitle = "HOLD"; ObjectID = "soZ-OY-0ra"; */
+"soZ-OY-0ra.normalTitle" = "HOLD";
+
+/* Class = "UILabel"; text = "Total Scores"; ObjectID = "w7E-Jl-zpm"; */
+"w7E-Jl-zpm.text" = "Total Scores";
+
+/* Class = "UITextField"; placeholder = "Player2"; ObjectID = "xoc-C5-qtC"; */
+"xoc-C5-qtC.placeholder" = "Player2";
+
+/* Class = "UITextField"; text = "Placeholder"; ObjectID = "xoc-C5-qtC"; */
+"xoc-C5-qtC.text" = "Placeholder";
+
+/* Class = "UITextField"; placeholder = "Player1"; ObjectID = "xwC-qB-lEk"; */
+"xwC-qB-lEk.placeholder" = "Player1";
+
+/* Class = "UITextField"; text = "Placeholder"; ObjectID = "xwC-qB-lEk"; */
+"xwC-qB-lEk.text" = "Placeholder";
+
+/* Class = "UITableViewSection"; headerTitle = "Sound and Haptics"; ObjectID = "xwe-ia-f7V"; */
+"xwe-ia-f7V.headerTitle" = "Sound and Haptics";
+
+/* Class = "UITableViewSection"; headerTitle = "Language / Язык"; ObjectID = "ylp-Rb-23U"; */
+"ylp-Rb-23U.headerTitle" = "Language / Язык";
+
+/* Class = "UILabel"; text = "Score:"; ObjectID = "ztO-Hj-kKC"; */
+"ztO-Hj-kKC.text" = "Score:";
