@@ -17,6 +17,7 @@
 		CF18F395257594A50017873F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF18F394257594A50017873F /* Constants.swift */; };
 		CF2DDE9F25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */; };
 		CF38BC0C25E84FA800FA0E72 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */; };
+		CF3F11BA2606EB2E004C79D3 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F11B92606EB2E004C79D3 /* MotionManager.swift */; };
 		CF52AFBC254ED91D0077F737 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52AFBB254ED91D0077F737 /* Options.swift */; };
 		CFB46DAB2597CD3B00ADB6FD /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */; };
 		CFBBD7442587F4FD00CA625A /* SoundAndHapticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */; };
@@ -58,6 +59,7 @@
 		CF2DDE9E25DDBE0E006ECD0F /* Pig_Dice_GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pig_Dice_GameTests.swift; sourceTree = "<group>"; };
 		CF2DDEA025DDBE0E006ECD0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		CF3F11B92606EB2E004C79D3 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		CF52AFBB254ED91D0077F737 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 		CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAndHapticController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				CFE937DC252E7D3D009F7CB2 /* GameViewController.swift */,
+				CF3F11B92606EB2E004C79D3 /* MotionManager.swift */,
 				CFE2D9732546231F00565EB8 /* HelpViewController.swift */,
 				CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */,
 				CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */,
@@ -336,6 +339,7 @@
 				CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */,
 				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
 				CF18F395257594A50017873F /* Constants.swift in Sources */,
+				CF3F11BA2606EB2E004C79D3 /* MotionManager.swift in Sources */,
 				CFF0E96D2551E7BC00D788D9 /* Localization.swift in Sources */,
 				CFB46DAB2597CD3B00ADB6FD /* CustomUIButton.swift in Sources */,
 				CF0586D825F02E6100AB3A15 /* OptionsTableViewController.swift in Sources */,
@@ -380,7 +384,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YLBX7YJ47Z;
+				DEVELOPMENT_TEAM = NLJYB66SUP;
 				INFOPLIST_FILE = "Pig Dice GameTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -401,7 +405,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YLBX7YJ47Z;
+				DEVELOPMENT_TEAM = NLJYB66SUP;
 				INFOPLIST_FILE = "Pig Dice GameTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -539,13 +543,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YLBX7YJ47Z;
+				DEVELOPMENT_TEAM = NLJYB66SUP;
 				INFOPLIST_FILE = "$(SRCROOT)/Pig Dice Game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.denisgoloborodko.Pig-Dice-Game";
+				PRODUCT_BUNDLE_IDENTIFIER = "tech.kitcorp.Pig-Dice-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -558,13 +562,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YLBX7YJ47Z;
+				DEVELOPMENT_TEAM = NLJYB66SUP;
 				INFOPLIST_FILE = "$(SRCROOT)/Pig Dice Game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.denisgoloborodko.Pig-Dice-Game";
+				PRODUCT_BUNDLE_IDENTIFIER = "tech.kitcorp.Pig-Dice-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

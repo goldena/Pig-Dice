@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import CoreMotion
 
 // Main screen view controller
-class GameViewController: UIViewController, ViewControllerDelegate {
- 
+class GameViewController: UIViewController {
+    
     // MARK: - Properties
     
     // Dice ImageView are programmatically added or remover, depending on a game type
@@ -21,11 +20,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private var collisionBehavior: UICollisionBehavior!
     private var bouncingBehavior: UIDynamicItemBehavior!
     private var gravityBehavior: UIGravityBehavior!
-    private var motionManager: CMMotionManager!
-    private var accelerometerUpdatesOperationQueue: OperationQueue!
     
     // For delegation needs, to dynamically update some of the options on the main game screen
     private var optionsViewController: OptionsViewController!
+    
+    private var motionManager: MotionManager!
     
     var game = Game()
     
@@ -40,7 +39,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     @IBOutlet private weak var NewGameButton: UIButton!
     @IBOutlet private weak var RollButton: UIButton!
     @IBOutlet private weak var HoldButton: UIButton!
-        
+    
     @IBOutlet weak var DiceAnimationView: UIView!
     
     @IBOutlet private weak var CurrentScoreLabel: UILabel!
@@ -55,9 +54,9 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     @IBOutlet private weak var CurrentPlayerLabel: UILabel!
     @IBOutlet private weak var CurrentPlayerName: UILabel!
-     
+    
     // MARK: - View Lifecycle
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,13 +69,12 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         optionsViewController.delegate = self
         
+        // If the init fails - the accelerometer won't be used for updating animation
+        if let motionManager = MotionManager() {
+            motionManager.delegate = self
+        }
+        
         SoundAndHapticController.cacheSounds(soundNames: Const.DiceRollSoundFileNames, fileType: Const.SoundFileType)
-    }
-     
-    // Delegation func, to localize UI once the Options are saved
-    func optionsViewControllerWillDismiss() {
-        updateColorMode()
-        localizeUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +84,6 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         configDiceImageView(&dice2ImageView)
         
         configAnimation()
-        configMotionManager()
         
         makeButtonsRounded(ButtonsCollection, withRadius: Const.buttonCornerRadius)
         
@@ -107,7 +104,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         gravityBehavior = UIGravityBehavior()
         dynamicAnimator.addBehavior(gravityBehavior)
-
+        
         collisionBehavior = UICollisionBehavior()
         collisionBehavior.collisionDelegate = self
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
@@ -120,43 +117,12 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         dynamicAnimator.addBehavior(bouncingBehavior)
     }
     
-    func configMotionManager() {
-        motionManager = CMMotionManager()
-        
-        guard motionManager.isAccelerometerAvailable else { return }
-
-        // Setup Operations Queue for Accelerometer updates
-        accelerometerUpdatesOperationQueue = OperationQueue()
-        accelerometerUpdatesOperationQueue.maxConcurrentOperationCount = 1
-        accelerometerUpdatesOperationQueue.qualityOfService = .background
-        
-        motionManager.accelerometerUpdateInterval = 0.1
-        
-        motionManager.startAccelerometerUpdates(to: accelerometerUpdatesOperationQueue) { [weak self] (accelerometerData, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                NSLog("Failed to fetch data from accelerometer with an error: \(error)")
-                return
-            }
-            
-            guard let accelerometerData = accelerometerData else { return }
-            
-            DispatchQueue.main.async {
-                self.gravityBehavior.gravityDirection = CGVector(
-                    dx: accelerometerData.acceleration.x,
-                    dy: accelerometerData.acceleration.y * -1
-                )
-            }
-        }
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-
+        
         alertThenHandleNewGame()
     }
-          
+    
     // Pass data about color of buttons to Help ViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "ShowHelpSegue" else { return }
@@ -173,7 +139,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     @IBAction private func OptionsButtonPressed(_ sender: Any) {
         optionsViewController.is2ndPlayer = is2ndPlayer
-
+        
         present(optionsViewController, animated: true, completion: nil)
     }
     
@@ -181,7 +147,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         startNewGame()
         alertThenHandleNewGame()
     }
-
+    
     // MARK: - Methods
     
     private func alertThenHandleNewGame() {
@@ -198,7 +164,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     private func startNewGame() {
         dice1ImageView.alpha = 0.0
         dice2ImageView.alpha = 0.0
-                
+        
         removeBehaviours(from: dice1ImageView)
         removeBehaviours(from: dice2ImageView)
         
@@ -207,7 +173,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         Options.load()
         game.initNewGame()
-                
+        
         updateColorMode()
         localizeUI()
         updateUI()
@@ -215,7 +181,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     
     private func nextMoveIfAI() {
         guard game.activePlayer.isAI else { return }
-
+        
         disableButtons(ButtonsCollection)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + Const.delay) { [weak self] in
@@ -228,11 +194,11 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             }
             
             AIPlayer.rollOrHold(if: otherPlayerRoundScore) ? self.roll() : self.hold()
-
+            
             self.enableButtons(self.ButtonsCollection)
         }
     }
-     
+    
     // Handle switching to the next player
     func switchToNextPlayer() {
         game.nextPlayer()
@@ -268,7 +234,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         let player = game.activePlayer
         let language = Options.language
         let playerColor = is2ndPlayer ? Const.Player2Color : Const.Player1Color
-                
+        
         switch (dice1, dice2) {
         case (_, 1), (1, _):
             alertThenHandleEvent(
@@ -286,7 +252,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             nextMoveIfAI()
         }
     }
-            
+    
     private func alertThenHandleVictory() {
         let player = game.activePlayer
         let language = Options.language
@@ -307,18 +273,20 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             DiceAnimationView.frame.midX + CGFloat.random(in: -50...50)
         }
         var minY: CGFloat {
-            diceImageView.frame.height / 2 + 1
+            diceImageView.frame.height / 2 + diceImageView.frame.height / 4 // to be always in the bounds
         }
         
         removeBehaviours(from: diceImageView)
         
         // Fadeout and reappear at the top of the view
         UIViewPropertyAnimator.runningPropertyAnimator(
+            // Make the previous dice disappear
             withDuration: 0.2,
             delay: 0.0,
             options: .curveEaseInOut,
             animations: { diceImageView.alpha = 0.0 }
         ) { _ in
+            // Move to the top of the view, add acceleration, appear
             diceImageView.center = CGPoint(x: randomMidX, y: minY)
             diceImageView.image = Const.DiceFaces[dice - 1]
             diceImageView.alpha = 1.0
@@ -348,12 +316,12 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         let player = game.activePlayer
         
         player.rollDice()
-
+        
         if let dice1 = player.dice1 {
             DiceAnimationView.addSubview(dice1ImageView)
             animateDiceImageView(dice1ImageView, diceFace: dice1)
         }
-            
+        
         if game.gameType == .PigGame2Dice,
            let dice2 = player.dice2 {
             DiceAnimationView.addSubview(dice2ImageView)
@@ -375,7 +343,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
             alertThenHandleRollResult(dice1, dice2)
         }
     }
-
+    
     private func hold() {
         let player = game.activePlayer
         
@@ -391,7 +359,7 @@ class GameViewController: UIViewController, ViewControllerDelegate {
         
         switchToNextPlayer()
     }
-        
+    
     private func localizeUI() {
         let language = Options.language
         
@@ -425,19 +393,35 @@ class GameViewController: UIViewController, ViewControllerDelegate {
     }
 }
 
+// MARK: Extensions - Methods - Delegated
+
+extension GameViewController: ViewControllerDelegate {
+    // Delegation func, to localize UI once the Options are saved
+    func optionsViewControllerWillDismiss() {
+        
+        updateColorMode()
+        localizeUI()
+    }
+}
+
+extension GameViewController: MotionManagerDelegate {
+    // Update gravity direction for dice animation
+    func acceleratorDataUpdated(gravityDirection: CGVector) {
+        gravityBehavior.gravityDirection = gravityDirection
+    }
+}
+
 extension GameViewController: UICollisionBehaviorDelegate {
-    
+    // Play sound and haptic feedback for dice collisions animation
     func collisionBehavior(
         _ behavior: UICollisionBehavior,
         beganContactFor item: UIDynamicItem,
         withBoundaryIdentifier identifier: NSCopying?, at p: CGPoint
     ) {
-        
         // Play vibration
         if Options.isVibrationEnabled {
             SoundAndHapticController.playHaptic()
         }
-            
         // Play sound
         if Options.isSoundEnabled {
             SoundAndHapticController.playRandomCachedSound()
