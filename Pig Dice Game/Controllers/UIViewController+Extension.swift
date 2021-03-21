@@ -78,11 +78,21 @@ extension UIViewController {
         alertController.view.tintColor = color
         
         // Insert a new line, to add space between the title and the message
-        let attributedTitle = makeNSMutableAttributedString(fromString: title, usingFont: Const.font)
+        let attributedTitle = makeNSMutableAttributedString(fromString: "\n" + title, usingFont: Const.font)
         let attributedMessage = makeNSMutableAttributedString(fromString: "\n" + message, usingFont: Const.font)
 
         alertController.setValue(attributedTitle, forKey: "attributedTitle")
         alertController.setValue(attributedMessage, forKey: "attributedMessage")
+        
+        // Workaround a bug with UIViewAlertController to avoid an error with a negative Auto Layout constraint
+        // To be removed after the bug is fixed
+        if let constraints = alertController.view?.subviews.first?.constraints {
+            for constraint in constraints {
+                if constraint.constant < 0 {
+                    constraint.constant.negate()
+                }
+            }
+        }
         
         present(alertController, animated: true, completion: nil)
     }
