@@ -124,8 +124,8 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     ],
     
     .threw1Title: [
-        .En: "Round is lost",
-        .Ru: "Раунд проигран"
+        .En: "Player looses round",
+        .Ru: "Игрок проиграл раунд"
     ],
     .threw1Message: [
         .En: "@NAME threw one - round score goes to zero",
@@ -137,12 +137,12 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
         .Ru: "Сгорел!"
     ],
     .threwTwo6Message: [
-        .En: "@NAME has thrown two 6, the total score goes to zero",
-        .Ru: "@NAME выбросил(а) две 6, все очки сгорают"
+        .En: "@NAME has thrown two six, the total score goes to zero",
+        .Ru: "@NAME выбросил(а) две шесть, все очки сгорают"
     ],
     .threw6TwiceMessage: [
-        .En: "@NAME has thrown 6 two times in a row, the total score goes to zero",
-        .Ru: "@NAME выбросил(а) 6 два раза подряд, все очки сгорают"
+        .En: "@NAME has thrown six two times in a row, the total score goes to zero",
+        .Ru: "@NAME выбросил(а) шесть два раза подряд, все очки сгорают"
     ],
     
     // Game View - Text
@@ -291,7 +291,7 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
 
             - In each turn, a player rolls a dice as many times as he wishes. Each result get added to his ROUND score.
 
-            - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn.
+            - BUT, if the player rolls 1, all his ROUND score gets lost. After that, it's the next player's turn.
 
             - A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn.
 
