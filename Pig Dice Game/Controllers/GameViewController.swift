@@ -100,6 +100,8 @@ class GameViewController: UIViewController {
         diceImageView.alpha = 0.0
         
         diceImageView.layer.cornerRadius = 8
+        diceImageView.layer.borderColor = .init(gray: 0.5, alpha: 0.3)
+        diceImageView.layer.borderWidth = 1
         diceImageView.layer.masksToBounds = true
     }
     
@@ -144,7 +146,7 @@ class GameViewController: UIViewController {
     
     @IBAction private func OptionsButtonPressed(_ sender: Any) {
         optionsViewController.is2ndPlayer = is2ndPlayer
-        
+                
         present(optionsViewController, animated: true, completion: nil)
     }
     
@@ -228,7 +230,7 @@ class GameViewController: UIViewController {
             alertThenHandleEvent(
                 color: playerColor,
                 title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: language),
-                message: LocalizedUI.threw6TwiceMessage.translate(name: player.name, to: language),
+                message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
         default:
             nextMoveIfAI()

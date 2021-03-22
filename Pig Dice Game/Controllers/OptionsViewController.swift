@@ -33,9 +33,17 @@ class OptionsViewController: UIViewController {
     
     // Return to the main screen without saving any changes to the Options
     @IBAction private func CancelButtonPressed(_ sender: UIButton) {
-        optionsList.updateUI()
-                
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            Options.load()
+            
+            self.updateUI()
+            self.updateColorMode()
+            self.localizeUI()
+            
+            self.optionsList.updateUI()
+            self.optionsList.updateColorMode()
+            self.localizeUI()
+        })
     }
     
     @IBAction private func SaveButtonPressed(_ sender: UIButton) {

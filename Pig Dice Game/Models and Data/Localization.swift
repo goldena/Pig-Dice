@@ -138,7 +138,7 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     ],
     .threwTwo6Message: [
         .En: "@NAME has thrown two 6, the total score goes to zero",
-        .Ru: "@NAME выбросил(а) 6 два раза подряд, все очки сгорают"
+        .Ru: "@NAME выбросил(а) две 6, все очки сгорают"
     ],
     .threw6TwiceMessage: [
         .En: "@NAME has thrown 6 two times in a row, the total score goes to zero",

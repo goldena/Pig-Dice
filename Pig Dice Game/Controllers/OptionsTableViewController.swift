@@ -155,7 +155,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Method(s)
     
-    private func localizeUI() {
+    func localizeUI() {
         let language = Options.language
         
         SoundEnabledLabel.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
