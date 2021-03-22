@@ -35,6 +35,9 @@ class GameViewController: UIViewController {
     
     // MARK: - Properties - IBOutlet(s)
     
+    @IBOutlet weak var backgroundGameImageView: UIImageView!
+    @IBOutlet weak var gameViewBackground: UIView!
+    
     @IBOutlet var ButtonsCollection: [UIButton]!
     @IBOutlet private weak var NewGameButton: UIButton!
     @IBOutlet private weak var RollButton: UIButton!
@@ -85,7 +88,8 @@ class GameViewController: UIViewController {
         
         configAnimation()
         
-        makeButtonsRounded(ButtonsCollection, withRadius: Const.buttonCornerRadius)
+        makeViewsRounded(ButtonsCollection, withRadius: Const.cornerRadius)
+        makeViewRounded(gameViewBackground, withRadius: Const.cornerRadius)
         
         startNewGame()
     }
@@ -128,6 +132,7 @@ class GameViewController: UIViewController {
         guard segue.identifier == "ShowHelpSegue" else { return }
         
         if let helpViewController = segue.destination as? HelpViewController {
+            helpViewController.updateColorMode()
             helpViewController.is2ndPlayer = is2ndPlayer
         }
     }

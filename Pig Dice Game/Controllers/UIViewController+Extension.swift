@@ -20,6 +20,16 @@ extension UIViewController {
         }
     }
     
+    func makeViewRounded(_ aView: UIView, withRadius: CGFloat) {
+        aView.layer.cornerRadius = withRadius
+    }
+    
+    func makeViewsRounded(_ views: [UIView], withRadius: CGFloat) {
+        for aView in views {
+            makeViewRounded(aView, withRadius: withRadius)
+        }
+    }
+    
     func changeColorOfButton(_ button: UIButton, to color: UIColor) {
         button.backgroundColor = color
     }
@@ -51,17 +61,7 @@ extension UIViewController {
             enableButton(button)
         }
     }
-    
-    func makeButtonRounded(_ button: UIButton, withRadius: CGFloat) {
-        button.layer.cornerRadius = withRadius
-    }
-    
-    func makeButtonsRounded(_ buttons: [UIButton], withRadius: CGFloat) {
-        for button in buttons {
-            makeButtonRounded(button, withRadius: withRadius)
-        }
-    }
-    
+        
     // Displays info alert with Okay button
     func alertThenHandleEvent(color: UIColor, title: String, message: String, handler: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)

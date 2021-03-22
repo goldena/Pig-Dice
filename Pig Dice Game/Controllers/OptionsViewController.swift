@@ -23,6 +23,9 @@ class OptionsViewController: UIViewController {
 
     // MARK: - Outlet(s)
         
+    @IBOutlet private weak var backgroundOptionsImageView: UIImageView!
+    @IBOutlet private weak var backgroundOptionsView: UIView!
+    
     @IBOutlet private weak var CancelButton: UIButton!
     @IBOutlet private weak var SaveButton: UIButton!
 
@@ -31,7 +34,7 @@ class OptionsViewController: UIViewController {
     // Return to the main screen without saving any changes to the Options
     @IBAction private func CancelButtonPressed(_ sender: UIButton) {
         optionsList.updateUI()
-        
+                
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -79,7 +82,8 @@ class OptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
              
-        makeButtonsRounded([SaveButton, CancelButton], withRadius: Const.buttonCornerRadius)
+        makeViewsRounded([SaveButton, CancelButton], withRadius: Const.cornerRadius)
+        makeViewRounded(backgroundOptionsView, withRadius: Const.cornerRadius)
         
         Options.load()
         

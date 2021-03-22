@@ -14,6 +14,9 @@ class HelpViewController: UIViewController {
     
     // MARK: - Outlet(s)
     
+    @IBOutlet private weak var backgroundHelpImageView: UIImageView!
+    @IBOutlet private weak var backgroundHelpView: UIView!
+    
     @IBOutlet private weak var GameRulesTextView: UITextView!
     @IBOutlet private weak var BackButton: UIButton!
     
@@ -28,7 +31,8 @@ class HelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeButtonRounded(BackButton, withRadius: Const.buttonCornerRadius)
+        makeViewRounded(BackButton, withRadius: Const.cornerRadius)
+        makeViewRounded(backgroundHelpView, withRadius: Const.cornerRadius)
         
         Options.load()
         localizeUI()

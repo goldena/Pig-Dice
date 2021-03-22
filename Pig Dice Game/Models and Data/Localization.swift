@@ -254,11 +254,11 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .noteLabel: [
         .En:
             """
-            Game-related options will take effect after pressing NEW GAME button at the top of the game's main screen, after one of the players wins the current game in progress, or after restarting the app.
+            Game-related options will take effect after pressing NEW GAME button at the top of the game's main screen, after completing a game in progress, or after restarting the app.
             """,
         .Ru:
             """
-            Изменения относящиеся к правилам игры вступят в силу после нажатия кнопки НОВАЯ ИГРА вверху главного экрана игры, выигрыша любого из игроков в текущей игре, либо после перезапуска приложения.
+            Изменения, относящиеся к правилам игры, вступят в силу после нажатия кнопки НОВАЯ ИГРА вверху главного экрана игры, окончания текущей игры, либо после перезапуска приложения.
             """
     ],
     
