@@ -21,6 +21,8 @@
 		CF52AFBC254ED91D0077F737 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52AFBB254ED91D0077F737 /* Options.swift */; };
 		CFB46DAB2597CD3B00ADB6FD /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */; };
 		CFBBD7442587F4FD00CA625A /* SoundAndHapticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */; };
+		CFCF00F9260A9DC7006FB01F /* Short Casual Loop #2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFCF00F8260A9DC7006FB01F /* Short Casual Loop #2.mp3 */; };
+		CFCF00FD260A9E29006FB01F /* Short Casual Loop #1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFCF00FC260A9E29006FB01F /* Short Casual Loop #1.mp3 */; };
 		CFD6115C2530F807008CF24A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD6115B2530F806008CF24A /* Player.swift */; };
 		CFE2D96E2545B6FD00565EB8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */; };
 		CFE2D9712545B75300565EB8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE2D9702545B75300565EB8 /* Lato-Regular.ttf */; };
@@ -64,6 +66,8 @@
 		CF52AFBB254ED91D0077F737 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 		CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAndHapticController.swift; sourceTree = "<group>"; };
+		CFCF00F8260A9DC7006FB01F /* Short Casual Loop #2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Short Casual Loop #2.mp3"; sourceTree = "<group>"; };
+		CFCF00FC260A9E29006FB01F /* Short Casual Loop #1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Short Casual Loop #1.mp3"; sourceTree = "<group>"; };
 		CFD6115B2530F806008CF24A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		CFE2D9702545B75300565EB8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 		CFBBD7462587F5C200CA625A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				CFCF00FC260A9E29006FB01F /* Short Casual Loop #1.mp3 */,
+				CFCF00F8260A9DC7006FB01F /* Short Casual Loop #2.mp3 */,
 				CF180BC12600050300A21051 /* dice_collision1.wav */,
 				CF180BC32600050300A21051 /* dice_collision2.wav */,
 				CF180BC22600050300A21051 /* dice_collision3.wav */,
@@ -308,10 +314,12 @@
 				CFE937E5252E7D40009F7CB2 /* LaunchScreen.storyboard in Resources */,
 				CF180BC52600050300A21051 /* dice_collision1.wav in Resources */,
 				CFE937E2252E7D40009F7CB2 /* Assets.xcassets in Resources */,
+				CFCF00F9260A9DC7006FB01F /* Short Casual Loop #2.mp3 in Resources */,
 				CFE2D9712545B75300565EB8 /* Lato-Regular.ttf in Resources */,
 				CF180BC62600050300A21051 /* dice_collision3.wav in Resources */,
 				CF180BC42600050300A21051 /* dice_collision4.wav in Resources */,
 				CFE937E0252E7D3D009F7CB2 /* Main.storyboard in Resources */,
+				CFCF00FD260A9E29006FB01F /* Short Casual Loop #1.mp3 in Resources */,
 				CFE2D96E2545B6FD00565EB8 /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,7 +484,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -532,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

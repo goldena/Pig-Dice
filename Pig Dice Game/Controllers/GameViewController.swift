@@ -109,6 +109,7 @@ class GameViewController: UIViewController {
         dynamicAnimator = UIDynamicAnimator(referenceView: DiceAnimationView)
         
         gravityBehavior = UIGravityBehavior()
+        gravityBehavior.magnitude = 1.4
         dynamicAnimator.addBehavior(gravityBehavior)
         
         collisionBehavior = UICollisionBehavior()
@@ -117,9 +118,9 @@ class GameViewController: UIViewController {
         dynamicAnimator.addBehavior(collisionBehavior)
         
         bouncingBehavior = UIDynamicItemBehavior()
-        bouncingBehavior.elasticity = 0.5
+        bouncingBehavior.elasticity = 0.6
         bouncingBehavior.density = 0.9
-        bouncingBehavior.friction = 0.3
+        bouncingBehavior.friction = 0.4
         dynamicAnimator.addBehavior(bouncingBehavior)
     }
     
@@ -280,7 +281,7 @@ class GameViewController: UIViewController {
             DiceAnimationView.frame.midX + CGFloat.random(in: -50...50)
         }
         var minY: CGFloat {
-            diceImageView.frame.height / 2 + diceImageView.frame.height / 4 // to be always in the bounds
+            diceImageView.frame.height // to be always in the bounds
         }
         
         removeBehaviours(from: diceImageView)
