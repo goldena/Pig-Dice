@@ -58,6 +58,7 @@ class OptionsViewController: UIViewController {
         }
         
         Options.isSoundEnabled = optionsList.SoundEnabledSwitch.isOn
+        Options.isMusicEnabled = optionsList.MusicEnabledSwitch.isOn
         Options.isVibrationEnabled = optionsList.VibrationEnabledSwitch.isOn
         
         switch optionsList.GameTypeSegmentedControl.selectedSegmentIndex {

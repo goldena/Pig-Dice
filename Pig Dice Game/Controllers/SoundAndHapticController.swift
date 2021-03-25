@@ -6,16 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
 import AudioToolbox
 
 class SoundAndHapticController {
- 
-    // MARK: - Property(s)
-        
-    static private var hapticGenerator: UIImpactFeedbackGenerator?
 
-    static private var cachedSounds: [Sound] = []
-    
     private class Sound {
         var soundID: SystemSoundID
         var soundURL: URL
@@ -26,8 +21,55 @@ class SoundAndHapticController {
         }
     }
     
-    // MARK: - Method(s)
+    // MARK: - Property(s)
+    
+    static private var hapticGenerator: UIImpactFeedbackGenerator?
+
+    static var musicPlayer: AVAudioPlayer?
+    
+    static private var musicTrackIndex = 0
+    
+    static private var cachedSounds: [Sound] = []
         
+    // MARK: - Method(s)
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag { SoundAndHapticController.playNext() }
+        print("Called delegate")
+    }
+    
+    static private func playMusic(fileName: String, fileType: String) {
+        guard let path = Bundle.main.path(forResource: fileName, ofType: fileType) else {
+            NSLog("Unable to locate a music file")
+            return
+        }
+        
+        do {
+            let url = URL(fileURLWithPath: path)
+            musicPlayer = try AVAudioPlayer(contentsOf: url)
+            
+            musicPlayer?.numberOfLoops = -1 // Infinite number of loops
+            musicPlayer?.play()
+        } catch {
+            NSLog("Failed to load file and play music file \(fileName + "." + fileType)")
+        }
+    }
+    
+    static func playNext() {
+        guard Const.MusicFiles.count > 0 else { return }
+        
+        musicTrackIndex += 1
+        if musicTrackIndex == Const.MusicFiles.count { musicTrackIndex = 0 }
+        
+        playMusic(fileName: Const.MusicFiles[musicTrackIndex], fileType: Const.MusicFileType)
+    }
+    
+    static func stopMusic() {
+        guard let musicPlayer = musicPlayer else { return }
+        
+        if musicPlayer.isPlaying { musicPlayer.stop() }
+    }
+    
     static func playHaptic() {
         hapticGenerator = UIImpactFeedbackGenerator(style: .light)
         hapticGenerator?.impactOccurred()

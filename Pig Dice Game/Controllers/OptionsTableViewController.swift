@@ -13,8 +13,14 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var LanguageSelectionSegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var BackgroundImageLabel: UILabel!
+    @IBOutlet weak var BackgroundImageSwitch: UISwitch!
+    
     @IBOutlet weak var SoundEnabledLabel: UILabel!
     @IBOutlet weak var SoundEnabledSwitch: UISwitch!
+    
+    @IBOutlet weak var MusicEnabledLabel: UILabel!
+    @IBOutlet weak var MusicEnabledSwitch: UISwitch!
     
     @IBOutlet weak var VibrationEnabledLabel: UILabel!
     @IBOutlet weak var VibrationEnabledSwitch: UISwitch!
@@ -153,12 +159,21 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         optionsViewController?.updateColorMode()
     }
     
+    @IBAction func MusicSwitchValueChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            SoundAndHapticController.playNext()
+        } else {
+            SoundAndHapticController.stopMusic()
+        }
+    }
+    
     // MARK: - Method(s)
     
     func localizeUI() {
         let language = Options.language
         
         SoundEnabledLabel.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
+        MusicEnabledLabel.text = LocalizedUI.musicEnabledSwitch.translate(to: language)
         VibrationEnabledLabel.text = LocalizedUI.vibrationEnabledSwitch.translate(to: language)
         
         Player1NameLabel.text = LocalizedUI.player1NameLabel.translate(to: language)
@@ -202,6 +217,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         }
         
         SoundEnabledSwitch.isOn     = Options.isSoundEnabled
+        MusicEnabledSwitch.isOn     = Options.isMusicEnabled
         VibrationEnabledSwitch.isOn = Options.isVibrationEnabled
         
         switch Options.gameType {

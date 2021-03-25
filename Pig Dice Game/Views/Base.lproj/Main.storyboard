@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -451,7 +450,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="UI Color Mode" id="Rag-GK-ExM">
+                            <tableViewSection headerTitle="User Interface" id="Rag-GK-ExM">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DnT-Bv-7XF">
                                         <rect key="frame" x="0.0" y="154.5" width="358" height="43.5"/>
@@ -488,14 +487,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wy1-x1-ZEj">
-                                                    <rect key="frame" x="20" y="11" width="147" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="259" height="22"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-aj-xnn">
+                                                    <rect key="frame" x="289" y="6.5" width="51" height="31"/>
+                                                </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="y7e-aj-xnn" secondAttribute="trailing" id="KkR-ip-d5a"/>
+                                                <constraint firstItem="y7e-aj-xnn" firstAttribute="leading" secondItem="wy1-x1-ZEj" secondAttribute="trailing" constant="10" id="Lzc-sM-fTB"/>
                                                 <constraint firstItem="wy1-x1-ZEj" firstAttribute="leading" secondItem="dju-ym-LzE" secondAttribute="leadingMargin" id="NXa-aD-ZtU"/>
+                                                <constraint firstItem="y7e-aj-xnn" firstAttribute="centerY" secondItem="dju-ym-LzE" secondAttribute="centerY" id="jIv-zA-Rxe"/>
                                                 <constraint firstItem="wy1-x1-ZEj" firstAttribute="centerY" secondItem="dju-ym-LzE" secondAttribute="centerY" id="uIE-zg-rg1"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -546,6 +551,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Vz-G7-bCG" userLabel="Music Enabled Switch">
                                                     <rect key="frame" x="289" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="MusicSwitchValueChanged:" destination="aTr-GO-KPg" eventType="valueChanged" id="qzm-mH-yTv"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -680,7 +688,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4Uc-WM-0bH">
-                                                    <rect key="frame" x="20" y="11" width="318" height="23"/>
+                                                    <rect key="frame" x="8" y="11" width="342" height="23"/>
                                                     <segments>
                                                         <segment title="With 1 dice"/>
                                                         <segment title="With 2 dice"/>
@@ -703,12 +711,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Limit*:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ua-Zf-R71">
-                                                    <rect key="frame" x="20" y="11" width="100" height="22"/>
+                                                    <rect key="frame" x="8" y="11" width="100" height="22"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9J2-W6-AZA">
-                                                    <rect key="frame" x="130" y="5" width="208" height="34"/>
+                                                    <rect key="frame" x="118" y="5" width="232" height="34"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
@@ -777,10 +785,14 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="BackgroundImageLabel" destination="wy1-x1-ZEj" id="4sR-eY-gNi"/>
+                        <outlet property="BackgroundImageSwitch" destination="y7e-aj-xnn" id="dgI-TI-gXy"/>
                         <outlet property="GameTypeSegmentedControl" destination="4Uc-WM-0bH" id="htm-bo-RYw"/>
                         <outlet property="Is2ndPlayerAILabel" destination="eDV-uc-lH6" id="ZNO-i3-koF"/>
                         <outlet property="Is2ndPlayerAISwitch" destination="DaT-Fg-QWz" id="xx5-RP-FIL"/>
                         <outlet property="LanguageSelectionSegmentedControl" destination="buX-s3-ybv" id="u3E-yV-Vec"/>
+                        <outlet property="MusicEnabledLabel" destination="QrK-Hc-WGR" id="8uC-WO-xkn"/>
+                        <outlet property="MusicEnabledSwitch" destination="8Vz-G7-bCG" id="3IL-b4-mUt"/>
                         <outlet property="NoteLabel" destination="gED-PZ-zIK" id="aUW-gV-QxQ"/>
                         <outlet property="Player1NameLabel" destination="1sB-Uo-0N9" id="Cnn-Mt-srV"/>
                         <outlet property="Player1NameTextField" destination="xwC-qB-lEk" id="bR2-lV-vbw"/>
@@ -792,8 +804,8 @@
                         <outlet property="SoundEnabledLabel" destination="gm0-jJ-xUt" id="Gto-eg-CFh"/>
                         <outlet property="SoundEnabledSwitch" destination="ZHn-dn-24J" id="xF4-h0-4H0"/>
                         <outlet property="UIColorModeSegmentedControl" destination="sBc-XO-dRb" id="DSN-to-5Mu"/>
-                        <outlet property="VibrationEnabledLabel" destination="QrK-Hc-WGR" id="e9U-10-Hkf"/>
-                        <outlet property="VibrationEnabledSwitch" destination="8Vz-G7-bCG" id="Tjf-8f-TUa"/>
+                        <outlet property="VibrationEnabledLabel" destination="tYK-z8-5Wn" id="rFR-jK-66c"/>
+                        <outlet property="VibrationEnabledSwitch" destination="KN3-KC-L9p" id="1h0-41-uuR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v83-d9-goq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

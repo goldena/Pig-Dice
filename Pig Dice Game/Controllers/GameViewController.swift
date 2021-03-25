@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import AVFoundation
 
 // Main screen view controller
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, AVAudioPlayerDelegate {
     
     // MARK: - Properties
     
@@ -71,7 +72,7 @@ class GameViewController: UIViewController {
             .instantiateViewController(identifier: "OptionsViewController")
         
         optionsViewController.delegate = self
-        
+                
         // If the init fails - the accelerometer won't be used for updating animation
         if let motionManager = MotionManager() {
             motionManager.delegate = self
@@ -79,7 +80,7 @@ class GameViewController: UIViewController {
         
         SoundAndHapticController.cacheSounds(soundNames: Const.DiceRollSoundFileNames, fileType: Const.SoundFileType)
     }
-    
+   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -185,6 +186,12 @@ class GameViewController: UIViewController {
         updateColorMode()
         localizeUI()
         updateUI()
+        
+        if Options.isMusicEnabled {
+            SoundAndHapticController.playNext()
+        } else {
+            SoundAndHapticController.stopMusic()
+        }
     }
     
     private func nextMoveIfAI() {
@@ -281,7 +288,7 @@ class GameViewController: UIViewController {
             DiceAnimationView.frame.midX + CGFloat.random(in: -50...50)
         }
         var minY: CGFloat {
-            diceImageView.frame.height // to be always in the bounds
+            diceImageView.frame.height * 0.8 // to be always in the bounds (0.75 of a dice height + a bit extra)
         }
         
         removeBehaviours(from: diceImageView)

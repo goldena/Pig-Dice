@@ -63,6 +63,7 @@ enum LocalizedUI {
     case languageSectionTitle
     case soundAndVibrationSectionTitle
     case soundEnabledSwitch
+    case musicEnabledSwitch
     case vibrationEnabledSwitch
     case saveButton
     case cancelButton
@@ -191,6 +192,10 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .soundEnabledSwitch: [
         .En: "Sound",
         .Ru: "Звук"
+    ],
+    .musicEnabledSwitch: [
+        .En: "Music",
+        .Ru: "Музыка"
     ],
     .vibrationEnabledSwitch: [
         .En: "Vibration",

@@ -16,8 +16,10 @@ class Options {
     // Default values for the first launch of the game
     static var language: Language       = Const.DefaultLanguage
     static var isSoundEnabled: Bool     = Const.DefaultIsSoundEnabled
+    static var isMusicEnabled: Bool     = Const.DefaultIsMusicEnabled
     static var isVibrationEnabled: Bool = Const.DefaultIsSoundEnabled
     static var colorMode: ColorMode     = Const.DefaultColorMode
+    static var backgroundImage: String  = Const.DefaultBackgroundImage
 
     static var player1Name: String  = Const.DefaultPlayer1Name
     static var player2Name: String  = Const.DefaultPlayer2Name
@@ -52,7 +54,12 @@ class Options {
             Options.colorMode = ColorMode.init(rawValue: colorMode) ?? .System
         }
         
+        if let backgroundImage = userDefaults.string(forKey: "BackgroundImage") {
+            Options.backgroundImage = backgroundImage
+        }
+        
         Options.isSoundEnabled = userDefaults.bool(forKey: "IsSoundEnabled")
+        Options.isMusicEnabled = userDefaults.bool(forKey: "IsMusicEnabled")
         Options.isVibrationEnabled = userDefaults.bool(forKey: "IsVibrationEnabled")
         
         if let player1Name = userDefaults.string(forKey: "Player1Name") {
@@ -77,9 +84,13 @@ class Options {
         Options.userDefaults.set(true, forKey: "DefaultsSaved")
 
         Options.userDefaults.set(Options.language.rawValue, forKey: "Language")
-        Options.userDefaults.set(Options.isSoundEnabled, forKey: "IsSoundEnabled")
-        Options.userDefaults.set(Options.isVibrationEnabled, forKey: "IsVibrationEnabled")
+
         Options.userDefaults.set(Options.colorMode.rawValue, forKey: "ColorMode")
+        Options.userDefaults.set(Options.backgroundImage, forKey: "BackgroundImage")
+        
+        Options.userDefaults.set(Options.isSoundEnabled, forKey: "IsSoundEnabled")
+        Options.userDefaults.set(Options.isMusicEnabled, forKey: "IsMusicEnabled")
+        Options.userDefaults.set(Options.isVibrationEnabled, forKey: "IsVibrationEnabled")
 
         Options.userDefaults.set(Options.player1Name, forKey: "Player1Name")
         Options.userDefaults.set(Options.player2Name, forKey: "Player2Name")
