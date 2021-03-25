@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 
 // Main screen view controller
-class GameViewController: UIViewController, AVAudioPlayerDelegate {
+class GameViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -186,6 +186,13 @@ class GameViewController: UIViewController, AVAudioPlayerDelegate {
         updateColorMode()
         localizeUI()
         updateUI()
+        
+        #warning("Start here")
+        if Options.isBackgroundImageEnabled {
+            backgroundGameImageView.image = UIImage(named: Const.DefaultBackgroundImage)
+        } else {
+            backgroundGameImageView.image = nil
+        }
         
         if Options.isMusicEnabled {
             SoundAndHapticController.playNext()

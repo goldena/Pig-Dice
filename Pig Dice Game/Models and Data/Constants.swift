@@ -49,6 +49,7 @@ struct Const {
 
     static let DefaultLanguage = Language.En
     static let DefaultColorMode: ColorMode = .System
+    static let DefaultIsBackgroundImageEnabled = true
     static let DefaultBackgroundImage: String = "back"
     
     static let DefaultIsSoundEnabled = true

@@ -60,7 +60,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
        
     // Special hight for Note section (relatively long text there)
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath == IndexPath(row: 0, section: 5) ? 150 : 50
+        indexPath == IndexPath(row: 0, section: 5) ? 150 : 50 // Tall row for the "Note"
     }
     
     // Localize section titles
@@ -172,6 +172,8 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     func localizeUI() {
         let language = Options.language
         
+        BackgroundImageLabel.text = LocalizedUI.backgroundImageLabel.translate(to: language)
+        
         SoundEnabledLabel.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
         MusicEnabledLabel.text = LocalizedUI.musicEnabledSwitch.translate(to: language)
         VibrationEnabledLabel.text = LocalizedUI.vibrationEnabledSwitch.translate(to: language)
@@ -215,6 +217,8 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         case .Dark:
             UIColorModeSegmentedControl.selectedSegmentIndex = 2
         }
+        
+        BackgroundImageSwitch.isOn  = Options.isBackgroundImageEnabled
         
         SoundEnabledSwitch.isOn     = Options.isSoundEnabled
         MusicEnabledSwitch.isOn     = Options.isMusicEnabled

@@ -61,6 +61,7 @@ class SoundAndHapticController {
         musicTrackIndex += 1
         if musicTrackIndex == Const.MusicFiles.count { musicTrackIndex = 0 }
         
+        stopMusic()
         playMusic(fileName: Const.MusicFiles[musicTrackIndex], fileType: Const.MusicFileType)
     }
     

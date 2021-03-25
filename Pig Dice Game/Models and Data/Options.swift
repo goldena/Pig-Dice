@@ -19,7 +19,8 @@ class Options {
     static var isMusicEnabled: Bool     = Const.DefaultIsMusicEnabled
     static var isVibrationEnabled: Bool = Const.DefaultIsSoundEnabled
     static var colorMode: ColorMode     = Const.DefaultColorMode
-    static var backgroundImage: String  = Const.DefaultBackgroundImage
+    static var isBackgroundImageEnabled = Const.DefaultIsBackgroundImageEnabled
+    // static var backgroundImage: String  = Const.DefaultBackgroundImage
 
     static var player1Name: String  = Const.DefaultPlayer1Name
     static var player2Name: String  = Const.DefaultPlayer2Name
@@ -54,10 +55,11 @@ class Options {
             Options.colorMode = ColorMode.init(rawValue: colorMode) ?? .System
         }
         
-        if let backgroundImage = userDefaults.string(forKey: "BackgroundImage") {
-            Options.backgroundImage = backgroundImage
-        }
+//        if let backgroundImage = userDefaults.string(forKey: "BackgroundImage") {
+//            Options.backgroundImage = backgroundImage
+//        }
         
+        Options.isBackgroundImageEnabled = userDefaults.bool(forKey: "IsBackgroundImageEnabled")
         Options.isSoundEnabled = userDefaults.bool(forKey: "IsSoundEnabled")
         Options.isMusicEnabled = userDefaults.bool(forKey: "IsMusicEnabled")
         Options.isVibrationEnabled = userDefaults.bool(forKey: "IsVibrationEnabled")
@@ -86,7 +88,8 @@ class Options {
         Options.userDefaults.set(Options.language.rawValue, forKey: "Language")
 
         Options.userDefaults.set(Options.colorMode.rawValue, forKey: "ColorMode")
-        Options.userDefaults.set(Options.backgroundImage, forKey: "BackgroundImage")
+//        Options.userDefaults.set(Options.backgroundImage, forKey: "BackgroundImage")
+        Options.userDefaults.set(Options.isBackgroundImageEnabled, forKey: "IsBackgroundImageEnabled")
         
         Options.userDefaults.set(Options.isSoundEnabled, forKey: "IsSoundEnabled")
         Options.userDefaults.set(Options.isMusicEnabled, forKey: "IsMusicEnabled")

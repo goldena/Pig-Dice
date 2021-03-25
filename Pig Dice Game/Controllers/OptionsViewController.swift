@@ -57,6 +57,7 @@ class OptionsViewController: UIViewController {
             NSLog("Localization not found")
         }
         
+        Options.isBackgroundImageEnabled = optionsList.BackgroundImageSwitch.isOn
         Options.isSoundEnabled = optionsList.SoundEnabledSwitch.isOn
         Options.isMusicEnabled = optionsList.MusicEnabledSwitch.isOn
         Options.isVibrationEnabled = optionsList.VibrationEnabledSwitch.isOn

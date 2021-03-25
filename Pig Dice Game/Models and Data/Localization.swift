@@ -61,6 +61,7 @@ enum LocalizedUI {
     
     // Options View - Buttons and controls
     case languageSectionTitle
+    case backgroundImageLabel
     case soundAndVibrationSectionTitle
     case soundEnabledSwitch
     case musicEnabledSwitch
@@ -183,6 +184,11 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .languageSectionTitle: [
         .En: "Language / Язык",
         .Ru: "Язык / Language"
+    ],
+    
+    .backgroundImageLabel: [
+        .En: "Background Image",
+        .Ru: "Задний фон"
     ],
     
     .soundAndVibrationSectionTitle: [
