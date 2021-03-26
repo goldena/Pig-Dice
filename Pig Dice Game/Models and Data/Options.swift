@@ -53,13 +53,11 @@ class Options {
         if let colorMode = userDefaults.string(forKey: "ColorMode") {
             Options.colorMode = ColorMode.init(rawValue: colorMode) ?? .System
         }
-        
-//        if let backgroundImage = userDefaults.string(forKey: "BackgroundImage") {
-//            Options.backgroundImage = backgroundImage
-//        }
-        
-//        Options.backgroundImage = userDefaults.bool(forKey: "IsBackgroundImageEnabled")
-        
+
+        if let backgroundImage = userDefaults.string(forKey: "BackgroundImage") {
+            Options.backgroundImage = BackgroundImage.init(rawValue: backgroundImage) ?? .piggies
+        }
+                
         Options.isSoundEnabled = userDefaults.bool(forKey: "IsSoundEnabled")
         Options.isMusicEnabled = userDefaults.bool(forKey: "IsMusicEnabled")
         Options.isVibrationEnabled = userDefaults.bool(forKey: "IsVibrationEnabled")
@@ -88,9 +86,7 @@ class Options {
         Options.userDefaults.set(Options.language.rawValue, forKey: "Language")
 
         Options.userDefaults.set(Options.colorMode.rawValue, forKey: "ColorMode")
-
-        //        Options.userDefaults.set(Options.backgroundImage, forKey: "BackgroundImage")
-//        Options.userDefaults.set(Options.isBackgroundImageEnabled, forKey: "IsBackgroundImageEnabled")
+        Options.userDefaults.set(Options.backgroundImage.rawValue, forKey: "BackgroundImage")
         
         Options.userDefaults.set(Options.isSoundEnabled, forKey: "IsSoundEnabled")
         Options.userDefaults.set(Options.isMusicEnabled, forKey: "IsMusicEnabled")

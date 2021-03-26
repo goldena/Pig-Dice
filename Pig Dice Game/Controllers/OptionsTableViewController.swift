@@ -24,7 +24,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var VibrationEnabledLabel: UILabel!
     @IBOutlet weak var VibrationEnabledSwitch: UISwitch!
     
-    @IBOutlet weak var UIColorModeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var ColorModeSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var Player1NameLabel: UILabel!
     @IBOutlet weak var Player1NameTextField: UITextField!
@@ -59,7 +59,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
        
     // Special hight for Note section (relatively long text there)
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath == IndexPath(row: 0, section: 5) ? 150 : 50 // Tall row for the "Note"
+        indexPath == IndexPath(row: 0, section: 6) ? 150 : 50 // Tall row for the "Note"
     }
     
     // Localize section titles
@@ -72,12 +72,14 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         case 1:
             return LocalizedUI.colorModeSectionTitle.translate(to: language)
         case 2:
-            return LocalizedUI.soundAndVibrationSectionTitle.translate(to: language)
+            return LocalizedUI.backgroundImageSectionTitle.translate(to: language)
         case 3:
-            return LocalizedUI.playersSegmentTitle.translate(to: language)
+            return LocalizedUI.soundAndVibrationSectionTitle.translate(to: language)
         case 4:
-            return LocalizedUI.gameTypeLabel.translate(to: language)
+            return LocalizedUI.playersSegmentTitle.translate(to: language)
         case 5:
+            return LocalizedUI.gameTypeLabel.translate(to: language)
+        case 6:
             return LocalizedUI.noteSegmentTitle.translate(to: language)
         default:
             return nil
@@ -140,7 +142,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction private func ColorModeSelectionChanged(_ sender: UISegmentedControl) {
-        switch UIColorModeSegmentedControl.selectedSegmentIndex {
+        switch ColorModeSegmentedControl.selectedSegmentIndex {
         case 0:
             Options.colorMode = .System
         case 1:
@@ -164,19 +166,16 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         // Update Background Image of the parent View Controller
         let optionsViewController = self.parent as? OptionsViewController
         
-        var selectedBackgroundImage: String!
-        
         switch BackgroundImageSegmentedControl.selectedSegmentIndex {
         case 0:
-            selectedBackgroundImage = BackgroundImage.pigs.rawValue
+            Options.backgroundImage = .piggies
         case 1:
-            selectedBackgroundImage = BackgroundImage.blackboard.rawValue
+            Options.backgroundImage = .blackboard
         default:
-            optionsViewController?.backgroundOptionsImageView.image = nil
-            return
+            Options.backgroundImage = .none
         }
-        
-        optionsViewController?.backgroundOptionsImageView.image = UIImage(named: selectedBackgroundImage)
+                
+        optionsViewController?.updateBackgroundImage()
     }
     
     @IBAction func MusicSwitchValueChanged(_ sender: UISwitch) {
@@ -211,12 +210,14 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         GameTypeSegmentedControl
             .setTitle(LocalizedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
         
-        UIColorModeSegmentedControl
+        ColorModeSegmentedControl
             .setTitle(LocalizedUI.colorSysModeSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
-        UIColorModeSegmentedControl
+        ColorModeSegmentedControl
             .setTitle(LocalizedUI.colorLightModeSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
-        UIColorModeSegmentedControl
+        ColorModeSegmentedControl
             .setTitle(LocalizedUI.colorDarkModeSegmentedControlLabel.translate(to: language), forSegmentAt: 2)
+        
+        #warning("Add")
     }
     
     func updateUI() {
@@ -229,11 +230,20 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         
         switch Options.colorMode {
         case .System:
-            UIColorModeSegmentedControl.selectedSegmentIndex = 0
+            ColorModeSegmentedControl.selectedSegmentIndex = 0
         case .Light:
-            UIColorModeSegmentedControl.selectedSegmentIndex = 1
+            ColorModeSegmentedControl.selectedSegmentIndex = 1
         case .Dark:
-            UIColorModeSegmentedControl.selectedSegmentIndex = 2
+            ColorModeSegmentedControl.selectedSegmentIndex = 2
+        }
+        
+        switch Options.backgroundImage {
+        case .piggies:
+            BackgroundImageSegmentedControl.selectedSegmentIndex = 0
+        case .blackboard:
+            BackgroundImageSegmentedControl.selectedSegmentIndex = 1
+        case .none:
+            BackgroundImageSegmentedControl.selectedSegmentIndex = 2
         }
         
         SoundEnabledSwitch.isOn     = Options.isSoundEnabled

@@ -94,6 +94,7 @@ extension UIViewController {
             }
         }
         
+        // If on iPad
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = self.view
             

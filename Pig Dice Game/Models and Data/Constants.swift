@@ -21,7 +21,7 @@ enum ColorMode: String {
 }
 
 enum BackgroundImage: String {
-    case pigs
+    case piggies
     case blackboard
     case none
 }
@@ -55,7 +55,7 @@ struct Const {
 
     static let DefaultLanguage = Language.En
     static let DefaultColorMode: ColorMode = .System
-    static let DefaultBackgroundImage: BackgroundImage = .pigs
+    static let DefaultBackgroundImage: BackgroundImage = .piggies
     
     static let DefaultIsSoundEnabled = true
     static let DefaultIsMusicEnabled = true

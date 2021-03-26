@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
     
     // MARK: - Properties - IBOutlet(s)
     
-    @IBOutlet weak var backgroundGameImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var gameViewBackground: UIView!
     
     @IBOutlet var ButtonsCollection: [UIButton]!
@@ -137,6 +137,7 @@ class GameViewController: UIViewController {
         
         if let helpViewController = segue.destination as? HelpViewController {
             helpViewController.updateColorMode()
+            // helpViewController.updateBackgroundImage()
             helpViewController.is2ndPlayer = is2ndPlayer
         }
     }
@@ -184,6 +185,7 @@ class GameViewController: UIViewController {
         game.initNewGame()
         
         updateColorMode()
+        updateBackgroundImage()
         localizeUI()
         updateUI()
                 
@@ -390,6 +392,10 @@ class GameViewController: UIViewController {
         CurrentPlayerLabel.text = LocalizedUI.currentPlayerLabel.translate(to: language)
     }
     
+    private func updateBackgroundImage() {
+        backgroundImageView.image = UIImage(named: Options.backgroundImage.rawValue)
+    }
+    
     private func updateUI() {
         let player = game.activePlayer
         
@@ -413,8 +419,8 @@ class GameViewController: UIViewController {
 extension GameViewController: ViewControllerDelegate {
     // Delegation func, to localize UI once the Options are saved
     func optionsViewControllerWillDismiss() {
-        
         updateColorMode()
+        updateBackgroundImage()
         localizeUI()
     }
 }

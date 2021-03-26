@@ -23,7 +23,7 @@ class OptionsViewController: UIViewController {
 
     // MARK: - Outlet(s)
         
-    @IBOutlet weak var backgroundOptionsImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var backgroundOptionsView: UIView! // To make edges rounded
     
     @IBOutlet private weak var CancelButton: UIButton!
@@ -36,13 +36,14 @@ class OptionsViewController: UIViewController {
         self.dismiss(animated: true, completion: {
             Options.load()
             
-            self.updateUI()
             self.updateColorMode()
+            self.updateBackgroundImage()
             self.localizeUI()
-            
-            self.optionsList.updateUI()
+            self.updateUI()
+
             self.optionsList.updateColorMode()
             self.localizeUI()
+            self.optionsList.updateUI()
         })
     }
     
@@ -81,6 +82,7 @@ class OptionsViewController: UIViewController {
             
         // Save options, call delegate to localize the Game screen and dismiss view controller
         Options.save()
+        
         delegate?.optionsViewControllerWillDismiss()
         
         self.dismiss(animated: true, completion: nil)
@@ -97,6 +99,7 @@ class OptionsViewController: UIViewController {
         Options.load()
         
         updateColorMode()
+        updateBackgroundImage()
         localizeUI()
         updateUI()
     }
@@ -114,6 +117,10 @@ class OptionsViewController: UIViewController {
     func localizeUI() {
         SaveButton.setTitle(LocalizedUI.saveButton.translate(to: Options.language), for: .normal)
         CancelButton.setTitle(LocalizedUI.cancelButton.translate(to: Options.language), for: .normal)
+    }
+    
+    func updateBackgroundImage() {
+        backgroundImageView.image = UIImage(named: Options.backgroundImage.rawValue)
     }
     
     func updateUI() {

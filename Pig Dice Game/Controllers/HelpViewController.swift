@@ -14,7 +14,7 @@ class HelpViewController: UIViewController {
     
     // MARK: - Outlet(s)
     
-    @IBOutlet private weak var backgroundHelpImageView: UIImageView!
+    @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var backgroundHelpView: UIView!
     
     @IBOutlet private weak var GameRulesTextView: UITextView!
@@ -35,6 +35,7 @@ class HelpViewController: UIViewController {
         makeViewRounded(backgroundHelpView, withRadius: Const.cornerRadius)
         
         Options.load()
+        updateBackgroundImage()
         localizeUI()
         updateUI()
     }
@@ -47,6 +48,10 @@ class HelpViewController: UIViewController {
         BackButton.setTitle(LocalizedUI.backButton.translate(to: language), for: .normal)
         GameRulesTextView.text = LocalizedUI.gameRulesTextView.translate(to: language)
         GameRulesTextView.textAlignment = .natural
+    }
+    
+    func updateBackgroundImage() {
+        backgroundImageView.image = UIImage(named: Options.backgroundImage.rawValue)
     }
     
     private func updateUI() {
