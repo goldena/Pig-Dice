@@ -203,7 +203,7 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     
     .blackboardBackgroundImageSegmentedControlLabel: [
         .En: "Blackboard",
-        .Ru: "Школьная доска"
+        .Ru: "Доска"
     ],
     
     .noBackgroundImageSegmentedControlLabel: [

@@ -205,19 +205,32 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         NoteLabel.text = LocalizedUI.noteLabel.translate(to: language)
         NoteLabel.textAlignment = .natural
         
-        GameTypeSegmentedControl
-            .setTitle(LocalizedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
-        GameTypeSegmentedControl
-            .setTitle(LocalizedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
+        GameTypeSegmentedControl.setTitle(
+            LocalizedUI.with1DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 0
+        )
+        GameTypeSegmentedControl.setTitle(
+            LocalizedUI.with2DiceSegmentedControlLabel.translate(to: language), forSegmentAt: 1
+        )
         
-        ColorModeSegmentedControl
-            .setTitle(LocalizedUI.colorSysModeSegmentedControlLabel.translate(to: language), forSegmentAt: 0)
-        ColorModeSegmentedControl
-            .setTitle(LocalizedUI.colorLightModeSegmentedControlLabel.translate(to: language), forSegmentAt: 1)
-        ColorModeSegmentedControl
-            .setTitle(LocalizedUI.colorDarkModeSegmentedControlLabel.translate(to: language), forSegmentAt: 2)
+        ColorModeSegmentedControl.setTitle(
+            LocalizedUI.colorSysModeSegmentedControlLabel.translate(to: language), forSegmentAt: 0
+        )
+        ColorModeSegmentedControl.setTitle(
+            LocalizedUI.colorLightModeSegmentedControlLabel.translate(to: language), forSegmentAt: 1
+        )
+        ColorModeSegmentedControl.setTitle(
+            LocalizedUI.colorDarkModeSegmentedControlLabel.translate(to: language), forSegmentAt: 2
+        )
         
-        #warning("Add")
+        BackgroundImageSegmentedControl.setTitle(
+                LocalizedUI.pigsBackgroundImageSegmentedControlLabel.translate(to: language), forSegmentAt: 0
+            )
+        BackgroundImageSegmentedControl.setTitle(
+                LocalizedUI.blackboardBackgroundImageSegmentedControlLabel.translate(to: language), forSegmentAt: 1
+            )
+        BackgroundImageSegmentedControl.setTitle(
+            LocalizedUI.noBackgroundImageSegmentedControlLabel.translate(to: language), forSegmentAt: 2
+        )
     }
     
     func updateUI() {
