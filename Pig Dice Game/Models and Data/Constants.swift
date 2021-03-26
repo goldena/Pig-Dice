@@ -20,6 +20,12 @@ enum ColorMode: String {
     case System
 }
 
+enum BackgroundImage: String {
+    case pigs
+    case blackboard
+    case none
+}
+
 struct Const {
     // Assets
     static let DiceFaces = [#imageLiteral(resourceName: "dice-1"), #imageLiteral(resourceName: "dice-2"), #imageLiteral(resourceName: "dice-3"), #imageLiteral(resourceName: "dice-4"), #imageLiteral(resourceName: "dice-5"), #imageLiteral(resourceName: "dice-6")]
@@ -49,8 +55,7 @@ struct Const {
 
     static let DefaultLanguage = Language.En
     static let DefaultColorMode: ColorMode = .System
-    static let DefaultIsBackgroundImageEnabled = true
-    static let DefaultBackgroundImage: String = "back"
+    static let DefaultBackgroundImage: BackgroundImage = .pigs
     
     static let DefaultIsSoundEnabled = true
     static let DefaultIsMusicEnabled = true

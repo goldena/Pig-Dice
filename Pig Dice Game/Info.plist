@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSMotionUsageDescription</key>
-	<string>App uses accelerometer to animate dice - throws, collisions, gravity</string>
+	<string>App uses accelerometer to animate dice: throws, collisions, gravity</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>

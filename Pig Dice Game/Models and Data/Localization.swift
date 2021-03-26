@@ -55,13 +55,18 @@ enum LocalizedUI {
     case noteLabel
     case gameTypeLabel
     case colorModeSectionTitle
+    
     case colorSysModeSegmentedControlLabel
     case colorLightModeSegmentedControlLabel
     case colorDarkModeSegmentedControlLabel
     
+    case pigsBackgroundImageSegmentedControlLabel
+    case blackboardBackgroundImageSegmentedControlLabel
+    case noBackgroundImageSegmentedControlLabel
+    
     // Options View - Buttons and controls
     case languageSectionTitle
-    case backgroundImageLabel
+    case backgroundImageSectionTitle
     case soundAndVibrationSectionTitle
     case soundEnabledSwitch
     case musicEnabledSwitch
@@ -186,9 +191,24 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
         .Ru: "Язык / Language"
     ],
     
-    .backgroundImageLabel: [
+    .backgroundImageSectionTitle: [
         .En: "Background Image",
-        .Ru: "Задний фон"
+        .Ru: "Фоновое изображение"
+    ],
+    
+    .pigsBackgroundImageSegmentedControlLabel: [
+        .En: "Piggies",
+        .Ru: "Свинки"
+    ],
+    
+    .blackboardBackgroundImageSegmentedControlLabel: [
+        .En: "Blackboard",
+        .Ru: "Школьная доска"
+    ],
+    
+    .noBackgroundImageSegmentedControlLabel: [
+        .En: "None",
+        .Ru: "Нет"
     ],
     
     .soundAndVibrationSectionTitle: [

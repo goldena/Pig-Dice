@@ -23,8 +23,8 @@ class OptionsViewController: UIViewController {
 
     // MARK: - Outlet(s)
         
-    @IBOutlet private weak var backgroundOptionsImageView: UIImageView!
-    @IBOutlet private weak var backgroundOptionsView: UIView!
+    @IBOutlet weak var backgroundOptionsImageView: UIImageView!
+    @IBOutlet private weak var backgroundOptionsView: UIView! // To make edges rounded
     
     @IBOutlet private weak var CancelButton: UIButton!
     @IBOutlet private weak var SaveButton: UIButton!
@@ -57,7 +57,6 @@ class OptionsViewController: UIViewController {
             NSLog("Localization not found")
         }
         
-        Options.isBackgroundImageEnabled = optionsList.BackgroundImageSwitch.isOn
         Options.isSoundEnabled = optionsList.SoundEnabledSwitch.isOn
         Options.isMusicEnabled = optionsList.MusicEnabledSwitch.isOn
         Options.isVibrationEnabled = optionsList.VibrationEnabledSwitch.isOn

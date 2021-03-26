@@ -186,14 +186,7 @@ class GameViewController: UIViewController {
         updateColorMode()
         localizeUI()
         updateUI()
-        
-        #warning("Start here")
-        if Options.isBackgroundImageEnabled {
-            backgroundGameImageView.image = UIImage(named: Const.DefaultBackgroundImage)
-        } else {
-            backgroundGameImageView.image = nil
-        }
-        
+                
         if Options.isMusicEnabled {
             SoundAndHapticController.playNext()
         } else {

@@ -13,8 +13,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var LanguageSelectionSegmentedControl: UISegmentedControl!
     
-    @IBOutlet weak var BackgroundImageLabel: UILabel!
-    @IBOutlet weak var BackgroundImageSwitch: UISwitch!
+    @IBOutlet weak var BackgroundImageSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var SoundEnabledLabel: UILabel!
     @IBOutlet weak var SoundEnabledSwitch: UISwitch!
@@ -159,6 +158,27 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         optionsViewController?.updateColorMode()
     }
     
+    
+    @IBAction func BackgroundImageValueChanged(_ sender: UISegmentedControl) {
+        
+        // Update Background Image of the parent View Controller
+        let optionsViewController = self.parent as? OptionsViewController
+        
+        var selectedBackgroundImage: String!
+        
+        switch BackgroundImageSegmentedControl.selectedSegmentIndex {
+        case 0:
+            selectedBackgroundImage = BackgroundImage.pigs.rawValue
+        case 1:
+            selectedBackgroundImage = BackgroundImage.blackboard.rawValue
+        default:
+            optionsViewController?.backgroundOptionsImageView.image = nil
+            return
+        }
+        
+        optionsViewController?.backgroundOptionsImageView.image = UIImage(named: selectedBackgroundImage)
+    }
+    
     @IBAction func MusicSwitchValueChanged(_ sender: UISwitch) {
         if sender.isOn {
             SoundAndHapticController.playNext()
@@ -171,9 +191,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
     
     func localizeUI() {
         let language = Options.language
-        
-        BackgroundImageLabel.text = LocalizedUI.backgroundImageLabel.translate(to: language)
-        
+                
         SoundEnabledLabel.text = LocalizedUI.soundEnabledSwitch.translate(to: language)
         MusicEnabledLabel.text = LocalizedUI.musicEnabledSwitch.translate(to: language)
         VibrationEnabledLabel.text = LocalizedUI.vibrationEnabledSwitch.translate(to: language)
@@ -217,8 +235,6 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
         case .Dark:
             UIColorModeSegmentedControl.selectedSegmentIndex = 2
         }
-        
-        BackgroundImageSwitch.isOn  = Options.isBackgroundImageEnabled
         
         SoundEnabledSwitch.isOn     = Options.isSoundEnabled
         MusicEnabledSwitch.isOn     = Options.isMusicEnabled
