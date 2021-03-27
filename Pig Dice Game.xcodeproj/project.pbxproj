@@ -19,6 +19,7 @@
 		CF38BC0C25E84FA800FA0E72 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */; };
 		CF3F11BA2606EB2E004C79D3 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F11B92606EB2E004C79D3 /* MotionManager.swift */; };
 		CF52AFBC254ED91D0077F737 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52AFBB254ED91D0077F737 /* Options.swift */; };
+		CF52E0BB260FCFF10059DEAC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52E0BA260FCFF10059DEAC /* String+Extension.swift */; };
 		CFB46DAB2597CD3B00ADB6FD /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */; };
 		CFBBD7442587F4FD00CA625A /* SoundAndHapticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */; };
 		CFCF00F9260A9DC7006FB01F /* Short Casual Loop #2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFCF00F8260A9DC7006FB01F /* Short Casual Loop #2.mp3 */; };
@@ -64,6 +65,7 @@
 		CF3BD0C12607E73F00D29F6A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		CF3F11B92606EB2E004C79D3 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		CF52AFBB254ED91D0077F737 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		CF52E0BA260FCFF10059DEAC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 		CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAndHapticController.swift; sourceTree = "<group>"; };
 		CFCF00F8260A9DC7006FB01F /* Short Casual Loop #2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Short Casual Loop #2.mp3"; sourceTree = "<group>"; };
@@ -132,6 +134,8 @@
 		CFB46DAD2597D60500ADB6FD /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				CF180BAE25F5704E00A21051 /* UITextField+Extension.swift */,
+				CF52E0BA260FCFF10059DEAC /* String+Extension.swift */,
 				CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */,
 			);
 			path = CustomViews;
@@ -214,10 +218,9 @@
 				CF3F11B92606EB2E004C79D3 /* MotionManager.swift */,
 				CFE2D9732546231F00565EB8 /* HelpViewController.swift */,
 				CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */,
-				CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */,
-				CF180BAE25F5704E00A21051 /* UITextField+Extension.swift */,
 				CFE2D977254E093F00565EB8 /* OptionsViewController.swift */,
 				CF0586D725F02E6000AB3A15 /* OptionsTableViewController.swift */,
+				CF38BC0B25E84FA800FA0E72 /* UIViewController+Extension.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				CFE937D9252E7D3D009F7CB2 /* AppDelegate.swift in Sources */,
 				CFE937F1252E8634009F7CB2 /* Game.swift in Sources */,
 				CF18F395257594A50017873F /* Constants.swift in Sources */,
+				CF52E0BB260FCFF10059DEAC /* String+Extension.swift in Sources */,
 				CF3F11BA2606EB2E004C79D3 /* MotionManager.swift in Sources */,
 				CFF0E96D2551E7BC00D788D9 /* Localization.swift in Sources */,
 				CFB46DAB2597CD3B00ADB6FD /* CustomUIButton.swift in Sources */,

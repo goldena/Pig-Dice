@@ -61,7 +61,9 @@ extension UIViewController {
             enableButton(button)
         }
     }
-        
+}
+
+extension UIViewController {
     // Displays info alert with Okay button
     func alertThenHandleEvent(color: UIColor, title: String, message: String, handler: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
@@ -110,11 +112,72 @@ extension UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+}
     
+extension UIViewController {
     func addTapOutsideTextFieldGestureRecognizer() {
         // Dismissed keyboard after tapping outside an edited field
         let tapOutsideTextField = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         tapOutsideTextField.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutsideTextField)
+    }
+}
+
+extension UIViewController {
+
+    #warning("remove")
+//override func viewWillLayoutSubviews() {
+//    particleEmitter.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+//}
+    
+    func victoryConfetti() -> CAEmitterLayer {
+        let particleEmitter = makeParticleEmitter(with: makeParticles(emojis: "🏆🎈🎉"))
+
+        return particleEmitter
+    }
+        
+    func defeatConfetti() -> CAEmitterLayer {
+        let particleEmitter = makeParticleEmitter(with: makeParticles(emojis: "🐽🐷"))
+
+        return particleEmitter
+    }
+    
+    func stopConfetti(particleEmitter: CAEmitterLayer) {
+        particleEmitter.birthRate = 0
+    }
+    
+     func makeParticleEmitter(with particles: [CAEmitterCell]) -> CAEmitterLayer {
+        let particleEmitter = CAEmitterLayer()
+        
+        particleEmitter.position = CGPoint(x: view.center.x, y: -100)
+        particleEmitter.emitterShape = .line
+        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
+        particleEmitter.emitterCells = particles
+
+        return particleEmitter
+    }
+    
+     func makeParticles(emojis: String) -> [CAEmitterCell] {
+        var particles: [CAEmitterCell] = []
+        
+        for emoji in emojis {
+            let cell = CAEmitterCell()
+            
+            cell.birthRate = 5
+            cell.lifetime = 12
+            cell.velocity = 120
+            cell.velocityRange = 50
+            cell.emissionLongitude = CGFloat.pi
+            cell.emissionRange = CGFloat.pi / 4
+            cell.spin = 1
+            cell.spinRange = 1
+            cell.scaleRange = 0.2
+            cell.scaleSpeed = 0.1
+            cell.contents = emoji.image().cgImage
+            
+            particles.append(cell)
+        }
+        
+        return particles
     }
 }

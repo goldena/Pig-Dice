@@ -94,7 +94,7 @@ class GameViewController: UIViewController {
         
         startNewGame()
     }
-    
+        
     private func configDiceImageView( _ diceImageView: inout UIImageView!) {
         diceImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.DiceSize, height: Const.DiceSize))
         diceImageView.contentMode = .scaleAspectFill
@@ -274,12 +274,18 @@ class GameViewController: UIViewController {
         let player = game.activePlayer
         let language = Options.language
         
+        let confetti = is2ndPlayer ? defeatConfetti() : victoryConfetti()
+        view.layer.addSublayer(confetti)
+        
         alertThenHandleEvent(
             color: is2ndPlayer ? Const.Player2Color : Const.Player1Color,
             title: LocalizedUI.winnerTitle.translate(name: player.name, to: language),
             message: LocalizedUI.victoryMessage.translate(name: player.name, to: language)
                 + String(player.totalScore),
             handler: {
+                confetti.birthRate = 0
+                confetti.removeFromSuperlayer()
+                
                 self.startNewGame()
                 self.alertThenHandleNewGame()
             })
