@@ -125,13 +125,12 @@ extension UIViewController {
 
 extension UIViewController {
 
-    #warning("remove")
 //override func viewWillLayoutSubviews() {
 //    particleEmitter.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
 //}
     
     func victoryConfetti() -> CAEmitterLayer {
-        let particleEmitter = makeParticleEmitter(with: makeParticles(emojis: "🏆🎈🎉"))
+        let particleEmitter = makeParticleEmitter(with: makeParticles(emojis: "🏆🎈⭐️"))
 
         return particleEmitter
     }
@@ -163,7 +162,7 @@ extension UIViewController {
         for emoji in emojis {
             let cell = CAEmitterCell()
             
-            cell.birthRate = 5
+            cell.birthRate = 4
             cell.lifetime = 12
             cell.velocity = 120
             cell.velocityRange = 50

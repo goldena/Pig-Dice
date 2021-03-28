@@ -108,6 +108,7 @@
 		CF0586C225ED890300AB3A15 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				CF52E0BA260FCFF10059DEAC /* String+Extension.swift */,
 				CF180BB225F80DD400A21051 /* makeNSMutableAttributedString.swift */,
 			);
 			path = Utilites;
@@ -135,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				CF180BAE25F5704E00A21051 /* UITextField+Extension.swift */,
-				CF52E0BA260FCFF10059DEAC /* String+Extension.swift */,
 				CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */,
 			);
 			path = CustomViews;

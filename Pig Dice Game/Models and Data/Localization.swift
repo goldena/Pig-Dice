@@ -25,6 +25,7 @@ enum LocalizedUI {
     case newGameMessage
     
     case winnerTitle
+    case looserTitle
     case victoryMessage
     
     case threw1Title
@@ -84,15 +85,9 @@ enum LocalizedUI {
     
     // Help View - Buttons
     case backButton
-    
+        
     // Provides translation of IU elements to a given language
-    func translate(to language: Language) -> String {
-        return LocalizationDictionary[self]?[language] ?? "Localization error"
-    }
-    
-    // Provides translation of IU elements to a given language
-    func translate(name: String?, to language: Language) -> String {
-        let name = name ?? ""
+    func translate(name: String = "", to language: Language) -> String {
         let localizedString = LocalizationDictionary[self]?[language] ?? "Localization error"
         
         // @NAME is the placeholder for the passed in argument name: String?
@@ -124,6 +119,10 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     .winnerTitle: [
         .En: "The Winner!",
         .Ru: "Победитель!"
+    ],
+    .looserTitle: [
+        .En: "You have lost!",
+        .Ru: "Вы проиграли!"
     ],
     .victoryMessage: [
         .En: "@NAME has won the game with the total score ",

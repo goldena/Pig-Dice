@@ -9,7 +9,7 @@ import UIKit
 
 extension String.Element {
     
-    func image(with font: UIFont = UIFont.systemFont(ofSize: 8.0)) -> UIImage {
+    func image(with font: UIFont = UIFont.systemFont(ofSize: 14.0)) -> UIImage {
         let nsString = NSString(string: String(self))
         let attributes: [NSAttributedString.Key: Any] = [.font: font]
         let size = nsString.size(withAttributes: attributes)

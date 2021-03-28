@@ -59,7 +59,7 @@ class OptionsTableViewController: UITableViewController, UITextFieldDelegate {
        
     // Special hight for Note section (relatively long text there)
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath == IndexPath(row: 0, section: 6) ? 150 : 50 // Tall row for the "Note"
+        indexPath == IndexPath(row: 0, section: 6) ? 180 : 50 // Tall row for the "Note"
     }
     
     // Localize section titles

@@ -206,6 +206,7 @@ class GameViewController: UIViewController {
             
             let AIPlayer = self.game.activePlayer
             
+            // Score of another player for AI to decide to roll or to hold
             var otherPlayerRoundScore: Int {
                 AIPlayer === self.game.player1 ? self.game.player2.roundScore : self.game.player1.roundScore
             }
@@ -233,13 +234,13 @@ class GameViewController: UIViewController {
         case (1, _):
             alertThenHandleEvent(
                 color: playerColor,
-                title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
+                title: LocalizedUI.threw1Title.translate(to: language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
         case (6, 6):
             alertThenHandleEvent(
                 color: playerColor,
-                title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: language),
+                title: LocalizedUI.threw6TwiceTitle.translate(to: language),
                 message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
         default:
@@ -256,13 +257,13 @@ class GameViewController: UIViewController {
         case (_, 1), (1, _):
             alertThenHandleEvent(
                 color: playerColor,
-                title: LocalizedUI.threw1Title.translate(name: player.name, to: language),
+                title: LocalizedUI.threw1Title.translate(to: language),
                 message: LocalizedUI.threw1Message.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
         case (6, 6):
             alertThenHandleEvent(
                 color: playerColor,
-                title: LocalizedUI.threw6TwiceTitle.translate(name: player.name, to: language),
+                title: LocalizedUI.threw6TwiceTitle.translate(to: language),
                 message: LocalizedUI.threwTwo6Message.translate(name: player.name, to: language),
                 handler: { self.switchToNextPlayer() })
         default:
@@ -275,11 +276,19 @@ class GameViewController: UIViewController {
         let language = Options.language
         
         let confetti = is2ndPlayer ? defeatConfetti() : victoryConfetti()
-        view.layer.addSublayer(confetti)
+        self.view.layer.addSublayer(confetti)
+                      
+        // Title for lost game when the second player is AI
+        var alertTitle: String
+        if is2ndPlayer && Options.is2ndPlayerAI {
+            alertTitle = LocalizedUI.looserTitle.translate(to: language)
+        } else {
+            alertTitle = LocalizedUI.winnerTitle.translate(to: language)
+        }
         
         alertThenHandleEvent(
             color: is2ndPlayer ? Const.Player2Color : Const.Player1Color,
-            title: LocalizedUI.winnerTitle.translate(name: player.name, to: language),
+            title: alertTitle,
             message: LocalizedUI.victoryMessage.translate(name: player.name, to: language)
                 + String(player.totalScore),
             handler: {
