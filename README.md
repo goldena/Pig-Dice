@@ -1,5 +1,5 @@
-# DiceGame
-Dice Game, also known as Pig Game
+# PigDice
+Pig Dice
 
 <p float="left">
   <img src="Screenshots/img1.png" alt=Gameplay" width="300">
