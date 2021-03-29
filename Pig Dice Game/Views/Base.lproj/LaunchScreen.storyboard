@@ -24,7 +24,16 @@
                                 <subviews>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUz-7c-THc" userLabel="LaunchScreen View Background">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="778"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_square" translatesAutoresizingMaskIntoConstraints="NO" id="mL9-Un-mEg">
+                                                <rect key="frame" x="122" y="324" width="130.5" height="130.5"/>
+                                            </imageView>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="mL9-Un-mEg" firstAttribute="centerX" secondItem="fUz-7c-THc" secondAttribute="centerX" id="ZS5-KX-Haq"/>
+                                            <constraint firstItem="mL9-Un-mEg" firstAttribute="centerY" secondItem="fUz-7c-THc" secondAttribute="centerY" id="Zxa-9t-xf0"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,6 +65,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo_square" width="130.5" height="130.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
