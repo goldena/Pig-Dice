@@ -1,4 +1,4 @@
-# PigDice
+# Pig Dice
 Pig Dice
 
 <p float="left">
