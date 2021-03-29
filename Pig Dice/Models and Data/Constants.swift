@@ -40,8 +40,8 @@ struct Const {
     static let DefaultScoreLimit = 100
     
     // Interface
-    static let DefaultPlayer1Name = "👦🏼"
-    static let DefaultPlayer2Name = "🤖"
+    static let DefaultPlayer1Name = "Player 👦🏼"
+    static let DefaultPlayer2Name = "AI 🤖"
     static let Is2ndPlayerAI = true
     static let DefaultGameType: GameType = .PigGame2Dice
     

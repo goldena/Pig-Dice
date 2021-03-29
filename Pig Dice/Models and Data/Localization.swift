@@ -166,8 +166,8 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
     ],
     
     .currentPlayerLabel: [
-        .En: "Player:",
-        .Ru: "Игрок:"
+        .En: "Active Player:",
+        .Ru: "Ходит игрок:"
     ],
     
     // Game View - Buttons
