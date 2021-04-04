@@ -28,8 +28,9 @@
 	<string>App uses accelerometer to animate dice: throws, collisions, gravity</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Lato-light.ttf</string>
-		<string>Lato-regular.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-Light.ttf</string>
+		<string>Lato-Regular.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

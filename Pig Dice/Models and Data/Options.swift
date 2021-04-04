@@ -55,7 +55,7 @@ class Options {
         }
 
         if let backgroundImage = userDefaults.string(forKey: "BackgroundImage") {
-            Options.backgroundImage = BackgroundImage.init(rawValue: backgroundImage) ?? .piggies
+            Options.backgroundImage = BackgroundImage.init(rawValue: backgroundImage) ?? .blackboard
         }
                 
         Options.isSoundEnabled = userDefaults.bool(forKey: "IsSoundEnabled")
@@ -73,7 +73,7 @@ class Options {
         Options.is2ndPlayerAI = userDefaults.bool(forKey: "Is2ndPlayerAI")
         
         if let typeOfGame = userDefaults.string(forKey: "GameType") {
-            Options.gameType = GameType.init(rawValue: typeOfGame) ?? .PigGame1Dice
+            Options.gameType = GameType.init(rawValue: typeOfGame) ?? .PigGame2Dice
         }
         
         Options.scoreLimit = userDefaults.integer(forKey: "ScoreLimit")

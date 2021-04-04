@@ -317,33 +317,35 @@ let LocalizationDictionary: [LocalizedUI: [Language: String]] = [
             """
             GAME RULES:
 
-            - The game has 2 players, playing in rounds. The first player to play the first round is determined randomly.
+            The game has two players playing in rounds. The player who plays the first round is determined randomly.
 
-            - In each turn, a player rolls a dice as many times as he wishes. Each result get added to his ROUND score.
+            Each turn, a player rolls dice as many times as he wants. After each roll, the result added to his ROUND score.
 
-            - BUT, if the player rolls 1, all his ROUND score gets lost. After that, it's the next player's turn.
+            If the player rolls one, all his ROUND score becomes zero, and the turn goes to the next player.
 
-            - A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn.
+            Note: A player loses his ENTIRE score when he rolls two sixes in a row, and the turn goes to the next player.
 
-            - The player can choose to 'Hold', which means that his ROUND score gets added to his TOTAL score. After that, it's the next player's turn.
+            For each roll, the player has an option to HOLD, which means that his ROUND score is added to his TOTAL score, and the turn goes to the next player.
 
-            - The first player to reach 100 (the number can be changed in the options) points in total - wins the game.
+            The first player who reaches 100 points in total wins the game.
+
+            Note: Target score can be changed in the options.
             """,
         .Ru:
             """
             ПРАВИЛА ИГРЫ:
 
-            - В игре участвуют два игрока, играющие по очереди. Первый игрок первого раунда определяется случайно;
+            В игре участвуют два игрока, бросая кубики по очереди. Очередность, определяется случайным образом, например, младший по возрасту игрок начинает первым.
+            
+            Каждый РАУНД игрок может бросать  кубики неограниченное количество раз. После каждого броска сумма выпавших значений добавляется к его общему счету.
+            
+            Если игрок выбросит ЕДЕНИЦУ, то все очки набранные в текущем раунде сгорают и ход переходит к другому игроку.
 
-            - В течение своего хода игрок может бросать кость неограниченное число раз. Каждый результат броска добавляется к его очкам за раунд;
+            Игрок теряет ВСЕ набранные очки когда выбрасывает две ШЕСТЕРКИ подряд и ход переходит к другому игроку.
 
-            - Но, если игрок выбросит 1, то все очки набранные в текущем раунде сгорают и ход переходит к другому игроку;
+            Игрок сам решает, когда остановится, выбрав ПАС, что позволяет ему сохранить набранные очки в текущем РАУНДЕ и добавить их общему количеству набранных очков. В случае ПАСА ход переходит к другому игроку.
 
-            - Игрок теряет ВСЕ набранные очки когда выбрасывает две 6 подряд. После этого ход переходит к другому игроку;
-
-            - Игрок может выбрать "ПАС", что означает сохранение очков набранных в текущем раунде в общем счёте. Ход переходит к другому игроку;
-
-            - Первый из игроков, который наберёт всего 100 очков (лимит можно изменить в настройках) - побеждает.
+            Первый из игроков, который наберёт 100 или более очков побеждает в игре (количество очков, необходимых для победы можно изменить в настройках).
             """
     ],
     

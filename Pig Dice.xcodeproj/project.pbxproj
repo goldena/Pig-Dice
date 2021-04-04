@@ -21,6 +21,7 @@
 		CF52AFBC254ED91D0077F737 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52AFBB254ED91D0077F737 /* Options.swift */; };
 		CF52E0BB260FCFF10059DEAC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52E0BA260FCFF10059DEAC /* String+Extension.swift */; };
 		CFB46DAB2597CD3B00ADB6FD /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */; };
+		CFB70023261A527E00B94C91 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFB70022261A527E00B94C91 /* Lato-Bold.ttf */; };
 		CFBBD7442587F4FD00CA625A /* SoundAndHapticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */; };
 		CFCF00F9260A9DC7006FB01F /* Short Casual Loop #2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFCF00F8260A9DC7006FB01F /* Short Casual Loop #2.mp3 */; };
 		CFCF00FD260A9E29006FB01F /* Short Casual Loop #1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFCF00FC260A9E29006FB01F /* Short Casual Loop #1.mp3 */; };
@@ -67,6 +68,7 @@
 		CF52AFBB254ED91D0077F737 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		CF52E0BA260FCFF10059DEAC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		CFB46DAA2597CD3B00ADB6FD /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		CFB70022261A527E00B94C91 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		CFBBD7432587F4FD00CA625A /* SoundAndHapticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAndHapticController.swift; sourceTree = "<group>"; };
 		CFCF00F8260A9DC7006FB01F /* Short Casual Loop #2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Short Casual Loop #2.mp3"; sourceTree = "<group>"; };
 		CFCF00FC260A9E29006FB01F /* Short Casual Loop #1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Short Casual Loop #1.mp3"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		CF9F1B4C2540D88500C1979F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CFB70022261A527E00B94C91 /* Lato-Bold.ttf */,
 				CFE2D9702545B75300565EB8 /* Lato-Regular.ttf */,
 				CFE2D96D2545B6FD00565EB8 /* Lato-Light.ttf */,
 			);
@@ -320,6 +323,7 @@
 				CFCF00F9260A9DC7006FB01F /* Short Casual Loop #2.mp3 in Resources */,
 				CFE2D9712545B75300565EB8 /* Lato-Regular.ttf in Resources */,
 				CF180BC62600050300A21051 /* dice_collision3.wav in Resources */,
+				CFB70023261A527E00B94C91 /* Lato-Bold.ttf in Resources */,
 				CF180BC42600050300A21051 /* dice_collision4.wav in Resources */,
 				CFE937E0252E7D3D009F7CB2 /* Main.storyboard in Resources */,
 				CFCF00FD260A9E29006FB01F /* Short Casual Loop #1.mp3 in Resources */,
@@ -560,7 +564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = NLJYB66SUP;
 				INFOPLIST_FILE = "$(SRCROOT)/Pig Dice/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -580,7 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = NLJYB66SUP;
 				INFOPLIST_FILE = "$(SRCROOT)/Pig Dice/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
