@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 
 // Main screen view controller
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - Properties
     
@@ -21,6 +21,10 @@ class GameViewController: UIViewController {
     private var collisionBehavior: UICollisionBehavior!
     private var bouncingBehavior: UIDynamicItemBehavior!
     private var gravityBehavior: UIGravityBehavior!
+    private var pushBehaviour: UIPushBehavior!
+    
+    private var panGestureDice1: UIPanGestureRecognizer!
+    private var panGestureDice2: UIPanGestureRecognizer!
     
     // For delegation needs, to dynamically update some of the options on the main game screen
     private var optionsViewController: OptionsViewController!
@@ -67,16 +71,17 @@ class GameViewController: UIViewController {
         // Save initial defaults if the game is launched for the first time
         Options.onFirstLaunch()
         
-        // Instantiate Options ViewController for delegation
+        // Instantiate Options ViewController for delegation and assign delegate to self
         optionsViewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(identifier: "OptionsViewController")
-        
         optionsViewController.delegate = self
                 
+        // Init panGestureRecognizers
+        panGestureDice1 = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        panGestureDice2 = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        
         // If the init fails - the accelerometer won't be used for updating animation
-        if let motionManager = MotionManager() {
-            motionManager.delegate = self
-        }
+        if let motionManager = MotionManager() { motionManager.delegate = self }
         
         SoundAndHapticController.cacheSounds(soundNames: Const.DiceRollSoundFileNames, fileType: Const.SoundFileType)
     }
@@ -86,6 +91,8 @@ class GameViewController: UIViewController {
         
         configDiceImageView(&dice1ImageView)
         configDiceImageView(&dice2ImageView)
+        dice1ImageView.addGestureRecognizer(panGestureDice1)
+        dice2ImageView.addGestureRecognizer(panGestureDice2)
         
         configAnimation()
         
@@ -95,6 +102,7 @@ class GameViewController: UIViewController {
         startNewGame()
     }
         
+    #warning("Consider refactoring the inout")
     private func configDiceImageView( _ diceImageView: inout UIImageView!) {
         diceImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.DiceSize, height: Const.DiceSize))
         diceImageView.contentMode = .scaleAspectFill
@@ -104,6 +112,25 @@ class GameViewController: UIViewController {
         diceImageView.layer.borderColor = .init(gray: 0.5, alpha: 0.3)
         diceImageView.layer.borderWidth = 1
         diceImageView.layer.masksToBounds = true
+        
+        diceImageView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func handlePan(_ sender: UIPanGestureRecognizer) {
+        guard sender.state == .ended else { return }
+        
+        var diceImageView: UIImageView {
+            sender === panGestureDice1 ? dice1ImageView : dice2ImageView
+        }
+        
+        pushBehaviour = UIPushBehavior(items: [diceImageView], mode: .instantaneous)
+        
+        pushBehaviour.pushDirection = CGVector(
+            dx: sender.translation(in: DiceAnimationView).x * 0.05,
+            dy: sender.translation(in: DiceAnimationView).y * 0.05
+        )
+        
+        dynamicAnimator.addBehavior(pushBehaviour)
     }
     
     func configAnimation() {
@@ -123,6 +150,9 @@ class GameViewController: UIViewController {
         bouncingBehavior.density = 0.9
         bouncingBehavior.friction = 0.4
         dynamicAnimator.addBehavior(bouncingBehavior)
+        
+//        pushBehaviour = UIPushBehavior()
+//        dynamicAnimator.addBehavior(pushBehaviour)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -301,15 +331,15 @@ class GameViewController: UIViewController {
     }
     
     private func animateDiceImageView(_ diceImageView: UIImageView, diceFace dice: Int) {
+        removeBehaviours(from: diceImageView)
+        
         var randomMidX: CGFloat {
             DiceAnimationView.frame.midX + CGFloat.random(in: -50...50)
         }
         var minY: CGFloat {
-            diceImageView.frame.height * 0.8 // to be always in the bounds (0.75 of a dice height + a bit extra)
+            diceImageView.frame.height * 0.85 // to be in the bounds (0.75 of a dice height + a bit more)
         }
-        
-        removeBehaviours(from: diceImageView)
-        
+                
         // Fadeout and reappear at the top of the view
         UIViewPropertyAnimator.runningPropertyAnimator(
             // Make the previous dice disappear
@@ -334,6 +364,8 @@ class GameViewController: UIViewController {
         collisionBehavior.removeItem(diceImageView)
         bouncingBehavior.removeItem(diceImageView)
         gravityBehavior.removeItem(diceImageView)
+        
+        if pushBehaviour != nil { pushBehaviour.removeItem(diceImageView) }
     }
     
     // Add animation behaviours
