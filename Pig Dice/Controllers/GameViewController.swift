@@ -18,10 +18,12 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
     private var dice2ImageView: UIImageView!
     
     private var dynamicAnimator: UIDynamicAnimator!
+    
     private var collisionBehavior: UICollisionBehavior!
     private var bouncingBehavior: UIDynamicItemBehavior!
     private var gravityBehavior: UIGravityBehavior!
-    private var pushBehaviour: UIPushBehavior!
+    private var pushBehaviourDice1: UIPushBehavior!
+    private var pushBehaviourDice2: UIPushBehavior!
     
     private var panGestureDice1: UIPanGestureRecognizer!
     private var panGestureDice2: UIPanGestureRecognizer!
@@ -34,9 +36,7 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
     var game = Game()
     
     // Check for changing buttons' color of the second human player (for hot-seat game)
-    private var is2ndPlayer: Bool {
-        game.activePlayer === game.player2 ? true : false
-    }
+    private var is2ndPlayer: Bool { game.activePlayer === game.player2 }
     
     // MARK: - Properties - IBOutlet(s)
     
@@ -91,6 +91,10 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
         
         configDiceImageView(&dice1ImageView)
         configDiceImageView(&dice2ImageView)
+        
+        DiceAnimationView.addSubview(dice1ImageView)
+        DiceAnimationView.addSubview(dice2ImageView)
+        
         dice1ImageView.addGestureRecognizer(panGestureDice1)
         dice2ImageView.addGestureRecognizer(panGestureDice2)
         
@@ -102,7 +106,6 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
         startNewGame()
     }
         
-    #warning("Consider refactoring the inout")
     private func configDiceImageView( _ diceImageView: inout UIImageView!) {
         diceImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.DiceSize, height: Const.DiceSize))
         diceImageView.contentMode = .scaleAspectFill
@@ -119,18 +122,16 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
     @objc private func handlePan(_ sender: UIPanGestureRecognizer) {
         guard sender.state == .ended else { return }
         
-        var diceImageView: UIImageView {
-            sender === panGestureDice1 ? dice1ImageView : dice2ImageView
+        var pushBehaviour: UIPushBehavior {
+            sender === panGestureDice1 ? pushBehaviourDice1 : pushBehaviourDice2
         }
-        
-        pushBehaviour = UIPushBehavior(items: [diceImageView], mode: .instantaneous)
         
         pushBehaviour.pushDirection = CGVector(
             dx: sender.translation(in: DiceAnimationView).x * 0.05,
             dy: sender.translation(in: DiceAnimationView).y * 0.05
         )
-        
-        dynamicAnimator.addBehavior(pushBehaviour)
+
+        pushBehaviour.active = true
     }
     
     func configAnimation() {
@@ -151,8 +152,11 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
         bouncingBehavior.friction = 0.4
         dynamicAnimator.addBehavior(bouncingBehavior)
         
-//        pushBehaviour = UIPushBehavior()
-//        dynamicAnimator.addBehavior(pushBehaviour)
+        pushBehaviourDice1 = UIPushBehavior(items: [dice1ImageView], mode: .instantaneous)
+        dynamicAnimator.addBehavior(pushBehaviourDice1)
+        
+        pushBehaviourDice2 = UIPushBehavior(items: [dice2ImageView], mode: .instantaneous)
+        dynamicAnimator.addBehavior(pushBehaviourDice2)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -205,11 +209,11 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
         dice1ImageView.alpha = 0.0
         dice2ImageView.alpha = 0.0
         
-        removeBehaviours(from: dice1ImageView)
-        removeBehaviours(from: dice2ImageView)
+        // removeBehaviours(from: dice1ImageView)
+        // removeBehaviours(from: dice2ImageView)
         
-        dice1ImageView.removeFromSuperview()
-        dice2ImageView.removeFromSuperview()
+        // dice1ImageView.removeFromSuperview()
+        // dice2ImageView.removeFromSuperview()
         
         Options.load()
         game.initNewGame()
@@ -346,33 +350,38 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
             withDuration: 0.2,
             delay: 0.0,
             options: .curveEaseInOut,
-            animations: { diceImageView.alpha = 0.0 }
-        ) { _ in
+            animations: {
+                diceImageView.alpha = 0.0
+            }
+        ) {_ in
             // Move to the top of the view, add acceleration, appear
             diceImageView.center = CGPoint(x: randomMidX, y: minY)
             diceImageView.image = Const.DiceFaces[dice - 1]
             diceImageView.alpha = 1.0
             self.DiceAnimationView.layoutIfNeeded()
-            
+
             self.addBehaviours(to: diceImageView)
             self.bouncingBehavior.addAngularVelocity(CGFloat.random(in: -20...20), for: diceImageView)
         }
     }
-    
+        
     // Remove animation behaviours
     private func removeBehaviours(from diceImageView: UIImageView) {
         collisionBehavior.removeItem(diceImageView)
         bouncingBehavior.removeItem(diceImageView)
         gravityBehavior.removeItem(diceImageView)
         
-        if pushBehaviour != nil { pushBehaviour.removeItem(diceImageView) }
+        diceImageView === dice1ImageView ? pushBehaviourDice1.removeItem(diceImageView) : pushBehaviourDice2.removeItem(diceImageView)
     }
     
     // Add animation behaviours
     private func addBehaviours(to diceImageView: UIImageView) {
-        self.collisionBehavior.addItem(diceImageView)
-        self.bouncingBehavior.addItem(diceImageView)
-        self.gravityBehavior.addItem(diceImageView)
+        collisionBehavior.addItem(diceImageView)
+        bouncingBehavior.addItem(diceImageView)
+        gravityBehavior.addItem(diceImageView)
+        
+        diceImageView === dice1ImageView ? pushBehaviourDice1.addItem(diceImageView): pushBehaviourDice2.addItem(diceImageView)
+        
     }
     
     private func roll() {
@@ -382,13 +391,11 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
         player.rollDice()
         
         if let dice1 = player.dice1 {
-            DiceAnimationView.addSubview(dice1ImageView)
             animateDiceImageView(dice1ImageView, diceFace: dice1)
         }
         
         if game.gameType == .PigGame2Dice,
            let dice2 = player.dice2 {
-            DiceAnimationView.addSubview(dice2ImageView)
             animateDiceImageView(dice2ImageView, diceFace: dice2)
         }
         
